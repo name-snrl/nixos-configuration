@@ -1,0 +1,131 @@
+diff --git a/runtime/lua/vim/diagnostic.lua b/runtime/lua/vim/diagnostic.lua
+index 40991673f..5be05c7d1 100644
+--- a/runtime/lua/vim/diagnostic.lua
++++ b/runtime/lua/vim/diagnostic.lua
+@@ -968,6 +968,85 @@ M.handlers.underline = {
+   end,
+ }
+ 
++local function fill_range (input, deviation)
++
++  local result = {}
++  table.sort(input)
++
++  for i = (input[1] - deviation), (input[#input] + deviation) do
++    result[#result+1] = i
++  end
++
++  return result
++end
++
++local function indent_by_line (bufnr, diagnostics, opts)
++
++  local close_lines_tbl = {}
++  local deviation = 2
++  local lines = {}
++
++  if type(opts.virtual_text.align) == 'number' then
++    deviation = opts.virtual_text.aligno
++  end
++
++  for _, diagnostic in pairs(diagnostics) do
++    local lnum = lines[diagnostic.lnum]
++    if not lnum then
++      lines[diagnostic.lnum] = diagnostic.lnum
++    end
++  end
++
++  -- merge the lines that are close to each other
++  for lnum in pairs(lines) do
++    local close_lines = { lnum }
++    local range = fill_range(close_lines, deviation)
++
++    local range_length
++    while #range ~= range_length do
++      range_length = #range
++
++      -- looking for lines from the range in the diagnostics
++      for _, line in pairs(range) do
++        for key in pairs(lines) do
++          if key == line then
++            if not vim.tbl_contains(close_lines, line) then
++              close_lines[#close_lines + 1] = line
++            end
++            lines[key] = nil
++            break
++          end
++        end
++      end
++
++      -- range update
++      range = fill_range(close_lines, deviation)
++    end
++
++    if #close_lines > 1 then
++      close_lines_tbl[#close_lines_tbl + 1] = close_lines
++    end
++  end
++
++  -- fill result with line - indent pairs
++  local result = {}
++  for _, tbl in pairs(close_lines_tbl) do
++
++    local indents = {}
++    for _, v in pairs(tbl) do
++      local line = vim.api.nvim_buf_get_lines(bufnr, v, v + 1, false)[1]
++      indents[#indents + 1] = vim.fn.strwidth(line)
++    end
++    table.sort(indents)
++
++    for _, v in pairs(tbl) do
++      result[v] = indents[#indents]
++    end
++  end
++
++  return result
++end
++
+ M.handlers.virtual_text = {
+   show = function(namespace, bufnr, diagnostics, opts)
+     vim.validate({
+@@ -985,6 +1064,7 @@ M.handlers.virtual_text = {
+     opts = opts or {}
+ 
+     local severity
++    local indents
+     if opts.virtual_text then
+       if opts.virtual_text.format then
+         diagnostics = reformat_diagnostics(opts.virtual_text.format, diagnostics)
+@@ -998,6 +1078,9 @@ M.handlers.virtual_text = {
+       if opts.virtual_text.severity then
+         severity = opts.virtual_text.severity
+       end
++      if opts.virtual_text.align then
++        indents = indent_by_line(bufnr, diagnostics, opts)
++      end
+     end
+ 
+     local ns = M.get_namespace(namespace)
+@@ -1014,10 +1097,18 @@ M.handlers.virtual_text = {
+       local virt_texts = M._get_virt_text_chunks(line_diagnostics, opts.virtual_text)
+ 
+       if virt_texts then
+-        vim.api.nvim_buf_set_extmark(bufnr, virt_text_ns, line, 0, {
+-          hl_mode = 'combine',
+-          virt_text = virt_texts,
+-        })
++        if indents and indents[line] then
++          vim.api.nvim_buf_set_extmark(bufnr, virt_text_ns, line, 0, {
++            hl_mode = 'combine',
++            virt_text = virt_texts,
++            virt_text_win_col = indents[line],
++          })
++        else
++          vim.api.nvim_buf_set_extmark(bufnr, virt_text_ns, line, 0, {
++            hl_mode = 'combine',
++            virt_text = virt_texts,
++          })
++        end
+       end
+     end
+     save_extmarks(virt_text_ns, bufnr)
