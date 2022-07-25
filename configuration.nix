@@ -13,7 +13,7 @@ in
     nur-no-pkgs.repos.ilya-fedin.modules.dbus-broker
   ];
 
-  system.stateVersion = "21.11"; # Did you read the comment?
+  system.stateVersion = "22.05";
 
   #--------------------------- HARDWARE AND SYSTEM ----------------------------#
 
