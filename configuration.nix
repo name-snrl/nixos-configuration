@@ -493,6 +493,9 @@ in
     ];
   };
 
+  # qt
+  qt5.platformTheme = "qt5ct";
+
   nixpkgs = {
     # Neovim overlay
     overlays = [
@@ -707,7 +710,6 @@ in
       };
     };
 
-    qt5ct.enable = true;
     adb.enable = true;
   };
 
@@ -755,8 +757,7 @@ in
     # social
     discord zoom-us
     dino nheko # matrix
-    nur.repos.ilya-fedin.kotatogram-desktop
-    #nur.repos.ilya-fedin.kotatogram-desktop-with-webkit
+    nur.repos.ilya-fedin.kotatogram-desktop-with-webkit
 
     # mdeia
     mpv gimp
