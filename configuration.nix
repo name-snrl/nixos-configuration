@@ -300,7 +300,6 @@ in
     };
   };
 
-  # DBus-broker
   services.dbus-broker.enable = true;
 
   # Auto login
@@ -314,7 +313,6 @@ in
     };
   };
 
-  # XDG portal
   xdg.portal = {
     enable = true;
     gtkUsePortal = true;
@@ -331,7 +329,6 @@ in
     ];
   };
 
-  # Mime list
   xdg.mime.defaultApplications = {
     "application/pdf" = "sioyek.desktop";
     "image/jpeg" = "imv.desktop";
@@ -471,7 +468,6 @@ in
     };
   };
 
-  # Fonts
   fonts = {
     enableDefaultFonts = false;
     fontconfig.crOSMaps = true;
@@ -493,8 +489,10 @@ in
     ];
   };
 
-  # qt
-  qt5.platformTheme = "qt5ct";
+  qt5 = {
+    enable = true;
+    platformTheme = "qt5ct";
+  };
 
   nixpkgs = {
     # Neovim overlay
