@@ -57,7 +57,7 @@ in
     settings = {
       ExitNodes = "{ua}, {nl}, {gb}";
       ExcludeNodes = "{ru},{by},{kz}";
-      UseBridges = 1;
+      UseBridges = true;
       ClientTransportPlugin = "obfs4 exec ${pkgs.obfs4}/bin/obfs4proxy";
       Bridge = ''
         obfs4 185.177.207.149:8443 69E9E63C529D8A48D7AD9F7828C02973C4C80042 cert=Ww+My19m46C3iGCKmc9NYd5cjrsDVmJCEzwr0jnrsdsE4w0kj4dPBSzz4vSu276P0sOJHQ iat-mode=0
@@ -760,7 +760,11 @@ in
     # mdeia
     mpv gimp
     ffmpeg
-    sioyek
+    (sioyek.overrideAttrs(oa: {
+      buildInputs = oa.buildInputs ++ [ mujs ];
+      version = "1.4.0";
+      src = builtins.fetchTarball "https://github.com/ahrm/sioyek/archive/refs/tags/v1.4.0.tar.gz";
+    }))
 
     # utilities
     (pkgs.runCommand "less" {} ''
