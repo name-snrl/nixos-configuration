@@ -307,7 +307,7 @@ in
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.sway}/bin/sway";
+        command = "sway";
         user = "${userName}";
       };
     };
@@ -336,8 +336,7 @@ in
   };
 
   # Sway
-  programs =
-    {
+  programs = {
     sway = {
       enable = true;
       wrapperFeatures.gtk = true; # so that gtk works properly
