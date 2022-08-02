@@ -29,7 +29,7 @@ in
       };
     };
 
-    #kernelPackages = pkgs.linuxPackages_5_15;
+    kernelPackages = pkgs.linuxPackages_zen;
     initrd.kernelModules = [ "i915" ];
     supportedFilesystems = [ "ntfs" ];
     kernelModules = [ "acpi_call" ];
