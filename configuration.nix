@@ -60,7 +60,7 @@ in
       UseBridges = true;
       ClientTransportPlugin = "obfs4 exec ${pkgs.obfs4}/bin/obfs4proxy";
       Bridge = ''
-        obfs4 185.177.207.149:8443 69E9E63C529D8A48D7AD9F7828C02973C4C80042 cert=Ww+My19m46C3iGCKmc9NYd5cjrsDVmJCEzwr0jnrsdsE4w0kj4dPBSzz4vSu276P0sOJHQ iat-mode=0
+        obfs4 207.148.108.221:443 7259F29EC35E385B25D1DD56A3B39B76BBE63940 cert=aMu33DOPGFQsjgLZ7JtKB6Eysn9kaN4ubcWbi2zsO+rAORC1eKDrDiGqXqkJD8ZLgY25QA iat-mode=0
       '';
     };
   };
@@ -719,6 +719,7 @@ in
     pciutils
     usbutils
     inetutils
+    virt-manager
 
     # NixOS
     nixos-option
@@ -774,7 +775,7 @@ in
     tokei
     tldr
     file tree
-    skim # fuzzy finder
+    fzf skim
     (pkgs.runCommand "jq" {} ''
       mkdir -p "$out/bin"
       ln -sfn "${pkgs.gojq}/bin/gojq" "$out/bin/jq"
