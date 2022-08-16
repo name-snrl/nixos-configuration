@@ -98,6 +98,7 @@ in
     };
     libvirtd = {
       enable = true;
+      onBoot = "ignore";
     };
   };
 
@@ -760,11 +761,7 @@ in
     # mdeia
     mpv gimp
     ffmpeg
-    (sioyek.overrideAttrs(oa: {
-      buildInputs = oa.buildInputs ++ [ mujs ];
-      version = "1.4.0";
-      src = builtins.fetchTarball "https://github.com/ahrm/sioyek/archive/refs/tags/v1.4.0.tar.gz";
-    }))
+    sioyek
 
     # utilities
     (pkgs.runCommand "less" {} ''
@@ -773,7 +770,7 @@ in
     '')
     difftastic
     tokei
-    tldr
+    tealdeer
     file tree
     fzf skim
     (pkgs.runCommand "jq" {} ''
