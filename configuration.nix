@@ -298,6 +298,7 @@ in
       TERMINAL = "alacritty";
       MENU = "wofi -d";
       BROWSER = "nvim";
+      GTK_USE_PORTAL = "1";
     };
   };
 
@@ -316,12 +317,13 @@ in
 
   xdg.portal = {
     enable = true;
-    gtkUsePortal = true;
+    # gtkUsePortal = true; # check sessionVariables above
     wlr = {
       enable = true;
       settings.screencast = {
         output_name = "eDP-1";
         max_fps = 60;
+        chooser_type = "none";
       };
     };
     extraPortals = with pkgs; [
@@ -350,7 +352,6 @@ in
         swaylock-effects
         grim slurp flameshot
         wl-clipboard
-        wf-recorder
         mako
         imv
         wofi
@@ -736,7 +737,7 @@ in
     wget
     pcmanfm-qt gptfdisk
     rclone jmtpfs
-    unzip
+    zip
 
     # code
     gnumake gcc
@@ -759,8 +760,10 @@ in
     nur.repos.ilya-fedin.kotatogram-desktop-with-webkit
 
     # mdeia
-    mpv gimp
+    obs-studio
     ffmpeg
+    mpv
+    gimp
     sioyek
 
     # utilities
@@ -772,7 +775,7 @@ in
     tokei
     tealdeer
     file tree
-    fzf skim
+    fzf
     (pkgs.runCommand "jq" {} ''
       mkdir -p "$out/bin"
       ln -sfn "${pkgs.gojq}/bin/gojq" "$out/bin/jq"
