@@ -387,6 +387,7 @@ in
       RestartSec = 3;
       Restart = "always";
     };
+    environment.PATH = lib.mkForce null;
   };
 
   systemd.user.services.waybar = {
