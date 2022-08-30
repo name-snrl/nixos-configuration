@@ -304,13 +304,13 @@ in
 
   services.dbus-broker.enable = true;
 
-  # Auto login
-  services.greetd = {
+  # display manager
+  services.xserver = {
     enable = true;
-    settings = {
-      default_session = {
-        command = "sway";
-        user = "${userName}";
+    displayManager = {
+      gdm = {
+        wayland = true;
+        enable = true;
       };
     };
   };
