@@ -738,7 +738,7 @@ in
     wget
     pcmanfm-qt gptfdisk
     rclone jmtpfs
-    zip
+    unzip
 
     # code
     gnumake gcc
@@ -754,6 +754,7 @@ in
     elinks
     qbittorrent
     librespeed-cli
+    gns3-gui gns3-server
 
     # social
     discord zoom-us
@@ -783,6 +784,7 @@ in
     '') # use gojq as jq
     jshon
     pandoc #wkhtmltopdf # doc converter
+    tesseract5
 
     # GNU replacement
     exa fd bat
