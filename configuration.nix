@@ -299,6 +299,7 @@ in
       MENU = "wofi -d";
       BROWSER = "nvim";
       GTK_USE_PORTAL = "1";
+      QT_QPA_PLATFORMTHEME = "qt5ct"; # TODO create an issue
     };
   };
 
