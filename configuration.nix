@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 
 let
-  userName = "name_snrl";
   nur-no-pkgs = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") { };
 in
 
@@ -14,6 +13,7 @@ in
     ./profiles/bash.nix
     ./profiles/git.nix
     ./profiles/starship.nix
+    ./modules/global_variables.nix
     nur-no-pkgs.repos.ilya-fedin.modules.metric-compatible-fonts
     nur-no-pkgs.repos.ilya-fedin.modules.dbus-broker
   ];
@@ -159,7 +159,7 @@ in
 
   #---------------------------- ENVIRONMENT N SOFT ----------------------------#
 
-  users.users.${userName} = {
+  users.users.${config.userName} = {
     isNormalUser = true;
     extraGroups = [
       "wheel" "networkmanager" "video"
