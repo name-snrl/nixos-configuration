@@ -307,6 +307,23 @@ in
   # display manager
   services.xserver = {
     enable = true;
+    excludePackages = [
+      pkgs.xorg.xorgserver.out
+      pkgs.xorg.xrandr
+      pkgs.xorg.xrdb
+      pkgs.xorg.setxkbmap
+      pkgs.xorg.iceauth
+      pkgs.xorg.xlsclients
+      pkgs.xorg.xset
+      pkgs.xorg.xsetroot
+      pkgs.xorg.xinput
+      pkgs.xorg.xprop
+      pkgs.xorg.xauth
+      pkgs.xterm
+      pkgs.xdg-utils
+      pkgs.xorg.xf86inputevdev.out
+      pkgs.nixos-icons
+    ];
     displayManager = {
       gdm = {
         wayland = true;
