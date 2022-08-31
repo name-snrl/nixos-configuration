@@ -48,11 +48,7 @@ in
   networking = {
     #firewall.enable = false;
     hostName = "nixos";
-    networkmanager = {
-      enable = true;
-      wifi.backend = "iwd";
-    };
-    wireless.iwd.settings.General.DisablePeriodicScan = false;
+    wireless.iwd.enable = true;
   };
 
   services.tor = {
