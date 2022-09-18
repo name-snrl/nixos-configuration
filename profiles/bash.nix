@@ -10,10 +10,10 @@ in
 {
   programs.bash.interactiveShellInit = ''
     # hist
-    HISTCONTROL="ignorespace:erasedups";
-    HISTFILESIZE="-1";
-    HISTSIZE="-1";
-    PROMPT_COMMAND="history -a";
+    HISTCONTROL=ignorespace:erasedups
+    HISTFILESIZE=-1
+    HISTSIZE=-1
+    PROMPT_COMMAND="history -a"
 
     # options
     bind "set completion-ignore-case on"
