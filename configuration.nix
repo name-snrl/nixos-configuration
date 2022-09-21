@@ -5,7 +5,10 @@ let
 in
 
 {
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    auto-optimise-store = true;
+  };
 
   imports = [
     ./hardware-configuration.nix
