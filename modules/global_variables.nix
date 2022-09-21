@@ -6,9 +6,7 @@ with types; {
       type = str;
       default = "name_snrl";
       example = "your_name";
-      description = ''
-        Just stores the username.
-      '';
+      description = "Just stores the username.";
     };
   };
 }

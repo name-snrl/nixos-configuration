@@ -32,6 +32,7 @@
           (builtins.readDir dir)));
     in
     {
+      nixosModules = builtins.listToAttrs (findModules ./modules);
 
       nixosProfiles = builtins.listToAttrs (findModules ./profiles);
 
