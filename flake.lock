@@ -1,0 +1,228 @@
+{
+  "nodes": {
+    "bash-fzf-completion": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1663306133,
+        "narHash": "sha256-Anw8YstUfAPUMScyO+tJOZKGUAQ3RcBE+uJhiVb5Ub8=",
+        "owner": "lincheney",
+        "repo": "fzf-tab-completion",
+        "rev": "e11d01e44612361084faf4069f263b5fa0c78e33",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lincheney",
+        "repo": "fzf-tab-completion",
+        "type": "github"
+      }
+    },
+    "flake-compat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1650374568,
+        "narHash": "sha256-Z+s0J8/r907g149rllvwhb4pKi8Wam5ij0st8PwAh+E=",
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "rev": "b4a34015c698c7793d592d66adbab377907a2be8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
+    "flake-utils": {
+      "locked": {
+        "lastModified": 1659877975,
+        "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "c0e246b9b83f637f4681389ecabcb2681b4f3af0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_2": {
+      "locked": {
+        "lastModified": 1656928814,
+        "narHash": "sha256-RIFfgBuKz6Hp89yRr7+NR5tzIAbn52h8vT6vXkYjZoM=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "7e2a3b3dfd9af950a856d66b0a7d01e3c18aa249",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "hw-config": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-t/95ziFNLnVFLAH/R2AWKSRn3EUBu6BKiJM1fmS/Avg=",
+        "type": "file",
+        "url": "file:///etc/nixos/hardware-configuration.nix"
+      },
+      "original": {
+        "type": "file",
+        "url": "file:///etc/nixos/hardware-configuration.nix"
+      }
+    },
+    "neovim": {
+      "inputs": {
+        "flake-utils": [
+          "nvimpager",
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nvimpager",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "dir": "contrib",
+        "lastModified": 1657544126,
+        "narHash": "sha256-1HlIqvZ78MNpULQxcWdPXHh/GyWK0akirmbnIfd5dKU=",
+        "owner": "neovim",
+        "repo": "neovim",
+        "rev": "5c3bbb67e7c59b2fa18e37fdd9845a0e7e3381db",
+        "type": "github"
+      },
+      "original": {
+        "dir": "contrib",
+        "owner": "neovim",
+        "repo": "neovim",
+        "type": "github"
+      }
+    },
+    "neovim-flake": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nvim-nightly",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "dir": "contrib",
+        "lastModified": 1663658903,
+        "narHash": "sha256-TJnm04rTmN/YFHT3GuZ3PpS8MgKujCr0mqMYujQC2v8=",
+        "owner": "neovim",
+        "repo": "neovim",
+        "rev": "10196f1b462400b8a4a9e8f13893da2514f8c850",
+        "type": "github"
+      },
+      "original": {
+        "dir": "contrib",
+        "owner": "neovim",
+        "repo": "neovim",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1663494472,
+        "narHash": "sha256-fSowlaoXXWcAM8m9wA6u+eTJJtvruYHMA+Lb/tFi/qM=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "f677051b8dc0b5e2a9348941c99eea8c4b0ff28f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1663494472,
+        "narHash": "sha256-fSowlaoXXWcAM8m9wA6u+eTJJtvruYHMA+Lb/tFi/qM=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "f677051b8dc0b5e2a9348941c99eea8c4b0ff28f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1657447684,
+        "narHash": "sha256-FCP9AuU1q6PE3vOeM5SFf58f/UKPBAsoSGDUGamNBbo=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "5f43d8b088d3771274bcfb69d3c7435b1121ac88",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nvim-nightly": {
+      "inputs": {
+        "flake-compat": "flake-compat",
+        "neovim-flake": "neovim-flake",
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1663662006,
+        "narHash": "sha256-PHsaUEdhhRF7cyRWn7KVVOS4QBb6+zwqz2XozWHildI=",
+        "owner": "nix-community",
+        "repo": "neovim-nightly-overlay",
+        "rev": "e56a33fbc7f793e42bdf1ba2c23745645910fa04",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "neovim-nightly-overlay",
+        "type": "github"
+      }
+    },
+    "nvimpager": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "neovim": "neovim",
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1659553277,
+        "narHash": "sha256-e9IMC2EBeHx8kqsBi4hPRfVf9Anh0IxeDaCcuvDHFFA=",
+        "owner": "lucc",
+        "repo": "nvimpager",
+        "rev": "f6acac255efce347fd755f2c9c2b0b9aa120d271",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lucc",
+        "repo": "nvimpager",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "bash-fzf-completion": "bash-fzf-completion",
+        "hw-config": "hw-config",
+        "nixpkgs": "nixpkgs",
+        "nvim-nightly": "nvim-nightly",
+        "nvimpager": "nvimpager"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
