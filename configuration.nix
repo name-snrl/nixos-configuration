@@ -255,7 +255,10 @@ in
     };
   };
 
-  services.dbus-broker.enable = true;
+  services = {
+    dbus-broker.enable = true;
+    udisks2.enable = true;
+  };
 
   # display manager
   services.xserver = {
