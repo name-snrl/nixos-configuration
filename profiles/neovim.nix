@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, lib, ... }:
 
 with pkgs;
 
@@ -6,6 +6,18 @@ let
   runtime = "${inputs.nvim}";
 
   init = "${inputs.nvim}/init.lua";
+
+  binPath = lib.makeBinPath [
+    gnumake
+    gcc
+
+    ltex-ls
+    rnix-lsp
+    shellcheck
+    python310Packages.python-lsp-server
+    nodePackages.bash-language-server
+    sumneko-lua-language-server
+  ];
 
   nvim =
     let
@@ -19,6 +31,7 @@ let
         wrapperArgs = res.wrapperArgs ++ [
           "--add-flags"
           "--cmd 'set rtp+=${runtime}' -u ${init}"
+          "--suffix" "PATH" ":" binPath
         ];
       };
     in
