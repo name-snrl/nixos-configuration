@@ -5,6 +5,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nvimpager.url = "github:lucc/nvimpager";
     nvim-nightly.url = "github:nix-community/neovim-nightly-overlay";
+    nvim = {
+      url = "github:name-snrl/nvim";
+      flake = false;
+    };
     hw-config = {
       url = "file:///etc/nixos/hardware-configuration.nix";
       flake = false;
