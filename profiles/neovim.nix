@@ -7,11 +7,10 @@ let
 
   init = "${inputs.nvim}/init.lua";
 
-  pager_init = "${inputs.nvim}/pager_init.lua";
-
   nvim =
     let
       res = neovimUtils.makeNeovimConfig {
+        withRuby = false;
         vimAlias = true;
         viAlias = true;
       };
