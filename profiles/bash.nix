@@ -1,13 +1,4 @@
-{ config, pkgs, ... }:
-let
-  complete = pkgs.fetchFromGitHub {
-    owner = "lincheney";
-    repo = "fzf-tab-completion";
-    rev = "3dfaca917cd862f6f1299f1be47a30d19303258b";
-    sha256 = "UOyuPpSdReNj3GC5FnQkhB/OlV7oIXKRChDtAciQqKs=";
-  };
-in
-{
+{ config, pkgs, inputs, ... }: {
   programs.bash.interactiveShellInit = ''
     # hist
     HISTCONTROL=ignorespace:erasedups
@@ -84,5 +75,5 @@ in
     }
 
     # fzf completion
-  '' + builtins.readFile (complete + /bash/fzf-bash-completion.sh);
+  '' + builtins.readFile (inputs.bash-fzf-completion + /bash/fzf-bash-completion.sh);
 }

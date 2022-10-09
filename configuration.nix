@@ -1,25 +1,88 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, system, ... }:
+
+with lib;
 
 let
-  nur-no-pkgs = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") { };
+  nur-no-pkgs = import inputs.nur {
+    nurpkgs = import inputs.nixpkgs {
+      inherit system;
+      overlays = [];
+    };
+
+    repoOverrides = {
+      ilya-fedin = import inputs.nur-repo-override {};
+    };
+  };
+
+  nurOverlay = self: super: {
+    nur = import inputs.nur {
+      nurpkgs = super;
+      pkgs = super;
+      repoOverrides = {
+        ilya-fedin = import inputs.nur-repo-override {
+          pkgs = super;
+        };
+      };
+    };
+  };
 in
 
 {
-  nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
-    auto-optimise-store = true;
-  };
-
   imports = [
-    ./hardware-configuration.nix
-    ./profiles/keyboard.nix
-    ./profiles/sway.nix
-    ./profiles/bash.nix
-    ./profiles/git.nix
-    ./profiles/starship.nix
-    ./modules/global_variables.nix
     nur-no-pkgs.repos.ilya-fedin.modules.metric-compatible-fonts
     nur-no-pkgs.repos.ilya-fedin.modules.dbus-broker
+  ];
+
+  nix = {
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" "nixos-config=${inputs.self}" ];
+
+    registry = {
+      nixpkgs.flake = inputs.nixpkgs;
+      self.flake = inputs.self;
+      np.flake = inputs.nixpkgs;
+    };
+
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      auto-optimise-store = true;
+      substituters = [
+        "https://nix-community.cachix.org"
+        "https://ilya-fedin.cachix.org"
+        "https://hyprland.cachix.org"
+      ];
+      trusted-public-keys = [
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "ilya-fedin.cachix.org-1:QveU24a5ePPMh82mAFSxLk1P+w97pRxqe9rh+MJqlag="
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      ];
+    };
+  };
+
+  nixpkgs.config = {
+    allowUnfree = true;
+    joypixels.acceptLicense = true;
+  };
+
+  nixpkgs.overlays = [
+    nurOverlay
+    nur-no-pkgs.repos.ilya-fedin.overlays.portal
+
+    inputs.nvim-nightly.overlay
+    inputs.nvimpager.overlay
+
+    (final: prev: {
+      nvimpager = prev.nvimpager.overrideAttrs (oa: {
+        postInstall = ''
+          runHook preBuild
+
+          mv $out/bin/nvimpager $out/bin/less
+          sed -E -i "s#(RUNTIME=.*)(')#\1,${inputs.nvim}\2#" $out/bin/less
+          sed -i 's#rc=.*#rc=${inputs.nvim}/pager_init.lua#' $out/bin/less
+
+          runHook postBuild
+        '';
+      });
+    })
   ];
 
   system.stateVersion = "22.05";
@@ -46,7 +109,7 @@ in
   };
 
   # Power management governor
-  powerManagement.cpuFreqGovernor = lib.mkDefault "schedutil";
+  powerManagement.cpuFreqGovernor = mkDefault "schedutil";
 
   # Networking
   networking = {
@@ -80,7 +143,6 @@ in
 
   hardware.bluetooth = {
     enable = true;
-    package = pkgs.bluezFull;
     #hsphfpd.enable = true;
     settings.General = {
       Experimental = true;
@@ -206,6 +268,7 @@ in
       nswitch = "sudo nixos-rebuild switch";
       nupdate = "sudo nixos-rebuild boot --upgrade-all && nix-channel --update";
       nclear = "sudo nix-collect-garbage --delete-old && sudo nix-store --optimise";
+      reboot = "read -p 'Are you sure? ' i;[[ $i == y ]] && reboot";
       sctl = "systemctl";
 
       # translator
@@ -338,69 +401,14 @@ in
     platformTheme = "qt5ct";
   };
 
-  nixpkgs = {
-    # Neovim overlay
-    overlays = [
-      (import (builtins.fetchTarball {
-        #url = https://github.com/nix-community/neovim-nightly-overlay/archive/28de4ebfc0ed628bfdfea83bd505ab6902a5c138.tar.gz;
-        url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-      }))
-
-      #(final: prev: {
-      #  neovim-nightly = prev.neovim-nightly.overrideAttrs (oa: {
-      #    patches = oa.patches or [] ++ [ ./nvim_virt_text.patch ];
-      #  });
-      #})
-
-      (final: prev: {
-        nvimpager = prev.nvimpager.overrideAttrs (oa: {
-          version = "dev";
-          src = builtins.fetchTarball "https://github.com/lucc/nvimpager/archive/HEAD.tar.gz";
-          preBuild = ''
-            version=$(bash ./nvimpager -v | sed 's/.* //')
-            substituteInPlace nvimpager --replace '/nvimpager/init.vim' '/nvim/pager_init.lua'
-          '';
-          buildFlags = oa.buildFlags ++ [ "VERSION=\${version}-dev" ];
-        });
-      })
-    ];
-
-    # Allow unfree pkgs
-    config = {
-      allowUnfree = true;
-      joypixels.acceptLicense = true;
-
-    # NUR
-      packageOverrides = pkgs: {
-        nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") { };
-      };
-    };
-  };
-
-  nix.settings.substituters = [
-    "https://ilya-fedin.cachix.org"
-    "https://nix-community.cachix.org"
-  ];
-  nix.settings.trusted-public-keys = [
-    "ilya-fedin.cachix.org-1:QveU24a5ePPMh82mAFSxLk1P+w97pRxqe9rh+MJqlag="
-    "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-  ];
-
   # Enable building the man cache
   documentation.man.generateCaches = true;
 
   # Pkgs what will installed in system profile
   programs = {
-    neovim = {
-      enable = true;
-      package = pkgs.neovim-nightly;
-      defaultEditor = true;
-      vimAlias = true;
-      viAlias = true;
-      configure.customRC = ''
-        luafile $HOME/.config/nvim/init.lua
-      '';
-    };
+
+    nano.syntaxHighlight = false;
+    less.enable = lib.mkForce false;
 
     tmux = {
       enable = true;
@@ -453,7 +461,7 @@ in
     virt-manager
 
     # NixOS
-    nixos-option
+    #nixos-option
 
     # themes
     nordic
@@ -468,13 +476,7 @@ in
     rclone jmtpfs
     unzip
 
-    # code
-    gnumake gcc
-    python310 python310Packages.python-lsp-server
-    shellcheck nodePackages.bash-language-server
-    rnix-lsp
-    sumneko-lua-language-server
-    ltex-ls
+    python310 # calculator
 
     # network
     firefox-wayland
@@ -497,10 +499,7 @@ in
     sioyek
 
     # utilities
-    (pkgs.runCommand "less" {} ''
-      mkdir -p "$out/bin"
-      ln -sfn "${pkgs.nvimpager}/bin/nvimpager" "$out/bin/less"
-    '')
+    nvimpager
     difftastic
     tokei
     tealdeer
