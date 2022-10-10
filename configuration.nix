@@ -65,7 +65,6 @@ in
 
   nixpkgs.overlays = [
     nurOverlay
-    nur-no-pkgs.repos.ilya-fedin.overlays.portal
 
     inputs.nvim-nightly.overlay
     inputs.nvimpager.overlay
