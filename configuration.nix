@@ -295,6 +295,9 @@ in
       usrcfg = "git --git-dir=$HOME/.git_home/ --work-tree=$HOME";
     };
 
+    # fix conflict between modules/programs/environment.nix#L25 and modules/config/shells-environment.nix#L172
+    variables.XDG_CONFIG_DIRS = mkForce config.environment.sessionVariables.XDG_CONFIG_DIRS;
+
     sessionVariables = {
       # XDG base dir
       XDG_CONFIG_HOME = "$HOME/.config";
@@ -304,6 +307,9 @@ in
 
       # set gsettings schemas
       XDG_DATA_DIRS = [ (pkgs.glib.getSchemaDataDirPath pkgs.gsettings-desktop-schemas) ];
+
+      # fix conflict between modules/programs/environment.nix#L25 and modules/config/shells-environment.nix#L172
+      XDG_CONFIG_DIRS = [ "/etc/xdg" ];
 
       # overriding vaapi driver
       LIBVA_DRIVER_NAME = "i965";
