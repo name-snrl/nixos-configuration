@@ -510,6 +510,7 @@ in
     tealdeer
     file tree
     fzf
+    yq-go
     (pkgs.runCommand "jq" {} ''
       mkdir -p "$out/bin"
       ln -sfn "${pkgs.gojq}/bin/gojq" "$out/bin/jq"
