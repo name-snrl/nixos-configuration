@@ -282,6 +282,10 @@ in
       grep = "grep -E";
       sed = "sed -E";
 
+      # work
+      stwork = "openvpn3 session-start --config ~/.openvpn/tawasal_eu1.ovpn; HubstaffClient &> /dev/null &";
+      spwork = "openvpn3 session-manage -D --config ~/.openvpn/tawasal_eu1.ovpn";
+
       # misc
       se = "sudoedit";
       pg = "$PAGER";
@@ -409,11 +413,15 @@ in
   # Enable building the man cache
   documentation.man.generateCaches = true;
 
+  security.pki.certificateFiles = [ /root/tawasalca.crt ];
+
   # Pkgs what will installed in system profile
   programs = {
 
     nano.syntaxHighlight = false;
     less.enable = lib.mkForce false;
+
+    openvpn3.enable = true;
 
     tmux = {
       enable = true;
@@ -528,5 +536,6 @@ in
     et
     anki-bin
     neofetch
+    hubstaff
   ];
 }
