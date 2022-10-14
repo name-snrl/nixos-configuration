@@ -24,6 +24,10 @@
       url = "file:///etc/nixos/hardware-configuration.nix";
       flake = false;
     };
+    CA = {
+      url = "file:///root/tawasalca.crt";
+      flake = false;
+    };
     bash-fzf-completion = {
       url = "github:lincheney/fzf-tab-completion";
       flake = false;

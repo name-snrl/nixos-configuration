@@ -1,5 +1,17 @@
 {
   "nodes": {
+    "CA": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-XO/2NaoAcCMkHCRs3Ho22/WGpQwDFcz4Izeo9+8vyiA=",
+        "type": "file",
+        "url": "file:///root/tawasalca.crt"
+      },
+      "original": {
+        "type": "file",
+        "url": "file:///root/tawasalca.crt"
+      }
+    },
     "bash-fzf-completion": {
       "flake": false,
       "locked": {
@@ -367,6 +379,7 @@
     },
     "root": {
       "inputs": {
+        "CA": "CA",
         "bash-fzf-completion": "bash-fzf-completion",
         "dots": "dots",
         "hw-config": "hw-config",

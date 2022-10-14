@@ -413,13 +413,13 @@ in
   # Enable building the man cache
   documentation.man.generateCaches = true;
 
-  security.pki.certificateFiles = [ /root/tawasalca.crt ];
+  security.pki.certificateFiles = [ inputs.CA ];
 
   # Pkgs what will installed in system profile
   programs = {
 
     nano.syntaxHighlight = false;
-    less.enable = lib.mkForce false;
+    less.enable = mkForce false;
 
     openvpn3.enable = true;
 
