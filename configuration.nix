@@ -423,11 +423,6 @@ in
 
     openvpn3.enable = true;
 
-    tmux = {
-      enable = true;
-      keyMode = "vi";
-    };
-
     htop = {
       enable = true;
       settings = {
