@@ -7,7 +7,6 @@
     nur-repo-override.url = "github:ilya-fedin/nur-repository";
     nur-repo-override.inputs.nixpkgs.follows = "nixpkgs";
 
-    hyprland.url = "github:hyprwm/Hyprland";
     lambda-launcher.url = "github:balsoft/lambda-launcher";
     nvimpager.url = "github:lucc/nvimpager";
     nvim-nightly.url = "github:nix-community/neovim-nightly-overlay";
@@ -72,9 +71,6 @@
           self.nixosProfiles.git
           self.nixosProfiles.neovim
           self.nixosProfiles.starship
-
-          inputs.hyprland.nixosModules.default 
-          { programs.hyprland.enable = true; }
         ];
       };
 
