@@ -257,6 +257,7 @@ in
   };
 
   environment = {
+    pathsToLink = [ "/share" ];
     homeBinInPath = true;
 
     shellAliases = {
@@ -470,7 +471,9 @@ in
     #nixos-option
 
     # themes
-    nordic
+    graphite-kde-theme
+    (graphite-gtk-theme.override
+    { tweaks = [ "nord" ]; themeVariants = [ "default" ]; })
     papirus-icon-theme
     numix-cursor-theme
     libsForQt5.qtstyleplugin-kvantum
