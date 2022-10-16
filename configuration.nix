@@ -68,7 +68,7 @@ in
     inputs.nvimpager.overlay
 
     (final: prev: {
-      nvimpager = prev.nvimpager.overrideAttrs (oa: {
+      nvimpager = prev.nvimpager.overrideAttrs (_: {
         postInstall = ''
           runHook preBuild
 
@@ -77,6 +77,20 @@ in
           sed -i 's#rc=.*#rc=${inputs.nvim}/pager_init.lua#' $out/bin/less
 
           runHook postBuild
+        '';
+      });
+      graphite-gtk-theme = prev.graphite-gtk-theme.overrideAttrs (_: {
+        installPhase = ''
+          runHook preInstall
+
+          patchShebangs install.sh
+          name= ./install.sh \
+            --tweaks darker nord \
+            --dest $out/share/themes
+
+          jdupes --quiet --link-soft --recurse $out/share
+
+          runHook postInstall
         '';
       });
     })
@@ -472,8 +486,7 @@ in
 
     # themes
     graphite-kde-theme
-    (graphite-gtk-theme.override
-    { tweaks = [ "nord" ]; themeVariants = [ "default" ]; })
+    graphite-gtk-theme
     papirus-icon-theme
     numix-cursor-theme
     libsForQt5.qtstyleplugin-kvantum
