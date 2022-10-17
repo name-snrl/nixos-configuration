@@ -28,7 +28,7 @@
       alias = {
         st = "status";
         cm = "commit -m";
-        ch = "checkout -B";
+        cb = "checkout -B";
         dt = "difftool";
       };
     };
