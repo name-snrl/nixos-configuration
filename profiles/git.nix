@@ -15,6 +15,7 @@
       };
 
       pager.difftool = true;
+      push.autoSetupRemote = true;
 
       diff = {
         tool = "difftastic";
