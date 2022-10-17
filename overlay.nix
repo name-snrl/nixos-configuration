@@ -12,13 +12,9 @@ in
 
   nvimpager = (inputs.nvimpager.overlay final prev).nvimpager.overrideAttrs (_: {
     postInstall = ''
-      runHook preBuild
-
       mv $out/bin/nvimpager $out/bin/less
       sed -E -i "s#(RUNTIME=.*)(')#\1,${inputs.nvim}\2#" $out/bin/less
       sed -i 's#rc=.*#rc=${inputs.nvim}/pager_init.lua#' $out/bin/less
-
-      runHook postBuild
     '';
   });
 
