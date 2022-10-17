@@ -1,40 +1,10 @@
-{ config, lib, pkgs, inputs, system, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 with lib;
 
-let
-  nur-no-pkgs = import inputs.nur {
-    nurpkgs = import inputs.nixpkgs {
-      inherit system;
-      overlays = [];
-    };
-
-    repoOverrides = {
-      ilya-fedin = import inputs.nur-repo-override {};
-    };
-  };
-
-  nurOverlay = self: super: {
-    nur = import inputs.nur {
-      nurpkgs = super;
-      pkgs = super;
-      repoOverrides = {
-        ilya-fedin = import inputs.nur-repo-override {
-          pkgs = super;
-        };
-      };
-    };
-  };
-in
-
 {
-  imports = [
-    nur-no-pkgs.repos.ilya-fedin.modules.metric-compatible-fonts
-    nur-no-pkgs.repos.ilya-fedin.modules.dbus-broker
-  ];
-
   nix = {
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" "nixos-config=${inputs.self}" ];
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
     registry = {
       nixpkgs.flake = inputs.nixpkgs;
@@ -55,46 +25,6 @@ in
       ];
     };
   };
-
-  nixpkgs.config = {
-    allowUnfree = true;
-    joypixels.acceptLicense = true;
-  };
-
-  nixpkgs.overlays = [
-    nurOverlay
-
-    inputs.nvim-nightly.overlay
-    inputs.nvimpager.overlay
-
-    (final: prev: {
-      nvimpager = prev.nvimpager.overrideAttrs (_: {
-        postInstall = ''
-          runHook preBuild
-
-          mv $out/bin/nvimpager $out/bin/less
-          sed -E -i "s#(RUNTIME=.*)(')#\1,${inputs.nvim}\2#" $out/bin/less
-          sed -i 's#rc=.*#rc=${inputs.nvim}/pager_init.lua#' $out/bin/less
-
-          runHook postBuild
-        '';
-      });
-      graphite-gtk-theme = prev.graphite-gtk-theme.overrideAttrs (_: {
-        installPhase = ''
-          runHook preInstall
-
-          patchShebangs install.sh
-          name= ./install.sh \
-            --tweaks darker nord \
-            --dest $out/share/themes
-
-          jdupes --quiet --link-soft --recurse $out/share
-
-          runHook postInstall
-        '';
-      });
-    })
-  ];
 
   system.stateVersion = "22.05";
 

@@ -1,11 +1,9 @@
 {
-  description = "A very basic flake";
+  description = "My NixOS configurations";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
-    nur-repo-override.url = "github:ilya-fedin/nur-repository";
-    nur-repo-override.inputs.nixpkgs.follows = "nixpkgs";
 
     lambda-launcher.url = "github:balsoft/lambda-launcher";
     nvimpager.url = "github:lucc/nvimpager";
@@ -48,30 +46,48 @@
             }] else
               findModules (dir + "/${name}"))
           (builtins.readDir dir)));
+
+      pkgsFor = system:
+        import inputs.nixpkgs {
+          overlays = [ self.overlay ];
+          localSystem = { inherit system; };
+          config = {
+            allowUnfree = true;
+            joypixels.acceptLicense = true;
+          };
+        };
     in
     {
       nixosModules = builtins.listToAttrs (findModules ./modules);
 
       nixosProfiles = builtins.listToAttrs (findModules ./profiles);
 
+      overlay = import ./overlay.nix inputs;
+
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
-        specialArgs = { inherit inputs system; };
-        #specialArgs.inputs = inputs;
-        modules = [
+        pkgs = pkgsFor system;
+        specialArgs.inputs = inputs;
+        modules =
+          let
+            nur-modules = import inputs.nur { nurpkgs = pkgs; };
+          in
+          [
+            ./configuration.nix
+            (import inputs.hw-config)
 
-          ./configuration.nix
-          (import inputs.hw-config)
+            self.nixosModules.global_variables
 
-          self.nixosModules.global_variables
+            self.nixosProfiles.keyboard
+            self.nixosProfiles.sway
+            self.nixosProfiles.bash
+            self.nixosProfiles.git
+            self.nixosProfiles.neovim
+            self.nixosProfiles.starship
 
-          self.nixosProfiles.keyboard
-          self.nixosProfiles.sway
-          self.nixosProfiles.bash
-          self.nixosProfiles.git
-          self.nixosProfiles.neovim
-          self.nixosProfiles.starship
-        ];
+            nur-modules.repos.ilya-fedin.modules.metric-compatible-fonts
+            nur-modules.repos.ilya-fedin.modules.dbus-broker
+          ];
       };
 
     };
