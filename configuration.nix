@@ -69,7 +69,7 @@ with lib;
       UseBridges = true;
       ClientTransportPlugin = "obfs4 exec ${pkgs.obfs4}/bin/obfs4proxy";
       Bridge = ''
-        obfs4 207.148.108.221:443 7259F29EC35E385B25D1DD56A3B39B76BBE63940 cert=aMu33DOPGFQsjgLZ7JtKB6Eysn9kaN4ubcWbi2zsO+rAORC1eKDrDiGqXqkJD8ZLgY25QA iat-mode=0
+        obfs4 79.37.253.74:9032 9D720E19C43E33F421C65D04BEF8BE213FBB1FBB cert=xwO1rZwUXX1uGBw8j8d6Dwj5KruVAgZcp5d2nixqWtEGW+mMIrLPs8aOCOr2lxP5mF71Xw iat-mode=0
       '';
     };
   };
@@ -458,6 +458,7 @@ with lib;
     file tree
     fzf
     yq-go
+    gron
     (pkgs.runCommand "jq" {} ''
       mkdir -p "$out/bin"
       ln -sfn "${pkgs.gojq}/bin/gojq" "$out/bin/jq"
