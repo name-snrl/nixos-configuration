@@ -10,6 +10,45 @@ in
 
   neovim-unwrapped = inputs.nvim-nightly.packages.${system}.neovim;
 
+  nvim = with prev.pkgs;
+    let
+      init = "${inputs.nvim}/init.lua";
+      runtime = "${inputs.nvim}";
+
+      binPath = lib.makeBinPath [
+        gnumake
+        gcc
+
+        ltex-ls
+        rnix-lsp
+        shellcheck
+        python310Packages.python-lsp-server
+        nodePackages.bash-language-server
+        sumneko-lua-language-server
+      ];
+
+      cfg =
+        let
+          res = neovimUtils.makeNeovimConfig {
+            withRuby = false;
+            vimAlias = true;
+            viAlias = true;
+          };
+        in
+        res // {
+          wrapRc = false;
+          wrapperArgs = res.wrapperArgs ++ [
+            "--add-flags"
+            "--cmd 'set rtp+=${runtime}' -u ${init}"
+            "--suffix"
+            "PATH"
+            ":"
+            binPath
+          ];
+        };
+    in
+    wrapNeovimUnstable neovim-unwrapped cfg;
+
   nvimpager = (inputs.nvimpager.overlay final prev).nvimpager.overrideAttrs (_: {
     postInstall = ''
       mv $out/bin/nvimpager $out/bin/less

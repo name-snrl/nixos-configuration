@@ -82,7 +82,6 @@
             self.nixosProfiles.sway
             self.nixosProfiles.bash
             self.nixosProfiles.git
-            self.nixosProfiles.neovim
             self.nixosProfiles.starship
 
             nur-modules.repos.ilya-fedin.modules.metric-compatible-fonts

@@ -451,6 +451,7 @@ with lib;
     sioyek
 
     # utilities
+    nvim
     nvimpager
     difftastic
     tokei
