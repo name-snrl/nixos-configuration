@@ -15,10 +15,7 @@
       imv
       wofi
       alacritty
-      (pkgs.runCommand "xterm" {} ''
-        mkdir -p "$out/bin"
-        ln -sfn "${pkgs.alacritty}/bin/alacritty" "$out/bin/xterm"
-      '') # https://gitlab.gnome.org/GNOME/glib/-/issues/338
+      alacritty-as-xterm # https://gitlab.gnome.org/GNOME/glib/-/issues/338
     ];
   };
 

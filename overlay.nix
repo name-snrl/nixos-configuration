@@ -18,6 +18,16 @@ in
     '';
   });
 
+  gojq-as-jq = prev.runCommand "gojq-as-jq" { } ''
+    mkdir -p "$out/bin"
+    ln -sfn "${prev.gojq}/bin/gojq" "$out/bin/jq"
+  '';
+
+  alacritty-as-xterm = prev.runCommand "alacritty-as-xterm" { } ''
+    mkdir -p "$out/bin"
+    ln -sfn "${prev.alacritty}/bin/alacritty" "$out/bin/xterm"
+  ''; # https://gitlab.gnome.org/GNOME/glib/-/issues/338
+
   graphite-gtk-theme = prev.graphite-gtk-theme.overrideAttrs (_: {
     installPhase = ''
       runHook preInstall

@@ -459,10 +459,7 @@ with lib;
     fzf
     yq-go
     gron
-    (pkgs.runCommand "jq" {} ''
-      mkdir -p "$out/bin"
-      ln -sfn "${pkgs.gojq}/bin/gojq" "$out/bin/jq"
-    '') # use gojq as jq
+    gojq-as-jq
     jshon
     pandoc #wkhtmltopdf # doc converter
     tesseract5
