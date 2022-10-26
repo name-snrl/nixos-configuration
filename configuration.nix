@@ -15,6 +15,7 @@ with lib;
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
+      trusted-users = [ "root" "@wheel" config.userName ];
       substituters = [
         "https://nix-community.cachix.org"
         "https://ilya-fedin.cachix.org"
@@ -69,7 +70,7 @@ with lib;
       UseBridges = true;
       ClientTransportPlugin = "obfs4 exec ${pkgs.obfs4}/bin/obfs4proxy";
       Bridge = ''
-        obfs4 79.37.253.74:9032 9D720E19C43E33F421C65D04BEF8BE213FBB1FBB cert=xwO1rZwUXX1uGBw8j8d6Dwj5KruVAgZcp5d2nixqWtEGW+mMIrLPs8aOCOr2lxP5mF71Xw iat-mode=0
+        obfs4 172.105.244.195:27792 6ED1F2262D274F126498DF043C9BDD2912E7EA78 cert=6etpbIlfQWMuyW8Sef+ufeE0PeF6kvBxOAiKGUsgcPuXkf+npgOQScXZ4LSyps7u8ibLWg iat-mode=0
       '';
     };
   };
