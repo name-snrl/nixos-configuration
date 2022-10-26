@@ -12,6 +12,7 @@
       grim slurp flameshot
       wl-clipboard
       mako
+      eww-wayland
       imv
       wofi
       alacritty
