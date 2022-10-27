@@ -62,6 +62,8 @@
 
       nixosProfiles = builtins.listToAttrs (findModules ./profiles);
 
+      legacyPackages.x86_64-linux = pkgsFor "x86_64-linux";
+
       overlay = import ./overlay.nix inputs;
 
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem rec {
