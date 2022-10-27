@@ -166,8 +166,11 @@ with lib;
   users.users.${config.userName} = {
     isNormalUser = true;
     extraGroups = [
-      "wheel" "networkmanager" "video"
-      "libvirtd" "docker"
+      "wheel"
+      "networkmanager"
+      "video"
+      "libvirtd"
+      "docker"
       "adbusers"
     ];
   };
@@ -227,7 +230,7 @@ with lib;
       sed = "sed -E";
 
       # work
-      stwork = "openvpn3 session-start --config ~/.openvpn/tawasal_eu1.ovpn; HubstaffClient &> /dev/null &";
+      stwork = "openvpn3 session-start --config ~/.openvpn/tawasal_eu1.ovpn; ${pkgs.hubstaff}/bin/HubstaffClient &> /dev/null &";
       spwork = "openvpn3 session-manage -D --config ~/.openvpn/tawasal_eu1.ovpn";
 
       # misc
@@ -403,17 +406,47 @@ with lib;
 
   environment.systemPackages = with pkgs; [
     # system shit
-    xdg-utils glib
-    pamixer
-    lxqt.pavucontrol-qt
-    playerctl
     pciutils
     usbutils
     inetutils
+
+    # base
+    nvim
+    nvimpager
+    difftastic
+    ripgrep
+    fd
+    exa
+    bat
+    file
+    tree
+    wget
+
+    # cli
+    et
+    fzf # for zoxide/fzf-bash-complete
+    ffmpeg
+    zoxide
+    tokei
+    tealdeer
+    translate-shell
+    librespeed-cli
+
+    # GUI
+    nur.repos.ilya-fedin.kotatogram-desktop-with-webkit
+    qbittorrent
+    anki-bin
     virt-manager
 
-    # NixOS
-    #nixos-option
+    # DE
+    firefox-wayland
+    alacritty-as-xterm # https://gitlab.gnome.org/GNOME/glib/-/issues/338
+    alacritty
+    mpv
+    imv
+    sioyek
+    pcmanfm-qt
+    lxqt.pavucontrol-qt
 
     # themes
     graphite-kde-theme
@@ -421,60 +454,5 @@ with lib;
     papirus-icon-theme
     numix-cursor-theme
     libsForQt5.qtstyleplugin-kvantum
-
-    # soft
-    htop translate-shell
-    wget
-    pcmanfm-qt gptfdisk
-    rclone jmtpfs
-    unzip
-
-    python310 # calculator
-
-    # network
-    firefox-wayland
-    qutebrowser
-    elinks
-    qbittorrent
-    librespeed-cli
-    gns3-gui gns3-server
-
-    # social
-    discord zoom-us
-    dino nheko # matrix
-    nur.repos.ilya-fedin.kotatogram-desktop-with-webkit
-
-    # mdeia
-    obs-studio
-    ffmpeg
-    mpv
-    gimp
-    sioyek
-
-    # utilities
-    nvim
-    nvimpager
-    difftastic
-    tokei
-    tealdeer
-    file tree
-    fzf
-    yq-go
-    gron
-    gojq-as-jq
-    jshon
-    pandoc #wkhtmltopdf # doc converter
-    tesseract5
-
-    # GNU replacement
-    exa fd bat
-    ripgrep
-    zoxide
-
-    # misc
-    et
-    anki-bin
-    neofetch
-    hubstaff
   ];
 }

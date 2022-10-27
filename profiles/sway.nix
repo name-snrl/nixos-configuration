@@ -9,14 +9,20 @@
 
     extraPackages = with pkgs; [
       swaylock-effects
-      grim slurp flameshot
       wl-clipboard
+      xdg-utils  # wl-clipboard needs xdg-mime
+      gojq-as-jq # needs for move script
+      tesseract5 # get text from screenshot
+      obs-studio # screencast
+      flameshot
+      slurp
+      grim
       mako
-      eww-wayland
-      imv
       wofi
-      alacritty
-      alacritty-as-xterm # https://gitlab.gnome.org/GNOME/glib/-/issues/338
+      pamixer
+      playerctl
+
+      eww-wayland # TODO
     ];
   };
 

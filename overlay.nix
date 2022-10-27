@@ -10,12 +10,13 @@ in
 
   neovim-unwrapped = inputs.nvim-nightly.packages.${system}.neovim;
 
-  nvim = with prev.pkgs;
+  nvim = with prev;
     let
       init = "${inputs.nvim}/init.lua";
       runtime = "${inputs.nvim}";
 
       binPath = lib.makeBinPath [
+        qutebrowser
         gnumake
         gcc
 
