@@ -5,7 +5,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
 
-    lambda-launcher.url = "github:balsoft/lambda-launcher";
     nvimpager.url = "github:lucc/nvimpager";
     nvim-nightly.url = "github:nix-community/neovim-nightly-overlay";
 
