@@ -31,11 +31,11 @@
     "dots": {
       "flake": false,
       "locked": {
-        "lastModified": 1666777922,
-        "narHash": "sha256-xuypYYhkv0FiJxcSXpyMqwPuZevG03pphT7ghs4wq5w=",
+        "lastModified": 1666991588,
+        "narHash": "sha256-Sypc7zwYsaNEi7OSSKQ90Zkhkse80Tm/fs00W++w4aA=",
         "owner": "name-snrl",
         "repo": "home",
-        "rev": "2c252c4e57498725001a9fff92daccf4800a002c",
+        "rev": "39294e589121ad3b2024e4d3c7e4b79e7bf02a77",
         "type": "github"
       },
       "original": {

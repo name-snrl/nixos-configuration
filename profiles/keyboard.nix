@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, inputs, ... }: {
   environment.etc."interception-tools.yaml".text = ''
     MAPPINGS:
       - KEY: KEY_CAPSLOCK
@@ -43,5 +43,14 @@
           EVENTS:
             EV_KEY: [KEY_CAPSLOCK, KEY_ENTER, KEY_LEFTALT, KEY_LEFTMETA, KEY_RIGHTCTRL, KEY_SPACE, KEY_LEFTSHIFT, KEY_RIGHTSHIFT]
     '';
+  };
+
+  console.useXkbConfig = true;
+  services.xserver.layout = "lv3_us";
+  services.xserver.xkbOptions = "lv3:ralt_switch";
+  services.xserver.extraLayouts.lv3_us = {
+    description = "US layout with lvl3";
+    languages = [ "eng" ];
+    symbolsFile = "${inputs.dots}/.config/xkb/symbols/lv3_us";
   };
 }

@@ -183,7 +183,6 @@ with lib;
 
   console = {
     font = "Lat2-Terminus16";
-    keyMap = "us";
     colors = [
       "2e3440"
       "d36265"
