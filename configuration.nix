@@ -208,11 +208,14 @@ with lib;
     homeBinInPath = true;
 
     shellAliases = {
+      # NixOS
+      nboot = "sudo nixos-rebuild boot --flake ~/nixos-configuration";
+      nswitch = "sudo nixos-rebuild switch --flake ~/nixos-configuration";
+      nupdate = "nix flake update ~/nixos-configuration";
+      nlock = "nix flake lock ~/nixos-configuration";
+      nclear = "sudo nix-collect-garbage --delete-old";
+
       # system
-      nboot = "sudo nixos-rebuild boot";
-      nswitch = "sudo nixos-rebuild switch";
-      nupdate = "sudo nixos-rebuild boot --upgrade-all && nix-channel --update";
-      nclear = "sudo nix-collect-garbage --delete-old && sudo nix-store --optimise";
       reboot = "read -p 'Are you sure? ' i;[[ $i == y ]] && reboot";
       sctl = "systemctl";
 

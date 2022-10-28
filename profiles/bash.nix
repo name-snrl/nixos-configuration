@@ -28,6 +28,7 @@
     complete -F _complete_alias nboot
     complete -F _complete_alias nswitch
     complete -F _complete_alias nupdate
+    complete -F _complete_alias nlock
     complete -F _complete_alias nclear
     complete -F _complete_alias sctl
 
