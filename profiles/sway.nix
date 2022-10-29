@@ -12,6 +12,7 @@
       wl-clipboard
       xdg-utils  # wl-clipboard needs xdg-mime
       gojq-as-jq # needs for move script
+      glib       # needs for theme script
       obs-studio # screencast
       (tesseract5.override { enableLanguages = [ "eng" ]; }) # get text from screenshot
       flameshot
