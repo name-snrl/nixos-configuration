@@ -309,6 +309,15 @@ with lib;
     };
   };
 
+  # logging
+  services.journald.extraConfig = "SystemMaxUse=200M";
+  systemd.coredump.extraConfig = "Storage=none";
+  systemd.services.display-manager.serviceConfig.LogNamespace = "desktop-session";
+  environment.etc."systemd/journald@desktop-session.conf".text = ''
+    [Journal]
+    SystemMaxUse=200M
+  '';
+
   xdg.portal = {
     enable = true;
     # gtkUsePortal = true; # check sessionVariables above
