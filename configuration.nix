@@ -7,7 +7,6 @@ with lib;
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
     registry = {
-      nixpkgs.flake = inputs.nixpkgs;
       self.flake = inputs.self;
       np.flake = inputs.nixpkgs;
     };
