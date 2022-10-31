@@ -23,7 +23,7 @@
       flake = false;
     };
     CA = {
-      url = "file:///root/tawasalca.crt";
+      url = "file:///home/name_snrl/nixos-configuration/tawasalca.crt";
       flake = false;
     };
     bash-fzf-completion = {

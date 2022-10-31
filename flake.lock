@@ -5,11 +5,11 @@
       "locked": {
         "narHash": "sha256-XO/2NaoAcCMkHCRs3Ho22/WGpQwDFcz4Izeo9+8vyiA=",
         "type": "file",
-        "url": "file:///root/tawasalca.crt"
+        "url": "file:///home/name_snrl/nixos-configuration/tawasalca.crt"
       },
       "original": {
         "type": "file",
-        "url": "file:///root/tawasalca.crt"
+        "url": "file:///home/name_snrl/nixos-configuration/tawasalca.crt"
       }
     },
     "bash-fzf-completion": {
