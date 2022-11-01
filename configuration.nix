@@ -248,6 +248,7 @@ with lib;
     };
 
     # fix conflict between modules/programs/environment.nix#L25 and modules/config/shells-environment.nix#L172
+    sessionVariables.XDG_CONFIG_DIRS = [ "/etc/xdg" ];
     variables.XDG_CONFIG_DIRS = mkForce config.environment.sessionVariables.XDG_CONFIG_DIRS;
 
     sessionVariables = {
@@ -259,9 +260,6 @@ with lib;
 
       # set gsettings schemas
       XDG_DATA_DIRS = [ (pkgs.glib.getSchemaDataDirPath pkgs.gsettings-desktop-schemas) ];
-
-      # fix conflict between modules/programs/environment.nix#L25 and modules/config/shells-environment.nix#L172
-      XDG_CONFIG_DIRS = [ "/etc/xdg" ];
 
       # overriding vaapi driver
       LIBVA_DRIVER_NAME = "i965";
