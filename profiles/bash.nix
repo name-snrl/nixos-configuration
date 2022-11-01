@@ -32,6 +32,18 @@
     complete -F _complete_alias nclear
     complete -F _complete_alias sctl
 
+    # nix stuff
+    complete -c nwhere;
+    nwhere() {
+      readlink -f "$(which "$@")"
+    }
+
+    complete -c njump
+    njump() {
+      path=$(nwhere "$@")
+      cd ''${path%''${path#/nix/store/*/}}
+    }
+
     # fzf git hash
     is_in_git_repo() {
         git rev-parse --git-dir &> /dev/null
