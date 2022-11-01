@@ -1,4 +1,7 @@
 { config, pkgs, inputs, ... }: {
+  programs.bash.shellAliases = {
+      reboot = "read -p 'Are you sure? ' i;[[ $i == y ]] && reboot";
+  };
   programs.bash.interactiveShellInit = ''
     # hist
     HISTCONTROL=ignorespace:erasedups

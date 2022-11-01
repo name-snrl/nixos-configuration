@@ -5,6 +5,9 @@
     enable = true;
     histSize = 999999;
     setOptions = [ "HIST_IGNORE_DUPS" "SHARE_HISTORY" "HIST_FCNTL_LOCK" ];
+    shellAliases = {
+        reboot = "read '?Are you sure? ' i;[[ $i == y ]] && reboot";
+    };
     interactiveShellInit = with pkgs;
       ''
         #source ${grml-zsh-config}/etc/zsh/zshrc
@@ -26,14 +29,15 @@
 
         #complete -c njump
         njump() {
-          path=$(nwhere "$@")
-          cd ''${path%''${path#/nix/store/*/}}
+          cd "$(readlink -f "$(which "$@")" | cut -d/ -f-4)"
         }
 
-        eval "$(zoxide init --cmd j zsh)" # works
-        source ${zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh # works
+        eval "$(zoxide init --cmd j zsh)"
+        eval "$(${coreutils}/bin/dircolors -b)"
+        source ${fzf}/share/fzf/key-bindings.zsh # remove other binds
+        source ${zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
         source ${inputs.zsh-system-clipboard}/zsh-system-clipboard.zsh # works only in visual/vi mode
-        source ${zsh-autopair}/share/zsh/zsh-autopair/autopair.zsh; autopair-init # works
+        source ${zsh-autopair}/share/zsh/zsh-autopair/autopair.zsh; autopair-init
       '' + builtins.replaceStrings [ "green" ] [ "blue" ]
         (builtins.readFile "${inputs.fzf-git}/fzf-git.sh") + ''
         _fzf_git_fzf() {

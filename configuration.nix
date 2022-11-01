@@ -215,7 +215,6 @@ with lib;
       nclear = "sudo nix-collect-garbage --delete-old";
 
       # system
-      reboot = "read -p 'Are you sure? ' i;[[ $i == y ]] && reboot";
       sctl = "systemctl";
 
       # translator
