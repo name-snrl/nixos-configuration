@@ -26,6 +26,14 @@
       url = "file:///home/name_snrl/nixos-configuration/tawasalca.crt";
       flake = false;
     };
+    fzf-git = {
+      url = "github:junegunn/fzf-git.sh";
+      flake = false;
+    };
+    zsh-system-clipboard = {
+      url = "github:kutsan/zsh-system-clipboard";
+      flake = false;
+    };
     bash-fzf-completion = {
       url = "github:lincheney/fzf-tab-completion";
       flake = false;
@@ -83,7 +91,7 @@
 
             self.nixosProfiles.keyboard
             self.nixosProfiles.sway
-            self.nixosProfiles.bash
+            self.nixosProfiles.zsh
             self.nixosProfiles.git
             self.nixosProfiles.starship
 
