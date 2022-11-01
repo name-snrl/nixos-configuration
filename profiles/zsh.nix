@@ -3,7 +3,7 @@
   users.users.root.shell = pkgs.zsh;
   programs.zsh = {
     enable = true;
-    histSize = -1;
+    histSize = 999999;
     setOptions = [ "HIST_IGNORE_DUPS" "SHARE_HISTORY" "HIST_FCNTL_LOCK" ];
     interactiveShellInit = with pkgs;
       ''
