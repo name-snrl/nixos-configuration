@@ -16,12 +16,9 @@ in
       runtime = "${inputs.nvim}";
 
       binPath = lib.makeBinPath [
-        qutebrowser
-        pandoc
         gnumake
         gcc
 
-        ltex-ls
         rnix-lsp
         shellcheck
         python310Packages.python-lsp-server
@@ -29,7 +26,13 @@ in
         sumneko-lua-language-server
       ];
 
-      cfg =
+      binPathExtra = lib.makeBinPath [
+        ltex-ls
+        qutebrowser
+        pandoc
+      ];
+
+      cfg = path:
         let
           res = neovimUtils.makeNeovimConfig {
             withRuby = false;
@@ -45,11 +48,14 @@ in
             "--suffix"
             "PATH"
             ":"
-            binPath
+            path
           ];
         };
     in
-    wrapNeovimUnstable neovim-unwrapped cfg;
+    {
+      mini = wrapNeovimUnstable neovim-unwrapped (cfg binPath);
+      full = wrapNeovimUnstable neovim-unwrapped (cfg (builtins.concatStringsSep ":" [ binPath binPathExtra ]));
+    };
 
   nvimpager = (inputs.nvimpager.overlay final prev).nvimpager.overrideAttrs (_: {
     postInstall = ''

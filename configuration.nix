@@ -414,7 +414,7 @@ with lib;
     inetutils
 
     # base
-    nvim
+    nvim.full
     nvimpager
     difftastic
     gojq-as-jq
