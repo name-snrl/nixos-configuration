@@ -12,22 +12,6 @@
         "url": "file:///home/name_snrl/nixos-configuration/tawasalca.crt"
       }
     },
-    "bash-fzf-completion": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1665245503,
-        "narHash": "sha256-tAmwErF+iVKGrv5AoALScuoaD65+8ygvG51sx8Ne1hU=",
-        "owner": "lincheney",
-        "repo": "fzf-tab-completion",
-        "rev": "c91959d81320935ae88c090fedde8dcf1ca70a6f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "lincheney",
-        "repo": "fzf-tab-completion",
-        "type": "github"
-      }
-    },
     "dots": {
       "flake": false,
       "locked": {
@@ -87,22 +71,6 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "fzf-git": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1664502156,
-        "narHash": "sha256-2CGjk1oTXip+eAJMuOk/X3e2KTwfwzcKTcGToA2xPd4=",
-        "owner": "junegunn",
-        "repo": "fzf-git.sh",
-        "rev": "9190e1bf7273d85f435fa759a5c3b20e588e9f7e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "junegunn",
-        "repo": "fzf-git.sh",
         "type": "github"
       }
     },
@@ -313,17 +281,14 @@
     "root": {
       "inputs": {
         "CA": "CA",
-        "bash-fzf-completion": "bash-fzf-completion",
         "dots": "dots",
-        "fzf-git": "fzf-git",
         "home-manager": "home-manager",
         "hw-config": "hw-config",
         "nixpkgs": "nixpkgs",
         "nur": "nur",
         "nvim": "nvim",
         "nvim-nightly": "nvim-nightly",
-        "nvimpager": "nvimpager",
-        "zsh-system-clipboard": "zsh-system-clipboard"
+        "nvimpager": "nvimpager"
       }
     },
     "utils": {
@@ -338,22 +303,6 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "zsh-system-clipboard": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1666508608,
-        "narHash": "sha256-4U13ttJfggRUZc3SsueZ3kBEPzBnW77B89Xm1JBEEwM=",
-        "owner": "kutsan",
-        "repo": "zsh-system-clipboard",
-        "rev": "4ed2721463f7e8496b92a62836c9ecb325ed023a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "kutsan",
-        "repo": "zsh-system-clipboard",
         "type": "github"
       }
     }
