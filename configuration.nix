@@ -229,10 +229,6 @@ with lib;
       grep = "grep -E";
       sed = "sed -E";
 
-      # work
-      stwork = "openvpn3 session-start --config ~/.openvpn/tawasal_eu1.ovpn; ${pkgs.hubstaff}/bin/HubstaffClient &> /dev/null &";
-      spwork = "openvpn3 session-manage -D --config ~/.openvpn/tawasal_eu1.ovpn";
-
       # misc
       se = "sudoedit";
       pg = "$PAGER";
