@@ -417,6 +417,7 @@ with lib;
     nvim
     nvimpager
     difftastic
+    gojq-as-jq
     ripgrep
     fd
     exa
@@ -432,6 +433,7 @@ with lib;
     zoxide
     tokei
     tealdeer
+    pandoc
     translate-shell
     librespeed-cli
 

@@ -17,6 +17,7 @@ in
 
       binPath = lib.makeBinPath [
         qutebrowser
+        pandoc
         gnumake
         gcc
 
