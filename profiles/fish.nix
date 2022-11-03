@@ -3,6 +3,7 @@
   programs.fish = {
     enable = true;
     shellAliases = {
+      j = "ji"; # `--cmd j` broken :(
       stwork = "openvpn3 session-start --config ~/.openvpn/tawasal_eu1.ovpn; ${pkgs.hubstaff}/bin/HubstaffClient & disown; exit";
       spwork = "openvpn3 session-manage -D --config ~/.openvpn/tawasal_eu1.ovpn";
       reboot = "read -P 'Are you sure? ' yn; [ $yn = y ] && systemctl reboot";
