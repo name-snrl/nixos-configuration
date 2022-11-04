@@ -8,13 +8,6 @@
       spwork = "openvpn3 session-manage -D --config ~/.openvpn/tawasal_eu1.ovpn";
       reboot = "read -P 'Are you sure? ' yn; [ $yn = y ] && systemctl reboot";
     };
-    shellAbbrs = {
-      nshell  = "nix shell self#";
-      nbuild  = "nix build self#";
-      nrun    = "nix run self#";
-      nsearch = "nix search self#";
-      nedit   = "nix edit self#";
-    };
     interactiveShellInit = with pkgs; ''
 
       # TODO
@@ -24,21 +17,27 @@
       # fzf-complete
       # autopairs
 
-      stty -ixon # disable flow control
       set -U fish_greeting
+      stty -ixon # disable flow control
       ${coreutils}/bin/dircolors -c | source
       ${zoxide}/bin/zoxide init --cmd ji fish | source
 
-      function nwhich
-        readlink -f $(which $argv)
-      end
+      # Nix tricks
+      function njump;   cd $(string split -f1-4 / (nwhich $argv) | string join /); end
+      function nwhich;  ${coreutils}/bin/readlink -f (${which}/bin/which $argv); end
+      function nshell;  ${nix}/bin/nix shell  $argv; end
+      function nbuild;  ${nix}/bin/nix build  $argv; end
+      function nsearch; ${nix}/bin/nix search $argv; end
+      function nedit;   ${nix}/bin/nix edit   $argv; end
+      function nrun;    ${nix}/bin/nix run    $argv; end
 
-      function njump
-        cd $(string split -f1-4 / $(readlink -f $(which $argv)) | string join /)
-      end
-
-      complete -c nwhere -n __fish_complete_command
-      complete -c njump -n __fish_complete_command
+      complete -c njump   -fa "(__fish_complete_command)"
+      complete -c nwhich  -fa "(__fish_complete_command)"
+      complete -c nshell  -fa "(NIX_GET_COMPLETIONS=2 nix shell  self#)"
+      complete -c nbuild  -fa "(NIX_GET_COMPLETIONS=2 nix build  self#)"
+      complete -c nrun    -fa "(NIX_GET_COMPLETIONS=2 nix run    self#)"
+      complete -c nsearch -fa "(NIX_GET_COMPLETIONS=2 nix search self#)"
+      complete -c nedit   -fa "(NIX_GET_COMPLETIONS=2 nix edit   self#)"
     '';
   };
 }
