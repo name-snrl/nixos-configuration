@@ -8,6 +8,8 @@ in
     pkgs = prev;
   };
 
+  stable = import inputs.stable { localSystem = { inherit system; }; };
+
   neovim-unwrapped = inputs.nvim-nightly.packages.${system}.neovim;
 
   nvim = with prev;

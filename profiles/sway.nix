@@ -57,7 +57,7 @@
     description = "Waybar as systemd service";
     wantedBy = [ "sway-session.target" ];
     partOf = [ "graphical-session.target" ];
-    script = "${pkgs.waybar}/bin/waybar";
+    script = "${pkgs.stable.waybar}/bin/waybar";
     serviceConfig = {
       RestartSec = 3;
       Restart = "always";
