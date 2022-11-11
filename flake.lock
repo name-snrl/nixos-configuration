@@ -339,11 +339,11 @@
     "nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1667664858,
-        "narHash": "sha256-0sg72SwKLed1mG4ZTrqzs0jHAQ6guSH9hZwe66xrgsM=",
+        "lastModified": 1668210609,
+        "narHash": "sha256-kozfaL/0rO7Ut4OHtQThQH1elGDvvF5ewrSfbrAB4C0=",
         "owner": "name-snrl",
         "repo": "nvim",
-        "rev": "742b4af3de2bf3b4701c06768acfadde013635dd",
+        "rev": "b8d84bfe8595fda874a0e634a00ea2fc8c95efb9",
         "type": "github"
       },
       "original": {
@@ -404,7 +404,24 @@
         "nvim": "nvim",
         "nvim-nightly": "nvim-nightly",
         "nvimpager": "nvimpager",
+        "stable": "stable",
         "terranix": "terranix"
+      }
+    },
+    "stable": {
+      "locked": {
+        "lastModified": 1668016843,
+        "narHash": "sha256-ioBuF+IAhmJO7s4ewEij1LkMxJvCCNCKXxMto/DU02I=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "fa842715565307b7e05cdb187b08c05f16ed08f1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-22.05",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "terranix": {
