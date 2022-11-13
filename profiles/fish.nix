@@ -15,10 +15,8 @@
       function git
         SHELL=${bash}/bin/bash ${git}/bin/git $argv
       end
-      # fzf-complete
-      # autopairs
 
-      set -U fish_greeting
+      set -U fish_greeting # disable greeting
       stty -ixon # disable flow control
       ${coreutils}/bin/dircolors -c | source
       ${zoxide}/bin/zoxide init --cmd ji fish | source
