@@ -10,12 +10,6 @@
       reboot = "read -P 'Are you sure? ' yn; [ $yn = y ] && systemctl reboot";
     };
     interactiveShellInit = with pkgs; ''
-
-      # TODO
-      function git
-        SHELL=${bash}/bin/bash ${git}/bin/git $argv
-      end
-
       set -U fish_greeting # disable greeting
       stty -ixon # disable flow control
       ${coreutils}/bin/dircolors -c | source
