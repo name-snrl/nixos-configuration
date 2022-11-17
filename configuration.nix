@@ -208,6 +208,7 @@ with lib;
 
     shellAliases = {
       # NixOS
+      jnp = "cd ${pkgs.path}";
       nboot = "sudo nixos-rebuild boot --flake ~/nixos-configuration";
       nswitch = "sudo nixos-rebuild switch --flake ~/nixos-configuration";
       nupdate = "nix flake update ~/nixos-configuration";

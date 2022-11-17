@@ -76,7 +76,6 @@
           [
             ./configuration.nix
             (import inputs.hw-config)
-            { environment.shellAliases.jnp = "cd ${inputs.nixpkgs}"; }
 
             self.nixosModules.global_variables
 
