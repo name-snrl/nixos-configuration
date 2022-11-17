@@ -49,7 +49,9 @@ with lib;
     extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
   };
 
-  # Power management governor
+  services.fstrim.enable = true;
+  services.fwupd.enable = true;
+  hardware.enableRedistributableFirmware = true;
   powerManagement.cpuFreqGovernor = mkDefault "schedutil";
 
   # Networking
