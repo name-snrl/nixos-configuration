@@ -28,6 +28,10 @@
       url = "file:///home/name_snrl/nixos-configuration/tawasalca.crt";
       flake = false;
     };
+    flake-registry = {
+      url = "github:nixos/flake-registry";
+      flake = false;
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, ... }:

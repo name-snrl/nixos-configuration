@@ -12,8 +12,8 @@ with lib;
     };
 
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
+      experimental-features = [ "nix-command" "flakes" ];
       trusted-users = [ "root" "@wheel" config.userName ];
       substituters = [
         "https://nix-community.cachix.org"
@@ -24,6 +24,12 @@ with lib;
         "ilya-fedin.cachix.org-1:QveU24a5ePPMh82mAFSxLk1P+w97pRxqe9rh+MJqlag="
       ];
     };
+
+    extraOptions = ''
+      builders-use-substitutes = true
+      # Prevent Nix from fetching the registry every time
+      flake-registry = ${inputs.flake-registry}/flake-registry.json
+    '';
   };
 
   system.stateVersion = "22.05";
