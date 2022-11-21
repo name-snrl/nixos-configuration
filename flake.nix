@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     stable.url = "github:nixos/nixpkgs/nixos-22.05";
-    nur.url = "github:nix-community/NUR";
+    shlyupa.url = "github:ilya-fedin/nur-repository";
 
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -73,25 +73,21 @@
         system = "x86_64-linux";
         pkgs = pkgsFor system;
         specialArgs.inputs = inputs;
-        modules =
-          let
-            nur-modules = import inputs.nur { nurpkgs = pkgs; };
-          in
-          [
-            ./configuration.nix
-            (import inputs.hw-config)
+        modules = [
+          ./configuration.nix
+          (import inputs.hw-config)
 
-            self.nixosModules.global_variables
+          self.nixosModules.global_variables
 
-            self.nixosProfiles.keyboard
-            self.nixosProfiles.sway
-            self.nixosProfiles.fish
-            self.nixosProfiles.git
-            self.nixosProfiles.starship
+          self.nixosProfiles.keyboard
+          self.nixosProfiles.sway
+          self.nixosProfiles.fish
+          self.nixosProfiles.git
+          self.nixosProfiles.starship
 
-            nur-modules.repos.ilya-fedin.modules.metric-compatible-fonts
-            nur-modules.repos.ilya-fedin.modules.dbus-broker
-          ];
+          inputs.shlyupa.nixosModules.metric-compatible-fonts
+          inputs.shlyupa.nixosModules.dbus-broker
+        ];
       };
 
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;

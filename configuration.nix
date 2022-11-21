@@ -354,7 +354,7 @@ with lib;
     };
     fonts = with pkgs; [
 
-      nur.repos.ilya-fedin.exo2
+      exo2
       jetbrains-mono
       unifont
       symbola
@@ -447,7 +447,7 @@ with lib;
     librespeed-cli
 
     # GUI
-    nur.repos.ilya-fedin.kotatogram-desktop-with-webkit
+    kotatogram-desktop-with-webkit
     qbittorrent
     anki-bin
     virt-manager

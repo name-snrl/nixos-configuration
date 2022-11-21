@@ -3,12 +3,12 @@ let
   inherit (final) system;
 in
 {
-  nur = import inputs.nur {
-    nurpkgs = prev;
-    pkgs = prev;
-  };
-
   stable = import inputs.stable { localSystem = { inherit system; }; };
+
+  exo2 = inputs.shlyupa.packages.${prev.system}.exo2;
+
+  kotatogram-desktop-with-webkit =
+    inputs.shlyupa.packages.${prev.system}.kotatogram-desktop-with-webkit;
 
   neovim-unwrapped = inputs.nvim-nightly.packages.${system}.neovim;
 
