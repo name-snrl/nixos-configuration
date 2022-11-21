@@ -81,6 +81,7 @@
 
           self.nixosProfiles.keyboard
           self.nixosProfiles.sway
+          self.nixosProfiles.gdm
           self.nixosProfiles.fish
           self.nixosProfiles.git
           self.nixosProfiles.starship

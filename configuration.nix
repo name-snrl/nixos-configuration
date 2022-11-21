@@ -100,12 +100,15 @@ with lib;
     };
   };
 
-  security.rtkit.enable = true;
-  #security.sudo.extraConfig = ''
-  #  # share wl-clipboard
-  #  Defaults env_keep += "XDG_RUNTIME_DIR"
-  #  Defaults env_keep += "WAYLAND_DISPLAY"
-  #'';
+  security = {
+    rtkit.enable = true;
+    pki.certificateFiles = [ inputs.CA ];
+    #sudo.extraConfig = ''
+    #  # share wl-clipboard
+    #  Defaults env_keep += "XDG_RUNTIME_DIR"
+    #  Defaults env_keep += "WAYLAND_DISPLAY"
+    #'';
+  };
 
   virtualisation = {
     docker = {
@@ -168,25 +171,9 @@ with lib;
     speed = 130;
   };
 
-  #---------------------------- ENVIRONMENT N SOFT ----------------------------#
-
-  users.users.${config.userName} = {
-    isNormalUser = true;
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-      "video"
-      "libvirtd"
-      "docker"
-      "adbusers"
-    ];
-  };
-
-  i18n.defaultLocale = "en_GB.UTF-8";
-  time = {
-    timeZone = "Asia/Yekaterinburg";
-    hardwareClockInLocalTime = true;
-  };
+  # logging
+  services.journald.extraConfig = "SystemMaxUse=200M";
+  systemd.coredump.extraConfig = "Storage=none";
 
   console = {
     font = "Lat2-Terminus16";
@@ -207,6 +194,26 @@ with lib;
       "e28ec5"
       "85d1e2"
       "dfeaf5"
+    ];
+  };
+
+  #---------------------------- ENVIRONMENT N SOFT ----------------------------#
+
+  i18n.defaultLocale = "en_GB.UTF-8";
+  time = {
+    timeZone = "Asia/Yekaterinburg";
+    hardwareClockInLocalTime = true;
+  };
+
+  users.users.${config.userName} = {
+    isNormalUser = true;
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "video"
+      "libvirtd"
+      "docker"
+      "adbusers"
     ];
   };
 
@@ -251,10 +258,6 @@ with lib;
       usrcfg = "git --git-dir=$HOME/.git_home/ --work-tree=$HOME";
     };
 
-    # fix conflict between modules/programs/environment.nix#L25 and modules/config/shells-environment.nix#L172
-    sessionVariables.XDG_CONFIG_DIRS = [ "/etc/xdg" ];
-    variables.XDG_CONFIG_DIRS = mkForce config.environment.sessionVariables.XDG_CONFIG_DIRS;
-
     sessionVariables = {
       # XDG base dir
       XDG_CONFIG_HOME = "$HOME/.config";
@@ -276,49 +279,33 @@ with lib;
       GTK_USE_PORTAL = "1";
       QT_QPA_PLATFORMTHEME = "qt5ct"; # TODO create an issue
     };
+
+    # fix conflict between modules/programs/environment.nix#L25 and modules/config/shells-environment.nix#L172
+    sessionVariables.XDG_CONFIG_DIRS = [ "/etc/xdg" ];
+    variables.XDG_CONFIG_DIRS = mkForce config.environment.sessionVariables.XDG_CONFIG_DIRS;
   };
 
-  services = {
-    dbus-broker.enable = true;
-    udisks2.enable = true;
-  };
-
-  # display manager
-  services.xserver = {
-    enable = true;
-    excludePackages = [
-      pkgs.xorg.xorgserver.out
-      pkgs.xorg.xrandr
-      pkgs.xorg.xrdb
-      pkgs.xorg.setxkbmap
-      pkgs.xorg.iceauth
-      pkgs.xorg.xlsclients
-      pkgs.xorg.xset
-      pkgs.xorg.xsetroot
-      pkgs.xorg.xinput
-      pkgs.xorg.xprop
-      pkgs.xorg.xauth
-      pkgs.xterm
-      pkgs.xdg-utils
-      pkgs.xorg.xf86inputevdev.out
-      pkgs.nixos-icons
-    ];
-    displayManager = {
-      gdm = {
-        wayland = true;
-        enable = true;
-      };
+  fonts = {
+    enableDefaultFonts = false;
+    fontconfig.crOSMaps = true;
+    fontconfig.defaultFonts = {
+      monospace = [ "JetBrains Mono NL Light" ];
+      sansSerif = [ "Exo 2" ];
+      serif = [ "Tinos" ];
+      emoji = [ "JoyPixels" ];
     };
+    fonts = with pkgs; [
+      exo2
+      jetbrains-mono
+      unifont
+      symbola
+      joypixels
+      (nerdfonts.override { fonts = [ "Arimo" ]; })
+    ];
   };
 
-  # logging
-  services.journald.extraConfig = "SystemMaxUse=200M";
-  systemd.coredump.extraConfig = "Storage=none";
-  systemd.services.display-manager.serviceConfig.LogNamespace = "desktop-session";
-  environment.etc."systemd/journald@desktop-session.conf".text = ''
-    [Journal]
-    SystemMaxUse=200M
-  '';
+  qt5.enable = true;
+  qt5.platformTheme = "qt5ct";
 
   xdg.portal = {
     enable = true;
@@ -337,49 +324,24 @@ with lib;
     ];
   };
 
+  services = {
+    dbus-broker.enable = true;
+    udisks2.enable = true;
+  };
+
+  documentation.man.generateCaches = true;
+
   xdg.mime.defaultApplications = {
     "application/pdf" = "sioyek.desktop";
     "image/jpeg" = "imv.desktop";
     "image/png" = "imv.desktop";
   };
 
-  fonts = {
-    enableDefaultFonts = false;
-    fontconfig.crOSMaps = true;
-    fontconfig.defaultFonts = {
-      monospace = [ "JetBrains Mono NL Light" ];
-      sansSerif = [ "Exo 2" ];
-      serif = [ "Tinos" ];
-      emoji = [ "JoyPixels" ];
-    };
-    fonts = with pkgs; [
-
-      exo2
-      jetbrains-mono
-      unifont
-      symbola
-      joypixels
-      (nerdfonts.override { fonts = [ "Arimo" ]; })
-
-    ];
-  };
-
-  qt5 = {
-    enable = true;
-    platformTheme = "qt5ct";
-  };
-
-  # Enable building the man cache
-  documentation.man.generateCaches = true;
-
-  security.pki.certificateFiles = [ inputs.CA ];
-
-  # Pkgs what will installed in system profile
   programs = {
-
     nano.syntaxHighlight = false;
     less.enable = mkForce false;
 
+    adb.enable = true;
     openvpn3.enable = true;
 
     htop = {
@@ -412,8 +374,6 @@ with lib;
         '';
       };
     };
-
-    adb.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
