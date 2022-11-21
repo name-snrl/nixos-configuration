@@ -222,20 +222,17 @@ with lib;
     homeBinInPath = true;
 
     shellAliases = {
-      # NixOS
-      jnp = "cd ${pkgs.path}";
-      nboot = "sudo nixos-rebuild boot --flake ~/nixos-configuration";
-      nswitch = "sudo nixos-rebuild switch --flake ~/nixos-configuration";
-      nupdate = "nix flake update ~/nixos-configuration";
-      nlock = "nix flake lock ~/nixos-configuration";
-      nclear = "sudo nix-collect-garbage --delete-old";
-
-      # system
+      se = "sudoedit";
+      pg = "$PAGER";
+      ls = "exa";
+      rg = "rg --follow --hidden --smart-case --no-messages";
+      fd = "fd --follow --hidden";
+      dt = "difft";
+      tk = "tokei";
+      cat = "bat --pager=never --style=changes,rule,numbers,snip";
       sctl = "systemctl";
-
-      # translator
-      en = "trans -I -j -t ru";
-      ru = ''swaymsg input "*" xkb_switch_layout 1 && trans -I -j -t en'';
+      sudo = "sudo "; # this will make sudo work with shell aliases/man alias
+      usrcfg = "git --git-dir=$HOME/.git_home/ --work-tree=$HOME";
 
       # bluetooth
       btc = "bluetoothctl connect 88:D0:39:65:46:85";
@@ -245,17 +242,13 @@ with lib;
       grep = "grep -E";
       sed = "sed -E";
 
-      # misc
-      se = "sudoedit";
-      pg = "$PAGER";
-      ls = "exa";
-      rg = "rg --follow --hidden --smart-case --no-messages";
-      fd = "fd --follow --hidden";
-      dt = "difft";
-      tk = "tokei";
-      cat = "bat --pager=never --style=changes,rule,numbers,snip";
-      sudo = "sudo "; # this will make sudo work with shell aliases/man alias
-      usrcfg = "git --git-dir=$HOME/.git_home/ --work-tree=$HOME";
+      # NixOS
+      jnp = "cd ${pkgs.path}";
+      nboot = "sudo nixos-rebuild boot --flake ~/nixos-configuration";
+      nswitch = "sudo nixos-rebuild switch --flake ~/nixos-configuration";
+      nupdate = "nix flake update ~/nixos-configuration";
+      nlock = "nix flake lock ~/nixos-configuration";
+      nclear = "sudo nix-collect-garbage --delete-old";
     };
 
     sessionVariables = {
@@ -327,6 +320,9 @@ with lib;
   services = {
     dbus-broker.enable = true;
     udisks2.enable = true;
+
+    dictd.enable = true;
+    dictd.DBs = with pkgs.dictdDBs; [ wiktionary ];
   };
 
   documentation.man.generateCaches = true;
@@ -404,7 +400,6 @@ with lib;
     tokei
     tealdeer
     pandoc
-    translate-shell
     librespeed-cli
 
     # GUI
