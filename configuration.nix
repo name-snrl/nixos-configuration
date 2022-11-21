@@ -376,6 +376,7 @@ with lib;
     };
   };
 
+  environment.defaultPackages = with pkgs; [ rsync perl ];
   environment.systemPackages = with pkgs; [
     # system shit
     pciutils
