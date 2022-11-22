@@ -87,7 +87,6 @@
           self.nixosProfiles.starship
 
           inputs.shlyupa.nixosModules.metric-compatible-fonts
-          inputs.shlyupa.nixosModules.dbus-broker
         ];
       };
 

@@ -316,8 +316,8 @@ with lib;
   };
 
   services = {
-    dbus-broker.enable = true;
     udisks2.enable = true;
+    dbus.implementation = "broker";
 
     dictd.enable = true;
     dictd.DBs = with pkgs.dictdDBs; [ wiktionary ];
