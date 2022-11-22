@@ -5,6 +5,8 @@ in
 {
   stable = import inputs.stable { localSystem = { inherit system; }; };
 
+  scripts = import ./scripts.nix prev;
+
   exo2 = inputs.shlyupa.packages.${prev.system}.exo2;
 
   kotatogram-desktop-with-webkit =

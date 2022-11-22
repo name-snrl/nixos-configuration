@@ -219,8 +219,6 @@ with lib;
 
   environment = {
     pathsToLink = [ "/share" ];
-    homeBinInPath = true;
-
     shellAliases = {
       se = "sudoedit";
       pg = "$PAGER";
@@ -391,6 +389,7 @@ with lib;
     file
     tree
     wget
+    scripts.sf
 
     # cli
     et
@@ -400,6 +399,8 @@ with lib;
     tokei
     tealdeer
     pandoc
+    scripts.dict
+    scripts.beep
     librespeed-cli
 
     # GUI

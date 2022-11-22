@@ -67,7 +67,7 @@
 
       legacyPackages.x86_64-linux = pkgsFor "x86_64-linux";
 
-      overlay = import ./overlay.nix inputs;
+      overlay = import ./overlay inputs;
 
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
