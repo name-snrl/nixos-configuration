@@ -1,19 +1,27 @@
 inputs: final: prev:
+
 let
-  inherit (final) system;
+  inherit (final) system lib;
+
+  renameBin = target: name:
+    prev.runCommand "${target}-as-${name}" { } ''
+      mkdir -p "$out/bin"
+      ln -sfn "${lib.getExe prev.${target}}" "$out/bin/${name}"
+    '';
 in
+
 {
   stable = import inputs.stable { localSystem = { inherit system; }; };
-
   scripts = import ./scripts.nix prev;
 
-  exo2 = inputs.shlyupa.packages.${prev.system}.exo2;
+  gojq-as-jq = renameBin "gojq" "jq";
+  alacritty-as-xterm = renameBin "alacritty" "xterm";
 
+  exo2 = inputs.shlyupa.packages.${prev.system}.exo2;
   kotatogram-desktop-with-webkit =
     inputs.shlyupa.packages.${prev.system}.kotatogram-desktop-with-webkit;
 
   neovim-unwrapped = inputs.nvim-nightly.packages.${system}.neovim;
-
   nvim = with prev;
     let
       init = "${inputs.nvim}/init.lua";
@@ -68,16 +76,6 @@ in
       sed -i 's#rc=.*#rc=${inputs.nvim}/pager_init.lua#' $out/bin/less
     '';
   });
-
-  gojq-as-jq = prev.runCommand "gojq-as-jq" { } ''
-    mkdir -p "$out/bin"
-    ln -sfn "${prev.gojq}/bin/gojq" "$out/bin/jq"
-  '';
-
-  alacritty-as-xterm = prev.runCommand "alacritty-as-xterm" { } ''
-    mkdir -p "$out/bin"
-    ln -sfn "${prev.alacritty}/bin/alacritty" "$out/bin/xterm"
-  ''; # https://gitlab.gnome.org/GNOME/glib/-/issues/338
 
   graphite-gtk-theme = prev.graphite-gtk-theme.overrideAttrs (_: {
     installPhase = ''
