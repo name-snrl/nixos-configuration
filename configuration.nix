@@ -100,27 +100,6 @@ with lib;
     };
   };
 
-  security = {
-    rtkit.enable = true;
-    pki.certificateFiles = [ inputs.CA ];
-    #sudo.extraConfig = ''
-    #  # share wl-clipboard
-    #  Defaults env_keep += "XDG_RUNTIME_DIR"
-    #  Defaults env_keep += "WAYLAND_DISPLAY"
-    #'';
-  };
-
-  virtualisation = {
-    docker = {
-      enable = true;
-      enableOnBoot = false;
-    };
-    libvirtd = {
-      enable = true;
-      onBoot = "ignore";
-    };
-  };
-
   # GPU acceleration
   hardware.opengl = {
     extraPackages = with pkgs; [
@@ -135,7 +114,7 @@ with lib;
     ];
   };
 
-  # Enable sound.
+  # Sound.
   services.pipewire = {
     config.pipewire = {
       "context.properties" = {
@@ -171,10 +150,6 @@ with lib;
     speed = 130;
   };
 
-  # logging
-  services.journald.extraConfig = "SystemMaxUse=200M";
-  systemd.coredump.extraConfig = "Storage=none";
-
   console = {
     font = "Lat2-Terminus16";
     colors = [
@@ -195,6 +170,31 @@ with lib;
       "85d1e2"
       "dfeaf5"
     ];
+  };
+
+  # Logging
+  services.journald.extraConfig = "SystemMaxUse=200M";
+  systemd.coredump.extraConfig = "Storage=none";
+
+  security = {
+    rtkit.enable = true;
+    pki.certificateFiles = [ inputs.CA ];
+    #sudo.extraConfig = ''
+    #  # share wl-clipboard
+    #  Defaults env_keep += "XDG_RUNTIME_DIR"
+    #  Defaults env_keep += "WAYLAND_DISPLAY"
+    #'';
+  };
+
+  virtualisation = {
+    docker = {
+      enable = true;
+      enableOnBoot = false;
+    };
+    libvirtd = {
+      enable = true;
+      onBoot = "ignore";
+    };
   };
 
   #---------------------------- ENVIRONMENT N SOFT ----------------------------#
