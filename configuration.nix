@@ -86,7 +86,7 @@ with lib;
       UseBridges = true;
       ClientTransportPlugin = "obfs4 exec ${pkgs.obfs4}/bin/obfs4proxy";
       Bridge = ''
-        obfs4 172.105.244.195:27792 6ED1F2262D274F126498DF043C9BDD2912E7EA78 cert=6etpbIlfQWMuyW8Sef+ufeE0PeF6kvBxOAiKGUsgcPuXkf+npgOQScXZ4LSyps7u8ibLWg iat-mode=0
+        obfs4 89.58.38.13:5372 0EAD0F94886C75A6322FCA2F5ADC5C51AC18CA3B cert=HnXzqW/GHDRbqhi2qpTM1X86eIRCOKgeh3AYGvJB+aNfL9UzA4/PVyYRXjmU0BEVhcV8TQ iat-mode=0
       '';
     };
   };
