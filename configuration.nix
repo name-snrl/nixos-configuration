@@ -55,10 +55,19 @@ with lib;
     extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
   };
 
-  services.fstrim.enable = true;
+  # Firmware
   services.fwupd.enable = true;
   hardware.enableRedistributableFirmware = true;
+
+  # CPU
   powerManagement.cpuFreqGovernor = mkDefault "schedutil";
+
+  # RAM
+  zramSwap.enable = true;
+
+  # Storage
+  services.fstrim.enable = true;
+  boot.tmpOnTmpfs = true;
 
   # Networking
   networking = {
