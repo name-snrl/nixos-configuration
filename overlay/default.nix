@@ -15,6 +15,8 @@ in
   scripts = import ./scripts.nix prev;
 
   gojq-as-jq = renameBin "gojq" "jq";
+  # https://gitlab.gnome.org/GNOME/glib/-/issues/338
+  # TODO wait for `xdg-terminal-exec`
   alacritty-as-xterm = renameBin "alacritty" "xterm";
 
   exo2 = inputs.shlyupa.packages.${prev.system}.exo2;
@@ -77,6 +79,7 @@ in
     '';
   });
 
+  # TODO create a pr to fix the pkg
   graphite-gtk-theme = prev.graphite-gtk-theme.overrideAttrs (_: {
     installPhase = ''
       runHook preInstall
