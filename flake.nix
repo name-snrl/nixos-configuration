@@ -9,6 +9,9 @@
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    terranix.url = "github:terranix/terranix";
+    deploy-rs.url = "github:serokell/deploy-rs";
+
     nvimpager.url = "github:lucc/nvimpager";
     nvim-nightly.url = "github:nix-community/neovim-nightly-overlay";
 
