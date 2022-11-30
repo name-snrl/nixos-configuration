@@ -41,9 +41,14 @@ in
       ];
 
       binPathExtra = lib.makeBinPath [
+        # TODO create issue in markdown-preview.nvim.
+        # with `-P` option firefox doesn't load page
+        (writeShellScriptBin "firefox-md-preview" ''
+          ${firefox-wayland}/bin/firefox -P firefox-md-preview \
+          --name firefox-md-preview \
+          --private-window "$@"
+        '')
         ltex-ls
-        qutebrowser
-        pandoc
       ];
 
       cfg = path:
@@ -52,6 +57,13 @@ in
             withRuby = false;
             vimAlias = true;
             viAlias = true;
+            plugins = [
+              {
+                plugin = vimPlugins.markdown-preview-nvim;
+                config = null;
+                optional = false;
+              }
+            ];
           };
         in
         res // {
@@ -68,7 +80,8 @@ in
     in
     {
       mini = wrapNeovimUnstable neovim-unwrapped (cfg binPath);
-      full = wrapNeovimUnstable neovim-unwrapped (cfg (builtins.concatStringsSep ":" [ binPath binPathExtra ]));
+      full = wrapNeovimUnstable neovim-unwrapped (cfg
+        (builtins.concatStringsSep ":" [ binPath binPathExtra ]));
     };
 
   nvimpager = (inputs.nvimpager.overlay final prev).nvimpager.overrideAttrs (_: {
