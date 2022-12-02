@@ -187,7 +187,6 @@ with lib;
 
   security = {
     rtkit.enable = true;
-    pki.certificateFiles = [ inputs.CA ];
     #sudo.extraConfig = ''
     #  # share wl-clipboard
     #  Defaults env_keep += "XDG_RUNTIME_DIR"
@@ -224,6 +223,15 @@ with lib;
       "docker"
       "adbusers"
     ];
+  };
+
+  # work stuff
+  security.pki.certificateFiles = [ inputs.CA ];
+  programs.openvpn3.enable = true;
+  programs.fish.shellAliases = {
+    stwork = "openvpn3 session-start --config ~/.openvpn/tawasal_eu1.ovpn; ${pkgs.hubstaff}/bin/HubstaffClient & disown; exit";
+    spwork = "openvpn3 session-manage -D --config ~/.openvpn/tawasal_eu1.ovpn";
+    reboot = "read -P 'Are you sure? ' yn; [ $yn = y ] && systemctl reboot";
   };
 
   environment = {
@@ -345,7 +353,6 @@ with lib;
     less.enable = mkForce false;
 
     adb.enable = true;
-    openvpn3.enable = true;
 
     htop = {
       enable = true;
