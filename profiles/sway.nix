@@ -97,7 +97,7 @@
         description = "Autotiling as systemd service";
         wantedBy = [ "sway-session.target" ];
         partOf = [ "graphical-session.target" ];
-        script = "${pkgs.autotiling}/bin/autotiling";
+        script = "${pkgs.autotiling-rs}/bin/autotiling-rs";
         serviceConfig = restartConf;
         environment.PATH = lib.mkForce null;
       };
@@ -106,7 +106,7 @@
         description = "Flameshot as systemd service";
         wantedBy = [ "sway-session.target" ];
         partOf = [ "graphical-session.target" ];
-        script = "${pkgs.flameshot }/bin/flameshot";
+        script = "${pkgs.flameshot}/bin/flameshot";
         serviceConfig = restartConf;
       };
 
