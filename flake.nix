@@ -2,39 +2,35 @@
   description = "My NixOS configurations";
 
   inputs = {
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    terranix.inputs.nixpkgs.follows = "nixpkgs";
+    deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
+    nvimpager.inputs.nixpkgs.follows = "nixpkgs";
+    nvim-nightly.inputs.nixpkgs.follows = "nixpkgs";
+
+    dots.flake = false;
+    nvim.flake = false;
+    hw-config.flake = false;
+    CA.flake = false;
+    flake-registry.flake = false;
+
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     stable.url = "github:nixos/nixpkgs/nixos-22.05";
     shlyupa.url = "github:ilya-fedin/nur-repository";
 
+    dots.url = "github:name-snrl/home";
     home-manager.url = "github:nix-community/home-manager/master";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     terranix.url = "github:terranix/terranix";
     deploy-rs.url = "github:serokell/deploy-rs";
 
-    nvimpager.url = "github:lucc/nvimpager";
+    nvim.url = "github:name-snrl/nvim";
     nvim-nightly.url = "github:nix-community/neovim-nightly-overlay";
+    nvimpager.url = "github:lucc/nvimpager";
 
-    nvim = {
-      url = "github:name-snrl/nvim";
-      flake = false;
-    };
-    dots = {
-      url = "github:name-snrl/home";
-      flake = false;
-    };
-    hw-config = {
-      url = "file:///etc/nixos/hardware-configuration.nix";
-      flake = false;
-    };
-    CA = {
-      url = "file:///home/name_snrl/nixos-configuration/tawasalca.crt";
-      flake = false;
-    };
-    flake-registry = {
-      url = "github:nixos/flake-registry";
-      flake = false;
-    };
+    CA.url = "file:///home/name_snrl/nixos-configuration/tawasalca.crt";
+    hw-config.url = "file:///etc/nixos/hardware-configuration.nix";
+    flake-registry.url = "github:nixos/flake-registry";
   };
 
   outputs = inputs@{ self, nixpkgs, ... }:
