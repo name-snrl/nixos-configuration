@@ -20,7 +20,6 @@
       grim
       mako
       wofi
-      pamixer
       playerctl
 
       eww-wayland # TODO
