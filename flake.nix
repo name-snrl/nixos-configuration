@@ -25,7 +25,7 @@
     deploy-rs.url = "github:serokell/deploy-rs";
 
     nvim.url = "github:name-snrl/nvim";
-    nvim-nightly.url = "github:nix-community/neovim-nightly-overlay";
+    nvim-nightly.url = "github:neovim/neovim?dir=contrib";
     nvimpager.url = "github:lucc/nvimpager";
 
     CA.url = "file:///home/name_snrl/nixos-configuration/tawasalca.crt";
