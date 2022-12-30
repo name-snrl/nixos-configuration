@@ -70,7 +70,7 @@
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
         pkgs = pkgsFor system;
-        specialArgs.inputs = inputs;
+        specialArgs = { inherit inputs; };
         modules = [
           ./configuration.nix
           (import inputs.hw-config)

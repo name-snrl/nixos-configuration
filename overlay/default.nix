@@ -18,9 +18,9 @@ in
   # TODO wait for `xdg-terminal-exec`
   alacritty-as-xterm = renameBin "alacritty" "xterm";
 
-  exo2 = inputs.shlyupa.packages.${prev.system}.exo2;
+  exo2 = inputs.shlyupa.packages.${system}.exo2;
   kotatogram-desktop-with-webkit =
-    inputs.shlyupa.packages.${prev.system}.kotatogram-desktop-with-webkit;
+    inputs.shlyupa.packages.${system}.kotatogram-desktop-with-webkit;
 
   neovim-unwrapped = inputs.nvim-nightly.packages.${system}.neovim;
   nvim = with prev;
@@ -105,6 +105,16 @@ in
 
       runHook postInstall
     '';
+  });
+
+  # https://github.com/jirutka/swaylock-effects/issues/3
+  swaylock-effects = prev.swaylock-effects.overrideAttrs (_: {
+    src = prev.fetchFromGitHub {
+      owner = "mortie";
+      repo = "swaylock-effects";
+      rev = "a8fc557b86e70f2f7a30ca9ff9b3124f89e7f204";
+      sha256 = "sha256-GN+cxzC11Dk1nN9wVWIyv+rCrg4yaHnCePRYS1c4JTk=";
+    };
   });
 
 }
