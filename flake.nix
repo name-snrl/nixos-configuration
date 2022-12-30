@@ -15,7 +15,6 @@
     flake-registry.flake = false;
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    stable.url = "github:nixos/nixpkgs/nixos-22.05";
     shlyupa.url = "github:ilya-fedin/nur-repository";
 
     dots.url = "github:name-snrl/home";

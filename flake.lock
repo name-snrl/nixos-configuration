@@ -342,7 +342,6 @@
         "nvim-nightly": "nvim-nightly",
         "nvimpager": "nvimpager",
         "shlyupa": "shlyupa",
-        "stable": "stable",
         "terranix": "terranix"
       }
     },
@@ -362,22 +361,6 @@
       "original": {
         "owner": "ilya-fedin",
         "repo": "nur-repository",
-        "type": "github"
-      }
-    },
-    "stable": {
-      "locked": {
-        "lastModified": 1672335022,
-        "narHash": "sha256-417aTRDZpob/UNsA4A0ilBUBQ0H8u+Wx9+OJAAygufQ=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "88eaf4a29b5b87a5f83fab413caba24cb13633f0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-22.05",
-        "repo": "nixpkgs",
         "type": "github"
       }
     },

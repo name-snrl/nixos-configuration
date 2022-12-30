@@ -11,7 +11,6 @@ let
 in
 
 {
-  stable = import inputs.stable { localSystem = { inherit system; }; };
   scripts = import ./scripts.nix prev;
 
   gojq-as-jq = renameBin "gojq" "jq";
