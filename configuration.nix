@@ -209,7 +209,7 @@ with lib;
 
   i18n.defaultLocale = "en_GB.UTF-8";
   time = {
-    timeZone = "Asia/Yekaterinburg";
+    timeZone = "Asia/Almaty";
     hardwareClockInLocalTime = true;
   };
 
