@@ -208,6 +208,7 @@ with lib;
   #---------------------------- ENVIRONMENT N SOFT ----------------------------#
 
   i18n.defaultLocale = "en_GB.UTF-8";
+
   time = {
     timeZone = "Asia/Almaty";
     hardwareClockInLocalTime = true;
@@ -297,14 +298,28 @@ with lib;
     enableDefaultFonts = false;
     fontconfig.crOSMaps = true;
     fontconfig.defaultFonts = {
-      monospace = [ "JetBrains Mono NL Light" ];
-      sansSerif = [ "Exo 2" ];
-      serif = [ "Tinos" ];
+      monospace = [
+        "JetBrains Mono NL Light"
+        "Noto Sans Mono CJK JP"
+        "Arimo Nerd Font Mono"
+      ];
+      sansSerif = [
+        "Exo 2"
+        "Noto Sans CJK JP"
+        "Arimo Nerd Font"
+      ];
+      serif = [
+        "Tinos"
+        "Noto Serif CJK JP"
+        "Arimo Nerd Font"
+      ];
       emoji = [ "JoyPixels" ];
     };
     fonts = with pkgs; [
       exo2
       jetbrains-mono
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
       unifont
       symbola
       joypixels
