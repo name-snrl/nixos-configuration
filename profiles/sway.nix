@@ -19,7 +19,7 @@
       slurp
       grim
       mako
-      wofi
+      tofi
       playerctl
 
       eww-wayland # TODO
