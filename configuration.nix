@@ -264,10 +264,10 @@ with lib;
 
       # NixOS
       jnp = "cd ${pkgs.path}";
-      nboot = "sudo nixos-rebuild boot --flake ~/nixos-configuration";
-      nswitch = "sudo nixos-rebuild switch --flake ~/nixos-configuration";
-      nupdate = "nix flake update ~/nixos-configuration";
-      nlock = "nix flake lock ~/nixos-configuration";
+      nboot = "nixos-rebuild boot --use-remote-sudo --fast --flake ~/nixos-configuration";
+      nswitch = "nixos-rebuild switch --use-remote-sudo --fast --flake ~/nixos-configuration";
+      nupdate = "nix flake update --commit-lock-file ~/nixos-configuration";
+      nlock = "nix flake lock --commit-lock-file ~/nixos-configuration";
       nclear = "sudo nix-collect-garbage --delete-old";
     };
 
