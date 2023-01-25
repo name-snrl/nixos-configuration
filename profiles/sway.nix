@@ -84,6 +84,14 @@
         environment.PATH = lib.mkForce null;
       };
 
+      services.fcitx5 = {
+        description = "Fcitx5 as systemd service";
+        wantedBy = [ "sway-session.target" ];
+        partOf = [ "graphical-session.target" ];
+        script = "${config.i18n.inputMethod.package}/bin/fcitx5 --replace";
+        serviceConfig = restartConf;
+      };
+
       services.swaykbdd = {
         description = "Swaykbdd as systemd service";
         wantedBy = [ "sway-session.target" ];
