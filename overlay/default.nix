@@ -83,7 +83,7 @@ in
         (builtins.concatStringsSep ":" [ binPath binPathExtra ]));
     };
 
-  nvimpager = (inputs.nvimpager.overlay final prev).nvimpager.overrideAttrs (_: {
+  nvimpager = (inputs.nvimpager.overlays.default final prev).nvimpager.overrideAttrs (_: {
     postInstall = ''
       mv $out/bin/nvimpager $out/bin/less
       sed -E -i "s#(RUNTIME=.*)(')#\1,${inputs.nvim}\2#" $out/bin/less

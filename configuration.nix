@@ -347,8 +347,8 @@ with lib;
     ];
   };
 
-  qt5.enable = true;
-  qt5.platformTheme = "qt5ct";
+  qt.enable = true;
+  qt.platformTheme = "qt5ct";
 
   xdg.portal = {
     enable = true;
