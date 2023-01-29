@@ -155,8 +155,8 @@ with lib;
 
   hardware.trackpoint = {
     enable = true;
-    sensitivity = 140;
-    speed = 130;
+    sensitivity = 130;
+    speed = 180;
   };
 
   console = {
