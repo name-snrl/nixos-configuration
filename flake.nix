@@ -5,8 +5,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     terranix.inputs.nixpkgs.follows = "nixpkgs";
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
-    nvimpager.inputs.nixpkgs.follows = "nixpkgs";
-    nvim-nightly.inputs.nixpkgs.follows = "nixpkgs";
+    #nvimpager.inputs.nixpkgs.follows = "nixpkgs";
+    nvim-nightly.inputs.nixpkgs.follows = "nvimpager/nixpkgs";
 
     dots.flake = false;
     nvim.flake = false;
