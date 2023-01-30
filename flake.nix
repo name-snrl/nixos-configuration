@@ -13,6 +13,7 @@
     hw-config.flake = false;
     CA.flake = false;
     flake-registry.flake = false;
+    interception-vimproved.flake = false;
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     shlyupa.url = "github:ilya-fedin/nur-repository";
@@ -30,6 +31,7 @@
     CA.url = "file:///home/name_snrl/nixos-configuration/tawasalca.crt";
     hw-config.url = "file:///etc/nixos/hardware-configuration.nix";
     flake-registry.url = "github:nixos/flake-registry";
+    interception-vimproved.url = "github:name-snrl/interception-vimproved";
   };
 
   outputs = inputs@{ self, nixpkgs, ... }:

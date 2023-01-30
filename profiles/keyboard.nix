@@ -1,56 +1,48 @@
-{ config, pkgs, inputs, ... }: {
-  environment.etc."interception-tools.yaml".text = ''
-    MAPPINGS:
-      - KEY: KEY_CAPSLOCK
-        TAP: KEY_ESC
-        HOLD: KEY_LEFTCTRL
-        HOLD_START: BEFORE_CONSUME_OR_RELEASE
-
-      - KEY: KEY_ENTER
-        TAP: KEY_ENTER
-        HOLD: KEY_LEFTALT
-        HOLD_START: BEFORE_CONSUME_OR_RELEASE
-
-      - KEY: KEY_LEFTALT
-        TAP: KEY_LEFTMETA
-        HOLD: KEY_LEFTMETA
-        HOLD_START: BEFORE_CONSUME_OR_RELEASE
-
-      - KEY: KEY_LEFTMETA
-        TAP: KEY_LEFTALT
-        HOLD: KEY_LEFTALT
-        HOLD_START: BEFORE_CONSUME_OR_RELEASE
-
-      - KEY: KEY_RIGHTCTRL
-        TAP: KEY_RIGHTMETA
-        HOLD: KEY_RIGHTMETA
-        HOLD_START: BEFORE_CONSUME_OR_RELEASE
-
-      - KEY: KEY_RIGHTSHIFT
-        TAP: KEY_RIGHTCTRL
-        HOLD: KEY_RIGHTSHIFT
-        HOLD_START: BEFORE_CONSUME_OR_RELEASE
-  '';
-
+{ config, pkgs, inputs, ... }: with pkgs;
+let
+  vimproved = stdenv.mkDerivation {
+    name = "interception-vimproved";
+    src = inputs.interception-vimproved;
+    doCheck = false;
+    makeFlags = [ "INSTALL_FILE=$(out)/opt/interception/interception-vimproved" ];
+  };
+  additionalKeys = writeText "interception-additional-device" (builtins.toJSON {
+    NAME = "Extra Buttons";
+    EVENTS.EV_KEY = [ "KEY_MICMUTE" "KEY_BRIGHTNESSDOWN" "KEY_BRIGHTNESSUP" ];
+  });
+  dfk =
+    let
+      genVal = { k, t, h }: {
+        KEY = k;
+        TAP = t;
+        HOLD = h;
+        HOLD_START = "BEFORE_CONSUME_OR_RELEASE";
+      };
+    in
+    writeText "interception-dfk" (builtins.toJSON {
+      MAPPINGS =
+        [
+          (genVal { k = "KEY_CAPSLOCK"; t = "KEY_ESC"; h = "KEY_LEFTCTRL"; })
+          (genVal rec { k = "KEY_ENTER"; t = k; h = "KEY_LEFTALT"; })
+          (genVal rec { k = "KEY_LEFTALT"; t = "KEY_LEFTMETA"; h = t; })
+          (genVal rec { k = "KEY_LEFTMETA"; t = "KEY_LEFTALT"; h = t; })
+          (genVal rec { k = "KEY_RIGHTCTRL"; t = "KEY_RIGHTMETA"; h = t; })
+          (genVal rec { k = "KEY_RIGHTSHIFT"; t = "KEY_RIGHTCTRL"; h = k; })
+        ];
+    });
+in
+{
   services.interception-tools = {
     enable = true;
-    plugins = [ pkgs.interception-tools-plugins.dual-function-keys ];
-    udevmonConfig = ''
-      - JOB: "${pkgs.interception-tools}/bin/intercept -g $DEVNODE | \
-      ${pkgs.interception-tools-plugins.dual-function-keys}/bin/dual-function-keys -c /etc/interception-tools.yaml | \
-      ${pkgs.interception-tools}/bin/uinput -d $DEVNODE"
-        DEVICE:
-          EVENTS:
-            EV_KEY: [KEY_CAPSLOCK, KEY_ENTER, KEY_LEFTALT, KEY_LEFTMETA, KEY_RIGHTCTRL, KEY_SPACE, KEY_LEFTSHIFT, KEY_RIGHTSHIFT]
-    '';
-  };
-
-  console.useXkbConfig = true;
-  services.xserver.layout = "lv3_us";
-  services.xserver.xkbOptions = "lv3:ralt_switch";
-  services.xserver.extraLayouts.lv3_us = {
-    description = "US layout with lvl3";
-    languages = [ "eng" ];
-    symbolsFile = "${inputs.dots}/.config/xkb/symbols/lv3_us";
+    plugins = [ interception-tools-plugins.dual-function-keys vimproved ];
+    udevmonConfig = builtins.toJSON [
+      {
+        JOB = "${interception-tools}/bin/intercept -g $DEVNODE |
+        ${vimproved}/opt/interception/interception-vimproved |
+        ${interception-tools-plugins.dual-function-keys}/bin/dual-function-keys -c ${dfk} |
+        ${interception-tools}/bin/uinput -d $DEVNODE -c ${additionalKeys}";
+        DEVICE.EVENTS.EV_KEY = [ "KEY_KATAKANAHIRAGANA" ];
+      }
+    ];
   };
 }
