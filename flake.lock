@@ -209,6 +209,22 @@
         "url": "file:///etc/nixos/hardware-configuration.nix"
       }
     },
+    "interception-vimproved": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1675003598,
+        "narHash": "sha256-1oaJtI+2/jr4eTxWe/9c+AI5VoLINkmbLpPHBvu1txQ=",
+        "owner": "name-snrl",
+        "repo": "interception-vimproved",
+        "rev": "47c27414c25f0a3802790248a5fd003da27736a6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "name-snrl",
+        "repo": "interception-vimproved",
+        "type": "github"
+      }
+    },
     "neovim": {
       "inputs": {
         "flake-utils": [
@@ -352,6 +368,7 @@
         "flake-registry": "flake-registry",
         "home-manager": "home-manager",
         "hw-config": "hw-config",
+        "interception-vimproved": "interception-vimproved",
         "nixpkgs": "nixpkgs",
         "nvim": "nvim",
         "nvim-nightly": "nvim-nightly",
