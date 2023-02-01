@@ -447,6 +447,7 @@ with lib;
     et
     fzf # for zoxide/fzf-bash-complete
     ffmpeg
+    syncplay-nogui
     zoxide
     tokei
     tealdeer
