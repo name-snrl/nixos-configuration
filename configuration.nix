@@ -234,11 +234,6 @@ with lib;
   # work stuff
   security.pki.certificateFiles = [ inputs.CA ];
   programs.openvpn3.enable = true;
-  programs.fish.shellAliases = {
-    stwork = "openvpn3 session-start --config ~/.openvpn/tawasal_eu1.ovpn; ${pkgs.hubstaff}/bin/HubstaffClient & disown; exit";
-    spwork = "openvpn3 session-manage -D --config ~/.openvpn/tawasal_eu1.ovpn";
-    reboot = "read -P 'Are you sure? ' yn; [ $yn = y ] && systemctl reboot";
-  };
 
   environment = {
     pathsToLink = [ "/share" ];
@@ -253,6 +248,7 @@ with lib;
       cat = "bat --pager=never --style=changes,rule,numbers,snip";
       sctl = "systemctl";
       sudo = "sudo "; # this will make sudo work with shell aliases/man alias
+      reboot = "echo 'Are you sure?'; read && systemctl reboot";
       usrcfg = "git --git-dir=$HOME/.git_home/ --work-tree=$HOME";
 
       # bluetooth
