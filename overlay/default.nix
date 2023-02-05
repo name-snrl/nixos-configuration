@@ -3,6 +3,8 @@ inputs: final: prev:
 let
   inherit (final) system lib;
 
+  fromInputs = input: name: inputs.${input}.packages.${system}.${name};
+
   renameBin = target: name:
     prev.runCommand "${target}-as-${name}" { } ''
       mkdir -p "$out/bin"
@@ -13,16 +15,15 @@ in
 {
   scripts = import ./scripts.nix prev;
 
-  gojq-as-jq = renameBin "gojq" "jq";
   # https://gitlab.gnome.org/GNOME/glib/-/issues/338
   # TODO wait for `xdg-terminal-exec`
   alacritty-as-xterm = renameBin "alacritty" "xterm";
+  gojq-as-jq = renameBin "gojq" "jq";
 
-  exo2 = inputs.shlyupa.packages.${system}.exo2;
-  kotatogram-desktop-with-webkit =
-    inputs.shlyupa.packages.${system}.kotatogram-desktop-with-webkit;
+  exo2 = fromInputs "shlyupa" "exo2";
+  kotatogram-desktop-with-webkit = fromInputs "shlyupa" "kotatogram-desktop-with-webkit";
 
-  neovim-unwrapped = inputs.nvim-nightly.packages.${system}.neovim;
+  neovim-unwrapped = fromInputs "nvim-nightly" "neovim";
   nvim = with prev;
     let
       init = "${inputs.nvim}/init.lua";
