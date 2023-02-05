@@ -322,25 +322,6 @@ with lib;
 
   fonts = {
     enableDefaultFonts = false;
-    fontconfig.crOSMaps = true;
-    fontconfig.defaultFonts = {
-      monospace = [
-        "JetBrains Mono NL Light"
-        "Noto Sans Mono CJK JP"
-        "Arimo Nerd Font Mono"
-      ];
-      sansSerif = [
-        "Exo 2"
-        "Noto Sans CJK JP"
-        "Arimo Nerd Font"
-      ];
-      serif = [
-        "Tinos"
-        "Noto Serif CJK JP"
-        "Arimo Nerd Font"
-      ];
-      emoji = [ "JoyPixels" ];
-    };
     fonts = with pkgs; [
       exo2
       jetbrains-mono
@@ -349,8 +330,27 @@ with lib;
       unifont
       symbola
       joypixels
-      (nerdfonts.override { fonts = [ "Arimo" ]; })
+      nerd-fonts-symbols
     ];
+    fontconfig.crOSMaps = true;
+    fontconfig.defaultFonts = {
+      monospace = [
+        "JetBrains Mono NL Light"
+        "Noto Sans Mono CJK JP"
+        "Symbols Nerd Font"
+      ];
+      sansSerif = [
+        "Exo 2"
+        "Noto Sans CJK JP"
+        "Symbols Nerd Font"
+      ];
+      serif = [
+        "Tinos"
+        "Noto Serif CJK JP"
+        "Symbols Nerd Font"
+      ];
+      emoji = [ "JoyPixels" ];
+    };
   };
 
   qt.enable = true;

@@ -21,6 +21,7 @@ in
   gojq-as-jq = renameBin "gojq" "jq";
 
   exo2 = fromInputs "shlyupa" "exo2";
+  nerd-fonts-symbols = fromInputs "shlyupa" "nerd-fonts-symbols";
   kotatogram-desktop-with-webkit = fromInputs "shlyupa" "kotatogram-desktop-with-webkit";
 
   neovim-unwrapped = fromInputs "nvim-nightly" "neovim";
