@@ -76,6 +76,7 @@
           (import inputs.hw-config)
 
           self.nixosProfiles.keyboard
+          self.nixosProfiles.nix
           self.nixosProfiles.sway
           self.nixosProfiles.gdm
           self.nixosProfiles.fish
