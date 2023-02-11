@@ -85,6 +85,10 @@ with lib;
       FastConnectable = true;
     };
   };
+  environment.shellAliases = {
+    btc = "bluetoothctl connect 88:D0:39:65:46:85";
+    btd = "bluetoothctl disconnect";
+  };
 
   # GPU acceleration
   hardware.opengl = {
@@ -224,38 +228,6 @@ with lib;
 
   environment = {
     pathsToLink = [ "/share" ];
-    shellAliases = {
-      se = "sudoedit";
-      pg = "$PAGER";
-      ls = "exa";
-      rg = "rg --follow --hidden --smart-case --no-messages";
-      fd = "fd --follow --hidden";
-      dt = "difft";
-      tk = "tokei";
-      cat = "bat --pager=never --style=changes,rule,numbers,snip";
-      sctl = "systemctl";
-      sudo = "sudo "; # this will make sudo work with shell aliases/man alias
-      reboot = "echo 'Are you sure?'; read && systemctl reboot";
-      usrcfg = "git --git-dir=$HOME/.git_home/ --work-tree=$HOME";
-
-      # bluetooth
-      btc = "bluetoothctl connect 88:D0:39:65:46:85";
-      btd = "bluetoothctl disconnect";
-
-      # use extended regex instead of BRE
-      grep = "grep -E";
-      sed = "sed -E";
-
-      # NixOS
-      jnp = "cd ${pkgs.path}";
-      nboot = "nixos-rebuild boot --use-remote-sudo --fast --flake ~/nixos-configuration";
-      nswitch = "nixos-rebuild switch --use-remote-sudo --fast --flake ~/nixos-configuration";
-      nbuild = "nixos-rebuild build --fast --flake ~/nixos-configuration";
-      nupdate = "nix flake update --commit-lock-file ~/nixos-configuration";
-      nlock = "nix flake lock --commit-lock-file ~/nixos-configuration";
-      nclear = "sudo nix-collect-garbage --delete-old";
-    };
-
     sessionVariables = {
       # XDG base dir
       XDG_CONFIG_HOME = "$HOME/.config";

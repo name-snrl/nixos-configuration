@@ -80,6 +80,7 @@
           self.nixosProfiles.sway
           self.nixosProfiles.gdm
           self.nixosProfiles.fish
+          self.nixosProfiles.aliases
           self.nixosProfiles.git
           self.nixosProfiles.starship
 
