@@ -250,6 +250,7 @@ with lib;
       jnp = "cd ${pkgs.path}";
       nboot = "nixos-rebuild boot --use-remote-sudo --fast --flake ~/nixos-configuration";
       nswitch = "nixos-rebuild switch --use-remote-sudo --fast --flake ~/nixos-configuration";
+      nbuild = "nixos-rebuild build --fast --flake ~/nixos-configuration";
       nupdate = "nix flake update --commit-lock-file ~/nixos-configuration";
       nlock = "nix flake lock --commit-lock-file ~/nixos-configuration";
       nclear = "sudo nix-collect-garbage --delete-old";
