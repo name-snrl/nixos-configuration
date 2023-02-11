@@ -14,7 +14,7 @@ with lib;
     settings = {
       auto-optimise-store = true;
       experimental-features = [ "nix-command" "flakes" ];
-      trusted-users = [ "root" "@wheel" config.userName ];
+      trusted-users = [ "root" "@wheel" config.users.users.default.name ];
       substituters = [
         "https://nix-community.cachix.org"
         "https://ilya-fedin.cachix.org"
@@ -230,7 +230,8 @@ with lib;
     users = {
       root.hashedPassword =
         "$6$68YTRwVh7sUS1onf$VwXU4CSQ9/RbbERzYV8TNtfNM8eraZarUZ4oyxXhXHu1j/4ItbSAhuUkkzfc7FF0XKChZnn.hPisvojMSUfM81";
-      ${config.userName} = {
+      default = {
+        name = "name_snrl";
         hashedPassword =
           "$6$6US0iMDXE1K7wj9g$2/JKHfX4VfNETELdt4dTlTUzlmZAmvP4XfRNB5ORVPYNmi6.A4EWpSXkpx/5PrPx1J/LaA41n2NDss/R0Utqh/";
         isNormalUser = true;

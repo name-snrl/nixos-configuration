@@ -5,7 +5,7 @@
       init.defaultBranch = "master";
 
       user = {
-        name = config.userName;
+        name = config.users.users.default.name;
         email = "Demogorgon-74@ya.ru";
       };
 

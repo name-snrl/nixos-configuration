@@ -61,8 +61,6 @@
         };
     in
     {
-      nixosModules = builtins.listToAttrs (findModules ./modules);
-
       nixosProfiles = builtins.listToAttrs (findModules ./profiles);
 
       legacyPackages.x86_64-linux = pkgsFor "x86_64-linux";
@@ -76,8 +74,6 @@
         modules = [
           ./configuration.nix
           (import inputs.hw-config)
-
-          self.nixosModules.global_variables
 
           self.nixosProfiles.keyboard
           self.nixosProfiles.sway
