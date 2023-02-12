@@ -66,17 +66,6 @@ with lib;
   services.journald.extraConfig = "SystemMaxUse=200M";
   systemd.coredump.extraConfig = "Storage=none";
 
-  virtualisation = {
-    docker = {
-      enable = true;
-      enableOnBoot = false;
-    };
-    libvirtd = {
-      enable = true;
-      onBoot = "ignore";
-    };
-  };
-
   #---------------------------- ENVIRONMENT N SOFT ----------------------------#
 
   i18n = {
@@ -102,10 +91,7 @@ with lib;
         isNormalUser = true;
         extraGroups = [
           "wheel"
-          "networkmanager"
           "video"
-          "libvirtd"
-          "docker"
           "adbusers"
         ];
       };
