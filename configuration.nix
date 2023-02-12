@@ -64,7 +64,6 @@ with lib;
       MENU = "wofi -d";
       EDITOR = "nvim";
       BROWSER = "nvim";
-      GTK_USE_PORTAL = "1";
       QT_QPA_PLATFORMTHEME = "qt5ct"; # TODO create an issue
     };
 
@@ -110,23 +109,6 @@ with lib;
 
   qt.enable = true;
   qt.platformTheme = "qt5ct";
-
-  xdg.portal = {
-    enable = true;
-    # gtkUsePortal = true; # check sessionVariables above
-    wlr = {
-      enable = true;
-      settings.screencast = {
-        output_name = "eDP-1";
-        max_fps = 60;
-        chooser_type = "none";
-      };
-    };
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-kde
-    ];
-  };
 
   services = {
     udisks2.enable = true;
