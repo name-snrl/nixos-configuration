@@ -40,13 +40,6 @@ with lib;
     speed = 180;
   };
 
-  #---------------------------- ENVIRONMENT N SOFT ----------------------------#
-
-
-  # work stuff
-  security.pki.certificateFiles = [ inputs.CA ];
-  programs.openvpn3.enable = true;
-
   environment = {
     pathsToLink = [ "/share" ];
     sessionVariables = {

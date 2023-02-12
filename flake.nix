@@ -98,6 +98,7 @@
           self.nixosProfiles.mime
           self.nixosProfiles.pkgs
           self.nixosProfiles.programs
+          self.nixosProfiles.work
         ];
       };
 
