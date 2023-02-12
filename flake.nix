@@ -82,6 +82,7 @@
           self.nixosProfiles.git
           self.nixosProfiles.starship
           self.nixosProfiles.boot
+          self.nixosProfiles.dnsmasq
 
           inputs.shlyupa.nixosModules.metric-compatible-fonts
         ];
