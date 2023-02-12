@@ -1,43 +1,15 @@
-{ config, lib, pkgs, inputs, ... }:
-
-with lib;
-
-{
+{ config, lib, pkgs, inputs, ... }: {
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
     supportedFilesystems = [ "ntfs" ];
+    tmpOnTmpfs = true;
   };
-
-  # Firmware
-  hardware.enableRedistributableFirmware = true;
-
-  # RAM
-  zramSwap.enable = true;
-
-  # Storage
-  services.fstrim.enable = true;
-  boot.tmpOnTmpfs = true;
 
   # Networking
   networking = {
     #firewall.enable = false;
     hostName = "nixos";
     wireless.iwd.enable = true;
-  };
-
-  # GPS
-  #services.gpsd.enable = true;
-  #services.gpsd.device = "/dev/ttyACM0";
-  #services.geoclue2.enable = true;
-  location.provider = "geoclue2";
-
-  programs.light.enable = true;
-  users.users.default.extraGroups = [ "video" ];
-
-  hardware.trackpoint = {
-    enable = true;
-    sensitivity = 130;
-    speed = 180;
   };
 
   environment = {
@@ -65,6 +37,5 @@ with lib;
   qt.platformTheme = "qt5ct";
 
   services.dbus.implementation = "broker";
-
   documentation.man.generateCaches = true;
 }
