@@ -31,20 +31,6 @@ with lib;
   #services.geoclue2.enable = true;
   location.provider = "geoclue2";
 
-  hardware.bluetooth = {
-    enable = true;
-    #hsphfpd.enable = true;
-    settings.General = {
-      Experimental = true;
-      MultiProfile = "multiple";
-      FastConnectable = true;
-    };
-  };
-  environment.shellAliases = {
-    btc = "bluetoothctl connect 88:D0:39:65:46:85";
-    btd = "bluetoothctl disconnect";
-  };
-
   # Sound.
   services.pipewire = {
     config.pipewire = {
