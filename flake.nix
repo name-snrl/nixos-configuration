@@ -83,6 +83,7 @@
           self.nixosProfiles.aliases
           self.nixosProfiles.git
           self.nixosProfiles.starship
+          self.nixosProfiles.boot
 
           inputs.shlyupa.nixosModules.metric-compatible-fonts
         ];

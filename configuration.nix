@@ -9,19 +9,7 @@ with lib;
   #--------------------------- HARDWARE AND SYSTEM ----------------------------#
 
   boot = {
-    loader = {
-      efi.canTouchEfiVariables = false;
-      timeout = 3;
-      systemd-boot = {
-        enable = true;
-        memtest86.enable = true;
-        configurationLimit = 20;
-        consoleMode = "max";
-      };
-    };
-
     kernelPackages = pkgs.linuxPackages_zen;
-    initrd.includeDefaultModules = false;
     initrd.kernelModules = [ "i915" ]; # Enable early KMS
     supportedFilesystems = [ "ntfs" ];
   };
