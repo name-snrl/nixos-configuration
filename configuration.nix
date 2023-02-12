@@ -23,8 +23,6 @@ with lib;
     kernelPackages = pkgs.linuxPackages_zen;
     initrd.kernelModules = [ "i915" ];
     supportedFilesystems = [ "ntfs" ];
-    kernelModules = [ "acpi_call" ];
-    extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
   };
 
   # Firmware
