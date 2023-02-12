@@ -84,6 +84,7 @@
           self.nixosProfiles.boot
           self.nixosProfiles.dnsmasq
           self.nixosProfiles.tor
+          self.nixosProfiles.adb
           self.nixosProfiles.bluetooth
           self.nixosProfiles.sound
           self.nixosProfiles.battery

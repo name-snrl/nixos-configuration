@@ -32,7 +32,7 @@ with lib;
   location.provider = "geoclue2";
 
   programs.light.enable = true;
-  users.users.default.extraGroups = [ "adbusers" "video" ];
+  users.users.default.extraGroups = [ "video" ];
 
   hardware.trackpoint = {
     enable = true;
@@ -74,6 +74,4 @@ with lib;
   services.dbus.implementation = "broker";
 
   documentation.man.generateCaches = true;
-
-  programs.adb.enable = true;
 }
