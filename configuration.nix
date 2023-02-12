@@ -77,13 +77,7 @@ with lib;
   qt.enable = true;
   qt.platformTheme = "qt5ct";
 
-  services = {
-    udisks2.enable = true;
-    dbus.implementation = "broker";
-
-    dictd.enable = true;
-    dictd.DBs = with pkgs.dictdDBs; [ wiktionary ];
-  };
+  services.dbus.implementation = "broker";
 
   documentation.man.generateCaches = true;
 
