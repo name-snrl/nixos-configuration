@@ -21,7 +21,8 @@ with lib;
     };
 
     kernelPackages = pkgs.linuxPackages_zen;
-    initrd.kernelModules = [ "i915" ];
+    initrd.includeDefaultModules = false;
+    initrd.kernelModules = [ "i915" ]; # Enable early KMS
     supportedFilesystems = [ "ntfs" ];
   };
 
