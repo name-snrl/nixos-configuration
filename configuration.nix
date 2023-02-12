@@ -31,21 +31,6 @@ with lib;
   #services.geoclue2.enable = true;
   location.provider = "geoclue2";
 
-  # Battery 
-  services.upower.enable = true;
-  services.tlp = {
-    enable = true;
-    settings = {
-
-      START_CHARGE_THRESH_BAT0 = 40;
-      STOP_CHARGE_THRESH_BAT0 = 60;
-
-      START_CHARGE_THRESH_BAT1 = 40;
-      STOP_CHARGE_THRESH_BAT1 = 55;
-
-    };
-  };
-
   programs.light.enable = true;
 
   hardware.trackpoint = {
