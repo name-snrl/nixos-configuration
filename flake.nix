@@ -91,6 +91,7 @@
           self.nixosProfiles.console
           self.nixosProfiles.logging
           self.nixosProfiles.locale
+          self.nixosProfiles.security
 
           inputs.shlyupa.nixosModules.metric-compatible-fonts
         ];
