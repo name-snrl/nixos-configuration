@@ -96,6 +96,7 @@
           self.nixosProfiles.fonts
           self.nixosProfiles.mime
           self.nixosProfiles.pkgs
+          self.nixosProfiles.programs
         ];
       };
 
