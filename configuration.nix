@@ -3,23 +3,13 @@
 with lib;
 
 {
-
-  system.stateVersion = "22.05";
-
-  #--------------------------- HARDWARE AND SYSTEM ----------------------------#
-
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
-    initrd.kernelModules = [ "i915" ]; # Enable early KMS
     supportedFilesystems = [ "ntfs" ];
   };
 
   # Firmware
-  services.fwupd.enable = true;
   hardware.enableRedistributableFirmware = true;
-
-  # CPU
-  powerManagement.cpuFreqGovernor = mkDefault "schedutil";
 
   # RAM
   zramSwap.enable = true;
@@ -75,20 +65,6 @@ with lib;
   environment.shellAliases = {
     btc = "bluetoothctl connect 88:D0:39:65:46:85";
     btd = "bluetoothctl disconnect";
-  };
-
-  # GPU acceleration
-  hardware.opengl = {
-    extraPackages = with pkgs; [
-      beignet
-      vaapiIntel
-      # I want a new laptop
-      # intel-media-driver
-      #
-      # --my-next-gpu-wont-be-nvidia
-      # vaapiVdpau
-      # libvdpau-va-gl
-    ];
   };
 
   # Sound.
@@ -224,9 +200,6 @@ with lib;
 
       # set gsettings schemas
       XDG_DATA_DIRS = [ (pkgs.glib.getSchemaDataDirPath pkgs.gsettings-desktop-schemas) ];
-
-      # overriding vaapi driver
-      LIBVA_DRIVER_NAME = "i965";
 
       # misc
       TERMINAL = "alacritty";

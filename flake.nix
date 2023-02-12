@@ -10,7 +10,6 @@
 
     dots.flake = false;
     nvim.flake = false;
-    hw-config.flake = false;
     CA.flake = false;
     flake-registry.flake = false;
     interception-vimproved.flake = false;
@@ -29,7 +28,6 @@
     nvimpager.url = "github:lucc/nvimpager";
 
     CA.url = "file:///home/name_snrl/nixos-configuration/tawasalca.crt";
-    hw-config.url = "file:///etc/nixos/hardware-configuration.nix";
     flake-registry.url = "github:nixos/flake-registry";
     interception-vimproved.url = "github:name-snrl/interception-vimproved";
   };
@@ -73,7 +71,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./configuration.nix
-          (import inputs.hw-config)
+          ./hosts/t440s
 
           self.nixosProfiles.keyboard
           self.nixosProfiles.nix

@@ -197,18 +197,6 @@
         "type": "github"
       }
     },
-    "hw-config": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-MQCg9sxfCqwspI9ZXCf/Nq4lq09uN9FySDiAvu/BTuo=",
-        "type": "file",
-        "url": "file:///etc/nixos/hardware-configuration.nix"
-      },
-      "original": {
-        "type": "file",
-        "url": "file:///etc/nixos/hardware-configuration.nix"
-      }
-    },
     "interception-vimproved": {
       "flake": false,
       "locked": {
@@ -367,7 +355,6 @@
         "dots": "dots",
         "flake-registry": "flake-registry",
         "home-manager": "home-manager",
-        "hw-config": "hw-config",
         "interception-vimproved": "interception-vimproved",
         "nixpkgs": "nixpkgs",
         "nvim": "nvim",
