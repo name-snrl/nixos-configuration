@@ -39,10 +39,6 @@ with lib;
     speed = 180;
   };
 
-  # Logging
-  services.journald.extraConfig = "SystemMaxUse=200M";
-  systemd.coredump.extraConfig = "Storage=none";
-
   #---------------------------- ENVIRONMENT N SOFT ----------------------------#
 
   i18n = {

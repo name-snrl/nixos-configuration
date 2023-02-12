@@ -89,6 +89,7 @@
           self.nixosProfiles.battery
           self.nixosProfiles.virtualisation
           self.nixosProfiles.console
+          self.nixosProfiles.logging
 
           inputs.shlyupa.nixosModules.metric-compatible-fonts
         ];
