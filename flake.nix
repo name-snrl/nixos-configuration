@@ -90,6 +90,7 @@
           self.nixosProfiles.virtualisation
           self.nixosProfiles.console
           self.nixosProfiles.logging
+          self.nixosProfiles.locale
 
           inputs.shlyupa.nixosModules.metric-compatible-fonts
         ];
