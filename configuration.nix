@@ -31,19 +31,6 @@ with lib;
   #services.geoclue2.enable = true;
   location.provider = "geoclue2";
 
-  # Sound.
-  services.pipewire = {
-    config.pipewire = {
-      "context.properties" = {
-        "default.clock.allowed-rates" = [ 44100 48000 96000 ];
-      };
-    };
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
   # Battery 
   services.upower.enable = true;
   services.tlp = {
@@ -93,15 +80,6 @@ with lib;
   # Logging
   services.journald.extraConfig = "SystemMaxUse=200M";
   systemd.coredump.extraConfig = "Storage=none";
-
-  security = {
-    rtkit.enable = true;
-    #sudo.extraConfig = ''
-    #  # share wl-clipboard
-    #  Defaults env_keep += "XDG_RUNTIME_DIR"
-    #  Defaults env_keep += "WAYLAND_DISPLAY"
-    #'';
-  };
 
   virtualisation = {
     docker = {

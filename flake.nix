@@ -85,6 +85,7 @@
           self.nixosProfiles.dnsmasq
           self.nixosProfiles.tor
           self.nixosProfiles.bluetooth
+          self.nixosProfiles.sound
 
           inputs.shlyupa.nixosModules.metric-compatible-fonts
         ];
