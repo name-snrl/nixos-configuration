@@ -93,8 +93,7 @@
           self.nixosProfiles.locale
           self.nixosProfiles.security
           self.nixosProfiles.portals
-
-          inputs.shlyupa.nixosModules.metric-compatible-fonts
+          self.nixosProfiles.fonts
         ];
       };
 
