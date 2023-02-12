@@ -88,6 +88,7 @@
           self.nixosProfiles.sound
           self.nixosProfiles.battery
           self.nixosProfiles.virtualisation
+          self.nixosProfiles.console
 
           inputs.shlyupa.nixosModules.metric-compatible-fonts
         ];
