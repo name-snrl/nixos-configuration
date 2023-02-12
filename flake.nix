@@ -95,6 +95,7 @@
           self.nixosProfiles.portals
           self.nixosProfiles.fonts
           self.nixosProfiles.mime
+          self.nixosProfiles.pkgs
         ];
       };
 
