@@ -100,6 +100,7 @@
           self.nixosProfiles.programs
           self.nixosProfiles.work
           self.nixosProfiles.hardware
+          self.nixosProfiles.environment
         ];
       };
 
