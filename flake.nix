@@ -101,6 +101,7 @@
           self.nixosProfiles.work
           self.nixosProfiles.hardware
           self.nixosProfiles.environment
+          self.nixosProfiles.misc
         ];
       };
 

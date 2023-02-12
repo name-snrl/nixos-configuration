@@ -1,11 +1,4 @@
-{ config, lib, pkgs, inputs, ... }: {
-  boot = {
-    kernelPackages = pkgs.linuxPackages_zen;
-    supportedFilesystems = [ "ntfs" ];
-    tmpOnTmpfs = true;
-  };
-
-  # Networking
+{ pkgs, ... }: {
   networking = {
     #firewall.enable = false;
     hostName = "nixos";
