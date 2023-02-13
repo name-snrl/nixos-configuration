@@ -61,48 +61,18 @@
     {
       nixosProfiles = builtins.listToAttrs (findModules ./profiles);
 
-      legacyPackages.x86_64-linux = pkgsFor "x86_64-linux";
-
-      overlay = import ./overlay inputs;
+      nixosRoles = import ./roles;
 
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
         pkgs = pkgsFor system;
         specialArgs = { inherit inputs; };
-        modules = [
-          ./configuration.nix
-          ./hosts/t440s
-
-          self.nixosProfiles.keyboard
-          self.nixosProfiles.nix
-          self.nixosProfiles.sway
-          self.nixosProfiles.gdm
-          self.nixosProfiles.fish
-          self.nixosProfiles.aliases
-          self.nixosProfiles.git
-          self.nixosProfiles.starship
-          self.nixosProfiles.boot
-          self.nixosProfiles.dnsmasq
-          self.nixosProfiles.tor
-          self.nixosProfiles.bluetooth
-          self.nixosProfiles.sound
-          self.nixosProfiles.battery
-          self.nixosProfiles.virtualisation
-          self.nixosProfiles.console
-          self.nixosProfiles.logging
-          self.nixosProfiles.locale
-          self.nixosProfiles.security
-          self.nixosProfiles.portals
-          self.nixosProfiles.fonts
-          self.nixosProfiles.mime
-          self.nixosProfiles.pkgs
-          self.nixosProfiles.programs
-          self.nixosProfiles.work
-          self.nixosProfiles.hardware
-          self.nixosProfiles.environment
-          self.nixosProfiles.misc
-        ];
+        modules = [ ./hosts/t440s ];
       };
+
+      legacyPackages.x86_64-linux = pkgsFor "x86_64-linux";
+
+      overlay = import ./overlay inputs;
 
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
     };
