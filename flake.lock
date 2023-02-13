@@ -361,6 +361,7 @@
         "nvim-nightly": "nvim-nightly",
         "nvimpager": "nvimpager",
         "shlyupa": "shlyupa",
+        "ssh-keys": "ssh-keys",
         "terranix": "terranix"
       }
     },
@@ -381,6 +382,18 @@
         "owner": "ilya-fedin",
         "repo": "nur-repository",
         "type": "github"
+      }
+    },
+    "ssh-keys": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-DY9DPP474nUZysyqG4KWczlRevYlWmXB30I6lQTu+xE=",
+        "type": "file",
+        "url": "https://github.com/name-snrl.keys"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/name-snrl.keys"
       }
     },
     "terranix": {
