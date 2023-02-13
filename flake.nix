@@ -67,7 +67,14 @@
         system = "x86_64-linux";
         pkgs = pkgsFor system;
         specialArgs = { inherit inputs; };
-        modules = [ ./hosts/t440s ];
+        modules =
+          let
+            name = "t440s";
+          in
+          [
+            ./hosts/${name}
+            { networking.hostName = "t440s"; }
+          ];
       };
 
       legacyPackages.x86_64-linux = pkgsFor "x86_64-linux";
