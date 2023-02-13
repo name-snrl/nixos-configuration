@@ -1,9 +1,9 @@
 { pkgs, ... }: {
   boot = {
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_zen; # TODO if desktop
     initrd.includeDefaultModules = false;
-    supportedFilesystems = [ "ntfs" ];
-    tmpOnTmpfs = true;
+    supportedFilesystems = [ "ntfs" ]; # TODO if desktop
+    tmpOnTmpfs = true; # TODO depends on RAM
 
     loader = {
       efi.canTouchEfiVariables = false;

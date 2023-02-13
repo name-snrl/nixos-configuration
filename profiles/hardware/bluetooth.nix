@@ -1,6 +1,7 @@
 {
+  # TODO if bluetooth is available
   hardware.bluetooth = {
-    enable = true; # TODO if laptop
+    enable = true;
     settings.General = {
       Experimental = true;
       MultiProfile = "multiple";

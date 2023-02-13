@@ -12,7 +12,7 @@
       XDG_DATA_DIRS = [ (pkgs.glib.getSchemaDataDirPath pkgs.gsettings-desktop-schemas) ];
 
       # misc
-      TERMINAL = "alacritty";
+      TERMINAL = "alacritty"; # TODO remove when xdg-terminal-exec will be set
       MENU = "wofi -d";
       EDITOR = "nvim";
       BROWSER = "nvim";
