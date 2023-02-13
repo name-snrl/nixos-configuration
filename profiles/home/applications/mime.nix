@@ -1,5 +1,4 @@
-{ config, lib, ... }:
-{
+{ config, lib, ... }: {
   xdg.mime.defaultApplications = {
     "application/pdf" = "sioyek.desktop";
     "image/jpeg" = "imv.desktop";

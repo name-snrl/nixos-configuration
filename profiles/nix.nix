@@ -1,5 +1,4 @@
-{ config, inputs, ... }:
-{
+{ config, inputs, ... }: {
   nix = {
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 

@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   xdg.portal = {
     enable = true;
     wlr = {

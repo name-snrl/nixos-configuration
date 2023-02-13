@@ -1,5 +1,4 @@
-{ pkgs, inputs, ... }:
-{
+{ pkgs, inputs, ... }: {
   imports = [ inputs.shlyupa.nixosModules.metric-compatible-fonts ];
   fonts = {
     enableDefaultFonts = false;
