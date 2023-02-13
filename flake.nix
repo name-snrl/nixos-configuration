@@ -34,53 +34,52 @@
 
   outputs = inputs@{ self, nixpkgs, ... }:
     let
-      findModules = dir:
-        builtins.concatLists (builtins.attrValues (builtins.mapAttrs
-          (name: type:
-            if type == "regular" then [{
-              name = builtins.elemAt (builtins.match "(.*)\\.nix" name) 0;
-              value = dir + "/${name}";
-            }] else if (builtins.readDir (dir + "/${name}"))
-              ? "default.nix" then [{
-              inherit name;
-              value = dir + "/${name}";
-            }] else
-              findModules (dir + "/${name}"))
-          (builtins.readDir dir)));
+      system = "x86_64-linux";
 
-      pkgsFor = system:
-        import inputs.nixpkgs {
-          overlays = [ self.overlay ];
-          localSystem = { inherit system; };
-          config = {
-            allowUnfree = true;
-            joypixels.acceptLicense = true;
-          };
+      pkgs = import inputs.nixpkgs {
+        overlays = [ self.overlay ];
+        localSystem = { inherit system; };
+        config = {
+          allowUnfree = true;
+          joypixels.acceptLicense = true;
         };
+      };
+
+      findModules = with builtins;
+        dir: concatLists (attrValues
+          (mapAttrs
+            (name: type:
+              if type == "regular"
+              then [{
+                name = elemAt (match "(.*)\\.nix" name) 0;
+                value = dir + "/${name}";
+              }]
+              else if (readDir (dir + "/${name}")) ? "default.nix"
+              then [{
+                inherit name;
+                value = dir + "/${name}";
+              }]
+              else findModules (dir + "/${name}"))
+            (readDir dir)));
     in
     {
       nixosProfiles = builtins.listToAttrs (findModules ./profiles);
 
       nixosRoles = import ./roles;
 
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem rec {
-        system = "x86_64-linux";
-        pkgs = pkgsFor system;
-        specialArgs = { inherit inputs; };
-        modules =
-          let
-            name = "t440s";
-          in
-          [
-            ./hosts/${name}
-            { networking.hostName = "t440s"; }
-          ];
-      };
+      nixosConfigurations = nixpkgs.lib.genAttrs
+        (builtins.attrNames (builtins.readDir ./hosts))
+        (name:
+          nixpkgs.lib.nixosSystem {
+            inherit system pkgs;
+            specialArgs = { inherit inputs; };
+            modules = [ ./hosts/${name} { networking.hostName = name; } ];
+          });
 
-      legacyPackages.x86_64-linux = pkgsFor "x86_64-linux";
+      legacyPackages.${system} = pkgs;
 
       overlay = import ./overlay inputs;
 
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixpkgs-fmt;
     };
 }
