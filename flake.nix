@@ -11,6 +11,7 @@
     dots.flake = false;
     nvim.flake = false;
     CA.flake = false;
+    ssh-keys.flake = false;
     flake-registry.flake = false;
     interception-vimproved.flake = false;
 
@@ -28,6 +29,7 @@
     nvimpager.url = "github:lucc/nvimpager";
 
     CA.url = "file:///home/name_snrl/nixos-configuration/tawasalca.crt";
+    ssh-keys.url = "https://github.com/name-snrl.keys";
     flake-registry.url = "github:nixos/flake-registry";
     interception-vimproved.url = "github:name-snrl/interception-vimproved";
   };
