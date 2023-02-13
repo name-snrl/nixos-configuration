@@ -28,6 +28,9 @@ let
           (genVal rec { k = "KEY_LEFTMETA"; t = "KEY_LEFTALT"; h = t; })
           (genVal rec { k = "KEY_RIGHTCTRL"; t = "KEY_RIGHTMETA"; h = t; })
           (genVal rec { k = "KEY_RIGHTSHIFT"; t = "KEY_RIGHTCTRL"; h = k; })
+          # TODO setup japanese
+          #(genVal rec { k = "KEY_RIGHTSHIFT"; t = "KEY_KATAKANAHIRAGANA"; h = k; })
+          #(genVal rec { k = "KEY_RIGHTALT"; t = "KEY_ZENKAKUHANKAKU"; h = k; })
         ];
     });
 in
