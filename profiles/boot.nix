@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   boot = {
     kernelPackages = pkgs.linuxPackages_zen; # TODO if desktop
     initrd.includeDefaultModules = false;
@@ -7,7 +7,7 @@
 
     loader = {
       efi.canTouchEfiVariables = false;
-      timeout = 3;
+      timeout = lib.mkForce 3;
       systemd-boot = {
         enable = true;
         memtest86.enable = true;
