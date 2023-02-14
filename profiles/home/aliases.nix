@@ -26,7 +26,7 @@ in
     jnp = "cd ${pkgs.path}";
     nboot = "nixos-rebuild boot --use-remote-sudo --fast --flake ${cfgPath}#${host}";
     nswitch = "nixos-rebuild switch --use-remote-sudo --fast --flake ${cfgPath}#${host}";
-    nbuild = "nixos-rebuild build --fast --flake ${cfgPath}#${host}";
+    nbuild = "nix build --no-link ${cfgPath}#${host}";
     nupdate = "nix flake update --commit-lock-file ${cfgPath}";
     nlock = "nix flake lock --commit-lock-file ${cfgPath}";
     nclear = "sudo nix-collect-garbage --delete-old";
