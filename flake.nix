@@ -63,14 +63,15 @@
               }]
               else findModules (dir + "/${name}"))
             (readDir dir)));
+
+      attrsFromHosts = nixpkgs.lib.genAttrs (builtins.attrNames (builtins.readDir ./hosts));
     in
     {
       nixosProfiles = builtins.listToAttrs (findModules ./profiles);
 
       nixosRoles = import ./roles;
 
-      nixosConfigurations = nixpkgs.lib.genAttrs
-        (builtins.attrNames (builtins.readDir ./hosts))
+      nixosConfigurations = attrsFromHosts
         (name:
           nixpkgs.lib.nixosSystem {
             inherit system pkgs;
@@ -81,6 +82,13 @@
       legacyPackages.${system} = pkgs;
 
       overlay = import ./overlay inputs;
+
+      packages.${system} = attrsFromHosts
+        (name:
+          with self.nixosConfigurations.${name}.config.system;
+          if name == "liveCD"
+          then build.isoImage
+          else build.toplevel);
 
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixpkgs-fmt;
     };
