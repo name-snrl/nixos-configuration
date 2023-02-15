@@ -28,6 +28,11 @@
     initrd.includeDefaultModules = lib.mkForce true;
     supportedFilesystems = [ "vfat" ];
   };
+  programs.sway.extraSessionCommands = ''
+    mkdir -p ~/.config/
+    cp -rf --no-preserve=mode ${inputs.dots}/.config/sway ~/.config
+    ${pkgs.fd}/bin/fd -e sh -H --search-path ~ -x chmod +x
+  '';
   isoImage = {
     edition = "SwayWM";
     makeEfiBootable = true;
