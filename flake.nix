@@ -38,7 +38,7 @@
     let
       system = "x86_64-linux";
 
-      pkgs = import inputs.nixpkgs {
+      pkgs = import nixpkgs {
         overlays = [ self.overlay ];
         localSystem = { inherit system; };
         config = {
@@ -64,7 +64,8 @@
               else findModules (dir + "/${name}"))
             (readDir dir)));
 
-      attrsFromHosts = nixpkgs.lib.genAttrs (builtins.attrNames (builtins.readDir ./hosts));
+      attrsFromHosts = nixpkgs.lib.genAttrs
+        (builtins.attrNames (builtins.readDir ./hosts));
     in
     {
       nixosProfiles = builtins.listToAttrs (findModules ./profiles);
