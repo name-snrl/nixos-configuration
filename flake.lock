@@ -69,11 +69,11 @@
     "dots": {
       "flake": false,
       "locked": {
-        "lastModified": 1676382529,
-        "narHash": "sha256-U0zEm9vuCFBqoc5kWeWMrkyMej6ftTDWpnFacIVMSm8=",
+        "lastModified": 1676566746,
+        "narHash": "sha256-A7+JiK0E+z2eTlFeM/YrccrGIcD831cHQiOtCjgDGhY=",
         "owner": "name-snrl",
         "repo": "home",
-        "rev": "69cb5623d3e64a398e5dc287daab56608b305603",
+        "rev": "0f5eac17f17989e9597c3d38e427c045e18dabe2",
         "type": "github"
       },
       "original": {
