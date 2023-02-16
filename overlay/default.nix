@@ -93,6 +93,35 @@ in
     '';
   });
 
+  imv = with prev; with builtins;
+    let
+      f = data: fetchurl data;
+      listOfAttrs = fromJSON (readFile ./wallhaven-collection.json);
+      wallpapers = concatStringsSep " " (map f listOfAttrs);
+
+      imv-wp = writeShellScriptBin "imv-wp" ''
+        ${imv}/bin/imv ${wallpapers}
+      '';
+
+      desktop = writeTextFile {
+        name = "imv-wp.desktop";
+        destination = "/share/applications/imv-wp.desktop";
+        text = ''
+          [Desktop Entry]
+          Name=imv-wp
+          GenericName=Image viewer
+          Exec=${imv-wp}/bin/imv-wp
+          Terminal=false
+          Type=Application
+          Categories=Graphics;2DGraphics;Viewer;
+        '';
+      };
+    in
+    symlinkJoin {
+      name = "imv";
+      paths = [ imv.man imv imv-wp desktop ];
+    };
+
   # TODO create a pr to fix the pkg
   graphite-gtk-theme = prev.graphite-gtk-theme.overrideAttrs (_: {
     installPhase = ''
