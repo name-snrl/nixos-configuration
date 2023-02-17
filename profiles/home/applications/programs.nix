@@ -9,7 +9,7 @@
         column_meters_1 = "AllCPUs DiskIO NetworkIO Blank Blank";
         column_meter_modes_1 = "1 1 1 2 2";
 
-        fields = "4 0 48 17 18 46 39 2 49 1";
+        fields = "0 4 48 17 18 50 46 39 2 49 1";
         tree_view = 1;
         tree_sort_key = 39;
         tree_sort_direction = -1;
