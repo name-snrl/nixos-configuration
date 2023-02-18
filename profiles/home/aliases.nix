@@ -1,7 +1,5 @@
 { config, pkgs, ... }:
-let
-  cfgPath = "~/nixos-configuration";
-  host = config.networking.hostName;
+let cfgPath = "~/nixos-configuration";
 in
 {
   environment.shellAliases = {
@@ -24,9 +22,9 @@ in
 
     # NixOS
     jnp = "cd ${pkgs.path}";
-    nboot = "nixos-rebuild boot --use-remote-sudo --fast --flake ${cfgPath}#${host}";
-    nswitch = "nixos-rebuild switch --use-remote-sudo --fast --flake ${cfgPath}#${host}";
-    nbuild = "nix build --no-link ${cfgPath}#${host}";
+    nboot = "nixos-rebuild boot --use-remote-sudo --fast --flake ${cfgPath}";
+    nswitch = "nixos-rebuild switch --use-remote-sudo --fast --flake ${cfgPath}";
+    nbuild = "nix build --no-link ${cfgPath}#${config.networking.hostName}";
     nupdate = "nix flake update --commit-lock-file ${cfgPath}";
     nlock = "nix flake lock --commit-lock-file ${cfgPath}";
     nclear = "sudo nix-collect-garbage --delete-old";
