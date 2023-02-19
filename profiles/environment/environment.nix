@@ -16,7 +16,6 @@
       MENU = "wofi -d";
       EDITOR = "nvim";
       BROWSER = "nvim";
-      QT_QPA_PLATFORMTHEME = "qt5ct"; # TODO create an issue
     };
   };
 }
