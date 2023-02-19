@@ -123,6 +123,7 @@ in
     };
 
   # TODO create a pr to fix the pkg
+  # and fix gtk2 theme colors
   graphite-gtk-theme = prev.graphite-gtk-theme.overrideAttrs (_: {
     installPhase = ''
       runHook preInstall
