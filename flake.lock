@@ -69,11 +69,11 @@
     "dots": {
       "flake": false,
       "locked": {
-        "lastModified": 1676566746,
-        "narHash": "sha256-A7+JiK0E+z2eTlFeM/YrccrGIcD831cHQiOtCjgDGhY=",
+        "lastModified": 1676668273,
+        "narHash": "sha256-4s0WdO9+MV6DpGQI0F5BaO+3s+7W+0061SVHlkNZrKM=",
         "owner": "name-snrl",
         "repo": "home",
-        "rev": "0f5eac17f17989e9597c3d38e427c045e18dabe2",
+        "rev": "567c6db257268f3318a63f0b13b7eb670c5f21b2",
         "type": "github"
       },
       "original": {
@@ -291,11 +291,11 @@
     "nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1669840465,
-        "narHash": "sha256-97buREjUpliuBagvHS5BKBlK/lrdUXvDS1xYrXdt5gA=",
+        "lastModified": 1676803003,
+        "narHash": "sha256-VmRUBI3jbv/oV/Y7SrLdtykMwTCR0oj4G6wpcWyqs9U=",
         "owner": "name-snrl",
         "repo": "nvim",
-        "rev": "d32aa8ab95da5a7824a3c968d30b41b4ccc0e9f7",
+        "rev": "09e9ef42525f3b5d4aa37c7778aa4c502d895266",
         "type": "github"
       },
       "original": {
