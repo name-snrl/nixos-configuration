@@ -14,7 +14,7 @@
     bluetooth
     sound
     console
-    pkgs
+    sysPkgs
     mime
     programs
     environment

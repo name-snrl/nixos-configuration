@@ -19,7 +19,7 @@
     portals
     fonts
     mime
-    pkgs
+    sysPkgs
     programs
     work
     environment
