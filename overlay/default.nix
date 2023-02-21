@@ -24,7 +24,14 @@ in
   nerd-fonts-symbols = fromInputs "shlyupa" "nerd-fonts-symbols";
   kotatogram-desktop-with-webkit = fromInputs "shlyupa" "kotatogram-desktop-with-webkit";
 
-  neovim-unwrapped = fromInputs "nvim-nightly" "neovim";
+  neovim-unwrapped = (fromInputs "nvim-nightly" "neovim").overrideAttrs (old: {
+    # TODO Remove once neovim 0.9.0 is released.
+    patches = builtins.filter
+      (p:
+        (if builtins.typeOf p == "set" then baseNameOf p.name else baseNameOf) != "neovim-build-make-generated-source-files-reproducible.patch")
+      old.patches;
+  });
+
   nvim = with prev;
     let
       init = "${inputs.nvim}/init.lua";
