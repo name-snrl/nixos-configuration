@@ -12,7 +12,7 @@ let
     '';
 in
 
-import ./nvim.nix { inherit inputs final prev; } //
+import ./nvim.nix { inherit inputs prev; } //
 {
   scripts = import ./scripts.nix prev;
 

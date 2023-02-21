@@ -1,8 +1,7 @@
-{ inputs, final, prev }:
+{ inputs, prev }:
 let
-  inherit (final) system lib;
-in
-{
+  inherit (prev) system lib;
+
   neovim-unwrapped = inputs.nvim-nightly.packages.${system}.neovim.overrideAttrs (old: {
     # TODO Remove once neovim 0.9.0 is released.
     patches = builtins.filter
@@ -10,6 +9,18 @@ in
         (if builtins.typeOf p == "set" then baseNameOf p.name else baseNameOf) != "neovim-build-make-generated-source-files-reproducible.patch")
       old.patches;
   });
+in
+{
+  inherit neovim-unwrapped;
+
+  nvimpager = (inputs.nvimpager.packages.${system}.default.overrideAttrs (_: {
+    doCheck = false;
+    postInstall = ''
+      mv $out/bin/nvimpager $out/bin/less
+      sed -E -i "s#(RUNTIME=.*)(')#\1,${inputs.nvim}\2#" $out/bin/less
+      sed -i 's#rc=.*#rc=${inputs.nvim}/pager_init.lua#' $out/bin/less
+    '';
+  })).override { neovim = neovim-unwrapped; };
 
   nvim = with prev;
     let
@@ -37,6 +48,8 @@ in
         '')
         ltex-ls
       ];
+
+      binPathWithExtra = builtins.concatStringsSep ":" [ binPath binPathExtra ];
 
       cfg = path:
         let
@@ -67,15 +80,6 @@ in
     in
     {
       mini = wrapNeovimUnstable neovim-unwrapped (cfg binPath);
-      full = wrapNeovimUnstable neovim-unwrapped (cfg
-        (builtins.concatStringsSep ":" [ binPath binPathExtra ]));
+      full = wrapNeovimUnstable neovim-unwrapped (cfg binPathWithExtra);
     };
-
-  nvimpager = (inputs.nvimpager.overlays.default final prev).nvimpager.overrideAttrs (_: {
-    postInstall = ''
-      mv $out/bin/nvimpager $out/bin/less
-      sed -E -i "s#(RUNTIME=.*)(')#\1,${inputs.nvim}\2#" $out/bin/less
-      sed -i 's#rc=.*#rc=${inputs.nvim}/pager_init.lua#' $out/bin/less
-    '';
-  });
 }
