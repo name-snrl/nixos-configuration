@@ -3,8 +3,6 @@ inputs: final: prev:
 let
   inherit (final) system lib;
 
-  fromInputs = input: name: inputs.${input}.packages.${system}.${name};
-
   renameBin = target: name:
     prev.runCommand "${target}-as-${name}" { } ''
       mkdir -p "$out/bin"
@@ -21,9 +19,11 @@ import ./nvim.nix { inherit inputs prev; } //
   alacritty-as-xterm = renameBin "alacritty" "xterm";
   gojq-as-jq = renameBin "gojq" "jq";
 
-  exo2 = fromInputs "shlyupa" "exo2";
-  nerd-fonts-symbols = fromInputs "shlyupa" "nerd-fonts-symbols";
-  kotatogram-desktop-with-webkit = fromInputs "shlyupa" "kotatogram-desktop-with-webkit";
+  inherit (inputs.shlyupa.packages.${system})
+    kotatogram-desktop-with-webkit
+    nerd-fonts-symbols
+    exo2
+    ;
 
   imv = with prev; with builtins;
     let
