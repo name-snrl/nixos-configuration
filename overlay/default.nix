@@ -2,22 +2,11 @@ inputs: final: prev:
 
 let
   inherit (final) system lib;
-
-  renameBin = target: name:
-    prev.runCommand "${target}-as-${name}" { } ''
-      mkdir -p "$out/bin"
-      ln -sfn "${lib.getExe prev.${target}}" "$out/bin/${name}"
-    '';
 in
 
 import ./nvim.nix { inherit inputs prev; } //
 {
   scripts = import ./scripts.nix prev;
-
-  # https://gitlab.gnome.org/GNOME/glib/-/issues/338
-  # TODO wait for `xdg-terminal-exec`
-  alacritty-as-xterm = renameBin "alacritty" "xterm";
-  gojq-as-jq = renameBin "gojq" "jq";
 
   inherit (inputs.shlyupa.packages.${system})
     kotatogram-desktop-with-webkit
@@ -81,4 +70,32 @@ import ./nvim.nix { inherit inputs prev; } //
     };
   });
 
-}
+} //
+(with builtins;
+let
+  links = {
+    # https://gitlab.gnome.org/GNOME/glib/-/issues/338
+    # TODO wait for `xdg-terminal-exec`
+    alacritty = "xterm";
+    gojq = "jq";
+  };
+
+  mkSymlink = target: name:
+    prev.runCommand "${target}-as-${name}" { } ''
+      mkdir -p "$out/bin"
+      ln -sfn "${lib.getExe prev.${target}}" "$out/bin/${name}"
+    '';
+
+  listOfNames = attrValues (mapAttrs (n: v: "${n}-as-${v}") links);
+
+  f = name:
+    let
+      target = elemAt (split "-" name) 0;
+      linkName = elemAt (split "-" name) 4;
+    in
+    {
+      inherit name;
+      value = mkSymlink target linkName;
+    };
+in
+listToAttrs (map f listOfNames))
