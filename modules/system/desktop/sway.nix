@@ -26,6 +26,8 @@
     ];
   };
 
+  environment.pathsToLink = [ "/share" ];
+
   services = {
     udisks2.enable = true;
     dictd.enable = true;

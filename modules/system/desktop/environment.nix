@@ -1,6 +1,5 @@
 { pkgs, ... }: {
   environment = {
-    pathsToLink = [ "/share" ];
     sessionVariables = {
       # XDG base dir
       XDG_CONFIG_HOME = "$HOME/.config";
