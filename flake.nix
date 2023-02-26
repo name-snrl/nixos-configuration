@@ -34,63 +34,22 @@
     interception-vimproved.url = "github:name-snrl/interception-vimproved";
   };
 
-  outputs = inputs@{ self, nixpkgs, ... }:
-    let
-      system = "x86_64-linux";
+  outputs = inputs: with inputs.self.lib;
+    rec {
+      lib = import ./lib.nix inputs;
 
-      pkgs = import nixpkgs {
-        overlays = [ self.overlay ];
-        localSystem = { inherit system; };
-        config = {
-          allowUnfree = true;
-          joypixels.acceptLicense = true;
-        };
-      };
-
-      findModules = with builtins;
-        dir: concatLists (attrValues
-          (mapAttrs
-            (name: type:
-              if type == "regular"
-              then [{
-                name = elemAt (match "(.*)\\.nix" name) 0;
-                value = dir + "/${name}";
-              }]
-              else if (readDir (dir + "/${name}")) ? "default.nix"
-              then [{
-                inherit name;
-                value = dir + "/${name}";
-              }]
-              else findModules (dir + "/${name}"))
-            (readDir dir)));
-
-      attrsFromHosts = nixpkgs.lib.genAttrs
-        (builtins.attrNames (builtins.readDir ./hosts));
-    in
-    {
-      nixosProfiles = builtins.listToAttrs (findModules ./profiles);
+      nixosProfiles = mkProfiles ./profiles;
 
       nixosRoles = import ./roles;
 
-      nixosConfigurations = attrsFromHosts
-        (name:
-          nixpkgs.lib.nixosSystem {
-            inherit system pkgs;
-            specialArgs = { inherit inputs; };
-            modules = [ ./hosts/${name} { networking.hostName = name; } ];
-          });
+      nixosConfigurations = mkHosts ./hosts;
 
-      legacyPackages.${system} = pkgs;
+      legacyPackages = forAllSystems pkgsFor;
 
       overlay = import ./overlay inputs;
 
-      packages.${system} = attrsFromHosts
-        (name:
-          with self.nixosConfigurations.${name}.config.system;
-          if name == "liveCD"
-          then build.isoImage
-          else build.toplevel);
+      packages = hostsAsPkgs nixosConfigurations;
 
-      formatter.${system} = nixpkgs.legacyPackages.${system}.nixpkgs-fmt;
+      formatter = forAllSystems (system: legacyPackages.${system}.nixpkgs-fmt);
     };
 }
