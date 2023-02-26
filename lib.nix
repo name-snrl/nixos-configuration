@@ -11,34 +11,52 @@ rec {
     };
   };
 
-  findModules = with builtins;
-    dir: concatLists (attrValues
-      (mapAttrs
+  mkAttrsTree = dir:
+    mapAttrs'
+      (name: type:
+        if type == "directory"
+        then nameValuePair name (mkAttrsTree /${dir}/${name})
+        else nameValuePair (removeSuffix ".nix" name) /${dir}/${name})
+      (filterAttrs
         (name: type:
-          if type == "regular"
-          then [{
-            name = elemAt (match "(.*)\\.nix" name) 0;
-            value = dir + "/${name}";
-          }]
-          else if (readDir (dir + "/${name}")) ? "default.nix"
-          then [{
-            inherit name;
-            value = dir + "/${name}";
-          }]
-          else findModules (dir + "/${name}"))
-        (readDir dir)));
+          type == "directory" || hasSuffix ".nix" name)
+        (builtins.readDir dir));
+
+  mkModules = dir:
+    let
+      listOfPaths = dir: flatten (mapAttrsToList
+        (name: type:
+          if type == "directory"
+          then [ /${dir}/${name + "Tree"} (listOfPaths /${dir}/${name}) ]
+          else /${dir}/${name})
+        (filterAttrs
+          (name: type:
+            type == "directory" || hasSuffix ".nix" name)
+          (builtins.readDir dir)));
+    in
+    listToAttrs
+      (forEach (listOfPaths dir)
+        (path:
+          if ! hasSuffix "Tree" (baseNameOf path) then
+            if baseNameOf path == "default.nix"
+            then nameValuePair (baseNameOf (dirOf path)) path
+            else nameValuePair (removeSuffix ".nix" (baseNameOf path)) path
+          else
+            nameValuePair
+              (baseNameOf path)
+              (mkAttrsTree /${dirOf path}/${removeSuffix "Tree" (baseNameOf path)})
+        ));
 
   attrsFromHosts = dir: genAttrs (builtins.attrNames (builtins.readDir dir));
-
-  mkProfiles = dir: builtins.listToAttrs (findModules dir);
 
   mkHosts = dir: (attrsFromHosts dir)
     (name:
       nixosSystem {
         system = "x86_64-linux";
         pkgs = pkgsFor "x86_64-linux";
-        specialArgs = { inherit inputs; };
-        modules = [ (dir + "/${name}") { networking.hostName = name; } ];
+        specialArgs = { inherit inputs; inherit (inputs.self) nixosModules; };
+        modules = [ /${dir}/${name} { networking.hostName = name; } ] ++
+          filter (val: isPath val) (attrValues inputs.self.nixosModules);
       });
 
   hostsAsPkgs = cfgs:

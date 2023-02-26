@@ -1,27 +1,14 @@
-{ config, lib, pkgs, inputs, modulesPath, ... }: {
-  imports = with inputs.self.nixosProfiles; [
-    inputs.self.nixosRoles.base
-
-    keyboard
-    gdm
-    sway
-    fonts
-    portals
-    git
-    fish
-    starship
-    aliases
-    bluetooth
-    sound
-    console
-    sysPkgs
-    mime
-    programs
-    environment
-    openssh
-
+{ config, lib, pkgs, inputs, modulesPath, nixosModules, ... }: {
+  imports = with nixosModules; [
     "${modulesPath}/profiles/all-hardware.nix"
     "${modulesPath}/installer/cd-dvd/iso-image.nix"
+  ];
+  disabledModules = with nixosModules; [
+    dnsmasq
+    tor
+    battery
+    logging
+    work
   ];
   boot = {
     loader.grub.memtest86.enable = true;

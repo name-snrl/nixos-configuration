@@ -1,8 +1,7 @@
-{ pkgs, inputs, ... }: {
-  imports = [
-    ./hw-config.nix
-    inputs.self.nixosRoles.desktop
-  ];
+{ pkgs, nixosModules, ... }: {
+  imports = [ ./hw-config.nix ];
+
+  disabledModules = with nixosModules; [ openssh ];
 
   boot.initrd.kernelModules = [ "i915" ]; # Enable early KMS
 

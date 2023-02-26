@@ -38,9 +38,7 @@
     rec {
       lib = import ./lib.nix inputs;
 
-      nixosProfiles = mkProfiles ./profiles;
-
-      nixosRoles = import ./roles;
+      nixosModules = mkModules ./modules;
 
       nixosConfigurations = mkHosts ./hosts;
 
