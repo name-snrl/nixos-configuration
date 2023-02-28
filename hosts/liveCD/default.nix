@@ -1,15 +1,16 @@
-{ config, lib, pkgs, inputs, modulesPath, nixosModules, ... }: {
-  imports = with nixosModules; [
+{ config, lib, pkgs, inputs, modulesPath, nixosModules, expandTrees, ... }: {
+  imports = [
     "${modulesPath}/profiles/all-hardware.nix"
     "${modulesPath}/installer/cd-dvd/iso-image.nix"
   ];
-  disabledModules = with nixosModules; [
-    dnsmasq
-    tor
-    battery
-    logging
-    work
-  ];
+  disabledModules = with nixosModules;
+    expandTrees [
+      dnsmasq
+      tor
+      battery
+      logging
+      work
+    ];
   boot = {
     loader.grub.memtest86.enable = true;
     initrd.includeDefaultModules = lib.mkForce true;

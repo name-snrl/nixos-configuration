@@ -11,6 +11,7 @@ rec {
     };
   };
 
+  # Module system
   mkAttrsTree = dir:
     mapAttrs'
       (name: type:
@@ -47,6 +48,16 @@ rec {
               (mkAttrsTree /${dirOf path}/${removeSuffix "Tree" (baseNameOf path)})
         ));
 
+  expandTrees = modules:
+    let
+      f = mod:
+        if isAttrs mod
+        then forEach (attrValues mod) f
+        else mod;
+    in
+    flatten (forEach modules f);
+
+  # Hosts system TODO
   attrsFromHosts = dir: genAttrs (builtins.attrNames (builtins.readDir dir));
 
   mkHosts = dir: (attrsFromHosts dir)
@@ -54,7 +65,10 @@ rec {
       nixosSystem {
         system = "x86_64-linux";
         pkgs = pkgsFor "x86_64-linux";
-        specialArgs = { inherit inputs; inherit (inputs.self) nixosModules; };
+        specialArgs = {
+          inherit inputs expandTrees;
+          inherit (inputs.self) nixosModules;
+        };
         modules = [ /${dir}/${name} { networking.hostName = name; } ] ++
           filter (val: isPath val) (attrValues inputs.self.nixosModules);
       });
