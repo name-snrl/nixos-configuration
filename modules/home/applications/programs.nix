@@ -1,6 +1,5 @@
 {
   programs = {
-    nano.syntaxHighlight = false;
     htop = {
       enable = true;
       settings = {
