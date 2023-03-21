@@ -47,6 +47,7 @@ in
           --private-window "$@"
         '')
         ltex-ls
+        metals scalafmt
       ];
 
       binPathWithExtra = builtins.concatStringsSep ":" [ binPath binPathExtra ];
