@@ -223,11 +223,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1679231577,
-        "narHash": "sha256-bDLaruCXwKX5H9TrTWiBwKTnmP6qXI+V5jkDKJaMjgg=",
+        "lastModified": 1679424912,
+        "narHash": "sha256-rl8NvwV4zxNsL5Qp7YNNmyN3TyZrtAfVG1Q3X+JvzPE=",
         "owner": "lucc",
         "repo": "nvimpager",
-        "rev": "63d500aa6b2c59822dfa772e64d767d24f0b8168",
+        "rev": "b909b4a6ed059ab2dcd5e1e1e4dc282c6b0de49f",
         "type": "github"
       },
       "original": {
