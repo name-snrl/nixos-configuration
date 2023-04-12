@@ -1,5 +1,7 @@
-{ config, inputs, ... }: {
+{ config, pkgs, inputs, ... }: {
   nix = {
+    package = pkgs.nixUnstable;
+
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
     registry = {
