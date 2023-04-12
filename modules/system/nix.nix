@@ -24,7 +24,7 @@
     };
 
     extraOptions = ''
-      #use-xdg-base-directories = true # TODO uncomment me
+      use-xdg-base-directories = true
       builders-use-substitutes = true
       # Prevent Nix from fetching the registry every time
       flake-registry = ${inputs.flake-registry}/flake-registry.json
