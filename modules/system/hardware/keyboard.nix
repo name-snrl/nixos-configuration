@@ -28,9 +28,7 @@ let
           (genVal rec { k = "KEY_LEFTMETA"; t = "KEY_LEFTALT"; h = t; })
           (genVal rec { k = "KEY_RIGHTCTRL"; t = "KEY_RIGHTMETA"; h = t; })
           (genVal rec { k = "KEY_RIGHTSHIFT"; t = "KEY_RIGHTCTRL"; h = k; })
-          # TODO setup japanese
-          #(genVal rec { k = "KEY_RIGHTSHIFT"; t = "KEY_KATAKANAHIRAGANA"; h = k; })
-          #(genVal rec { k = "KEY_RIGHTALT"; t = "KEY_ZENKAKUHANKAKU"; h = k; })
+          (genVal rec { k = "KEY_RIGHTALT"; t = "KEY_KATAKANAHIRAGANA"; h = k; })
         ];
     });
 in
@@ -41,8 +39,8 @@ in
     udevmonConfig = builtins.toJSON [
       {
         JOB = "${interception-tools}/bin/intercept -g $DEVNODE |
-        ${vimproved}/opt/interception/interception-vimproved |
         ${interception-tools-plugins.dual-function-keys}/bin/dual-function-keys -c ${dfk} |
+        ${vimproved}/opt/interception/interception-vimproved |
         ${interception-tools}/bin/uinput -d $DEVNODE -c ${additionalKeys}";
         DEVICE.EVENTS.EV_KEY = [ "KEY_KATAKANAHIRAGANA" ];
       }
