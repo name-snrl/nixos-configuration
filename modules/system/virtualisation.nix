@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   virtualisation = {
     docker = {
       enable = true;
@@ -10,4 +10,5 @@
     };
   };
   users.users.default.extraGroups = [ "libvirtd" "docker" ];
+  environment.systemPackages = with pkgs; [ virt-manager ];
 }

@@ -38,7 +38,6 @@
       kotatogram-desktop-with-webkit
       qbittorrent
       anki-bin
-      virt-manager
 
       # DE
       firefox-wayland
