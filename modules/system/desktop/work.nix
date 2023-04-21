@@ -1,4 +1,4 @@
-{ inputs, config, ... }: {
+{ config, ... }: {
   security.pki.certificateFiles = [
     (__fetchurl {
       url =
