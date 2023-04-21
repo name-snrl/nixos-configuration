@@ -5,7 +5,6 @@
   ];
   disabledModules = with nixosModules;
     expandTrees [
-      dnsmasq
       tor
       battery
       logging
