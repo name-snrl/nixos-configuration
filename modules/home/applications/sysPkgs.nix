@@ -31,7 +31,6 @@
       tealdeer
       pandoc
       scripts.dict
-      scripts.beep
       librespeed-cli
 
       # GUI

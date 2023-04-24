@@ -1,9 +1,5 @@
 pkgs: with pkgs;
 {
-  beep = writeShellScriptBin "beep" ''
-    ${pipewire}/bin/pw-cat -p ${sound-theme-freedesktop}/share/sounds/freedesktop/stereo/complete.oga
-  '';
-
   dict = writeShellScriptBin "dict" ''
     rows=15
 
