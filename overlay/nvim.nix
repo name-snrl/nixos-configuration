@@ -31,7 +31,7 @@ in
         gnumake
         gcc
 
-        rnix-lsp
+        nil nixpkgs-fmt
         shellcheck
         python310Packages.python-lsp-server
         nodePackages.bash-language-server
