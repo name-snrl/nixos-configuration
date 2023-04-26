@@ -3,7 +3,7 @@
     kernelPackages = pkgs.linuxPackages_zen; # TODO if desktop
     initrd.includeDefaultModules = false;
     supportedFilesystems = [ "ntfs" ]; # TODO if desktop
-    tmpOnTmpfs = true; # TODO depends on RAM
+    tmp.useTmpfs = true; # TODO depends on RAM
 
     loader = {
       efi.canTouchEfiVariables = false;
