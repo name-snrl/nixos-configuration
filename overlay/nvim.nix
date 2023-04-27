@@ -2,13 +2,7 @@
 let
   inherit (prev) system lib;
 
-  neovim-unwrapped = inputs.nvim-nightly.packages.${system}.neovim.overrideAttrs (old: {
-    # TODO Remove once neovim 0.9.0 is released.
-    patches = builtins.filter
-      (p:
-        (if builtins.typeOf p == "set" then baseNameOf p.name else baseNameOf) != "neovim-build-make-generated-source-files-reproducible.patch")
-      old.patches;
-  });
+  neovim-unwrapped = inputs.nvim-nightly.packages.${system}.neovim;
 in
 {
   inherit neovim-unwrapped;
@@ -31,7 +25,8 @@ in
         gnumake
         gcc
 
-        nil nixpkgs-fmt
+        nil
+        nixpkgs-fmt
         shellcheck
         python310Packages.python-lsp-server
         nodePackages.bash-language-server
@@ -47,7 +42,8 @@ in
           --private-window "$@"
         '')
         ltex-ls
-        metals scalafmt
+        metals
+        scalafmt
       ];
 
       binPathWithExtra = builtins.concatStringsSep ":" [ binPath binPathExtra ];
