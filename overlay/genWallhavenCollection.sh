@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+f_name=wallhaven-collection.json
+
 get_urls () {
     data="$(curl -s "$*")"
 
@@ -15,22 +17,25 @@ get_urls () {
 
 get_pairs () {
     for url in $(get_urls "$*"); do
+        sleep 0.2 # don't spam much
         nix-prefetch-url "$url" | sed -E "s#.*#$url=&#" &
     done
     wait
 }
 
-fill_json () {
+fill_file () {
     for line in $(get_pairs "$*"); do
         jq --arg url "${line%=*}" \
             --arg hash "${line#*=}" \
             '. + [{ url: $url, sha256: $hash }]' \
-            wallhaven-collection.json > tmp-col &&
-            mv tmp-col wallhaven-collection.json
+            $f_name > tmp && mv tmp $f_name
     done
 }
 
-echo '[]' > wallhaven-collection.json
+echo '[]' > $f_name
 
-fill_json "https://wallhaven.cc/api/v1/collections/snrl/1046186"
-fill_json "https://wallhaven.cc/api/v1/collections/snrl/1046197"
+fill_file "https://wallhaven.cc/api/v1/collections/snrl/1046186"
+fill_file "https://wallhaven.cc/api/v1/collections/snrl/1046197"
+
+# sort result
+jq -s '.[] | sort_by(.url)' $f_name > tmp && mv tmp $f_name
