@@ -16,8 +16,8 @@
     fontconfig.defaultFonts = {
       monospace = [
         "JetBrains Mono NL Light"
-        "Noto Sans Mono CJK JP"
         "Symbols Nerd Font"
+        "Noto Sans Mono CJK JP"
       ];
       sansSerif = [
         "Exo 2"
