@@ -274,11 +274,11 @@
         "nixpkgs-croscore": "nixpkgs-croscore"
       },
       "locked": {
-        "lastModified": 1683333667,
-        "narHash": "sha256-ueCy1H2PsDUsG9eIZ5vQP5corUpzNAQp5gpVv8IuQL0=",
+        "lastModified": 1683376248,
+        "narHash": "sha256-MWFgf9kL8BlG+hfki3Ky49cUChx8IQyBo6RRE/jAdLU=",
         "owner": "ilya-fedin",
         "repo": "nur-repository",
-        "rev": "ed34baaa089b599360d1a29920f5e17242fd660c",
+        "rev": "2ad18282357da9f97810105e374a988aa9d3187e",
         "type": "github"
       },
       "original": {
