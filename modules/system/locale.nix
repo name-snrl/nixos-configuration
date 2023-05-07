@@ -19,11 +19,13 @@
         # https://github.com/NixOS/nixpkgs/blob/5ed481943351e9fd354aeb557679624224de38d5/nixos/modules/i18n/input-method/fcitx5.nix#L30
         GTK_IM_MODULE = "fcitx";
         QT_IM_MODULE = "fcitx";
-        XMODIFIERS = "@im=fcitx";
+        XMODIFIERS = "\\@im=fcitx";
         QT_PLUGIN_PATH =
           [ "${config.i18n.inputMethod.package}/${pkgs.qt6.qtbase.qtPluginPrefix}" ];
       };
-      variables.QT_PLUGIN_PATH =
-        mkForce config.environment.sessionVariables.QT_PLUGIN_PATH;
+      variables = {
+        QT_PLUGIN_PATH = mkForce config.environment.sessionVariables.QT_PLUGIN_PATH;
+        XMODIFIERS = mkForce "@im=fcitx";
+      };
     };
 }
