@@ -46,9 +46,16 @@
         description = "sway compositor session";
         documentation = [ "man:systemd.special(7)" ];
         bindsTo = [ "graphical-session.target" ];
-        wants = [ "graphical-session-pre.target" ];
+        wants = [ "graphical-session-pre.target" "xdg-desktop-autostart.target" ];
         after = [ "graphical-session-pre.target" ];
+        before = [ "xdg-desktop-autostart.target" ];
       };
+
+      tmpfiles.rules = with pkgs; [
+        "L+ %h/.config/autostart/firefox.desktop                 - - - - ${firefox-wayland}/share/applications/firefox.desktop"
+        "L+ %h/.config/autostart/org.flameshot.Flameshot.desktop - - - - ${flameshot}/share/applications/org.flameshot.Flameshot.desktop"
+        "L+ %h/.config/autostart/org.fcitx.Fcitx5.desktop        - - - - ${config.i18n.inputMethod.package}/etc/xdg/autostart/org.fcitx.Fcitx5.desktop"
+      ];
 
       services.mako = {
         description = "Mako as systemd service";
@@ -92,14 +99,6 @@
         environment.PATH = lib.mkForce null;
       };
 
-      services.fcitx5 = {
-        description = "Fcitx5 as systemd service";
-        wantedBy = [ "sway-session.target" ];
-        partOf = [ "graphical-session.target" ];
-        script = "${config.i18n.inputMethod.package}/bin/fcitx5 --replace";
-        serviceConfig = restartConf;
-      };
-
       services.swaykbdd = {
         description = "Swaykbdd as systemd service";
         wantedBy = [ "sway-session.target" ];
@@ -117,14 +116,6 @@
         environment.PATH = lib.mkForce null;
       };
 
-      services.flameshot = {
-        description = "Flameshot as systemd service";
-        wantedBy = [ "sway-session.target" ];
-        partOf = [ "graphical-session.target" ];
-        script = "${pkgs.flameshot}/bin/flameshot";
-        serviceConfig = restartConf;
-      };
-
       services.clipman = {
         description = "Clipman as systemd service";
         wantedBy = [ "sway-session.target" ];
@@ -132,5 +123,6 @@
         script = "${pkgs.wl-clipboard}/bin/wl-paste -t text --watch ${pkgs.clipman}/bin/clipman store --max-items=1";
         serviceConfig = restartConf;
       };
+
     };
 }
