@@ -14,6 +14,8 @@ import ./nvim.nix { inherit inputs prev; } //
     exo2
     ;
 
+  sway-assign-cgroups = prev.callPackage ../pkgs/sway-assign-cgroups.nix { };
+
   imv = with prev; with builtins;
     let
       f = data: fetchurl data;
