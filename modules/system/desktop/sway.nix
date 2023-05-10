@@ -36,7 +36,8 @@
 
   systemd.user =
     let
-      restartConf = {
+      serviceConf = {
+        Slice = "session.slice";
         Restart = "always";
         RestartSec = 3;
       };
@@ -62,10 +63,7 @@
         wantedBy = [ "sway-session.target" ];
         partOf = [ "graphical-session.target" ];
         script = "${pkgs.sway-assign-cgroups}/bin/sway-assign-cgroups";
-        serviceConfig = restartConf // {
-          OOMScoreAdjust = -500; # TODO for some reason OOMScoreAdjust doesn't work
-          OOMPolicy = "continue"; # remove me if `OOMScoreAdjust` starts working
-        };
+        serviceConfig = serviceConf;
         environment.PATH = lib.mkForce null;
       };
 
@@ -81,7 +79,7 @@
           '';
           ExecStart = "${pkgs.mako}/bin/mako";
           ExecReload = "${pkgs.mako}/bin/makoctl reload";
-        } // restartConf;
+        } // serviceConf;
         environment.PATH = lib.mkForce null;
       };
 
@@ -90,7 +88,7 @@
         wantedBy = [ "sway-session.target" ];
         partOf = [ "graphical-session.target" ];
         script = "${pkgs.waybar}/bin/waybar";
-        serviceConfig = restartConf;
+        serviceConfig = serviceConf;
         environment.PATH = lib.mkForce null;
       };
 
@@ -99,7 +97,7 @@
         wantedBy = [ "sway-session.target" ];
         partOf = [ "graphical-session.target" ];
         script = "${pkgs.swayidle}/bin/swayidle -w";
-        serviceConfig = restartConf;
+        serviceConfig = serviceConf;
         environment.PATH = lib.mkForce null;
       };
 
@@ -107,7 +105,7 @@
         description = "Run polkit authentication agent";
         wantedBy = [ "sway-session.target" ];
         script = "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1";
-        serviceConfig = restartConf;
+        serviceConfig = serviceConf;
         environment.PATH = lib.mkForce null;
       };
 
@@ -116,7 +114,7 @@
         wantedBy = [ "sway-session.target" ];
         partOf = [ "graphical-session.target" ];
         script = "${pkgs.swaykbdd}/bin/swaykbdd";
-        serviceConfig = restartConf;
+        serviceConfig = serviceConf;
       };
 
       services.autotiling = {
@@ -124,7 +122,7 @@
         wantedBy = [ "sway-session.target" ];
         partOf = [ "graphical-session.target" ];
         script = "${pkgs.autotiling-rs}/bin/autotiling-rs";
-        serviceConfig = restartConf;
+        serviceConfig = serviceConf;
         environment.PATH = lib.mkForce null;
       };
 
@@ -133,7 +131,7 @@
         wantedBy = [ "sway-session.target" ];
         partOf = [ "graphical-session.target" ];
         script = "${pkgs.wl-clipboard}/bin/wl-paste -t text --watch ${pkgs.clipman}/bin/clipman store --max-items=1";
-        serviceConfig = restartConf;
+        serviceConfig = serviceConf;
       };
 
     };
