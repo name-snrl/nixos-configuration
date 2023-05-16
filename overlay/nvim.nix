@@ -14,15 +14,6 @@ in
 {
   inherit neovim-unwrapped;
 
-  nvimpager = (inputs.nvimpager.packages.${system}.default.overrideAttrs (_: {
-    doCheck = false;
-    postInstall = ''
-      mv $out/bin/nvimpager $out/bin/less
-      sed -E -i "s#(RUNTIME=.*)(')#\1,${inputs.nvim}\2#" $out/bin/less
-      sed -i 's#/bin/nvim#& -u ${inputs.nvim}/pager_init.lua#' $out/bin/less
-    '';
-  })).override { neovim = neovim-unwrapped; };
-
   nvim = with prev;
     let
       init = "${inputs.nvim}/init.lua";

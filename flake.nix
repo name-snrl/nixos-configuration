@@ -3,7 +3,6 @@
 
   inputs = {
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nvimpager.inputs.nixpkgs.follows = "nixpkgs";
     nvim-nightly.inputs.nixpkgs.follows = "nixpkgs";
 
     dots.flake = false;
@@ -19,7 +18,6 @@
 
     nvim.url = "github:name-snrl/nvim";
     nvim-nightly.url = "github:neovim/neovim?dir=contrib";
-    nvimpager.url = "github:lucc/nvimpager";
 
     flake-registry.url = "github:nixos/flake-registry";
     interception-vimproved.url = "github:name-snrl/interception-vimproved";

@@ -70,6 +70,7 @@ let
     # TODO wait for `xdg-terminal-exec`
     alacritty = "xterm";
     gojq = "jq";
+    page = "less";
   };
 
   mkSymlink = target: name:

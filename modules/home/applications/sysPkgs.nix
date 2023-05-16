@@ -9,7 +9,8 @@
 
       # base
       nvim.full
-      nvimpager
+      page
+      page-as-less
       difftastic
       gojq-as-jq
       ripgrep

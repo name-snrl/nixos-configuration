@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
   users.defaultUserShell = pkgs.fish;
   environment.systemPackages = with pkgs; [ fishPlugins.autopair-fish ];
   programs.fish = {
@@ -11,6 +11,7 @@
       set -U fish_greeting # disable greeting
       ${coreutils}/bin/dircolors -c | source
       ${zoxide}/bin/zoxide init --cmd ji fish | source
+      function man; ${page}/bin/page -W "man://$argv[-1]($argv[-2])"; end
 
       # Nix tricks
       function njump;   cd $(string split -f1-4 / (nwhich $argv) | string join /); end
