@@ -40,5 +40,7 @@
       packages = hostsAsPkgs nixosConfigurations;
 
       formatter = forAllSystems (system: legacyPackages.${system}.nixpkgs-fmt);
+
+      templates.default = { path = ./templates/shell; description = "A minimal flake with a devShell."; };
     };
 }

@@ -28,5 +28,10 @@ in
     nupdate = "nix flake update --commit-lock-file ${cfgPath}";
     nlock = "nix flake lock --commit-lock-file ${cfgPath}";
     nclear = "sudo nix-collect-garbage --delete-old";
+    nshell = ''
+      nix flake init -t self && \
+      direnv allow && \
+      nix flake lock && \
+      echo ".direnv/" >> .gitignore'';
   };
 }
