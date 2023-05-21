@@ -21,7 +21,7 @@
         color_scheme = 6;
 
         "screen:Mem" = ''
-          PGRP PID USER M_VIRT M_SHARE M_RESIDENT M_SWAP Command
+          PID OOM USER M_VIRT M_SHARE M_RESIDENT M_SWAP Command
           .sort_key=M_RESIDENT
           .tree_sort_key=M_RESIDENT
           .tree_view=1
