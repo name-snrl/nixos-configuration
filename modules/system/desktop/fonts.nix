@@ -10,7 +10,7 @@
       unifont
       symbola
       joypixels
-      nerd-fonts-symbols
+      (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
     ];
     fontconfig.crOSMaps = true;
     fontconfig.defaultFonts = {

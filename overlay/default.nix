@@ -10,7 +10,6 @@ import ./nvim.nix { inherit inputs prev; } //
 
   inherit (inputs.shlyupa.packages.${system})
     kotatogram-desktop-with-webkit
-    nerd-fonts-symbols
     exo2
     ;
 
