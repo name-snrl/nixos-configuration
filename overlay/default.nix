@@ -14,6 +14,7 @@ import ./nvim.nix { inherit inputs prev; } //
     ;
 
   sway-assign-cgroups = prev.callPackage ../pkgs/sway-assign-cgroups.nix { };
+  languagetool-rust = prev.callPackage ../pkgs/languagetool-rust.nix { };
 
   imv = with prev; with builtins;
     let

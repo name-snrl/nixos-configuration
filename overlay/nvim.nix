@@ -18,28 +18,35 @@ in
     let
       init = "${inputs.nvim}/init.lua";
       runtime = "${inputs.nvim}";
+      deno-with-webkitgtk = symlinkJoin {
+        name = "deno-with-webkitgtk";
+        paths = [ deno ];
+        nativeBuildInputs = [ makeWrapper ];
+        postBuild =
+          let libPath = lib.makeLibraryPath ([ gcc-unwrapped glib gtk3 webkitgtk ]);
+          in "wrapProgram $out/bin/deno --prefix LD_LIBRARY_PATH : ${libPath}";
+      };
 
       binPath = lib.makeBinPath [
         gnumake
         gcc
 
+        # lsp
         nil
-        nixpkgs-fmt
-        shellcheck
-        python310Packages.python-lsp-server
         nodePackages.bash-language-server
         sumneko-lua-language-server
+
+        # fmt
+        nixpkgs-fmt
+        shfmt
+        deno-with-webkitgtk
+
+        # diagnostics
+        shellcheck
+        (callPackage ../pkgs/languagetool-rust.nix { })
       ];
 
       binPathExtra = lib.makeBinPath [
-        # TODO create issue in markdown-preview.nvim.
-        # with `-P` option firefox doesn't load page
-        (writeShellScriptBin "firefox-md-preview" ''
-          ${firefox-wayland}/bin/firefox -P firefox-md-preview \
-          --name firefox-md-preview \
-          --private-window "$@"
-        '')
-        ltex-ls
         metals
         scalafmt
       ];
@@ -52,13 +59,7 @@ in
             withRuby = false;
             vimAlias = true;
             viAlias = true;
-            plugins = [
-              {
-                plugin = vimPlugins.markdown-preview-nvim;
-                config = null;
-                optional = false;
-              }
-            ];
+            plugins = [ ];
           };
         in
         res // {
