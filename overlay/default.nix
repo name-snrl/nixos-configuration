@@ -14,6 +14,8 @@ import ./nvim.nix { inherit inputs prev; } //
     ;
 
   sway-assign-cgroups = prev.callPackage ../pkgs/sway-assign-cgroups.nix { };
+  # TODO: remove when it's merged
+  # https://github.com/NixOS/nixpkgs/pull/234458
   languagetool-rust = prev.callPackage ../pkgs/languagetool-rust.nix { };
 
   imv = with prev; with builtins;
