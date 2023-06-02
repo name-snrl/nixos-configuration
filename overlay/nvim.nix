@@ -43,7 +43,7 @@ in
 
         # diagnostics
         shellcheck
-        (callPackage ../pkgs/languagetool-rust.nix { })
+        languagetool-rust
       ];
 
       binPathExtra = lib.makeBinPath [
