@@ -31,6 +31,7 @@ in
         # fmt
         nixpkgs-fmt
         shfmt
+        stylua
         deno-with-webkitgtk
 
         # diagnostics
