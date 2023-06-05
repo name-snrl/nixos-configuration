@@ -10,6 +10,7 @@
     extraPackages = with pkgs; [
       swaylock-effects
       wl-clipboard
+      xdragon
       xdg-utils # wl-clipboard needs xdg-mime
       gojq-as-jq # needs for move script
       glib # needs for theme script

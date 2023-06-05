@@ -46,7 +46,6 @@
       mpv
       imv
       sioyek
-      pcmanfm-qt
       lxqt.pavucontrol-qt
 
       # themes
