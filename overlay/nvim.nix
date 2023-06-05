@@ -1,15 +1,7 @@
 { inputs, prev }:
 let
   inherit (prev) system lib;
-
-  neovim-unwrapped = inputs.nvim-nightly.packages.${system}.neovim.overrideAttrs (old: {
-    # TODO remove me
-    patches = builtins.filter
-      (p:
-        (if builtins.typeOf p == "set" then baseNameOf p.name else baseNameOf) != "use-the-correct-replacement-args-for-gsub-directive.patch")
-      old.patches;
-  });
-  #neovim-unwrapped = inputs.nvim-nightly.packages.${system}.neovim;
+  neovim-unwrapped = inputs.nvim-nightly.packages.${system}.neovim;
 in
 {
   inherit neovim-unwrapped;
