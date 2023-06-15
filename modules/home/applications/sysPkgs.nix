@@ -10,7 +10,6 @@
       # base
       nvim.full
       page
-      page-as-less
       difftastic
       gojq-as-jq
       ripgrep

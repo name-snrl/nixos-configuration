@@ -15,6 +15,15 @@ import ./nvim.nix { inherit inputs prev; } //
 
   sway-assign-cgroups = prev.callPackage ../pkgs/sway-assign-cgroups.nix { };
 
+  page = with prev; let
+    less = writeShellApplication {
+      name = "less";
+      runtimeInputs = [ page ncurses ];
+      text = ''exec page -O "$(tput lines)" "$@"'';
+    };
+  in
+  symlinkJoin { name = "page"; paths = [ less page ]; };
+
   imv = with prev; with builtins;
     let
       f = data: fetchurl data;
@@ -69,7 +78,6 @@ let
     # TODO wait for `xdg-terminal-exec`
     alacritty = "xterm";
     gojq = "jq";
-    page = "less";
   };
 
   mkSymlink = target: name:
