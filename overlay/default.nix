@@ -13,8 +13,6 @@ import ./nvim.nix { inherit inputs prev; } //
     exo2
     ;
 
-  sway-assign-cgroups = prev.callPackage ../pkgs/sway-assign-cgroups.nix { };
-
   xdragon = with prev; let
     dg = writeShellApplication {
       name = "dg";

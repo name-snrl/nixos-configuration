@@ -59,15 +59,6 @@
         "L+ %h/.config/autostart/org.fcitx.Fcitx5.desktop        - - - - ${config.i18n.inputMethod.package}/etc/xdg/autostart/org.fcitx.Fcitx5.desktop"
       ];
 
-      services.sway-assign-cgroups = {
-        description = "Automatically assign a dedicated systemd scope to the GUI applications";
-        wantedBy = [ "sway-session.target" ];
-        partOf = [ "graphical-session.target" ];
-        script = "${pkgs.sway-assign-cgroups}/bin/sway-assign-cgroups";
-        serviceConfig = serviceConf;
-        environment.PATH = lib.mkForce null;
-      };
-
       services.mako = {
         description = "Mako as systemd service";
         wantedBy = [ "sway-session.target" ];
