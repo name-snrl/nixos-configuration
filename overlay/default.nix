@@ -1,7 +1,7 @@
 inputs: final: prev:
 
 let
-  inherit (final) system lib;
+  inherit (final) system;
 in
 
 import ./nvim.nix { inherit inputs prev; } //
@@ -22,36 +22,31 @@ import ./nvim.nix { inherit inputs prev; } //
       text = ''exec page -O "$(tput lines)" "$@"'';
     };
   in
-  symlinkJoin { name = "page"; paths = [ less page ]; };
+  symlinkJoin { name = "page"; paths = [ page less ]; };
 
-  imv = with prev; with builtins;
-    let
-      f = data: fetchurl data;
-      listOfAttrs = fromJSON (readFile ./wallhaven-collection.json);
-      wallpapers = concatStringsSep " " (map f listOfAttrs);
-
-      imv-wp = writeShellScriptBin "imv-wp" ''
-        ${imv}/bin/imv ${wallpapers}
+  imv = with prev; let
+    wallpapers = with builtins;
+      concatStringsSep " " (map
+        (data: fetchurl data)
+        (fromJSON (readFile ./wallhaven-collection.json)));
+    imv-wp = writeShellScriptBin "imv-wp" ''
+      exec ${imv}/bin/imv ${wallpapers}
+    '';
+    desktop = writeTextFile {
+      name = "imv-wp.desktop";
+      destination = "/share/applications/imv-wp.desktop";
+      text = ''
+        [Desktop Entry]
+        Name=imv-wp
+        GenericName=Image viewer
+        Exec=${imv-wp}/bin/imv-wp
+        Terminal=false
+        Type=Application
+        Categories=Graphics;2DGraphics;Viewer;
       '';
-
-      desktop = writeTextFile {
-        name = "imv-wp.desktop";
-        destination = "/share/applications/imv-wp.desktop";
-        text = ''
-          [Desktop Entry]
-          Name=imv-wp
-          GenericName=Image viewer
-          Exec=${imv-wp}/bin/imv-wp
-          Terminal=false
-          Type=Application
-          Categories=Graphics;2DGraphics;Viewer;
-        '';
-      };
-    in
-    symlinkJoin {
-      name = "imv";
-      paths = [ imv.man imv imv-wp desktop ];
     };
+  in
+  symlinkJoin { name = "imv"; paths = [ imv.man imv imv-wp desktop ]; };
 
   # TODO create a pr to fix the pkg
   # and fix gtk2 theme colors
