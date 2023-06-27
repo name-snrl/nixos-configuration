@@ -85,4 +85,15 @@ rec {
             else [{ ${system}.${name} = build.toplevel; }])
         )
       );
+
+  mkSymlinks = pkgs: links:
+    listToAttrs (mapAttrsToList
+      (target: linkName: rec {
+        name = "${target}-as-${linkName}";
+        value = pkgs.runCommand name { } ''
+          mkdir -p "$out/bin"
+          ln -sfn "${getExe pkgs.${target}}" "$out/bin/${linkName}"
+        '';
+      })
+      links);
 }
