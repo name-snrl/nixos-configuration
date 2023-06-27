@@ -23,7 +23,7 @@
       tofi
       playerctl
 
-      eww-wayland # TODO
+      #eww-wayland # TODO
     ];
   };
 
