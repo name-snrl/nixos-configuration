@@ -15,6 +15,15 @@ import ./nvim.nix { inherit inputs prev; } //
 
   sway-assign-cgroups = prev.callPackage ../pkgs/sway-assign-cgroups.nix { };
 
+  xdragon = with prev; let
+    dg = writeShellApplication {
+      name = "dg";
+      runtimeInputs = [ xdragon ];
+      text = ''dragon -T "$@" &'';
+    };
+  in
+  symlinkJoin { name = "xdragon"; paths = [ xdragon dg ]; };
+
   page = with prev; let
     less = writeShellApplication {
       name = "less";
