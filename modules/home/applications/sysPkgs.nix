@@ -53,6 +53,7 @@
       papirus-icon-theme
       numix-cursor-theme
       libsForQt5.qtstyleplugin-kvantum
+      qt6Packages.qtstyleplugin-kvantum
     ];
   };
 }
