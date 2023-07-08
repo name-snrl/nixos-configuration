@@ -38,10 +38,10 @@ in
     plugins = [ interception-tools-plugins.dual-function-keys vimproved ];
     udevmonConfig = builtins.toJSON [
       {
-        JOB = "${interception-tools}/bin/intercept -g $DEVNODE |
+        JOB = "${interception-tools}/bin/intercept -g /dev/input/by-path/platform-i8042-serio-0-event-kbd |
         ${interception-tools-plugins.dual-function-keys}/bin/dual-function-keys -c ${dfk} |
         ${vimproved}/opt/interception/interception-vimproved |
-        ${interception-tools}/bin/uinput -d $DEVNODE -c ${additionalKeys}";
+        ${interception-tools}/bin/uinput -d /dev/input/by-path/platform-i8042-serio-0-event-kbd -c ${additionalKeys}";
         DEVICE.EVENTS.EV_KEY = [ "KEY_KATAKANAHIRAGANA" ];
       }
     ];
