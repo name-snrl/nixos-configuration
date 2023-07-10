@@ -1,4 +1,4 @@
-{ config, lib, ... }: {
+{ config, ... }: {
   # TODO depends on host spec
   hardware.enableRedistributableFirmware = true;
   zramSwap.enable = true;
@@ -7,17 +7,13 @@
   users.users.default.extraGroups = [ "video" ];
   hardware.trackpoint = {
     enable = true;
-    sensitivity = 130;
-    speed = 180;
+    sensitivity = 150;
+    speed = 250;
   };
-  # TODO create pr for this fix
-  # trigger devices recursively
-  system.activationScripts.trackpoint =
-    let
-      udevadm = "${config.systemd.package}/bin/udevadm";
-      cfg = config.hardware.trackpoint;
-    in
-    lib.mkForce ''
-      ${udevadm} trigger "$(${udevadm} trigger -v --dry-run --attr-match=name="${cfg.device}")"
-    '';
+  # fix https://github.com/systemd/systemd/issues/28345
+  systemd.services.trackpoint = {
+    script = config.system.activationScripts.trackpoint;
+    serviceConfig.Type = "idle";
+    wantedBy = [ "multi-user.target" "suspend.target" ];
+  };
 }
