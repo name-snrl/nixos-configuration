@@ -3,7 +3,12 @@ rec {
   forAllSystems = genAttrs systems.flakeExposed;
 
   pkgsFor = system: import inputs.nixpkgs {
-    overlays = [ inputs.self.overlay ];
+    overlays = [
+      inputs.self.overlay
+      # TODO remove overlay and add portal.conf when a version with this PR
+      # https://github.com/flatpak/xdg-desktop-portal/pull/955 appears in nixpkgs
+      inputs.shlyupa.overlays.portal
+    ];
     localSystem = { inherit system; };
     config = {
       allowUnfree = true;
