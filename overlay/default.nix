@@ -13,6 +13,13 @@ import ./nvim.nix { inherit inputs prev; } //
     exo2
     ;
 
+  openvpn3 = prev.openvpn3.overrideAttrs (_: {
+    postInstall = ''
+      rm -rf $out/var/lib/openvpn3
+      ln -sf /var/lib/openvpn3 $out/var/lib/openvpn3
+    '';
+  });
+
   xdragon = with prev; let
     dg = writeShellApplication {
       name = "dg";
