@@ -46,18 +46,13 @@ import ./nvim.nix { inherit inputs prev; } //
     imv-wp = writeShellScriptBin "imv-wp" ''
       exec ${imv}/bin/imv ${wallpapers}
     '';
-    desktop = writeTextFile {
-      name = "imv-wp.desktop";
-      destination = "/share/applications/imv-wp.desktop";
-      text = ''
-        [Desktop Entry]
-        Name=imv-wp
-        GenericName=Image viewer
-        Exec=${imv-wp}/bin/imv-wp
-        Terminal=false
-        Type=Application
-        Categories=Graphics;2DGraphics;Viewer;
-      '';
+    desktop = makeDesktopItem {
+      name = "imv-wp";
+      desktopName = "imv-wp";
+      genericName = "Image viewer";
+      exec = "${imv-wp}/bin/imv-wp";
+      categories = [ "Graphics" "2DGraphics" "Viewer" ];
+      icon = "multimedia-photo-viewer";
     };
   in
   symlinkJoin { name = "imv"; paths = [ imv.man imv imv-wp desktop ]; };
