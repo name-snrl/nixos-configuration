@@ -15,7 +15,7 @@
       gojq-as-jq # needs for move script
       glib # needs for theme script
       kooha # screencast
-      (tesseract5.override { enableLanguages = [ "eng" ]; }) # get text from screenshot
+      (tesseract.override { enableLanguages = [ "eng" ]; }) # get text from screenshot
       flameshot
       slurp
       grim
