@@ -57,9 +57,17 @@ import ./nvim.nix { inherit inputs prev; } //
   in
   symlinkJoin { name = "imv"; paths = [ imv.man imv imv-wp desktop ]; };
 
-  # TODO create a pr to fix the pkg
-  # and fix gtk2 theme colors
-  graphite-gtk-theme = prev.graphite-gtk-theme.overrideAttrs (_: {
+  # TODO create a pr with update
+  graphite-gtk-theme = prev.graphite-gtk-theme.overrideAttrs (_: rec {
+    version = "2023-05-17";
+
+    src = prev.fetchFromGitHub {
+      owner = "vinceliuice";
+      repo = "graphite-gtk-theme";
+      rev = version;
+      sha256 = "sha256-hymOqtwMk6Yja5le6ADZl04yjbOJjhairiH7a4m7gMk=";
+    };
+
     installPhase = ''
       runHook preInstall
 
