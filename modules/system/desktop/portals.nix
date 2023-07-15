@@ -15,5 +15,7 @@
       xdg-desktop-portal-kde
     ];
   };
+  # preview support in filepicker
+  environment.systemPackages = with pkgs.plasma5Packages; [ kio kio-extras ];
   environment.sessionVariables.GTK_USE_PORTAL = "1";
 }
