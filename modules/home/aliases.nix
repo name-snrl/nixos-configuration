@@ -27,7 +27,8 @@ in
     nbuild = "nix build --no-link ${cfgPath}#${config.networking.hostName}";
     nupdate = "nix flake update --commit-lock-file ${cfgPath}";
     nlock = "nix flake lock --commit-lock-file ${cfgPath}";
-    nclear = "sudo nix-collect-garbage --delete-old";
+    # https://github.com/NixOS/nix/issues/8508
+    nclear = "nix-collect-garbage --delete-old && sudo nix-collect-garbage --delete-old";
     nshell = ''
       nix flake init -t self && \
       direnv allow && \
