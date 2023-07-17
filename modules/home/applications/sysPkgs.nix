@@ -50,7 +50,7 @@
       # themes
       graphite-kde-theme
       graphite-gtk-theme
-      papirus-icon-theme
+      (tela-circle-icon-theme.override { colorVariants = [ "nord" ]; })
       numix-cursor-theme
       libsForQt5.qtstyleplugin-kvantum
       qt6Packages.qtstyleplugin-kvantum
