@@ -57,26 +57,42 @@ import ./nvim.nix { inherit inputs prev; } //
   in
   symlinkJoin { name = "imv"; paths = [ imv.man imv imv-wp desktop ]; };
 
-  # TODO create a pr with update
-  graphite-gtk-theme = prev.graphite-gtk-theme.overrideAttrs (_: rec {
-    version = "2023-05-17";
-
-    src = prev.fetchFromGitHub {
-      owner = "vinceliuice";
-      repo = "graphite-gtk-theme";
-      rev = version;
-      sha256 = "sha256-hymOqtwMk6Yja5le6ADZl04yjbOJjhairiH7a4m7gMk=";
-    };
+  graphite-gtk-theme = prev.graphite-gtk-theme.overrideAttrs (_: {
+    version = "flake";
+    src = inputs.graphite-gtk;
 
     installPhase = ''
       runHook preInstall
 
       patchShebangs install.sh
       name= ./install.sh \
-        --tweaks darker nord \
+        --size compact \
+        --tweaks darker nord rimless \
         --dest $out/share/themes
 
       jdupes --quiet --link-soft --recurse $out/share
+
+      runHook postInstall
+    '';
+  });
+
+  graphite-kde-theme = prev.graphite-kde-theme.overrideAttrs (_: {
+    version = "flake";
+    src = inputs.graphite-kde;
+
+    installPhase = ''
+      runHook preInstall
+
+      patchShebangs install.sh
+
+      substituteInPlace install.sh \
+        --replace '$HOME/.local' $out \
+        --replace '$HOME/.config' $out/share
+
+      name= ./install.sh --theme nord --rimless
+
+      mkdir -p $out/share/sddm/themes
+      cp -a sddm/Graphite-nord $out/share/sddm/themes/
 
       runHook postInstall
     '';
