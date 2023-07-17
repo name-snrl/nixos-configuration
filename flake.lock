@@ -66,6 +66,38 @@
         "type": "github"
       }
     },
+    "graphite-gtk": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1689007972,
+        "narHash": "sha256-W6zHJl6NFE1baiuPmTUoGARhxEFOnTrh2Dr1S1ZEuCU=",
+        "owner": "vinceliuice",
+        "repo": "graphite-gtk-theme",
+        "rev": "eb55065b31df6044d24208d510d15cb2f648fbf3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vinceliuice",
+        "repo": "graphite-gtk-theme",
+        "type": "github"
+      }
+    },
+    "graphite-kde": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1688225175,
+        "narHash": "sha256-1eRhJStefMxkeylQ5/NtahOGydhwsPSUh7rBJZwGfyQ=",
+        "owner": "vinceliuice",
+        "repo": "graphite-kde-theme",
+        "rev": "e891fe61a72695ccf3f1b98b7ce50538b90fa432",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vinceliuice",
+        "repo": "graphite-kde-theme",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -194,6 +226,8 @@
       "inputs": {
         "dots": "dots",
         "flake-registry": "flake-registry",
+        "graphite-gtk": "graphite-gtk",
+        "graphite-kde": "graphite-kde",
         "home-manager": "home-manager",
         "interception-vimproved": "interception-vimproved",
         "nixpkgs": "nixpkgs",

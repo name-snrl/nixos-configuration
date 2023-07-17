@@ -7,6 +7,8 @@
 
     dots.flake = false;
     nvim.flake = false;
+    graphite-gtk.flake = false;
+    graphite-kde.flake = false;
     flake-registry.flake = false;
     interception-vimproved.flake = false;
 
@@ -18,6 +20,9 @@
 
     nvim.url = "github:name-snrl/nvim";
     nvim-nightly.url = "github:neovim/neovim?dir=contrib";
+
+    graphite-gtk.url = "github:vinceliuice/graphite-gtk-theme";
+    graphite-kde.url = "github:vinceliuice/graphite-kde-theme";
 
     flake-registry.url = "github:nixos/flake-registry";
     interception-vimproved.url = "github:name-snrl/interception-vimproved";
