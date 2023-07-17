@@ -8,7 +8,6 @@ rec {
       # TODO remove overlay and add portal.conf when a version with this PR
       # https://github.com/flatpak/xdg-desktop-portal/pull/955 appears in nixpkgs
       inputs.shlyupa.overlays.portal
-      inputs.shlyupa.overlays.qt5ct
     ];
     localSystem = { inherit system; };
     config = {
