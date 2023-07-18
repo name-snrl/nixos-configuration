@@ -10,7 +10,7 @@
     flake-utils.lib.eachDefaultSystem (system:
       with nixpkgs.legacyPackages.${system};
       {
-        devShells.default = mkShell {
+        devShells.default = mkShellNoCC {
           packages = [ ];
         };
       });
