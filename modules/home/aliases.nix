@@ -30,7 +30,7 @@ in
     # https://github.com/NixOS/nix/issues/8508
     nclear = "nix-collect-garbage --delete-old && sudo nix-collect-garbage --delete-old";
     nshell = ''
-      nix flake init -t self && \
+      nix flake init -t ${cfgPath} && \
       direnv allow && \
       nix flake lock && \
       echo ".direnv/" >> .gitignore'';
