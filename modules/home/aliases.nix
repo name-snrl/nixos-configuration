@@ -28,7 +28,7 @@ in
     nupdate = "nix flake update --commit-lock-file ${cfgPath}";
     nlock = "nix flake lock --commit-lock-file ${cfgPath}";
     # https://github.com/NixOS/nix/issues/8508
-    nclear = "nix-collect-garbage --delete-old && sudo nix-collect-garbage --delete-old";
+    nclear = "sudo nix-collect-garbage --delete-old && nix-collect-garbage --delete-old";
     nshell = ''
       nix flake init -t ${cfgPath} && \
       direnv allow && \
