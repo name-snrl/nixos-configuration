@@ -1,0 +1,26 @@
+--- a/Main.qml
++++ b/Main.qml
+@@ -240,6 +240,7 @@
+                                                     rebootButton.implicitWidth, 80) + 8
+                     Button {
+                         id: loginButton
++                        color: config.color
+                         text: textConstants.login
+                         width: parent.btnWidth
+ 
+@@ -250,6 +251,7 @@
+ 
+                     Button {
+                         id: shutdownButton
++                        color: config.color
+                         text: textConstants.shutdown
+                         width: parent.btnWidth
+ 
+@@ -260,6 +262,7 @@
+ 
+                     Button {
+                         id: rebootButton
++                        color: config.color
+                         text: textConstants.reboot
+                         width: parent.btnWidth
+ 
