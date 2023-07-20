@@ -84,15 +84,10 @@ import ./nvim.nix { inherit inputs prev; } //
       runHook preInstall
 
       patchShebangs install.sh
-
       substituteInPlace install.sh \
         --replace '$HOME/.local' $out \
         --replace '$HOME/.config' $out/share
-
       name= ./install.sh --theme nord --rimless
-
-      mkdir -p $out/share/sddm/themes
-      cp -a sddm/Graphite-nord $out/share/sddm/themes/
 
       runHook postInstall
     '';
