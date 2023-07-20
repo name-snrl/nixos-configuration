@@ -10,9 +10,6 @@
         chooser_type = "none";
       };
     };
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-    ];
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
-  environment.sessionVariables.GTK_USE_PORTAL = "1";
 }
