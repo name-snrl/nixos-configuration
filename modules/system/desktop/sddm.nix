@@ -3,7 +3,7 @@
     enable = true;
     displayManager.sddm = {
       enable = true;
-      theme = "maldives";
+      theme = "where_is_my_sddm_theme";
       settings = {
         General.DisplayServer = "wayland";
         Wayland.CompositorCommand = "${pkgs.westonLite}/bin/weston --shell=fullscreen-shell.so";
@@ -15,4 +15,12 @@
     [Journal]
     SystemMaxUse=200M
   '';
+  environment.systemPackages = [
+    (pkgs.where-is-my-sddm-theme.override {
+      themeConfig = {
+        background = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+        backgroundFill = "#2e3440";
+      };
+    })
+  ];
 }
