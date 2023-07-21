@@ -13,6 +13,8 @@ import ./nvim.nix { inherit inputs prev; } //
     exo2
     ;
 
+  where-is-my-sddm-theme = prev.libsForQt5.callPackage ../pkgs/where-is-my-sddm-theme { };
+
   openvpn3 = prev.openvpn3.overrideAttrs (_: {
     postInstall = ''
       rm -rf $out/var/lib/openvpn3
