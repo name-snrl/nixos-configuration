@@ -57,35 +57,6 @@ import ./nvim.nix { inherit inputs prev; } //
   in
   symlinkJoin { name = "imv"; paths = [ imv.man imv imv-wp desktop ]; };
 
-  # TODO create a new SDDM theme instead of an overlay
-  libsForQt5 = with prev; libsForQt5.overrideScope' (gfinal: gprev: {
-    sddm =
-      let
-        wp = fetchurl {
-          url = "https://w.wallhaven.cc/full/1k/wallhaven-1km5dg.jpg";
-          sha256 = "01z5cz42jc5vw9n3y3ix6zk8awlwgnbv48bys3lgryzcsd61895x";
-        };
-        main = applyPatches {
-          src = runCommand "maldives-sddm-main" { } ''
-            mkdir -p $out
-            cat ${gprev.sddm}/share/sddm/themes/maldives/Main.qml > $out/Main.qml
-          '';
-          patches = [ ./maldives-main.patch ];
-        };
-      in
-      symlinkJoin {
-        name = "sddm";
-        paths = [ gprev.sddm ];
-        postBuild = ''
-          rm $out/share/sddm/themes/maldives/theme.conf
-          rm $out/share/sddm/themes/maldives/background.jpg
-          rm $out/share/sddm/themes/maldives/Main.qml
-          echo -e "[General]\nbackground=${wp}\ncolor=#242b32" > $out/share/sddm/themes/maldives/theme.conf
-          ln -sf ${main}/Main.qml $out/share/sddm/themes/maldives/Main.qml
-        '';
-      };
-  });
-
   graphite-gtk-theme = prev.graphite-gtk-theme.overrideAttrs (_: {
     version = "flake";
     src = inputs.graphite-gtk;
