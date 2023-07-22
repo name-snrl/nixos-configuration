@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }: with pkgs;
+{ pkgs, inputs, ... }: with pkgs;
 let
   vimproved = stdenv.mkDerivation {
     name = "interception-vimproved";

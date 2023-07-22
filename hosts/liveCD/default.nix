@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, modulesPath, nixosModules, expandTrees, ... }: {
+{ lib, pkgs, inputs, modulesPath, nixosModules, expandTrees, ... }: {
   imports = [
     "${modulesPath}/profiles/all-hardware.nix"
     "${modulesPath}/installer/cd-dvd/iso-image.nix"

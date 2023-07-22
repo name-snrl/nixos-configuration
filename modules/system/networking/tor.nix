@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{
   services = {
     tor = {
       enable = true;
