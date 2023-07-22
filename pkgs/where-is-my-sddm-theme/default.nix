@@ -22,16 +22,13 @@ stdenvNoCC.mkDerivation rec {
 
   patches = [ ./change-fillMode.patch ];
 
+  propagatedUserEnvPkgs = [ qtgraphicaleffects ];
+
   installPhase = ''
     mkdir -p $out/share/sddm/themes/
     cp -r where_is_my_sddm_theme/ $out/share/sddm/themes/
   '' + lib.optionalString (lib.isAttrs themeConfig) ''
     ln -sf ${user-cfg} $out/share/sddm/themes/where_is_my_sddm_theme/theme.conf.user
-  '';
-
-  postFixup = ''
-    mkdir -p $out/nix-support
-    echo ${qtgraphicaleffects} >> $out/nix-support/propagated-user-env-packages
   '';
 }
 

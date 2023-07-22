@@ -15,11 +15,11 @@
     [Journal]
     SystemMaxUse=200M
   '';
-  environment.systemPackages = [
+  environment.systemPackages = let bg = "#2e3440"; in [
     (pkgs.where-is-my-sddm-theme.override {
       themeConfig = {
         background = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-        backgroundFill = "#2e3440";
+        backgroundFill = bg;
       };
     })
   ];
