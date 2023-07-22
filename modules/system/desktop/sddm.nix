@@ -20,6 +20,7 @@
       themeConfig = {
         background = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
         backgroundFill = bg;
+        backgroundMode = "none";
       };
     })
   ];

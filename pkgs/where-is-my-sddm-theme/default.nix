@@ -2,6 +2,7 @@
 , writeText
 , stdenvNoCC
 , fetchFromGitHub
+, fetchpatch
 , qtgraphicaleffects
 , themeConfig ? null
 }:
@@ -20,7 +21,12 @@ stdenvNoCC.mkDerivation rec {
     hash = "sha256-rGn7HKgiPaVxwsURrveHQCQ2RX2JG0HMlLLwnJCoEKg=";
   };
 
-  patches = [ ./change-fillMode.patch ];
+  patches = [
+    (fetchpatch {
+      url = "https://github.com/stepanzubkov/where-is-my-sddm-theme/pull/5.patch";
+      sha256 = "sha256-O+z877zq5piK8UxK50TysoD8eXk9e8x90MG23FHxzuQ=";
+    })
+  ];
 
   propagatedUserEnvPkgs = [ qtgraphicaleffects ];
 
