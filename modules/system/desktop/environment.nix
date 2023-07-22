@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{
   environment = {
     sessionVariables = {
       # XDG base dir
@@ -6,9 +6,6 @@
       XDG_CACHE_HOME = "$HOME/.cache";
       XDG_DATA_HOME = "$HOME/.local/share";
       XDG_STATE_HOME = "$HOME/.local/state";
-
-      # set gsettings schemas
-      XDG_DATA_DIRS = [ (pkgs.glib.getSchemaDataDirPath pkgs.gsettings-desktop-schemas) ];
 
       # misc
       TERMINAL = "alacritty"; # TODO remove when xdg-terminal-exec will be set
