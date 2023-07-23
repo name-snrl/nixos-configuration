@@ -40,7 +40,7 @@
       serviceConf = {
         Slice = "session.slice";
         Restart = "always";
-        RestartSec = 3;
+        RestartSec = 2;
       };
     in
     {
@@ -61,8 +61,10 @@
 
       services.mako = {
         description = "Mako as systemd service";
+        documentation = [ "man:mako(1)" ];
         wantedBy = [ "sway-session.target" ];
         partOf = [ "graphical-session.target" ];
+        after = [ "graphical-session.target" ];
         serviceConfig = {
           Type = "dbus";
           BusName = "org.freedesktop.Notifications";
@@ -71,7 +73,7 @@
           '';
           ExecStart = "${pkgs.mako}/bin/mako";
           ExecReload = "${pkgs.mako}/bin/makoctl reload";
-        } // serviceConf;
+        };
         environment.PATH = lib.mkForce null;
       };
 
