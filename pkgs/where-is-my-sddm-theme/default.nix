@@ -1,5 +1,5 @@
 { lib
-, writeText
+, formats
 , stdenvNoCC
 , fetchFromGitHub
 , fetchpatch
@@ -7,8 +7,7 @@
 , themeConfig ? null
 }:
 let
-  user-cfg = writeText "theme.conf.user"
-    (lib.generators.toINI { } { General = themeConfig; });
+  user-cfg = (formats.ini {}).generate "theme.conf.user" themeConfig;
 in
 stdenvNoCC.mkDerivation rec {
   pname = "where-is-my-sddm-theme";

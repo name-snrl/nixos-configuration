@@ -17,7 +17,7 @@
   '';
   environment.systemPackages = let bg = "#2e3440"; in [
     (pkgs.where-is-my-sddm-theme.override {
-      themeConfig = {
+      themeConfig.General = {
         background = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
         backgroundFill = bg;
         backgroundMode = "none";
