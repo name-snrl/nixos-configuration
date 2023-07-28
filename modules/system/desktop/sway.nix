@@ -103,14 +103,6 @@
         environment.PATH = lib.mkForce null;
       };
 
-      services.swaykbdd = {
-        description = "Swaykbdd as systemd service";
-        wantedBy = [ "sway-session.target" ];
-        partOf = [ "graphical-session.target" ];
-        script = "${pkgs.swaykbdd}/bin/swaykbdd";
-        serviceConfig = serviceConf;
-      };
-
       services.autotiling = {
         description = "Autotiling as systemd service";
         wantedBy = [ "sway-session.target" ];
