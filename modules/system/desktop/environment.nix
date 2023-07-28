@@ -11,7 +11,6 @@
       TERMINAL = "alacritty"; # TODO remove when xdg-terminal-exec will be set
       MENU = "wofi -d";
       EDITOR = "nvim";
-      BROWSER = "nvim";
     };
   };
 }
