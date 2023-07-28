@@ -13,6 +13,10 @@
 
     settings = {
       auto-optimise-store = true;
+      use-xdg-base-directories = true;
+      builders-use-substitutes = true;
+      # Prevent Nix from fetching the registry every time
+      flake-registry = "${inputs.flake-registry}/flake-registry.json";
       experimental-features = [ "nix-command" "flakes" ];
       trusted-users = [ "root" "@wheel" config.users.users.default.name ];
       substituters = [
@@ -22,12 +26,5 @@
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
     };
-
-    extraOptions = ''
-      use-xdg-base-directories = true
-      builders-use-substitutes = true
-      # Prevent Nix from fetching the registry every time
-      flake-registry = ${inputs.flake-registry}/flake-registry.json
-    '';
   };
 }
