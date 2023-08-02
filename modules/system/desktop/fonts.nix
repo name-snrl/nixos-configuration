@@ -1,8 +1,8 @@
 { pkgs, inputs, ... }: {
   imports = [ inputs.shlyupa.nixosModules.metric-compatible-fonts ];
   fonts = {
-    enableDefaultFonts = false;
-    fonts = with pkgs; [
+    enableDefaultPackages = false;
+    packages = with pkgs; [
       exo2
       jetbrains-mono
       noto-fonts-cjk-sans
