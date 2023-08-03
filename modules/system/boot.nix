@@ -1,6 +1,7 @@
 { pkgs, lib, ... }: {
   boot = {
     kernelPackages = pkgs.linuxPackages_zen; # TODO if desktop
+    initrd.systemd.enable = true;
     initrd.includeDefaultModules = false;
     supportedFilesystems = [ "ntfs" ]; # TODO if desktop
     tmp.useTmpfs = true; # TODO depends on RAM
