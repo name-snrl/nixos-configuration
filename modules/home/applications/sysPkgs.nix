@@ -36,7 +36,7 @@
       # GUI
       kotatogram-desktop-with-webkit
       qbittorrent
-      anki-bin
+      anki
 
       # DE
       firefox-wayland
