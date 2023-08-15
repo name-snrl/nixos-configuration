@@ -38,7 +38,7 @@
 
       legacyPackages = forAllSystems pkgsFor;
 
-      overlay = import ./overlay inputs;
+      overlays.default = import ./overlay inputs;
 
       packages = hostsAsPkgs nixosConfigurations;
 

@@ -3,7 +3,7 @@ rec {
   forAllSystems = genAttrs systems.flakeExposed;
 
   pkgsFor = system: import inputs.nixpkgs {
-    overlays = [ inputs.self.overlay ];
+    overlays = [ inputs.self.overlays.default ];
     localSystem = { inherit system; };
     config = {
       allowUnfree = true;
