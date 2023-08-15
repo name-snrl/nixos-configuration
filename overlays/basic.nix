@@ -1,17 +1,11 @@
-inputs: final: prev:
+inputs: final: prev: {
 
-let
-  inherit (final) system;
-in
-
-import ./nvim.nix { inherit inputs prev; } //
-{
-  scripts = import ./scripts.nix prev;
-
-  inherit (inputs.shlyupa.packages.${system})
+  inherit (inputs.shlyupa.packages.${prev.system})
     kotatogram-desktop-with-webkit
     exo2
     ;
+
+  neovim-unwrapped = inputs.nvim-nightly.packages.${prev.system}.neovim;
 
   where-is-my-sddm-theme = prev.libsForQt5.callPackage ../pkgs/where-is-my-sddm-theme { };
 
@@ -95,9 +89,4 @@ import ./nvim.nix { inherit inputs prev; } //
     '';
   });
 
-} // inputs.self.lib.mkSymlinks prev {
-  # https://gitlab.gnome.org/GNOME/glib/-/issues/338
-  # TODO wait for `xdg-terminal-exec`
-  alacritty = "xterm";
-  gojq = "jq";
 }

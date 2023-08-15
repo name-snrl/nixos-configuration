@@ -1,16 +1,9 @@
-{ inputs, prev }:
-let
-  inherit (prev) system lib;
-  neovim-unwrapped = inputs.nvim-nightly.packages.${system}.neovim;
-in
-{
-  inherit neovim-unwrapped;
-
-  nvim = with prev;
+inputs: final: prev: {
+  nvim =
     let
       init = "${inputs.nvim}/init.lua";
       runtime = "${inputs.nvim}";
-      deno-with-webkitgtk = symlinkJoin {
+      deno-with-webkitgtk = with prev; symlinkJoin {
         name = "deno-with-webkitgtk";
         paths = [ deno ];
         nativeBuildInputs = [ makeWrapper ];
@@ -19,7 +12,7 @@ in
           in "wrapProgram $out/bin/deno --prefix LD_LIBRARY_PATH : ${libPath}";
       };
 
-      binPath = lib.makeBinPath [
+      binPath = with prev; lib.makeBinPath [
         gnumake
         gcc
 
@@ -39,7 +32,7 @@ in
         languagetool-rust
       ];
 
-      binPathExtra = lib.makeBinPath [
+      binPathExtra = with prev; lib.makeBinPath [
         metals
         scalafmt
       ];
@@ -48,7 +41,7 @@ in
 
       cfg = path:
         let
-          res = neovimUtils.makeNeovimConfig {
+          res = prev.neovimUtils.makeNeovimConfig {
             withRuby = false;
             vimAlias = true;
             viAlias = true;
@@ -67,7 +60,7 @@ in
           ];
         };
     in
-    {
+    with prev; {
       mini = wrapNeovimUnstable neovim-unwrapped (cfg binPath);
       full = wrapNeovimUnstable neovim-unwrapped (cfg binPathWithExtra);
     };

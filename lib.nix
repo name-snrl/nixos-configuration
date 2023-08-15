@@ -11,17 +11,36 @@ rec {
     };
   };
 
+  mkSymlinks = links: _: pkgs:
+    listToAttrs (mapAttrsToList
+      (target: linkName: rec {
+        name = "${target}-as-${linkName}";
+        value = pkgs.runCommand name { } ''
+          mkdir -p "$out/bin"
+          ln -sfn "${getExe pkgs.${target}}" "$out/bin/${linkName}"
+        '';
+      })
+      links);
+
+  mkOverlays = dir: inputs:
+    mapAttrs'
+      (name: _:
+        nameValuePair (removeSuffix ".nix" name) (import /${dir}/${name} inputs))
+      (filtredReadDir dir);
+
   # Module system
+  filtredReadDir = dir:
+    filterAttrs
+      (name: type: type == "directory" || hasSuffix ".nix" name)
+      (builtins.readDir dir);
+
   mkAttrsTree = dir:
     mapAttrs'
       (name: type:
         if type == "directory"
         then nameValuePair name (mkAttrsTree /${dir}/${name})
         else nameValuePair (removeSuffix ".nix" name) /${dir}/${name})
-      (filterAttrs
-        (name: type:
-          type == "directory" || hasSuffix ".nix" name)
-        (builtins.readDir dir));
+      (filtredReadDir dir);
 
   mkModules = dir:
     let
@@ -85,15 +104,4 @@ rec {
             else [{ ${system}.${name} = build.toplevel; }])
         )
       );
-
-  mkSymlinks = pkgs: links:
-    listToAttrs (mapAttrsToList
-      (target: linkName: rec {
-        name = "${target}-as-${linkName}";
-        value = pkgs.runCommand name { } ''
-          mkdir -p "$out/bin"
-          ln -sfn "${getExe pkgs.${target}}" "$out/bin/${linkName}"
-        '';
-      })
-      links);
 }
