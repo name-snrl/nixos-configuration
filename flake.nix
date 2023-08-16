@@ -6,7 +6,6 @@
     nvim-nightly.inputs.nixpkgs.follows = "nixpkgs";
 
     dots.flake = false;
-    nvim.flake = false;
     graphite-gtk.flake = false;
     graphite-kde.flake = false;
     flake-registry.flake = false;

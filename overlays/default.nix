@@ -3,5 +3,5 @@ nixpkgs.lib.composeManyExtensions [
   self.overlays.basic
   self.overlays.scripts
   self.overlays.symlinks
-  self.overlays.nvim
+  nvim.overlays.default
 ]
