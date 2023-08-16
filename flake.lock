@@ -169,11 +169,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1690893464,
-        "narHash": "sha256-YiFBn3K4l1AzVt8NeSg9ZJNvHxX2k+AkS74s/s4ASRA=",
+        "lastModified": 1692067901,
+        "narHash": "sha256-kq8Pf/nmlXECDWMkQSRGQkjWsA6G0pjzZkfUEaTmXJE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e0e6b6909977de63dab514efbf5470bc31e7055e",
+        "rev": "ea95c0917609e5c48023cc7c6141bea2fdf13970",
         "type": "github"
       },
       "original": {
@@ -184,13 +184,12 @@
       }
     },
     "nvim": {
-      "flake": false,
       "locked": {
-        "lastModified": 1690700527,
-        "narHash": "sha256-mGs/HMsRrmxAKZCepbfUbw0clyqDu/KmHsxxgs1RH08=",
+        "lastModified": 1692197782,
+        "narHash": "sha256-yIhRzXhzl8zgaRyMvYnZ5+qhv2SLHB+fHeq247c+CWs=",
         "owner": "name-snrl",
         "repo": "nvim",
-        "rev": "3484cc93355aa60723a7cdf2ba9a0fa8d39956bb",
+        "rev": "73847a9a09464b0dd085b8acbfd58a871d53f8a8",
         "type": "github"
       },
       "original": {
@@ -243,11 +242,11 @@
         "nixpkgs-croscore": "nixpkgs-croscore"
       },
       "locked": {
-        "lastModified": 1690936995,
-        "narHash": "sha256-Jt+adrKofD9hRYzpanSjVyHkaUgF37BMo2T4RAuvKUc=",
+        "lastModified": 1692197673,
+        "narHash": "sha256-/kL6zAhubH4d91zPxw5Z2bwoWhh3TFjK1ODfMjp5k7A=",
         "owner": "ilya-fedin",
         "repo": "nur-repository",
-        "rev": "4beafd7329cb828d5a0f1548236df255050a4ee2",
+        "rev": "3f268b8fb77c141f0f7a7d2211c406194d80c0f9",
         "type": "github"
       },
       "original": {
