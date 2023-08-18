@@ -34,24 +34,28 @@ inputs: final: prev: {
   in
   symlinkJoin { name = "page"; paths = [ page less ]; };
 
-  imv = with prev; let
-    wallpapers = with builtins;
-      concatStringsSep " " (map
-        (data: fetchurl data)
-        (fromJSON (readFile ./wallhaven-collection.json)));
-    imv-wp = writeShellScriptBin "imv-wp" ''
-      exec ${imv}/bin/imv ${wallpapers}
+  swayimg = with prev; let
+    swim-wp = writeShellScriptBin "swim-wp" ''
+      exec ${swayimg}/bin/swayimg --fullscreen --all ${wallpapers}
     '';
     desktop = makeDesktopItem {
-      name = "imv-wp";
-      desktopName = "imv-wp";
-      genericName = "Image viewer";
-      exec = "${imv-wp}/bin/imv-wp";
-      categories = [ "Graphics" "2DGraphics" "Viewer" ];
-      icon = "multimedia-photo-viewer";
+      desktopName = "Swayimg-wallpapers";
+      name = "swim-wp";
+      exec = "${swim-wp}/bin/swim-wp";
+      categories = [ "Graphics" "Viewer" ];
+      icon = "swayimg";
     };
+    wallpapers = linkFarm "wallhaven-collection"
+      (lib.forEach
+        (lib.importJSON ./wallhaven-collection.json)
+        (data:
+          let path = fetchurl data; in { inherit path; inherit (path) name; }));
   in
-  symlinkJoin { name = "imv"; paths = [ imv.man imv imv-wp desktop ]; };
+  symlinkJoin {
+    name = "swayimg";
+    paths = [ swayimg swim-wp desktop ];
+    postBuild = "ln -s $out/bin/swayimg $out/bin/swim";
+  };
 
   graphite-gtk-theme = prev.graphite-gtk-theme.overrideAttrs (_: {
     version = "flake";

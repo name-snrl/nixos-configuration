@@ -43,7 +43,7 @@
       alacritty-as-xterm # https://gitlab.gnome.org/GNOME/glib/-/issues/338
       alacritty
       mpv
-      imv
+      swayimg
       sioyek
       lxqt.pavucontrol-qt
 
