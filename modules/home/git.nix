@@ -28,9 +28,11 @@
 
       alias = {
         st = "status";
-        cm = "commit";
-        cb = "checkout -B";
+        cm = "commit -v";
+        cb = "checkout -b";
         dt = "difftool";
+        mg = "merge --squash";
+        lg = "log --stat";
       };
     };
   };
