@@ -12,7 +12,7 @@ rec {
   };
 
   mkSymlinks = links: _: pkgs:
-    listToAttrs (mapAttrsToList
+    mapAttrs'
       (target: linkName: rec {
         name = "${target}-as-${linkName}";
         value = pkgs.runCommand name { } ''
@@ -20,7 +20,7 @@ rec {
           ln -sfn "${getExe pkgs.${target}}" "$out/bin/${linkName}"
         '';
       })
-      links);
+      links;
 
   mkOverlays = dir: inputs:
     mapAttrs'
