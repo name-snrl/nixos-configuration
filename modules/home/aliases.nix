@@ -1,9 +1,7 @@
 { config, pkgs, ... }:
-let cfgPath = "~/nixos-configuration";
-in
-{
+let cfgPath = "~/nixos-configuration"; in {
   environment.shellAliases = {
-    se = "sudoedit";
+    ip = "ip --color=auto";
     pg = "$PAGER";
     ls = "exa";
     rg = "rg --follow --hidden --smart-case --no-messages";
