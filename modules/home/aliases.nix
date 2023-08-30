@@ -3,7 +3,7 @@ let cfgPath = "~/nixos-configuration"; in {
   environment.shellAliases = {
     ip = "ip --color=auto";
     pg = "$PAGER";
-    ls = "exa";
+    ls = "exa --group-directories-first";
     rg = "rg --follow --hidden --smart-case --no-messages";
     fd = "fd --follow --hidden";
     dt = "difft";
