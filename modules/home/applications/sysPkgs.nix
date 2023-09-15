@@ -15,7 +15,7 @@
       gojq-as-jq
       ripgrep
       fd
-      exa
+      eza
       bat
       file
       tree
