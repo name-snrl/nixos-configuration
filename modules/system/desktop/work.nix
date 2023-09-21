@@ -6,6 +6,9 @@
     })
   ];
   programs.openvpn3.enable = true;
+  environment.etc."bazel.bazelrc".text = ''
+    startup --max_idle_secs=60
+  '';
   systemd.user.services.ck-client =
     let
       ck-client = pkgs.fetchurl {
