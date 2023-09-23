@@ -1,11 +1,11 @@
 inputs: final: prev: {
 
-  inherit (inputs.shlyupa.packages.${prev.system})
+  inherit (inputs.shlyupa.packages.${final.system})
     kotatogram-desktop-with-webkit
     exo2
     ;
 
-  neovim-unwrapped = inputs.nvim-nightly.packages.${prev.system}.neovim;
+  neovim-unwrapped = inputs.nvim-nightly.packages.${final.system}.neovim;
 
   openvpn3 = prev.openvpn3.overrideAttrs (_: {
     postInstall = ''
@@ -14,27 +14,27 @@ inputs: final: prev: {
     '';
   });
 
-  xdragon = with prev; let
+  xdragon = with final; let
     dg = writeShellApplication {
       name = "dg";
-      runtimeInputs = [ xdragon ];
+      runtimeInputs = [ prev.xdragon ];
       text = ''dragon -T "$@" &'';
     };
   in
-  symlinkJoin { name = "xdragon"; paths = [ xdragon dg ]; };
+  symlinkJoin { name = "xdragon"; paths = [ prev.xdragon dg ]; };
 
-  page = with prev; let
+  page = with final; let
     less = writeShellApplication {
       name = "less";
-      runtimeInputs = [ page ncurses ];
+      runtimeInputs = [ prev.page ncurses ];
       text = ''exec page -O "$(tput lines)" "$@"'';
     };
   in
-  symlinkJoin { name = "page"; paths = [ page less ]; };
+  symlinkJoin { name = "page"; paths = [ prev.page less ]; };
 
-  swayimg = with prev; let
+  swayimg = with final; let
     swim-wp = writeShellScriptBin "swim-wp" ''
-      exec ${swayimg}/bin/swayimg --fullscreen --all ${wallpapers}
+      exec ${prev.swayimg}/bin/swayimg --fullscreen --all ${wallpapers}
     '';
     desktop = makeDesktopItem {
       desktopName = "Swayimg-wallpapers";
@@ -51,7 +51,7 @@ inputs: final: prev: {
   in
   symlinkJoin {
     name = "swayimg";
-    paths = [ swayimg swim-wp desktop ];
+    paths = [ prev.swayimg swim-wp desktop ];
     postBuild = "ln -s $out/bin/swayimg $out/bin/swim";
   };
 

@@ -1,4 +1,4 @@
-_: final: prev: with prev; {
+_: final: prev: with final; {
   scripts = {
     dict = writeShellApplication {
       name = "dict";
