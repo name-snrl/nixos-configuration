@@ -24,18 +24,18 @@
       };
     };
     networks = {
-      ethers = {
+      "90-ethers" = {
         bond = [ "wireCat" ];
         matchConfig = {
           Type = "ether";
-          Virtualization = "none";
+          Kind = "!veth"; # fix docker
         };
       };
-      wlans = {
+      "90-wlans" = {
         bond = [ "wireCat" ];
         matchConfig.WLANInterfaceType = "station";
       };
-      wireCat = {
+      "90-wireCat" = {
         name = "wireCat";
         networkConfig = {
           DHCP = "yes";
