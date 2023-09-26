@@ -7,7 +7,7 @@
   ];
   programs.openvpn3.enable = true;
   environment.etc."bazel.bazelrc".text = ''
-    startup --max_idle_secs=60
+    startup --max_idle_secs=6000
   '';
   systemd.user.services.ck-client =
     let
