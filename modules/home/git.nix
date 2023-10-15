@@ -9,6 +9,8 @@
         email = "Demogorgon-74@ya.ru";
       };
 
+      clone.filterSubmodules = true;
+
       url = {
         "git@github.com:".pushInsteadOf = "https://github.com/";
         "git@gist.github.com:".pushInsteadOf = "https://gist.github.com/";
@@ -33,6 +35,9 @@
         dt = "difftool";
         mg = "merge --squash";
         lg = "log --stat";
+        # no blobs and no checkout, because checkout has been taught to bulk
+        # pre-fetch all required missing blobs in a single batch
+        clone-big = "clone --filter=blob:none --no-checkout";
       };
     };
   };
