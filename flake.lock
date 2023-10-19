@@ -201,11 +201,11 @@
     },
     "nvim": {
       "locked": {
-        "lastModified": 1697568614,
-        "narHash": "sha256-yoES2Qr3ovIQ8TckfQTZ5Qdpok+8pQxZgNmFr3XU5t8=",
+        "lastModified": 1697737111,
+        "narHash": "sha256-EMJKPYBDiUr6ynWLE/lFIz1gGvkagW5j55dXf8t5X8o=",
         "owner": "name-snrl",
         "repo": "nvim",
-        "rev": "df65012e021793d9284d7888499a4cafe7421923",
+        "rev": "6d7552768ba1bee7cc23d8b2cdf60d37d6b727e2",
         "type": "github"
       },
       "original": {
