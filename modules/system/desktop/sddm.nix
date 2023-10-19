@@ -3,12 +3,8 @@
     enable = true;
     displayManager.sddm = {
       enable = true;
+      wayland.enable = true;
       theme = "where_is_my_sddm_theme";
-      settings = {
-        General.DisplayServer = "wayland";
-        Wayland.CompositorCommand = "${pkgs.westonLite}/bin/weston --shell=fullscreen-shell.so";
-        Theme.CursorTheme = "Numix-Cursor-Light";
-      };
     };
   };
   environment.etc."systemd/journald@desktop-session.conf".text = ''
