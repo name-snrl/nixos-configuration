@@ -13,6 +13,7 @@
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     shlyupa.url = "github:ilya-fedin/nur-repository";
+    nixpkgs-fcitx.url = "github:nixos/nixpkgs/35d8d1c9e71edd309a89c7eed0955935a184c04f";
 
     dots.url = "github:name-snrl/home";
     home-manager.url = "github:nix-community/home-manager/master";

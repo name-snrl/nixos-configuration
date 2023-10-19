@@ -7,6 +7,8 @@ inputs: final: prev: {
 
   neovim-unwrapped = inputs.nvim-nightly.packages.${final.system}.neovim;
 
+  fcitx5-with-addons = inputs.nixpkgs-fcitx.legacyPackages.${final.system}.fcitx5-with-addons; # TODO remove me
+
   xdragon = with final; let
     dg = writeShellApplication {
       name = "dg";

@@ -167,6 +167,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-fcitx": {
+      "locked": {
+        "lastModified": 1696062521,
+        "narHash": "sha256-CckUpENRGTfPIFSwINaWmBiM60AAPUSu4+X90zPVYCM=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "35d8d1c9e71edd309a89c7eed0955935a184c04f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "35d8d1c9e71edd309a89c7eed0955935a184c04f",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1692557222,
@@ -230,6 +246,7 @@
         "home-manager": "home-manager",
         "interception-vimproved": "interception-vimproved",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-fcitx": "nixpkgs-fcitx",
         "nvim": "nvim",
         "nvim-nightly": "nvim-nightly",
         "shlyupa": "shlyupa"
