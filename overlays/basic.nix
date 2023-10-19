@@ -7,13 +7,6 @@ inputs: final: prev: {
 
   neovim-unwrapped = inputs.nvim-nightly.packages.${final.system}.neovim;
 
-  openvpn3 = prev.openvpn3.overrideAttrs (_: {
-    postInstall = ''
-      rm -rf $out/var/lib/openvpn3
-      ln -sf /var/lib/openvpn3 $out/var/lib/openvpn3
-    '';
-  });
-
   xdragon = with final; let
     dg = writeShellApplication {
       name = "dg";
