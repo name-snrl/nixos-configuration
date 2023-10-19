@@ -140,10 +140,6 @@
     "url": "https://w.wallhaven.cc/full/v9/wallhaven-v99yy8.jpg"
   },
   {
-    "sha256": "002lylqpglzaha3v88a84vrgvxafrydbb1xy3yq326r1yidk37v6",
-    "url": "https://w.wallhaven.cc/full/wq/wallhaven-wqd9mr.png"
-  },
-  {
     "sha256": "0b89cgbkadbs1by07jmq0f22sc0vlsdicbil9zi26mvmn5v6dk3r",
     "url": "https://w.wallhaven.cc/full/x8/wallhaven-x8ye3z.jpg"
   },
@@ -154,6 +150,10 @@
   {
     "sha256": "097inmmzgqiqy4l00m9h5wdjjy4jdc592lyhpzzpf5cnkky601xx",
     "url": "https://w.wallhaven.cc/full/y8/wallhaven-y8xjll.jpg"
+  },
+  {
+    "sha256": "0xfhvsndii08nijcpzd64bamcq1p63gn2iw1bvp6c0h7vhkr7kpy",
+    "url": "https://w.wallhaven.cc/full/yj/wallhaven-yj2klk.jpg"
   },
   {
     "sha256": "1wf0b1bdsg4nwk8rrbfli00di1i2ac9kghppmia4xkr0viq0alac",
