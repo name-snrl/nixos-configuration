@@ -59,9 +59,8 @@
       ];
 
       services.mako = {
-        description = "Mako as systemd service";
+        description = "Lightweight Wayland notification daemon";
         documentation = [ "man:mako(1)" ];
-        wantedBy = [ "sway-session.target" ];
         partOf = [ "graphical-session.target" ];
         after = [ "graphical-session.target" ];
         serviceConfig = {
@@ -74,49 +73,55 @@
           ExecReload = "${pkgs.mako}/bin/makoctl reload";
         };
         environment.PATH = lib.mkForce null;
+        wantedBy = [ "sway-session.target" ];
       };
 
       services.waybar = {
-        description = "Waybar as systemd service";
-        wantedBy = [ "sway-session.target" ];
+        description = "Highly customizable bar for Sway";
         partOf = [ "graphical-session.target" ];
+        after = [ "graphical-session.target" ];
+        requisite = [ "graphical-session.target" ];
         script = "${pkgs.waybar}/bin/waybar";
-        serviceConfig = serviceConf;
+        serviceConfig = serviceConf // {
+          ExecReload = "kill -SIGUSR2 $MAINPID";
+        };
         environment.PATH = lib.mkForce null;
+        wantedBy = [ "sway-session.target" ];
       };
 
       services.swayidle = {
-        description = "Swayidle as systemd service";
-        wantedBy = [ "sway-session.target" ];
+        description = "Idle management daemon";
         partOf = [ "graphical-session.target" ];
         script = "${pkgs.swayidle}/bin/swayidle -w";
         serviceConfig = serviceConf;
         environment.PATH = lib.mkForce null;
+        wantedBy = [ "sway-session.target" ];
       };
 
       services.polkit-agent = {
-        description = "Run polkit authentication agent";
-        wantedBy = [ "sway-session.target" ];
+        description = "Polkit authentication agent";
         script = "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1";
         serviceConfig = serviceConf;
         environment.PATH = lib.mkForce null;
+        wantedBy = [ "sway-session.target" ];
       };
 
       services.autotiling = {
-        description = "Autotiling as systemd service";
-        wantedBy = [ "sway-session.target" ];
+        description = "Automatically alternates the container layout";
         partOf = [ "graphical-session.target" ];
         script = "${pkgs.autotiling-rs}/bin/autotiling-rs";
         serviceConfig = serviceConf;
         environment.PATH = lib.mkForce null;
+        wantedBy = [ "sway-session.target" ];
       };
 
       services.wl-clip-persist = {
         description = "Keep clipboard even after programs close";
-        wantedBy = [ "sway-session.target" ];
         partOf = [ "graphical-session.target" ];
         script = "${pkgs.wl-clip-persist}/bin/wl-clip-persist -c both";
         serviceConfig = serviceConf;
+        environment.PATH = lib.mkForce null;
+        wantedBy = [ "sway-session.target" ];
       };
 
     };
