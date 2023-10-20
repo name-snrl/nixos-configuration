@@ -29,7 +29,7 @@ inputs: final: prev: {
 
   swayimg = with final; let
     swim-wp = writeShellScriptBin "swim-wp" ''
-      exec ${prev.swayimg}/bin/swayimg --fullscreen --all ${wallpapers}
+      exec ${prev.swayimg}/bin/swayimg --fullscreen ${wallpapers}
     '';
     desktop = makeDesktopItem {
       desktopName = "Swayimg-wallpapers";
@@ -38,11 +38,10 @@ inputs: final: prev: {
       categories = [ "Graphics" "Viewer" ];
       icon = "swayimg";
     };
-    wallpapers = linkFarm "wallhaven-collection"
+    wallpapers = lib.concatStringsSep " "
       (lib.forEach
         (lib.importJSON ./wallhaven-collection.json)
-        (data:
-          let path = fetchurl data; in { inherit path; inherit (path) name; }));
+        (data: (fetchurl data)));
   in
   symlinkJoin {
     name = "swayimg";
