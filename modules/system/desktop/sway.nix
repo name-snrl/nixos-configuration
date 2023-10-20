@@ -111,11 +111,11 @@
         environment.PATH = lib.mkForce null;
       };
 
-      services.clipman = {
-        description = "Clipman as systemd service";
+      services.wl-clip-persist = {
+        description = "Keep clipboard even after programs close";
         wantedBy = [ "sway-session.target" ];
         partOf = [ "graphical-session.target" ];
-        script = "${pkgs.wl-clipboard}/bin/wl-paste -t text --watch ${pkgs.clipman}/bin/clipman store --max-items=1";
+        script = "${pkgs.wl-clip-persist}/bin/wl-clip-persist -c both";
         serviceConfig = serviceConf;
       };
 
