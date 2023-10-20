@@ -9,6 +9,16 @@ inputs: final: prev: {
 
   fcitx5-with-addons = inputs.nixpkgs-fcitx.legacyPackages.${final.system}.fcitx5-with-addons; # TODO remove me
 
+  foot = prev.foot.overrideAttrs (oa: {
+    patches = [
+      (final.fetchpatch {
+        url = "https://codeberg.org/dnkl/foot/pulls/1099.patch";
+        hash = "sha256-KBS4q3fpJWP3YLBuyiZCmbvcQFeiNPv+ApFp4BHlo4g=";
+      })
+    ];
+    mesonFlags = oa.mesonFlags ++ [ "-Dext-underline=true" ];
+  });
+
   xdragon = with final; let
     dg = writeShellApplication {
       name = "dg";
