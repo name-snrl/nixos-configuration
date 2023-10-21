@@ -7,7 +7,7 @@ let cfgPath = "~/nixos-configuration"; in {
     rg = "rg --follow --hidden --smart-case --no-messages";
     fd = "fd --follow --hidden";
     dt = "difft";
-    tk = "tokei";
+    cl = "cloc";
     cat = "bat --pager=never --style=changes,rule,numbers,snip";
     sctl = "systemctl";
     sudo = "sudo "; # this will make sudo work with shell aliases/man alias
