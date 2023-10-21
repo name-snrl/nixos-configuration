@@ -13,10 +13,10 @@ inputs: final: prev: {
     patches = [
       (final.fetchpatch {
         url = "https://codeberg.org/dnkl/foot/pulls/1099.patch";
-        hash = "sha256-KBS4q3fpJWP3YLBuyiZCmbvcQFeiNPv+ApFp4BHlo4g=";
+        hash = "sha256-4B+PanJqBC3hANgSYXwXeGO19EBdVMyyIgGawpaIMxE=";
       })
     ];
-    mesonFlags = oa.mesonFlags ++ [ "-Dext-underline=true" ];
+    mesonFlags = oa.mesonFlags ++ [ "-Dext-underline=enabled" ];
   });
 
   xdragon = with final; let
