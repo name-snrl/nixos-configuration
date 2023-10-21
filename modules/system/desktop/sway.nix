@@ -1,16 +1,24 @@
 { lib, pkgs, ... }: {
   programs.sway = {
     enable = true;
-    wrapperFeatures.gtk = true; # so that gtk works properly
+    wrapperFeatures.gtk = true;
     extraSessionCommands = ''
       export _JAVA_AWT_WM_NONREPARENTING=1
       export ANKI_WAYLAND=1
     '';
   };
 
+  qt = {
+    enable = true;
+    platformTheme = "qt5ct";
+  };
+
   environment = {
     pathsToLink = [ "/share/Kvantum" ];
     systemPackages = with pkgs; [
+      libsForQt5.qtstyleplugin-kvantum
+      qt6Packages.qtstyleplugin-kvantum
+
       swaylock-effects
       wl-clipboard
       xdragon

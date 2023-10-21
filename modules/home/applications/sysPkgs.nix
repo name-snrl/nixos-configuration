@@ -51,8 +51,6 @@
       graphite-gtk-theme
       (papirus-icon-theme.override { color = "bluegrey"; })
       numix-cursor-theme
-      libsForQt5.qtstyleplugin-kvantum
-      qt6Packages.qtstyleplugin-kvantum
     ];
   };
 }
