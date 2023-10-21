@@ -33,7 +33,7 @@
       mako
       foot
       foot-as-xterm # https://gitlab.gnome.org/GNOME/glib/-/issues/338
-      tofi
+      fuzzel
       playerctl
 
       #eww-wayland # TODO
