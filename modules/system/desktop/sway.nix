@@ -40,12 +40,6 @@
     ];
   };
 
-  services = {
-    udisks2.enable = true;
-    dictd.enable = true;
-    dictd.DBs = with pkgs.dictdDBs; [ wiktionary ];
-  };
-
   systemd = {
     packages = with pkgs; [ foot polkit-kde-agent ];
     user =
