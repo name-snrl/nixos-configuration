@@ -26,10 +26,7 @@
       wl-clipboard
       xdragon
       xdg-utils # wl-clipboard needs xdg-mime
-      gojq-as-jq # needs for move script
-      glib # needs for theme script
-      kooha # screencast
-      (tesseract.override { enableLanguages = [ "eng" ]; }) # get text from screenshot
+      wl-screenrec # screencast
       flameshot
       slurp
       grim
@@ -40,6 +37,9 @@
       playerctl
 
       #eww-wayland # TODO
+      gojq-as-jq # needs for move script
+      glib # needs for theme script
+      (tesseract.override { enableLanguages = [ "eng" ]; }) # get text from screenshot
     ];
     sessionVariables = {
       TERMINAL = "footclient"; # TODO remove when xdg-terminal-exec will be set
