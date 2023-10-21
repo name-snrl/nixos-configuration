@@ -8,7 +8,7 @@
       XDG_STATE_HOME = "$HOME/.local/state";
 
       # misc
-      TERMINAL = "alacritty"; # TODO remove when xdg-terminal-exec will be set
+      TERMINAL = "footclient"; # TODO remove when xdg-terminal-exec will be set
       MENU = "wofi -d";
       EDITOR = "nvim";
     };

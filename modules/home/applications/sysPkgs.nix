@@ -41,8 +41,6 @@
 
       # DE
       firefox-wayland
-      alacritty-as-xterm # https://gitlab.gnome.org/GNOME/glib/-/issues/338
-      alacritty
       mpv
       swayimg
       sioyek

@@ -20,6 +20,8 @@
       slurp
       grim
       mako
+      foot
+      foot-as-xterm # https://gitlab.gnome.org/GNOME/glib/-/issues/338
       tofi
       playerctl
 
@@ -36,7 +38,7 @@
   };
 
   systemd = {
-    packages = with pkgs; [ polkit-kde-agent ];
+    packages = with pkgs; [ foot polkit-kde-agent ];
     user =
       let
         serviceConf = {
@@ -68,9 +70,7 @@
           serviceConfig = {
             Type = "dbus";
             BusName = "org.freedesktop.Notifications";
-            ExecCondition = ''
-              /bin/sh -c '[ -n "$WAYLAND_DISPLAY" ]'
-            '';
+            ConditionEnvironment = "WAYLAND_DISPLAY";
             ExecStart = "${pkgs.mako}/bin/mako";
             ExecReload = "${pkgs.mako}/bin/makoctl reload";
           };
@@ -90,6 +90,13 @@
           environment.PATH = lib.mkForce null;
           wantedBy = [ "sway-session.target" ];
         };
+
+        services.foot-server = {
+          serviceConfig = serviceConf;
+          environment.PATH = lib.mkForce null;
+          wantedBy = [ "sway-session.target" ];
+        };
+        sockets.foot-server.wantedBy = [ "sway-session.target" ];
 
         services.swayidle = {
           description = "Idle management daemon";
