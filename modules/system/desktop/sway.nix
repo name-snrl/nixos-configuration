@@ -8,6 +8,9 @@
     '';
   };
 
+  programs.light.enable = true; # TODO only if laptop
+  users.users.default.extraGroups = [ "video" ];
+
   qt = {
     enable = true;
     platformTheme = "qt5ct";
