@@ -29,7 +29,7 @@
     ];
   };
 
-  environment.pathsToLink = [ "/share" ];
+  environment.pathsToLink = [ "/share/Kvantum" ];
 
   services = {
     udisks2.enable = true;
