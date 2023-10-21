@@ -1,5 +1,6 @@
 {
   programs = {
+    direnv.enable = true;
     htop = {
       enable = true;
       settings = {
