@@ -5,10 +5,7 @@ rec {
   pkgsFor = system: import inputs.nixpkgs {
     overlays = [ inputs.self.overlays.default ];
     localSystem = { inherit system; };
-    config = {
-      allowUnfree = true;
-      joypixels.acceptLicense = true;
-    };
+    config.allowUnfree = true;
   };
 
   mkSymlinks = links: _: pkgs:

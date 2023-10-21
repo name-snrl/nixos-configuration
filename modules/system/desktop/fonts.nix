@@ -9,7 +9,7 @@
       noto-fonts-cjk-serif
       unifont
       symbola
-      joypixels
+      twitter-color-emoji
       (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
     ];
     fontconfig.crOSMaps = true;
@@ -29,7 +29,7 @@
         "Noto Serif CJK JP"
         "Symbols Nerd Font"
       ];
-      emoji = [ "JoyPixels" ];
+      emoji = [ "Twitter Color Emoji" ];
     };
   };
 }
