@@ -38,6 +38,10 @@
 
       #eww-wayland # TODO
     ];
+    sessionVariables = {
+      TERMINAL = "footclient"; # TODO remove when xdg-terminal-exec will be set
+      MENU = "wofi -d";
+    };
   };
 
   systemd = {
