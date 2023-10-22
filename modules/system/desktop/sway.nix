@@ -8,9 +8,6 @@
     '';
   };
 
-  programs.light.enable = true; # TODO only if laptop
-  users.users.default.extraGroups = [ "video" ];
-
   qt = {
     enable = true;
     platformTheme = "qt5ct";
@@ -65,6 +62,8 @@
           after = [ "graphical-session-pre.target" ];
           before = [ "xdg-desktop-autostart.target" ];
         };
+
+        services."app-clight@autostart".enable = false; # TODO https://github.com/NixOS/nixpkgs/pull/262624
 
         tmpfiles.rules = with pkgs; [
           "L+ %h/.config/autostart/firefox.desktop                 - - - - ${firefox-wayland}/share/applications/firefox.desktop"
