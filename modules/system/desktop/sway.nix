@@ -64,6 +64,7 @@
         };
 
         services."app-clight@autostart".enable = false; # TODO https://github.com/NixOS/nixpkgs/pull/262624
+        services."app-geoclue\\x2ddemo\\x2dagent@autostart".enable = false; # TODO https://github.com/NixOS/nixpkgs/pull/262625
 
         tmpfiles.rules = with pkgs; [
           "L+ %h/.config/autostart/firefox.desktop                 - - - - ${firefox-wayland}/share/applications/firefox.desktop"
