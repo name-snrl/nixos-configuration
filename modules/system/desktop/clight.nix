@@ -54,7 +54,10 @@
           0.85
         ];
       };
-      daytime.sunset_offset = 15000;
+      daytime = {
+        sunrise = "7:00";
+        sunset = "23:00";
+      };
       screen = {
         contrib = 0.12;
         timeouts = [ 1 (-1) ];
