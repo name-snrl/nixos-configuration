@@ -80,7 +80,6 @@ rec {
     (name:
       nixosSystem {
         system = "x86_64-linux";
-        pkgs = mkPkgs inputs.nixpkgs inputs.self.overlays.default "x86_64-linux";
         specialArgs = {
           inherit inputs expandTrees;
           inherit (inputs.self) nixosModules;
