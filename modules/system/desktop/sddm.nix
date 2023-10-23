@@ -7,10 +7,6 @@
       theme = "where_is_my_sddm_theme";
     };
   };
-  environment.etc."systemd/journald@desktop-session.conf".text = ''
-    [Journal]
-    SystemMaxUse=200M
-  '';
   environment.systemPackages = let bg = "#2e3440"; in [
     (pkgs.where-is-my-sddm-theme.override {
       themeConfig.General = {
