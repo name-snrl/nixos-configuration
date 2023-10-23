@@ -30,13 +30,13 @@
 
   outputs = inputs: with inputs.self.lib;
     rec {
-      lib = import ./lib.nix inputs;
+      lib = import ./lib.nix inputs.nixpkgs.lib;
 
       nixosModules = mkModules ./modules;
 
-      nixosConfigurations = mkHosts ./hosts;
+      nixosConfigurations = mkHosts ./hosts inputs;
 
-      legacyPackages = forAllSystems pkgsFor;
+      legacyPackages = forAllSystems (mkPkgs inputs.nixpkgs overlays.default);
 
       overlays = mkOverlays ./overlays inputs;
 

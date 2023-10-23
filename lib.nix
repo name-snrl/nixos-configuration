@@ -1,12 +1,15 @@
-inputs: with inputs.nixpkgs.lib;
+lib: with lib;
 rec {
   forAllSystems = genAttrs systems.flakeExposed;
 
-  pkgsFor = system: import inputs.nixpkgs {
-    overlays = [ inputs.self.overlays.default ];
-    localSystem = { inherit system; };
-    config.allowUnfree = true;
-  };
+  mkPkgs = nixpkgs: overlay: system:
+    import nixpkgs {
+      inherit system;
+      overlays = singleton overlay;
+      config = {
+        allowUnfree = true;
+      };
+    };
 
   mkSymlinks = links: _: pkgs:
     mapAttrs'
@@ -46,10 +49,7 @@ rec {
           if type == "directory"
           then [ /${dir}/${name + "Tree"} (listOfPaths /${dir}/${name}) ]
           else /${dir}/${name})
-        (filterAttrs
-          (name: type:
-            type == "directory" || hasSuffix ".nix" name)
-          (builtins.readDir dir)));
+        (filtredReadDir dir));
     in
     listToAttrs
       (forEach (listOfPaths dir)
@@ -76,11 +76,11 @@ rec {
   # Hosts system TODO
   attrsFromHosts = dir: genAttrs (builtins.attrNames (builtins.readDir dir));
 
-  mkHosts = dir: (attrsFromHosts dir)
+  mkHosts = dir: inputs: (attrsFromHosts dir)
     (name:
       nixosSystem {
         system = "x86_64-linux";
-        pkgs = pkgsFor "x86_64-linux";
+        pkgs = mkPkgs inputs.nixpkgs inputs.self.overlays.default "x86_64-linux";
         specialArgs = {
           inherit inputs expandTrees;
           inherit (inputs.self) nixosModules;
