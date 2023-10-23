@@ -1,8 +1,9 @@
 {
+  systemd.user.services.clight.serviceConfig.StandardOutput = "null";
+  systemd.services.clightd.serviceConfig.StandardOutput = "null";
   services.clight = {
     enable = true;
     settings = {
-      verbose = false;
       inhibit.disabled = true;
       keyboard.disabled = true;
       dimmer.disabled = true;
