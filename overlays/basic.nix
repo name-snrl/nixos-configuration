@@ -23,7 +23,7 @@ inputs: final: prev: {
     dg = writeShellApplication {
       name = "dg";
       runtimeInputs = [ prev.xdragon ];
-      text = ''dragon -T "$@" &'';
+      text = ''dragon -T "$@" &>/dev/null &'';
     };
   in
   symlinkJoin { name = "xdragon"; paths = [ prev.xdragon dg ]; };
