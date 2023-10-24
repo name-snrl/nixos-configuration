@@ -15,6 +15,9 @@
       function nwhich;  ${coreutils}/bin/readlink -f (${which}/bin/which $argv); end
       complete -c njump   -fa "(__fish_complete_command)"
       complete -c nwhich  -fa "(__fish_complete_command)"
+
+      # colors
+      set fish_pager_color_prefix cyan --bold
     '';
   };
 }
