@@ -7,7 +7,7 @@
       inhibit.disabled = true;
       keyboard.disabled = true;
       dimmer.disabled = true;
-      dpms.disabled = true;
+      dpms.timeouts = [ (-1) (-1) ];
       backlight = {
         trans_step = 0.01;
         ac_timeouts = [ 300 900 180 ];
