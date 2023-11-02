@@ -2,7 +2,6 @@ inputs: final: prev: {
 
   inherit (inputs.shlyupa.packages.${final.system})
     kotatogram-desktop-with-webkit
-    exo2
     ;
 
   neovim-unwrapped = inputs.nvim-nightly.packages.${final.system}.neovim;

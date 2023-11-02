@@ -1,33 +1,41 @@
-{ pkgs, inputs, ... }: {
-  imports = [ inputs.shlyupa.nixosModules.metric-compatible-fonts ];
+{ pkgs, ... }: {
   fonts = {
     enableDefaultPackages = false;
     packages = with pkgs; [
-      exo2
       jetbrains-mono
+      noto-fonts-lgc-plus
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
-      unifont
-      symbola
       twitter-color-emoji
       (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+
+      # unicode coverage
+      unifont
+      symbola
+
+      # metric-compatible fonts
+      gyre-fonts
+      caladea
+      carlito
     ];
-    fontconfig.crOSMaps = true;
     fontconfig.defaultFonts = {
       monospace = [
         "JetBrains Mono NL Light"
-        "Symbols Nerd Font"
         "Noto Sans Mono CJK JP"
+        "Symbols Nerd Font Mono"
+        "Twitter Color Emoji"
       ];
       sansSerif = [
-        "Exo 2"
+        "Noto Sans"
         "Noto Sans CJK JP"
         "Symbols Nerd Font"
+        "Twitter Color Emoji"
       ];
       serif = [
-        "Tinos"
+        "Noto Serif"
         "Noto Serif CJK JP"
         "Symbols Nerd Font"
+        "Twitter Color Emoji"
       ];
       emoji = [ "Twitter Color Emoji" ];
     };
