@@ -8,6 +8,16 @@ inputs: final: prev: {
 
   fcitx5-with-addons = inputs.nixpkgs-fcitx.legacyPackages.${final.system}.fcitx5-with-addons; # TODO remove me
 
+  xdg-desktop-portal-wlr = prev.xdg-desktop-portal-wlr.overrideAttrs (oa: {
+    patches = [
+      (final.fetchpatch {
+        url = "https://github.com/emersion/xdg-desktop-portal-wlr/pull/282.patch";
+        hash = "sha256-vRbGwF+ZAlL2kUnv/L93LuuOjTbPrdVJBKPRvYXjaBM=";
+      })
+    ];
+    
+  });
+
   foot = prev.foot.overrideAttrs (oa: {
     patches = [
       (final.fetchpatch {
