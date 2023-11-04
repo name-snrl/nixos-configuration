@@ -27,7 +27,7 @@
       flameshot
       slurp
       grim
-      mako
+      swaynotificationcenter
       foot
       foot-as-xterm # https://gitlab.gnome.org/GNOME/glib/-/issues/338
       fuzzel
@@ -44,7 +44,11 @@
   };
 
   systemd = {
-    packages = with pkgs; [ foot polkit-kde-agent ];
+    packages = with pkgs; [
+      foot
+      polkit-kde-agent
+      swaynotificationcenter
+    ];
     user =
       let
         serviceConf = {
@@ -71,21 +75,7 @@
           "L+ %h/.config/autostart/org.flameshot.Flameshot.desktop - - - - ${flameshot}/share/applications/org.flameshot.Flameshot.desktop"
         ];
 
-        services.mako = {
-          description = "Lightweight Wayland notification daemon";
-          documentation = [ "man:mako(1)" ];
-          partOf = [ "graphical-session.target" ];
-          after = [ "graphical-session.target" ];
-          serviceConfig = {
-            Type = "dbus";
-            BusName = "org.freedesktop.Notifications";
-            ConditionEnvironment = "WAYLAND_DISPLAY";
-            ExecStart = "${pkgs.mako}/bin/mako";
-            ExecReload = "${pkgs.mako}/bin/makoctl reload";
-          };
-          environment.PATH = lib.mkForce null;
-          wantedBy = [ "sway-session.target" ];
-        };
+        services.swaync.wantedBy = [ "sway-session.target" ];
 
         services.waybar = {
           description = "Highly customizable bar for Sway";
