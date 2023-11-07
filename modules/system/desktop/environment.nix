@@ -2,6 +2,7 @@
   environment = {
     sessionVariables = {
       EDITOR = "nvim";
+      MANPAGER = "nvim +Man!";
 
       # XDG base dir
       XDG_CONFIG_HOME = "$HOME/.config";
