@@ -135,6 +135,26 @@
         "type": "github"
       }
     },
+    "nix-index-db": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1699156599,
+        "narHash": "sha256-Qk9ZE/pG9lNIGUVNArJxL0Hc0Soa92eQPPIhcDwWinU=",
+        "owner": "nix-community",
+        "repo": "nix-index-database",
+        "rev": "5388a4002179d6778d212dc2fdcc7ac3fdbd5b65",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nix-index-database",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1697456312,
@@ -245,6 +265,7 @@
         "graphite-kde": "graphite-kde",
         "home-manager": "home-manager",
         "interception-vimproved": "interception-vimproved",
+        "nix-index-db": "nix-index-db",
         "nixpkgs": "nixpkgs",
         "nixpkgs-fcitx": "nixpkgs-fcitx",
         "nvim": "nvim",

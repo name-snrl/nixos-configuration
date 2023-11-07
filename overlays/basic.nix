@@ -4,6 +4,10 @@ inputs: final: prev: {
     kotatogram-desktop-with-webkit
     ;
 
+  inherit (inputs.nix-index-db.packages.${final.system})
+    nix-index-with-db
+    ;
+
   neovim-unwrapped = inputs.nvim-nightly.packages.${final.system}.neovim;
 
   fcitx5-with-addons = inputs.nixpkgs-fcitx.legacyPackages.${final.system}.fcitx5-with-addons; # TODO remove me

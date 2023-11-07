@@ -4,6 +4,7 @@
   inputs = {
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nvim-nightly.inputs.nixpkgs.follows = "nixpkgs";
+    nix-index-db.inputs.nixpkgs.follows = "nixpkgs";
 
     dots.flake = false;
     graphite-gtk.flake = false;
@@ -13,6 +14,7 @@
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     shlyupa.url = "github:ilya-fedin/nur-repository";
+    nix-index-db.url = "github:nix-community/nix-index-database";
     nixpkgs-fcitx.url = "github:nixos/nixpkgs/35d8d1c9e71edd309a89c7eed0955935a184c04f";
 
     dots.url = "github:name-snrl/home";
