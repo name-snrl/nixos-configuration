@@ -1,4 +1,8 @@
 {
+  services.logind.extraConfig = ''
+    IdleAction=suspend
+    IdleActionSec=10min
+  '';
   users.mutableUsers = false;
   users.users = {
     default = {
