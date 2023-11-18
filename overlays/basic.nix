@@ -10,8 +10,6 @@ inputs: final: prev: {
 
   neovim-unwrapped = inputs.nvim-nightly.packages.${final.system}.neovim;
 
-  fcitx5-with-addons = inputs.nixpkgs-fcitx.legacyPackages.${final.system}.fcitx5-with-addons; # TODO remove me
-
   xdg-desktop-portal-wlr = prev.xdg-desktop-portal-wlr.overrideAttrs (oa: {
     patches = [
       (final.fetchpatch {
@@ -19,7 +17,6 @@ inputs: final: prev: {
         hash = "sha256-vRbGwF+ZAlL2kUnv/L93LuuOjTbPrdVJBKPRvYXjaBM=";
       })
     ];
-    
   });
 
   foot = prev.foot.overrideAttrs (oa: {
