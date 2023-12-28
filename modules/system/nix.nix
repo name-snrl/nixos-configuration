@@ -17,7 +17,7 @@
       builders-use-substitutes = true;
       # Prevent Nix from fetching the registry every time
       flake-registry = "${inputs.flake-registry}/flake-registry.json";
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [ "nix-command" "flakes" "ca-derivations" ];
       trusted-users = [ "root" "@wheel" config.users.users.default.name ];
       substituters = [
         "https://nix-community.cachix.org"

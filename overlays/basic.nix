@@ -11,6 +11,7 @@ inputs: final: prev: {
   neovim-unwrapped = inputs.nvim-nightly.packages.${final.system}.neovim;
 
   xdg-desktop-portal-wlr = prev.xdg-desktop-portal-wlr.overrideAttrs (oa: {
+    __contentAddressed = true;
     patches = [
       (final.fetchpatch {
         url = "https://github.com/emersion/xdg-desktop-portal-wlr/pull/282.patch";
@@ -20,6 +21,7 @@ inputs: final: prev: {
   });
 
   foot = prev.foot.overrideAttrs (oa: {
+    __contentAddressed = true;
     patches = [
       (final.fetchpatch {
         url = "https://codeberg.org/dnkl/foot/pulls/1099.patch";
@@ -70,6 +72,8 @@ inputs: final: prev: {
   };
 
   graphite-gtk-theme = prev.graphite-gtk-theme.overrideAttrs (_: {
+    __contentAddressed = true;
+
     version = "flake";
     src = inputs.graphite-gtk;
 
@@ -89,6 +93,8 @@ inputs: final: prev: {
   });
 
   graphite-kde-theme = prev.graphite-kde-theme.overrideAttrs (_: {
+    __contentAddressed = true;
+
     version = "flake";
     src = inputs.graphite-kde;
 
