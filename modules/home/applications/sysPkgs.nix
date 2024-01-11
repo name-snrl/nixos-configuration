@@ -12,7 +12,7 @@
       nvim-full
       page
       difftastic
-      gojq-as-jq
+      gojq
       ripgrep
       fd
       eza

@@ -27,6 +27,12 @@ inputs: final: prev: {
     mesonFlags = oa.mesonFlags ++ [ "-Dext-underline=enabled" ];
   });
 
+  gojq = with final; symlinkJoin {
+    name = "gojq";
+    paths = [ jq.man prev.gojq ];
+    postBuild = "mv $out/bin/gojq $out/bin/jq";
+  };
+
   xdragon = with final; let
     dg = writeShellApplication {
       name = "dg";

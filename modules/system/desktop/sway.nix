@@ -36,7 +36,7 @@
       playerctl
 
       #eww-wayland # TODO
-      gojq-as-jq # needs for move script
+      gojq # needs for move script
       glib # needs for theme script
       (tesseract.override { enableLanguages = [ "eng" ]; }) # get text from screenshot
     ];
