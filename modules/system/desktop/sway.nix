@@ -21,6 +21,7 @@
       qt6Packages.qtstyleplugin-kvantum
 
       swaylock-effects
+      scripts.sway-power
       wl-clipboard
       xdragon
       xdg-utils # wl-clipboard needs xdg-mime

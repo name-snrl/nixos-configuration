@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+script_name=$(basename "$0")
+
+usage() {
+    cat <<EOF
+$script_name is a bash script to switch the power to all sway(1) outputs and
+change the state of the automatic backlight calibration clight(1).
+
+Usage: $script_name [command]
+
+Commands:
+	on:	turn on outputs and backlight calibration
+	off:	turn off outputs and backlight calibration
+
+Options:
+	-h, --help
+		display this help message
+EOF
+    exit
+}
+
+if [[ ! $* ]]; then usage; fi
+case ${1} in
+    -h | --help)
+        usage
+        ;;
+    off | on)
+        command=$1
+        ;;
+    *)
+        echo "$script_name: bad argument" >&2
+        exit 1
+        ;;
+esac
+
+is_lid_closed="$(busctl -j get-property org.freedesktop.login1 \
+    /org/freedesktop/login1 org.freedesktop.login1.Manager LidClosed |
+    jq -r '.data')"
+
+if [[ $is_lid_closed == false ]] || pgrep systemd-inhibit; then
+    if [[ $command == on ]]; then
+        sway output '*' power "$command" &>/dev/null
+        busctl --user set-property org.clight.clight \
+            /org/clight/clight/Conf/Backlight org.clight.clight.Conf.Backlight \
+            NoAutoCalib "b" false
+        echo screen on
+    else
+        busctl --user set-property org.clight.clight \
+            /org/clight/clight/Conf/Backlight org.clight.clight.Conf.Backlight \
+            NoAutoCalib "b" true
+        sway output '*' power "$command" &>/dev/null
+        echo screen off
+    fi
+fi
