@@ -78,30 +78,32 @@ rec {
     flatten (forEach modules f);
 
   # Hosts system TODO
-  attrsFromHosts = dir: genAttrs (builtins.attrNames (builtins.readDir dir));
-
-  mkHosts = dir: inputs: (attrsFromHosts dir)
-    (name:
-      nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit inputs expandTrees;
-          inherit (inputs.self) nixosModules;
-        };
-        modules = [ /${dir}/${name} { networking.hostName = name; } ] ++
-          filter (val: isPath val) (attrValues inputs.self.nixosModules);
-      });
+  mkHosts = dir: inputs:
+    genAttrs
+      (attrNames (builtins.readDir dir))
+      (name:
+        nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = {
+            inherit inputs expandTrees;
+            inherit (inputs.self) nixosModules;
+          };
+          modules = [ /${dir}/${name} { networking.hostName = name; } ] ++
+            filter (val: isPath val) (attrValues inputs.self.nixosModules);
+        });
 
   hostsAsPkgs = cfgs:
-    foldAttrs (x: y: x // y) { }
+    foldAttrs
+      (x: y: x // y)
+      { }
       (concatLists
-        (forEach (attrNames cfgs)
+        (forEach
+          (attrNames cfgs)
           (name:
-            with cfgs.${name}.config.system;
-            with cfgs.${name}.pkgs;
+            with cfgs.${name};
             if name == "liveCD"
-            then [{ ${system}.${name} = build.isoImage; }]
-            else [{ ${system}.${name} = build.toplevel; }])
+            then [{ ${pkgs.system}.${name} = config.system.build.isoImage; }]
+            else [{ ${pkgs.system}.${name} = config.system.build.toplevel; }])
         )
       );
 }
