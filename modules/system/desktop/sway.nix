@@ -1,7 +1,7 @@
 { lib, pkgs, ... }: {
   programs.sway = {
     enable = true;
-    package = with pkgs; sway.override { sway-unwrapped = swayfx; };
+    package = pkgs.swayfx;
     wrapperFeatures.gtk = true;
     extraSessionCommands = ''
       export _JAVA_AWT_WM_NONREPARENTING=1
