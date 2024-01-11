@@ -1,7 +1,7 @@
 inputs: with inputs;
 nixpkgs.lib.composeManyExtensions [
-  self.overlays.basic
-  self.overlays.scripts
-  self.overlays.symlinks
+  self.overlays.overrides
+  self.overlays.gateway
+  self.overlays.pkgs
   nvim.overlays.default
 ]

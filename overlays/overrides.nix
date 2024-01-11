@@ -1,21 +1,17 @@
+/*
+ * Overlay that overrides existing packages.
+ */
 inputs: final: prev: {
-
-  inherit (inputs.shlyupa.packages.${final.system})
-    kotatogram-desktop-with-webkit
-    ;
-
-  inherit (inputs.nix-index-db.packages.${final.system})
-    nix-index-with-db
-    ;
 
   neovim-unwrapped = inputs.nvim-nightly.packages.${final.system}.neovim;
 
+  # remove on release > 0.7.0
   xdg-desktop-portal-wlr = prev.xdg-desktop-portal-wlr.overrideAttrs (oa: {
     __contentAddressed = true;
     patches = [
       (final.fetchpatch {
         url = "https://github.com/emersion/xdg-desktop-portal-wlr/pull/282.patch";
-        hash = "sha256-vRbGwF+ZAlL2kUnv/L93LuuOjTbPrdVJBKPRvYXjaBM=";
+        hash = "sha256-HqmjS7APOeXhrhKdrzUGL8hLL6x5C8m5nvYP8O+jJFo=";
       })
     ];
   });

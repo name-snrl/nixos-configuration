@@ -11,7 +11,7 @@ rec {
       };
     };
 
-  mkSymlinks = links: _: pkgs:
+  mkSymlinks = pkgs: links:
     mapAttrs'
       (target: linkName: rec {
         name = "${target}-as-${linkName}";
@@ -27,6 +27,10 @@ rec {
       (name: _:
         nameValuePair (removeSuffix ".nix" name) (import /${dir}/${name} inputs))
       (filtredReadDir dir);
+
+  trimShebang =
+    let removeShebangs = lib.filter (line: line != "" && !(lib.hasPrefix "#!" line));
+    in script: lib.concatLines (removeShebangs (lib.splitString "\n" script));
 
   # Module system
   filtredReadDir = dir:

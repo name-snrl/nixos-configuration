@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+rows=15
+
+# if last arg is a number, use it as arg for grep
+if [[ ${!#} =~ ^[0-9]+$ ]]; then
+    rows=${!#}
+    set -- "${@:1:$#-1}"
+fi
+
+dict "$@" | grep -m 1 -A "$rows" "1\."
