@@ -40,6 +40,7 @@
       mpv
       swayimg
       sioyek
+      pcmanfm-qt
       lxqt.pavucontrol-qt
 
       # themes
