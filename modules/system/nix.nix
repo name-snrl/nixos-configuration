@@ -1,9 +1,7 @@
-{ config, pkgs, inputs, ... }: {
+{ config, inputs, ... }: {
   imports = [ inputs.shlyupa.nixosModules.cache ];
   nur.ilya-fedin.cache.enable = true;
   nix = {
-    package = pkgs.nixUnstable;
-
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
     registry = {
