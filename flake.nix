@@ -10,15 +10,12 @@
     graphite-gtk.flake = false;
     graphite-kde.flake = false;
     flake-registry.flake = false;
-    interception-vimproved.flake = false;
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     shlyupa.url = "github:ilya-fedin/nur-repository";
-    nix-index-db.url = "github:nix-community/nix-index-database";
-
-    dots.url = "github:name-snrl/home";
     home-manager.url = "github:nix-community/home-manager/master";
 
+    dots.url = "github:name-snrl/home";
     nvim.url = "github:name-snrl/nvim";
     nvim-nightly.url = "github:neovim/neovim?dir=contrib";
 
@@ -26,7 +23,7 @@
     graphite-kde.url = "github:vinceliuice/graphite-kde-theme";
 
     flake-registry.url = "github:nixos/flake-registry";
-    interception-vimproved.url = "github:name-snrl/interception-vimproved";
+    nix-index-db.url = "github:nix-community/nix-index-database";
   };
 
   outputs = inputs: with inputs.self.lib;

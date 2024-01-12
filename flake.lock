@@ -119,22 +119,6 @@
         "type": "github"
       }
     },
-    "interception-vimproved": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1675003598,
-        "narHash": "sha256-1oaJtI+2/jr4eTxWe/9c+AI5VoLINkmbLpPHBvu1txQ=",
-        "owner": "name-snrl",
-        "repo": "interception-vimproved",
-        "rev": "47c27414c25f0a3802790248a5fd003da27736a6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "name-snrl",
-        "repo": "interception-vimproved",
-        "type": "github"
-      }
-    },
     "nix-index-db": {
       "inputs": {
         "nixpkgs": [
@@ -248,7 +232,6 @@
         "graphite-gtk": "graphite-gtk",
         "graphite-kde": "graphite-kde",
         "home-manager": "home-manager",
-        "interception-vimproved": "interception-vimproved",
         "nix-index-db": "nix-index-db",
         "nixpkgs": "nixpkgs",
         "nvim": "nvim",
