@@ -11,17 +11,6 @@ rec {
       };
     };
 
-  mkSymlinks = pkgs: links:
-    mapAttrs'
-      (target: linkName: rec {
-        name = "${target}-as-${linkName}";
-        value = pkgs.runCommand name { } ''
-          mkdir -p "$out/bin"
-          ln -sfn "${getExe pkgs.${target}}" "$out/bin/${linkName}"
-        '';
-      })
-      links;
-
   mkOverlays = dir: inputs:
     mapAttrs'
       (name: _:
