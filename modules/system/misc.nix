@@ -13,5 +13,5 @@
 
   # junk out
   programs.less.enable = lib.mkForce false;
-  programs.nano.syntaxHighlight = false;
+  programs.nano.enable = false;
 }
