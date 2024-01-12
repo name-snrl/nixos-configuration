@@ -5,6 +5,10 @@ inputs: final: prev: {
 
   neovim-unwrapped = inputs.nvim-nightly.packages.${final.system}.neovim;
 
+  # TODO https://discourse.nixos.org/t/what-is-the-right-way-to-add-optional-pkgs-to-nixos-binary-cache/37547
+  swayfx-unwrapped = prev.swayfx-unwrapped.overrideAttrs (_: { __contentAddressed = true; });
+  openvpn3 = prev.openvpn3.overrideAttrs (_: { __contentAddressed = true; });
+
   # remove on release > 0.7.0
   xdg-desktop-portal-wlr = prev.xdg-desktop-portal-wlr.overrideAttrs (oa: {
     __contentAddressed = true;
