@@ -24,6 +24,7 @@ let cfgPath = "~/nixos-configuration"; in {
     nswitch = "nixos-rebuild switch --use-remote-sudo --fast --flake ${cfgPath}";
     nbuild = "nix build --no-link ${cfgPath}#${config.networking.hostName}";
     nupdate = "nix flake update --commit-lock-file ${cfgPath}";
+    # TODO with nix 2.19, nlock is no longer needed to update inputs
     nlock = "nix flake lock --commit-lock-file ${cfgPath}";
     # https://github.com/NixOS/nix/issues/8508
     nclear = "sudo nix-collect-garbage --delete-old && nix-collect-garbage --delete-old";
