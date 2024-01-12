@@ -1,14 +1,12 @@
-{ pkgs, ... }: {
-  virtualisation = {
-    docker = {
-      enable = true;
-      enableOnBoot = false;
-    };
-    libvirtd = {
-      enable = true;
-      onBoot = "ignore";
-    };
+{
+  programs.virt-manager.enable = true;
+  virtualisation.libvirtd = {
+    enable = true;
+    onBoot = "ignore";
+  };
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = false;
   };
   users.users.default.extraGroups = [ "libvirtd" "docker" ];
-  environment.systemPackages = with pkgs; [ virt-manager ];
 }
