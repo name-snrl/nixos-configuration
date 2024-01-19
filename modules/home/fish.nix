@@ -9,6 +9,19 @@
       ${coreutils}/bin/dircolors -c | source
       ${zoxide}/bin/zoxide init --cmd j fish | source
 
+      # Globbing exclusion functional
+      function exclude
+          argparse a/all -- $argv || return
+          set cmd '${fd}/bin/fd --max-depth 1 --glob'
+          if set -ql _flag_a
+              set cmd "$cmd -H"
+          end
+          for path in $argv
+              set cmd "$cmd --exclude '$path'"
+          end
+          eval $cmd
+      end
+
       # Nix tricks
       function njump;   cd $(string split -f1-4 / (nwhich $argv) | string join /); end
       function nwhich;  ${coreutils}/bin/readlink -f (${which}/bin/which $argv); end
