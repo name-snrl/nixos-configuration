@@ -1,5 +1,6 @@
 lib: with lib;
 rec {
+  # Package system
   forAllSystems = genAttrs systems.flakeExposed;
 
   unfreePkgs = nixpkgs: overlay: system:
@@ -15,9 +16,11 @@ rec {
         nameValuePair (removeSuffix ".nix" name) (import /${dir}/${name} inputs))
       (filtredReadDir dir);
 
-  trimShebang =
-    let removeShebangs = lib.filter (line: line != "" && !(lib.hasPrefix "#!" line));
-    in script: lib.concatLines (removeShebangs (lib.splitString "\n" script));
+  trimShebang = script:
+    lib.concatLines
+      (lib.filter
+        (line: line != "" && !(lib.hasPrefix "#!" line))
+        (lib.splitString "\n" script));
 
   # Module system
   filtredReadDir = dir:
