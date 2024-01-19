@@ -34,7 +34,7 @@
 
       nixosConfigurations = mkHosts ./hosts inputs;
 
-      legacyPackages = forAllSystems (mkPkgs inputs.nixpkgs overlays.default);
+      legacyPackages = forAllSystems (unfreePkgs inputs.nixpkgs overlays.default);
 
       overlays = mkOverlays ./overlays inputs;
 

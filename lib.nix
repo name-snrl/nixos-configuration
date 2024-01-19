@@ -2,13 +2,11 @@ lib: with lib;
 rec {
   forAllSystems = genAttrs systems.flakeExposed;
 
-  mkPkgs = nixpkgs: overlay: system:
+  unfreePkgs = nixpkgs: overlay: system:
     import nixpkgs {
       inherit system;
       overlays = singleton overlay;
-      config = {
-        allowUnfree = true;
-      };
+      config.allowUnfree = true;
     };
 
   mkOverlays = dir: inputs:
