@@ -103,6 +103,7 @@ inputs: final: prev: {
 
     version = "flake";
     src = inputs.graphite-kde;
+    propagatedUserEnvPkgs = [];
 
     installPhase = ''
       runHook preInstall
