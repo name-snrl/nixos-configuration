@@ -27,7 +27,6 @@
       zoxide
       cloc
       tealdeer
-      scripts.dict
       librespeed-cli
 
       # GUI
