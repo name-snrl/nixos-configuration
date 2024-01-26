@@ -68,8 +68,6 @@
           before = [ "xdg-desktop-autostart.target" ];
         };
 
-        services."app-geoclue\\x2ddemo\\x2dagent@autostart".enable = false; # TODO https://github.com/NixOS/nixpkgs/pull/262625
-
         tmpfiles.rules = with pkgs; [
           "L+ %h/.config/autostart/firefox.desktop                 - - - - ${firefox-wayland}/share/applications/firefox.desktop"
           "L+ %h/.config/autostart/org.flameshot.Flameshot.desktop - - - - ${flameshot}/share/applications/org.flameshot.Flameshot.desktop"
