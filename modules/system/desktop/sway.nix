@@ -21,7 +21,6 @@
       qt6Packages.qtstyleplugin-kvantum
 
       swaylock-effects
-      scripts.sway-power
       wl-clipboard
       xdragon
       xdg-utils # wl-clipboard needs xdg-mime
@@ -69,7 +68,6 @@
           before = [ "xdg-desktop-autostart.target" ];
         };
 
-        services."app-clight@autostart".enable = false; # TODO https://github.com/NixOS/nixpkgs/pull/262624
         services."app-geoclue\\x2ddemo\\x2dagent@autostart".enable = false; # TODO https://github.com/NixOS/nixpkgs/pull/262625
 
         tmpfiles.rules = with pkgs; [

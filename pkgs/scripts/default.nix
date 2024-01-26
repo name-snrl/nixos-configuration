@@ -11,9 +11,4 @@
     text = trimShebang (lib.readFile ./sf);
   };
 
-  sway-power = writeShellApplication {
-    name = "sway-power";
-    runtimeInputs = [ jq procps ];
-    text = trimShebang (lib.readFile ./sway-power);
-  };
 }

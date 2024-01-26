@@ -20,6 +20,32 @@ inputs: final: prev: {
     ];
   });
 
+  # TODO push to upstream
+  wluma = prev.wluma.overrideAttrs (oa: {
+    nativeBuildInputs = oa.nativeBuildInputs ++ [ prev.pandoc ];
+
+    patches = [ ./0001-don-t-install-bin.patch ];
+
+    postPatch = ''
+      substituteInPlace 90-wluma-backlight.rules \
+        --replace "/bin/chgrp" "${prev.coreutils}/bin/chgrp" \
+        --replace "/bin/chmod" "${prev.coreutils}/bin/chmod"
+
+      substituteInPlace wluma.service \
+        --replace "/usr/bin" "$out/bin"
+    '';
+
+    postBuild = ''
+      # nixpkgs doesn't have marked-man, so create manpages using pandoc
+      pandoc --standalone --to man README.md -o "$pname.7"
+      gzip "$pname.7"
+    '';
+
+    postInstall = oa.postInstall + ''
+      make PREFIX=$out install
+    '';
+  });
+
   foot = prev.foot.overrideAttrs (oa: {
     __contentAddressed = true;
     patches = [
@@ -103,7 +129,7 @@ inputs: final: prev: {
 
     version = "flake";
     src = inputs.graphite-kde;
-    propagatedUserEnvPkgs = [];
+    propagatedUserEnvPkgs = [ ];
 
     installPhase = ''
       runHook preInstall

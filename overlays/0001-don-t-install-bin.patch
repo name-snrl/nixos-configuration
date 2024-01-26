@@ -1,0 +1,24 @@
+From aed3666e318383e2f55cab8eb9c4cf20b0c4d3c6 Mon Sep 17 00:00:00 2001
+From: name_snrl <Demogorgon-74@ya.ru>
+Date: Tue, 23 Jan 2024 13:31:20 +0500
+Subject: [PATCH] don't install bin
+
+---
+ Makefile | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index 7ee043d..8660bd2 100644
+--- a/Makefile
++++ b/Makefile
+@@ -38,7 +38,6 @@ docs:
+ 
+ .PHONY: install
+ install:
+-	install -Dm755 -t "$(BIN_DIR)/" "target/release/$(BIN)"
+ 	install -Dm644 -t "$(LIB_DIR)/udev/rules.d/" "90-$(BIN)-backlight.rules"
+ 	install -Dm644 -t "$(LIB_DIR)/systemd/user" "$(BIN).service"
+ 	install -Dm644 -t "$(SHARE_DIR)/licenses/$(BIN)/" LICENSE
+-- 
+2.42.0
+
