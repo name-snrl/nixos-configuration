@@ -1,14 +1,23 @@
-{ pkgs, ...}: {
+# TODO this module must be reduced to the size of 3 lines:
+#
+# programs.wluma.enable = true;
+# users.users.default.extraGroups = [ "video" ];
+# environment.systemPackages = [ pkgs.wl-gammarelay-rs ];
+#
+# and then can be completely moved to `sway`.
+{ pkgs, ... }: {
+  # TODO move module in upstream
   # wluma
   environment.systemPackages = [ pkgs.wluma ];
   services.udev.packages = [ pkgs.wluma ];
   systemd = {
     packages = [ pkgs.wluma ];
-    user.services.wluma.wantedBy = [ "graphical-session.target" ];
+    user.services.wluma.wantedBy = [ "sway-session.target" ];
     # TODO remove after version with https://github.com/maximbaz/wluma/pull/93
     user.services.wluma.serviceConfig.PrivateMounts = false;
   };
   users.users.default.extraGroups = [ "video" ];
+  # TODO replace with `wl-gammarelay-rs`
   # clight
   systemd.user.services."app-clight@autostart".enable = false; # TODO https://github.com/NixOS/nixpkgs/pull/262624
   services.clight = {
