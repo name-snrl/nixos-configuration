@@ -15,7 +15,7 @@
 
   # GPU acceleration
   environment.sessionVariables.LIBVA_DRIVER_NAME = "i965";
-  hardware.opengl.extraPackages = with pkgs; [ beignet intel-vaapi-driver ];
+  hardware.opengl.extraPackages = with pkgs; [ intel-vaapi-driver ];
 
   host-specs = {
     device-type = "laptop";
