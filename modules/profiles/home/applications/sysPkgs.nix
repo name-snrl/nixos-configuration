@@ -9,8 +9,6 @@
       tcpdump # tcpdump -i wireCat port 67 or port 68 -n -vv
 
       # base
-      nvim-full
-      page
       difftastic
       gojq
       ripgrep
