@@ -22,14 +22,17 @@
   systemd.user.services."app-clight@autostart".enable = false; # TODO https://github.com/NixOS/nixpkgs/pull/262624
   services.clight = {
     enable = true;
-    temperature.day = 5700;
-    temperature.night = 4000;
+    temperature.day = 6500;
+    temperature.night = 5000;
     settings = {
       daytime = {
         sunrise = "7:00";
         sunset = "23:00";
       };
-      backlight.disabled = true;
+      backlight = {
+        no_auto_calibration = true;
+        no_smooth_transition = true;
+      };
       inhibit.disabled = true;
       keyboard.disabled = true;
       dimmer.disabled = true;
