@@ -1,4 +1,4 @@
-{ pkgs, byAttrs, ... }: {
+{ lib, pkgs, config, byAttrs, ... }: {
   imports = [ ./hw-config.nix ];
 
   disabledModules = byAttrs {
@@ -14,8 +14,14 @@
   powerManagement.cpuFreqGovernor = "schedutil";
 
   # GPU acceleration
-  environment.sessionVariables.LIBVA_DRIVER_NAME = "i965";
-  hardware.opengl.extraPackages = with pkgs; [ intel-vaapi-driver ];
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "i965";
+    VDPAU_DRIVER = lib.mkIf config.hardware.opengl.enable (lib.mkDefault "va_gl");
+  };
+  hardware.opengl.extraPackages = with pkgs; [
+    intel-vaapi-driver
+    libvdpau-va-gl
+  ];
 
   host-specs = {
     device-type = "laptop";
