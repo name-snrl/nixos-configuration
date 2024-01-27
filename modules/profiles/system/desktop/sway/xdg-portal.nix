@@ -1,7 +1,8 @@
-{
-  xdg.portal.wlr.settings.screencast = {
-    output_name = "eDP-1"; # TODO per system option
-    max_fps = 60;
-    chooser_type = "none";
-  };
+{ config, lib, ... }: {
+  xdg.portal.wlr.settings.screencast =
+    lib.mkIf (lib.isString config.host-specs.output-name) {
+      output_name = config.host-specs.output-name;
+      max_fps = 60;
+      chooser_type = "none";
+    };
 }

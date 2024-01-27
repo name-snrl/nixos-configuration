@@ -17,6 +17,18 @@
   environment.sessionVariables.LIBVA_DRIVER_NAME = "i965";
   hardware.opengl.extraPackages = with pkgs; [ beignet vaapiIntel ];
 
+  host-specs = {
+    device-type = "laptop";
+    output-name = "eDP-1";
+    cores = 4;
+    ram = 8;
+    wifi = true;
+    bluetooth = true;
+    battery = true;
+    webcam = true;
+    als = false;
+  };
+
   nixpkgs.hostPlatform = "x86_64-linux";
   system.stateVersion = "22.05";
 }

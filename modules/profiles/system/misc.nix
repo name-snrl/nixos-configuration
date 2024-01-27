@@ -1,6 +1,11 @@
+{ config, lib, ... }:
+let
+  isPC = with config.host-specs;
+    device-type == "laptop" || device-type == "desktop";
+in
 {
-  programs.adb.enable = true; # TODO if desktop
-  users.users.default.extraGroups = [ "adbusers" ]; # TODO if desktop
+  programs.adb.enable = isPC;
+  users.users.default.extraGroups = lib.mkIf isPC [ "adbusers" ];
 
   services = {
     dbus.implementation = "broker";

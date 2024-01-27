@@ -1,10 +1,16 @@
-{ pkgs, lib, ... }: {
+{ config, pkgs, lib, ... }:
+let
+  isPC = with config.host-specs;
+    device-type == "laptop" || device-type == "desktop";
+in
+{
   boot = {
-    kernelPackages = pkgs.linuxPackages_zen; # TODO if desktop
+    kernelPackages = lib.mkIf isPC pkgs.linuxPackages_zen;
     initrd.systemd.enable = true;
     initrd.includeDefaultModules = false;
-    supportedFilesystems = [ "ntfs" ]; # TODO if desktop
-    tmp.useTmpfs = true; # TODO depends on RAM
+    supportedFilesystems = lib.mkIf isPC [ "ntfs" ];
+    tmp.useTmpfs = with config.host-specs;
+      if lib.isInt ram && ram > 7 then true else false;
 
     loader = {
       efi.canTouchEfiVariables = false;
