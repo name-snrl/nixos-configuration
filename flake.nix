@@ -30,7 +30,7 @@
     rec {
       lib = import ./lib.nix inputs.nixpkgs.lib;
 
-      nixosModules = mkModules ./modules;
+      nixosModules = mkModuleTree ./modules;
 
       nixosConfigurations = mkHosts ./hosts inputs;
 

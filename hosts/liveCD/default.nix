@@ -1,15 +1,16 @@
-{ lib, pkgs, inputs, modulesPath, nixosModules, expandTrees, ... }: {
+{ lib, pkgs, inputs, modulesPath, byAttrs, ... }: {
   imports = [
     "${modulesPath}/profiles/all-hardware.nix"
     "${modulesPath}/installer/cd-dvd/iso-image.nix"
   ];
-  disabledModules = with nixosModules;
-    expandTrees [
-      tor
-      battery
-      logging
-      work
-    ];
+  disabledModules = byAttrs {
+    system = {
+      networking.tor = false;
+      hardware.battery = false;
+      logging = false;
+      desktop.work = false;
+    };
+  };
   boot = {
     loader.grub.memtest86.enable = true;
     initrd.includeDefaultModules = lib.mkForce true;
@@ -34,5 +35,6 @@
       ${pkgs.fd}/bin/fd -e sh -H --search-path ~ -x chmod +x
     '';
   };
+  nixpkgs.hostPlatform = "x86_64-linux";
   system.stateVersion = lib.trivial.release;
 }

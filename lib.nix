@@ -1,5 +1,10 @@
 lib: with lib;
 rec {
+  filtredReadDir = dir:
+    filterAttrs
+      (name: type: type == "directory" || hasSuffix ".nix" name)
+      (builtins.readDir dir);
+
   # Package system
   forAllSystems = genAttrs systems.flakeExposed;
 
@@ -22,65 +27,44 @@ rec {
         (line: line != "" && !(lib.hasPrefix "#!" line))
         (lib.splitString "\n" script));
 
-  # Module system
-  filtredReadDir = dir:
-    filterAttrs
-      (name: type: type == "directory" || hasSuffix ".nix" name)
-      (builtins.readDir dir);
+  # Modular system
+  moduleTreeToList = set: flatten
+    (mapAttrsToList (_: v: if isPath v then v else moduleTreeToList v) set);
 
-  mkAttrsTree = dir:
+  mkModuleTree = dir:
     mapAttrs'
       (name: type:
         if type == "directory"
-        then nameValuePair name (mkAttrsTree /${dir}/${name})
+        then nameValuePair name (mkModuleTree /${dir}/${name})
+        else if name == "default.nix"
+        then nameValuePair "self" /${dir}/${name}
         else nameValuePair (removeSuffix ".nix" name) /${dir}/${name})
       (filtredReadDir dir);
 
-  mkModules = dir:
-    let
-      listOfPaths = dir: flatten (mapAttrsToList
-        (name: type:
-          if type == "directory"
-          then [ /${dir}/${name + "Tree"} (listOfPaths /${dir}/${name}) ]
-          else /${dir}/${name})
-        (filtredReadDir dir));
-    in
-    listToAttrs
-      (forEach (listOfPaths dir)
-        (path:
-          if ! hasSuffix "Tree" (baseNameOf path) then
-            if baseNameOf path == "default.nix"
-            then nameValuePair (baseNameOf (dirOf path)) path
-            else nameValuePair (removeSuffix ".nix" (baseNameOf path)) path
-          else
-            nameValuePair
-              (baseNameOf path)
-              (mkAttrsTree /${dirOf path}/${removeSuffix "Tree" (baseNameOf path)})
-        ));
+  modulesFromAttrs = modules: set:
+    moduleTreeToList
+      (mapAttrsRecursive
+        (path: value:
+          throwIfNot (isBool value)
+            ("Check the path ${concatStringsSep "." path}, "
+              + "the value should be of type boolean")
+            (if value then { } else getAttrFromPath path modules))
+        set);
 
-  expandTrees = modules:
-    let
-      f = mod:
-        if isAttrs mod
-        then forEach (attrValues mod) f
-        else mod;
-    in
-    flatten (forEach modules f);
-
-  # Hosts system TODO
+  # Hosts system
   mkHosts = dir: inputs:
     genAttrs
       (attrNames (builtins.readDir dir))
-      (name:
-        nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = {
-            inherit inputs expandTrees;
-            inherit (inputs.self) nixosModules;
-          };
-          modules = [ /${dir}/${name} { networking.hostName = name; } ] ++
-            filter (val: isPath val) (attrValues inputs.self.nixosModules);
-        });
+      (name: nixosSystem {
+        specialArgs = {
+          inherit inputs;
+          byAttrs = modulesFromAttrs inputs.self.nixosModules;
+        };
+        modules = [
+          /${dir}/${name}
+          { networking.hostName = name; }
+        ] ++ moduleTreeToList inputs.self.nixosModules;
+      });
 
   hostsAsPkgs = cfgs:
     foldAttrs
