@@ -2,7 +2,7 @@
   imports = [ ./hw-config.nix ];
 
   disabledModules = byAttrs {
-    system.servers.openssh = false;
+    profiles.system.servers.openssh = false;
   };
 
   boot.initrd.kernelModules = [ "i915" ]; # Enable early KMS

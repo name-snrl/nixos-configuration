@@ -4,7 +4,7 @@
     "${modulesPath}/installer/cd-dvd/iso-image.nix"
   ];
   disabledModules = byAttrs {
-    system = {
+    profiles.system = {
       networking.tor = false;
       hardware.battery = false;
       logging = false;
