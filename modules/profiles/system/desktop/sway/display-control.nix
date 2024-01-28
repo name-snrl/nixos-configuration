@@ -23,7 +23,7 @@
   services.clight = {
     enable = true;
     temperature.day = 6500;
-    temperature.night = 5000;
+    temperature.night = 5500;
     settings = {
       daytime = {
         sunrise = "7:00";
