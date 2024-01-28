@@ -9,6 +9,7 @@
     sessionVariables = {
       EDITOR = "nvim";
       MANPAGER = "nvim +Man!";
+      DFT_DISPLAY = "inline"; # difftastic mode
 
       XDG_CONFIG_HOME = "$HOME/.config";
       XDG_CACHE_HOME = "$HOME/.cache";
