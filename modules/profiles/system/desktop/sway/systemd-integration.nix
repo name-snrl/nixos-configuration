@@ -60,15 +60,6 @@ in
         wantedBy = [ "sway-session.target" ];
       };
 
-      services.autotiling = {
-        description = "Automatically alternates the container layout";
-        partOf = [ "graphical-session.target" ];
-        script = "${pkgs.autotiling-rs}/bin/autotiling-rs";
-        serviceConfig = serviceConf;
-        environment.PATH = lib.mkForce null; # TODO probably won't be needed in HM
-        wantedBy = [ "sway-session.target" ];
-      };
-
       services.wl-clip-persist = {
         description = "Keep clipboard even after programs close";
         partOf = [ "graphical-session.target" ];
