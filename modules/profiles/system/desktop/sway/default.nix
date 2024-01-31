@@ -2,6 +2,7 @@
   programs.sway = {
     enable = true;
     package = pkgs.swayfx;
+    extraPackages = [ ];
     wrapperFeatures.gtk = true;
     extraSessionCommands = ''
       export _JAVA_AWT_WM_NONREPARENTING=1
