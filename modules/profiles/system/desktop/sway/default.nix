@@ -27,6 +27,7 @@
     systemPackages = with pkgs; [
       swaylock-effects
       wl-clipboard
+      cliphist
       xdragon
       xdg-utils # wl-clipboard needs xdg-mime
       wl-screenrec # screencast
