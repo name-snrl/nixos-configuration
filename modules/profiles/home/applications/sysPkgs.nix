@@ -9,6 +9,7 @@
       tcpdump # tcpdump -i wireCat port 67 or port 68 -n -vv
 
       # base
+      zellij
       difftastic
       gojq
       ripgrep
