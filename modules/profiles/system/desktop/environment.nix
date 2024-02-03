@@ -7,8 +7,8 @@
       MANPAGER = "nvim +Man!";
       DFT_DISPLAY = "inline"; # difftastic mode
 
-      LESS = "FRSM";
-      SYSTEMD_LESS = "FRSM";
+      LESS = "FRSMi";
+      SYSTEMD_LESS = "FRSMi";
 
       XDG_CONFIG_HOME = "$HOME/.config";
       XDG_CACHE_HOME = "$HOME/.cache";
