@@ -63,15 +63,6 @@ inputs: final: prev: {
     postBuild = "mv $out/bin/gojq $out/bin/jq";
   };
 
-  page = with final; let
-    less = writeShellApplication {
-      name = "less";
-      runtimeInputs = [ prev.page ncurses ];
-      text = ''exec page -O "$(tput lines)" "$@"'';
-    };
-  in
-  symlinkJoin { name = "page"; paths = [ prev.page less ]; };
-
   swayimg = with final; let
     swim-wp = writeShellScriptBin "swim-wp" ''
       exec ${prev.swayimg}/bin/swayimg --fullscreen ${wallpapers}
