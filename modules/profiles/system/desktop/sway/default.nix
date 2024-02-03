@@ -29,6 +29,8 @@
       wl-clipboard
       cliphist
       xdragon
+      scripts.dg
+      scripts.fzf-dragon
       xdg-utils # wl-clipboard needs xdg-mime
       wl-screenrec # screencast
       flameshot

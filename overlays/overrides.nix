@@ -63,15 +63,6 @@ inputs: final: prev: {
     postBuild = "mv $out/bin/gojq $out/bin/jq";
   };
 
-  xdragon = with final; let
-    dg = writeShellApplication {
-      name = "dg";
-      runtimeInputs = [ prev.xdragon ];
-      text = ''dragon -T "$@" &>/dev/null &'';
-    };
-  in
-  symlinkJoin { name = "xdragon"; paths = [ prev.xdragon dg ]; };
-
   page = with final; let
     less = writeShellApplication {
       name = "less";
