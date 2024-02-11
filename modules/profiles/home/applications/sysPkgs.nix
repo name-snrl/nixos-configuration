@@ -26,7 +26,6 @@
       zoxide
       cloc
       tealdeer
-      librespeed-cli
 
       # GUI
       kotatogram-desktop-with-webkit
