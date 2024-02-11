@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 
+set -e
+
 service="https://0x0.st"
+
+green='\033[0;32m'
+yellow='\033[0;33m'
+blue='\033[0;34m'
+nc='\033[0m'
 
 script_name="$(basename "$0")"
 [[ ! $* && -t 0 ]] && {
@@ -11,29 +18,25 @@ script_name="$(basename "$0")"
     exit
 }
 
-load () {
+load() {
     if [[ ! -t 0 ]]; then
-        curl -F file=@- "$service"
         if [[ $* ]]; then
-            echo "------------------------------"
-            echo "The data from stdin were loaded"
+            printf "${yellow}%s${nc}\n\n" "Stdin data will be loaded:" >&2
         fi
+        curl -#F file=@- "$service"
     elif [[ -f $* ]]; then
-        curl -F file=@"$*" "$service"
+        curl -#F file=@"$*" "$service"
     elif [[ ! -f $* ]]; then
-        echo "$script_name: Argument is not a regular file" >&2
+        printf "${yellow}%s${nc}\n" "$script_name: The argument must be a single regular file" >&2
         exit 1
     else
-        echo "$script_name: Unexpected error" >&2
+        printf "${yellow}%s${nc}\n" "$script_name: Unexpected error" >&2
         exit 1
     fi
 }
 
-result="$(load "$*")"
-echo "------------------------------"
-echo "$result"
-
-[[ $result =~ ^"$service"/[[:alnum:]_+-]{4} ]] && {
-    echo "------------------------------"
-    wl-copy "$result" && echo "copied: Successfully!"
-}
+result=$(load "$*")
+printf "\n${blue}%s${nc} %s\n" "Response:" "$result"
+if [[ $result =~ ^"$service"/[[:alnum:]_+-]{4} ]] && wl-copy "$result"; then
+    printf "\n${green}%s${nc}\n" "Copied to clipboard!"
+fi
