@@ -1,5 +1,11 @@
 { pkgs, ... }: {
   programs.nano.enable = false;
+  programs.less.commands = {
+    "^l" = "undo-hilite";
+    m = "set-mark-bottom";
+    v = "pipe .${pkgs.ansifilter}/bin/ansifilter | nvim -R +'nnoremap <silent> <buffer> <nowait> q <Cmd>q!<CR>'\\r";
+    V = "pipe v${pkgs.ansifilter}/bin/ansifilter | nvim -R +'nnoremap <silent> <buffer> <nowait> q <Cmd>q!<CR>'\\r";
+  };
   environment = {
     systemPackages = with pkgs; [ nvim-full ];
     sessionVariables = {
