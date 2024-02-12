@@ -30,6 +30,11 @@
 
       # colors
       set fish_pager_color_prefix cyan --bold
+
+      # https://github.com/fish-shell/fish-shell/issues/10296
+      function fish_clipboard_paste
+          commandline -i -- (${osc}/bin/osc paste)
+      end
     '';
   };
 }
