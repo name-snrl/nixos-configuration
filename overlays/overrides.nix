@@ -9,17 +9,6 @@ inputs: final: prev: {
   swayfx-unwrapped = prev.swayfx-unwrapped.overrideAttrs (_: { __contentAddressed = true; });
   openvpn3 = prev.openvpn3.overrideAttrs (_: { __contentAddressed = true; });
 
-  # remove on release > 0.7.0
-  xdg-desktop-portal-wlr = prev.xdg-desktop-portal-wlr.overrideAttrs (oa: {
-    __contentAddressed = true;
-    patches = [
-      (final.fetchpatch {
-        url = "https://github.com/emersion/xdg-desktop-portal-wlr/pull/282.patch";
-        hash = "sha256-HqmjS7APOeXhrhKdrzUGL8hLL6x5C8m5nvYP8O+jJFo=";
-      })
-    ];
-  });
-
   # TODO push to upstream
   wluma = prev.wluma.overrideAttrs (oa: {
     nativeBuildInputs = oa.nativeBuildInputs ++ [ prev.pandoc ];
