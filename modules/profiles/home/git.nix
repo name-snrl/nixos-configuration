@@ -17,7 +17,6 @@
       };
 
       pager.difftool = true;
-      push.autoSetupRemote = true;
 
       diff = {
         tool = "difftastic";
@@ -28,11 +27,26 @@
         "difftastic".cmd = ''difft "$LOCAL" "$REMOTE"'';
       };
 
+      commit.verbose = true;
+
+      push = {
+        autoSetupRemote = true;
+        default = "current";
+      };
+
+      remote.pushdefault = "origin";
+
       alias = {
         st = "status";
-        cm = "commit -v";
-        cb = "switch -c";
+        cm = "commit";
+        sw = "switch";
         dt = "difftool";
+        fx = "commit --fixup";
+        au = "remote add -f upstream";
+        rb = "rebase --autosquash --autostash --interactive";
+        prb = "pull --rebase --autostash";
+        cb = "switch -c";
+        bd = "branch -D";
         l = "log --graph --pretty='%C(bold yellow)%h%Creset * %C(bold magenta)%an%Creset * %C(blue)%ar%Creset: %s %C(auto)%d%Creset'";
         lg = "log --graph --pretty=format:'%C(bold yellow)%h%Creset * %C(bold magenta)%an%Creset * %C(blue)%ar%Creset *%C(auto)%d%Creset%n%n%B'";
         # no blobs and no checkout, because checkout has been taught to bulk
