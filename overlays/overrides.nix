@@ -35,6 +35,14 @@ inputs: final: prev: {
     '';
   });
 
+  # https://github.com/flatpak/xdg-desktop-portal-gtk/issues/465
+  xdg-desktop-portal-gtk = prev.xdg-desktop-portal-gtk.overrideAttrs (_: {
+    postInstall = ''
+      substituteInPlace $out/share/xdg-desktop-portal/portals/gtk.portal \
+        --replace-fail 'org.freedesktop.impl.portal.Inhibit;' ""
+    '';
+  });
+
   foot = prev.foot.overrideAttrs (oa: {
     __contentAddressed = true;
     patches = [
