@@ -68,7 +68,6 @@ in
         environment.PATH = lib.mkForce null; # TODO probably won't be needed in HM
         wantedBy = [ "sway-session.target" ];
       };
-
     };
   };
 }

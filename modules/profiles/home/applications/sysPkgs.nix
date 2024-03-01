@@ -1,6 +1,10 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   environment = with pkgs; {
-    defaultPackages = [ rsync perl ];
+    defaultPackages = [
+      rsync
+      perl
+    ];
     systemPackages = [
       # system shit
       pciutils

@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   networking = {
     wireless.iwd.enable = config.host-specs.wifi;
     useNetworkd = true;

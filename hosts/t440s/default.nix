@@ -1,9 +1,14 @@
-{ lib, pkgs, config, byAttrs, ... }: {
+{
+  lib,
+  pkgs,
+  config,
+  byAttrs,
+  ...
+}:
+{
   imports = [ ./hw-config.nix ];
 
-  disabledModules = byAttrs {
-    profiles.system.servers.openssh = false;
-  };
+  disabledModules = byAttrs { profiles.system.servers.openssh = false; };
 
   boot.initrd.kernelModules = [ "i915" ]; # Enable early KMS
 

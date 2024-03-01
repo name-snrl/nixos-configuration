@@ -1,4 +1,5 @@
-inputs: with inputs;
+inputs:
+with inputs;
 nixpkgs.lib.composeManyExtensions [
   self.overlays.overrides
   self.overlays.gateway

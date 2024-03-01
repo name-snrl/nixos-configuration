@@ -8,5 +8,8 @@
     enable = true;
     enableOnBoot = false;
   };
-  users.users.default.extraGroups = [ "libvirtd" "docker" ];
+  users.users.default.extraGroups = [
+    "libvirtd"
+    "docker"
+  ];
 }

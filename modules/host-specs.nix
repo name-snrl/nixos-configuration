@@ -4,7 +4,14 @@
   options = {
     host-specs = with lib; {
       device-type = mkOption {
-        type = types.nullOr (types.enum [ "laptop" "desktop" "server" "phone" ]);
+        type = types.nullOr (
+          types.enum [
+            "laptop"
+            "desktop"
+            "server"
+            "phone"
+          ]
+        );
         default = null;
       };
 

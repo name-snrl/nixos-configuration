@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
-let cfgPath = "~/nixos-configuration"; in {
+let
+  cfgPath = "~/nixos-configuration";
+in
+{
   environment.shellAliases = {
     ip = "ip --color=auto";
     pg = "$PAGER";

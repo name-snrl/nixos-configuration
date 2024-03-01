@@ -1,4 +1,12 @@
-{ lib, pkgs, inputs, modulesPath, byAttrs, ... }: {
+{
+  lib,
+  pkgs,
+  inputs,
+  modulesPath,
+  byAttrs,
+  ...
+}:
+{
   imports = [
     "${modulesPath}/profiles/all-hardware.nix"
     "${modulesPath}/installer/cd-dvd/iso-image.nix"

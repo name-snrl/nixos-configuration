@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   security.pki.certificateFiles = [
     (builtins.fetchurl {
       url = "file:///home/${config.users.users.default.name}/nixos-configuration/tawasalca.crt";

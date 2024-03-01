@@ -1,7 +1,6 @@
 { config, lib, ... }:
 let
-  isPC = with config.host-specs;
-    device-type == "laptop" || device-type == "desktop";
+  isPC = with config.host-specs; device-type == "laptop" || device-type == "desktop";
 in
 {
   programs.adb.enable = isPC;

@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   users.defaultUserShell = pkgs.fish;
   environment.systemPackages = with pkgs.fishPlugins; [ autopair-fish ];
   programs.fish = {

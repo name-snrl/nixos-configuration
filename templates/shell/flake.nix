@@ -6,12 +6,15 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
-      with nixpkgs.legacyPackages.${system};
-      {
-        devShells.default = mkShellNoCC {
-          packages = [ ];
-        };
-      });
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+    }:
+    flake-utils.lib.eachDefaultSystem (
+      system: with nixpkgs.legacyPackages.${system}; {
+        devShells.default = mkShellNoCC { packages = [ ]; };
+      }
+    );
 }

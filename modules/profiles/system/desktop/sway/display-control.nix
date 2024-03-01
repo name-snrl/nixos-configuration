@@ -5,7 +5,8 @@
 # environment.systemPackages = [ pkgs.wl-gammarelay-rs ];
 #
 # and then can be completely moved to `sway`.
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # TODO move module in upstream
   # wluma
   environment.systemPackages = [ pkgs.wluma ];

@@ -26,8 +26,8 @@
     nix-index-db.url = "github:nix-community/nix-index-database";
   };
 
-  outputs = inputs: with inputs.self.lib;
-    rec {
+  outputs =
+    inputs: with inputs.self.lib; rec {
       lib = import ./lib.nix inputs.nixpkgs.lib;
 
       nixosModules = mkModuleTree ./modules;
@@ -42,6 +42,9 @@
 
       formatter = forAllSystems (system: legacyPackages.${system}.nixfmt-rfc-style);
 
-      templates.default = { path = ./templates/shell; description = "A minimal flake with a devShell."; };
+      templates.default = {
+        path = ./templates/shell;
+        description = "A minimal flake with a devShell.";
+      };
     };
 }
