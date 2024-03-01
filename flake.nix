@@ -40,7 +40,7 @@
 
       packages = hostsAsPkgs nixosConfigurations;
 
-      formatter = forAllSystems (system: legacyPackages.${system}.nixfmt); # https://github.com/NixOS/nixpkgs/issues/120832
+      formatter = forAllSystems (system: legacyPackages.${system}.nixfmt-rfc-style);
 
       templates.default = { path = ./templates/shell; description = "A minimal flake with a devShell."; };
     };
