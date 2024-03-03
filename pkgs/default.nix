@@ -43,7 +43,7 @@ in
       # languages stuff
       lua-language-server
       stylua
-      selene-wrapped
+      selene
 
       nixd
       nil
