@@ -7,7 +7,7 @@ in
     ip = "ip --color=auto";
     pg = "$PAGER";
     ls = "eza --group-directories-first";
-    rg = "rg --follow --hidden --smart-case --no-messages";
+    rg = "rg --follow --glob=!.git --hidden --smart-case --no-messages";
     fd = "fd --follow --hidden";
     dt = "difft";
     cl = "cloc";
