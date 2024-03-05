@@ -19,6 +19,8 @@
 
       pager.difftool = true;
 
+      merge.conflictStyle = "zdiff3";
+
       diff = {
         tool = "difftastic";
       };
