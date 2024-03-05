@@ -23,6 +23,7 @@
 
       diff = {
         tool = "difftastic";
+        algorithm = "patience";
       };
 
       difftool = {
