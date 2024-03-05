@@ -36,6 +36,7 @@
       commit.verbose = true;
 
       push = {
+        followtags = true;
         autoSetupRemote = true;
         default = "current";
       };
