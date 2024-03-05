@@ -30,6 +30,8 @@
         "difftastic".cmd = ''difft "$LOCAL" "$REMOTE"'';
       };
 
+      merge.autoStash = true;
+      rebase.autoStash = true;
       commit.verbose = true;
 
       push = {
@@ -46,8 +48,8 @@
         dt = "difftool";
         fx = "commit --fixup";
         au = "remote add -f upstream";
-        rb = "rebase --autosquash --autostash --interactive";
-        prb = "pull --rebase --autostash";
+        rb = "rebase --autosquash --interactive";
+        prb = "pull --rebase";
         cb = "switch -c";
         bd = "branch -D";
         l = "log --graph --pretty='%C(bold yellow)%h%Creset * %C(bold magenta)%an%Creset * %C(blue)%ar%Creset: %s %C(auto)%d%Creset'";
