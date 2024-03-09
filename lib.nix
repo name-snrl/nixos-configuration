@@ -21,8 +21,8 @@ lib: with lib; rec {
 
   trimShebang =
     script:
-    lib.concatLines (
-      lib.filter (line: line != "" && !(lib.hasPrefix "#!" line)) (lib.splitString "\n" script)
+    concatLines (
+      filter (line: line != "" && !(hasPrefix "#!" line)) (splitString "\n" script)
     );
 
   # Modular system
