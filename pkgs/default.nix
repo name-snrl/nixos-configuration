@@ -25,6 +25,7 @@ in
       nix
       fish
       scala
+      java
       starlark
       go
       rust
