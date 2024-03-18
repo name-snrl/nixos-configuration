@@ -12,9 +12,10 @@
   '';
   systemd.user.services.ck-client =
     let
+      ck-version = "2.8.0";
       ck-client = pkgs.fetchurl {
-        url = "https://github.com/cbeuw/Cloak/releases/download/v2.7.0/ck-client-linux-amd64-v2.7.0";
-        hash = "sha256-lP8KzK+FuqHpAuH8xKjYI3/AU7EbPDENYq4IEIsINk0=";
+        url = "https://github.com/cbeuw/Cloak/releases/download/v${ck-version}/ck-client-linux-amd64-v${ck-version}";
+        hash = "sha256-v5f8J2Ouh2q7KiekaKBjOMG23Y/alHu1GTt3oGb+KyA=";
         executable = true;
       };
     in
