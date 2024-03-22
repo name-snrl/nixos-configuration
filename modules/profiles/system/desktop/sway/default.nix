@@ -34,9 +34,9 @@
       scripts.fzf-dragon
       xdg-utils # wl-clipboard needs xdg-mime
       wl-screenrec # screencast
-      flameshot
       slurp
       grim
+      satty
       swaynotificationcenter
       foot
       (writeSymlinkBin foot "xterm") # https://gitlab.gnome.org/GNOME/glib/-/issues/338
