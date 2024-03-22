@@ -3,6 +3,7 @@
     IdleAction=suspend
     IdleActionSec=10min
   '';
+  security.sudo-rs.enable = true;
   users.mutableUsers = false;
   users.users = {
     default = {
