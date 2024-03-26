@@ -34,6 +34,7 @@
       merge.autoStash = true;
       rebase.autoStash = true;
       commit.verbose = true;
+      format.pretty = "format:%C(bold yellow)%h%Creset * %C(bold magenta)%an%Creset * %C(blue)%ai%Creset *%C(auto)%d%Creset%n%n%B";
 
       push = {
         followtags = true;
@@ -54,8 +55,8 @@
         prb = "pull --rebase";
         cb = "switch -c";
         bd = "branch -D";
+        lg = "log --graph";
         l = "log --graph --pretty='%C(bold yellow)%h%Creset * %C(bold magenta)%an%Creset * %C(blue)%ar%Creset: %s %C(auto)%d%Creset'";
-        lg = "log --graph --pretty=format:'%C(bold yellow)%h%Creset * %C(bold magenta)%an%Creset * %C(blue)%ar%Creset *%C(auto)%d%Creset%n%n%B'";
         # no blobs and no checkout, because checkout has been taught to bulk
         # pre-fetch all required missing blobs in a single batch
         clone-big = "clone --filter=blob:none --no-checkout";
