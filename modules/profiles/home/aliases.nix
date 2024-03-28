@@ -31,10 +31,5 @@ in
     nlock = "nix flake lock --commit-lock-file ${cfgPath}";
     # https://github.com/NixOS/nix/issues/8508
     nclear = "sudo nix-collect-garbage --delete-old && nix-collect-garbage --delete-old";
-    nshell = ''
-      nix flake init -t ${cfgPath} && \
-      direnv allow && \
-      nix flake lock && \
-      echo ".direnv/" >> .gitignore'';
   };
 }
