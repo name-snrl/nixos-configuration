@@ -20,9 +20,6 @@ lib: with lib; rec {
     );
 
   # Modular system
-  moduleTreeToList =
-    set: flatten (mapAttrsToList (_: v: if isPath v then v else moduleTreeToList v) set);
-
   mkModuleTree =
     dir:
     mapAttrs'
@@ -37,17 +34,26 @@ lib: with lib; rec {
       )
       (filtredReadDir dir);
 
-  modulesFromAttrs =
-    modules: set:
-    moduleTreeToList (
-      mapAttrsRecursive
-        (
-          path: value:
-          throwIfNot (isBool value)
-            ("Check the path ${concatStringsSep "." path}, " + "the value should be of type boolean")
-            (if value then { } else getAttrFromPath path modules)
-        )
-        set
+  importsFromAttrs =
+    {
+      importByDefault,
+      modules,
+      imports,
+    }:
+    let
+      modulesToList = xs: flatten (mapAttrsToList (_: v: if isPath v then v else modulesToList v) xs);
+      convertedImports =
+        mapAttrsRecursive
+          (
+            path: value:
+            throwIfNot (isBool value && hasAttrByPath path modules)
+              "Check the path ${concatStringsSep "." path}, the value should be of type boolean and exist in modules"
+              (if value then getAttrFromPath path modules else { })
+          )
+          imports;
+    in
+    modulesToList (
+      if importByDefault then recursiveUpdate modules convertedImports else convertedImports
     );
 
   # Hosts system
@@ -57,13 +63,12 @@ lib: with lib; rec {
       name:
       nixosSystem {
         specialArgs = {
-          inherit inputs;
-          byAttrs = modulesFromAttrs inputs.self.nixosModules;
+          inherit inputs importsFromAttrs;
         };
         modules = [
           /${dir}/${name}
           { networking.hostName = name; }
-        ] ++ moduleTreeToList inputs.self.nixosModules;
+        ];
       }
     );
 

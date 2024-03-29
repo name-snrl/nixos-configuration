@@ -3,22 +3,27 @@
   pkgs,
   inputs,
   modulesPath,
-  byAttrs,
+  importsFromAttrs,
   ...
 }:
 {
-  imports = [
-    "${modulesPath}/profiles/all-hardware.nix"
-    "${modulesPath}/installer/cd-dvd/iso-image.nix"
-  ];
-  disabledModules = byAttrs {
-    profiles.system = {
-      networking.tor = false;
-      hardware.battery = false;
-      logging = false;
-      desktop.work = false;
+  imports =
+    [
+      "${modulesPath}/profiles/all-hardware.nix"
+      "${modulesPath}/installer/cd-dvd/iso-image.nix"
+    ]
+    ++ importsFromAttrs {
+      importByDefault = true;
+      modules = inputs.self.nixosModules;
+      imports = {
+        profiles.system = {
+          networking.tor = false;
+          hardware.battery = false;
+          logging = false;
+          desktop.work = false;
+        };
+      };
     };
-  };
   boot = {
     loader.grub.memtest86.enable = true;
     initrd.includeDefaultModules = lib.mkForce true;
