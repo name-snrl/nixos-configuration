@@ -19,12 +19,6 @@ lib: with lib; rec {
       filtredReadDir dir
     );
 
-  trimShebang =
-    script:
-    concatLines (
-      filter (line: line != "" && !(hasPrefix "#!" line)) (splitString "\n" script)
-    );
-
   # Modular system
   moduleTreeToList =
     set: flatten (mapAttrsToList (_: v: if isPath v then v else moduleTreeToList v) set);

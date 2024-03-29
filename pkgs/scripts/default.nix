@@ -1,6 +1,4 @@
-{ pkgs, trimShebang }:
-with pkgs;
-{
+pkgs: with pkgs; {
   dg = writeShellApplication {
     name = "dg";
     runtimeInputs = [
@@ -36,6 +34,6 @@ with pkgs;
       curl
       wl-clipboard
     ];
-    text = trimShebang (lib.readFile ./sf);
+    text = lib.readFile ./sf;
   };
 }

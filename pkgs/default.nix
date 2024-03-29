@@ -1,15 +1,11 @@
 inputs: final: prev:
 
 let
-  lib = final.lib;
-  lib-snrl = inputs.self.lib;
+  inherit (final) lib;
 in
 
 {
-  scripts = import ./scripts {
-    inherit (lib-snrl) trimShebang;
-    pkgs = final;
-  };
+  scripts = import ./scripts final;
 
   osc = final.callPackage ./osc { };
 
