@@ -2,7 +2,10 @@
 with inputs;
 {
   flake = {
-    nixosConfigurations = nixos-ez-flake.mkHosts ./. inputs;
+    nixosConfigurations = nixos-ez-flake.mkHosts {
+      inherit inputs;
+      entryPoint = ./.;
+    };
     packages =
       with lib;
       let
