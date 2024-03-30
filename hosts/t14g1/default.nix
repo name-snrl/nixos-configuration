@@ -1,8 +1,6 @@
 {
-  lib,
   pkgs,
   inputs,
-  config,
   importsFromAttrs,
   ...
 }:
@@ -14,6 +12,7 @@
       modules = inputs.self.nixosModules;
       imports = {
         profiles.system.servers.openssh = false;
+        profiles.system.desktop.work = false;
       };
     };
 
