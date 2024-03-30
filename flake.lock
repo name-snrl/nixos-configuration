@@ -316,11 +316,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1711766823,
-        "narHash": "sha256-OJuxT7cr7FH5EuLIC/NAOUqNjMl495xxd5vclDwYfAQ=",
+        "lastModified": 1711777999,
+        "narHash": "sha256-3ui0Z9/13y0PYx8YO/IjbDSHMhEijkFT4f/G+/fcwNE=",
         "owner": "name-snrl",
         "repo": "nixos-ez-flake",
-        "rev": "57e514662157a30cc9cb245f924663aaa068e7c0",
+        "rev": "b4d4dde59a5d5adbc29c2c98f35485d73a3ef46a",
         "type": "github"
       },
       "original": {
