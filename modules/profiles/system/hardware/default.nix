@@ -4,7 +4,7 @@
   zramSwap.enable = true;
   zramSwap.memoryPercent =
     with config.host-specs;
-    if isNull ram || (ram > 5 && ram < 10) then
+    if (ram == null) || (ram > 5 && ram < 10) then
       100
     else if ram < 6 then
       200

@@ -1,5 +1,5 @@
 # * Overlay for pkgs from inputs that do not provide overlays.
-inputs: final: prev: {
+inputs: final: _prev: {
 
   inherit (inputs.shlyupa.packages.${final.system}) kotatogram-desktop-with-webkit;
 

@@ -1,75 +1,17 @@
-inputs: final: prev:
-
-let
-  inherit (final) lib;
-in
-
+{ lib, inputs, ... }:
 {
-  scripts = import ./scripts final;
+  systems = lib.systems.flakeExposed;
 
-  osc = final.callPackage ./osc { };
+  flake.overlays.pkgs = import ./top-level.nix;
 
-  nvim-full = final.nvim.override {
-    repo = "https://github.com/name-snrl/nvim";
-    extraName = "-full";
-    viAlias = true;
-    withPython3 = true;
-    rebuildWithTSParsers = true;
-    extraTSParsers = with final.vimPlugins.nvim-treesitter-parsers; [
-      luap
-      luadoc
-      nix
-      fish
-      scala
-      java
-      starlark
-      go
-      rust
-      css
-      yaml
-      dockerfile
-    ];
-    extraBinPath = with final; [
-      gnumake # for required telescope-fzf-native.nvim
-      gcc # for required telescope-fzf-native.nvim
-      curl # for required translate.nvim
-      fd # for required telescope.nvim
-      ripgrep # for required telescope.nvim
-      zoxide # for required telescope-zoxide
-
-      # languages stuff
-      lua-language-server
-      stylua
-      selene
-
-      nixd
-      nil
-      nixfmt-rfc-style
-      deadnix
-      statix
-
-      nodePackages.bash-language-server
-      shfmt
-      shellcheck
-
-      (mdformat.withPlugins (
-        p: with p; [
-          mdformat-gfm
-          mdformat-frontmatter
-          mdformat-footnote
-        ]
-      ))
-      languagetool-rust
-
-      coursier
-      bazel-buildtools
-    ];
-  };
-
-  writeSymlinkBin =
-    pkg: name:
-    final.runCommand "${pkg.pname}-as-${name}" { } ''
-      mkdir -p "$out/bin"
-      ln -sfn "${lib.getExe pkg}" "$out/bin/${name}"
-    '';
+  perSystem =
+    { pkgs, system, ... }:
+    {
+      _module.args.pkgs = import inputs.nixpkgs {
+        inherit system;
+        overlays = lib.singleton inputs.self.overlays.default;
+        config.allowUnfree = true;
+      };
+      legacyPackages = pkgs;
+    };
 }

@@ -6,7 +6,7 @@
       init.defaultBranch = "master";
 
       user = {
-        name = config.users.users.default.name;
+        inherit (config.users.users.default) name;
         email = "Demogorgon-74@ya.ru";
       };
 

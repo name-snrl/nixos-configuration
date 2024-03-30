@@ -1,1 +1,4 @@
+.direnv/
+/.pre-commit-config.yaml
+
 tawasalca.crt
