@@ -42,7 +42,10 @@
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
-    #snrl-lib.url = "github:name-snrl/nixos-ez-flake";
+    nixos-ez-flake = {
+      url = "github:name-snrl/nixos-ez-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -55,7 +58,7 @@
   };
 
   outputs =
-    inputs@{ nixpkgs, flake-parts, ... }:
+    inputs@{ nixos-ez-flake, flake-parts, ... }:
     (flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         ./hosts
@@ -66,21 +69,6 @@
     })
     // {
       # Filesystem-based attribute set of module paths
-      nixosModules =
-        let
-          mkModuleTree =
-            with nixpkgs.lib;
-            dir:
-            mapAttrs' (
-              name: type:
-              if type == "directory" then
-                nameValuePair name (mkModuleTree /${dir}/${name})
-              else if name == "default.nix" then
-                nameValuePair "self" /${dir}/${name}
-              else
-                nameValuePair (removeSuffix ".nix" name) /${dir}/${name}
-            ) (filterAttrs (name: type: type == "directory" || hasSuffix ".nix" name) (builtins.readDir dir));
-        in
-        mkModuleTree ./modules;
+      nixosModules = nixos-ez-flake.mkModuleTree ./modules;
     };
 }
