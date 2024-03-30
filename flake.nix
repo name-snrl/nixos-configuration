@@ -65,6 +65,7 @@
         ./overlays
         ./pkgs
         ./shell.nix
+        ./templates
       ];
     })
     // {
