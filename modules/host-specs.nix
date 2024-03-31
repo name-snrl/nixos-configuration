@@ -55,6 +55,19 @@
         type = types.bool;
         default = false;
       };
+
+      tlp-settings = mkOption {
+        type =
+          with types;
+          attrsOf (oneOf [
+            bool
+            int
+            float
+            str
+            (listOf str)
+          ]);
+        default = { };
+      };
     };
   };
 }

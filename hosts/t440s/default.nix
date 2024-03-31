@@ -45,6 +45,13 @@
     battery = true;
     webcam = true;
     als = false;
+    tlp-settings = {
+      START_CHARGE_THRESH_BAT0 = 40;
+      STOP_CHARGE_THRESH_BAT0 = 60;
+
+      START_CHARGE_THRESH_BAT1 = 40;
+      STOP_CHARGE_THRESH_BAT1 = 55;
+    };
   };
 
   nixpkgs.hostPlatform = "x86_64-linux";

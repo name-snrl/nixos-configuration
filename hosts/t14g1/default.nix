@@ -35,6 +35,10 @@
     battery = true;
     webcam = true;
     als = false;
+    tlp-settings = {
+      START_CHARGE_THRESH_BAT0 = 40;
+      STOP_CHARGE_THRESH_BAT0 = 50;
+    };
   };
 
   system.stateVersion = "24.05";
