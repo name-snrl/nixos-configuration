@@ -16,8 +16,6 @@
       };
     };
 
-  #boot.initrd.kernelModules = [ "i915" ]; # Enable early KMS
-
   # Firmware
   services.fwupd.enable = true; # https://fwupd.org/lvfs/devices/
 
