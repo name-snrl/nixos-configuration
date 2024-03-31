@@ -1,6 +1,5 @@
 { config, ... }:
 {
-  hardware.enableRedistributableFirmware = true;
   zramSwap.enable = true;
   zramSwap.memoryPercent =
     with config.host-specs;
