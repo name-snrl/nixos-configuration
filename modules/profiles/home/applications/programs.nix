@@ -10,10 +10,10 @@
     htop = {
       enable = true;
       settings = {
-        column_meters_0 = "System DateTime Uptime LoadAverage Tasks Blank Swap Memory";
-        column_meter_modes_0 = "2 2 2 2 2 2 2 2";
-        column_meters_1 = "AllCPUs DiskIO NetworkIO Blank Blank";
-        column_meter_modes_1 = "1 1 1 2 2";
+        column_meters_0 = "LeftCPUs Blank DateTime Uptime LoadAverage Tasks Blank Swap Memory";
+        column_meter_modes_0 = "1 2 2 2 2 2 2 2 2";
+        column_meters_1 = "RightCPUs Blank DiskIO NetworkIO";
+        column_meter_modes_1 = "1 2 1 1";
 
         fields = "0 4 48 17 18 50 46 39 2 49 1";
         tree_view = 1;
