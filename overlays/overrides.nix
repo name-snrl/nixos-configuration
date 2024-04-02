@@ -72,9 +72,18 @@ inputs: final: prev: {
   swayimg =
     with final;
     let
-      swim-wp = writeShellScriptBin "swim-wp" ''
-        exec ${prev.swayimg}/bin/swayimg --fullscreen ${wallpapers}
-      '';
+      swim-wp = writeShellApplication {
+        name = "swim-wp";
+        runtimeInputs = [ gnused ];
+        text = ''
+          exec ${prev.swayimg}/bin/swayimg \
+              --fullscreen \
+              --config=list.all=no \
+              --config=general.antialiasing=yes \
+              --config=keys.e='exec sed -i "s@output.*fill@output \* bg % fill@g" ~/.config/sway/config' \
+              ${wallpapers}
+        '';
+      };
       desktop = makeDesktopItem {
         desktopName = "Swayimg-wallpapers";
         name = "swim-wp";
