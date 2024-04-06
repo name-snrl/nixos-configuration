@@ -3,6 +3,8 @@
   imports = [ inputs.shlyupa.nixosModules.cache ];
   nur.ilya-fedin.cache.enable = true;
   nix = {
+    channel.enable = false;
+
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
     registry = {
