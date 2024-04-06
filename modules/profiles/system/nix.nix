@@ -5,8 +5,6 @@
   nix = {
     channel.enable = false;
 
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
-
     registry = {
       self.flake = inputs.self;
       np.flake = inputs.nixpkgs;
