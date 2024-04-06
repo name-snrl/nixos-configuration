@@ -4,12 +4,6 @@
   nur.ilya-fedin.cache.enable = true;
   nix = {
     channel.enable = false;
-
-    registry = {
-      self.flake = inputs.self;
-      np.flake = inputs.nixpkgs;
-    };
-
     settings = {
       auto-optimise-store = true;
       use-xdg-base-directories = true;
@@ -29,5 +23,19 @@
       substituters = [ "https://nix-community.cachix.org" ];
       trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
     };
+    registry =
+      let
+        nixpkgs = ref: {
+          type = "github";
+          owner = "NixOS";
+          repo = "nixpkgs";
+          inherit ref;
+        };
+      in
+      {
+        self.flake = inputs.self;
+        master.to = nixpkgs "master";
+        unstable.to = nixpkgs "nixpkgs-unstable";
+      };
   };
 }
