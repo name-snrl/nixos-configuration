@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 let
   cfgPath = "~/nixos-configuration";
 in
@@ -22,7 +22,7 @@ in
     sed = "sed -E";
 
     # NixOS
-    jnp = "cd ${pkgs.path}";
+    jnp = "cd ${config.nixpkgs.flake.source}";
     nboot = "nixos-rebuild boot --use-remote-sudo --fast --flake ${cfgPath}";
     nswitch = "nixos-rebuild switch --use-remote-sudo --fast --flake ${cfgPath}";
     nbuild = "nix build --no-link ${cfgPath}#${config.networking.hostName}";
