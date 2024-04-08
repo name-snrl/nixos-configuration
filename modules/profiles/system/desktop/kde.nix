@@ -1,7 +1,13 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   services = {
     desktopManager.plasma6.enable = true;
+    xserver.displayManager.sddm.theme = lib.mkForce "breeze";
     power-profiles-daemon.enable = !config.services.tlp.enable;
   };
   systemd = {
