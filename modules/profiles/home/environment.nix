@@ -1,6 +1,5 @@
 { pkgs, ... }:
 {
-  programs.nano.enable = false;
   programs.less.commands = {
     "^l" = "undo-hilite";
     m = "set-mark-bottom";
