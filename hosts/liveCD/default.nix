@@ -18,9 +18,12 @@
       imports = {
         profiles.system = {
           networking.tor = false;
-          hardware.battery = false;
           logging = false;
           desktop.work = false;
+          hardware = {
+            battery = false;
+            self = false;
+          };
         };
       };
     };

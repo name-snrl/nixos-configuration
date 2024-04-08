@@ -19,9 +19,6 @@
 
   boot.initrd.kernelModules = [ "i915" ]; # Enable early KMS
 
-  # Firmware
-  #services.fwupd.enable = true; # https://fwupd.org/lvfs/devices/
-
   # CPU
   powerManagement.cpuFreqGovernor = "schedutil";
 
@@ -35,25 +32,24 @@
     libvdpau-va-gl
   ];
 
-  host-specs = {
-    device-type = "laptop";
-    output-name = "eDP-1";
-    cores = 4;
-    ram = 8;
-    wifi = true;
-    bluetooth = true;
-    battery = true;
-    webcam = true;
-    als = false;
-    tlp-settings = {
-      START_CHARGE_THRESH_BAT0 = 40;
-      STOP_CHARGE_THRESH_BAT0 = 60;
+  # RAM-specific
+  boot.tmp.useTmpfs = true;
+  zramSwap.memoryPercent = 100;
 
-      START_CHARGE_THRESH_BAT1 = 40;
-      STOP_CHARGE_THRESH_BAT1 = 55;
-    };
+  # other host-specific settings
+  services.tlp.settings = {
+    START_CHARGE_THRESH_BAT0 = 40;
+    STOP_CHARGE_THRESH_BAT0 = 60;
+
+    START_CHARGE_THRESH_BAT1 = 40;
+    STOP_CHARGE_THRESH_BAT1 = 55;
   };
 
-  nixpkgs.hostPlatform = "x86_64-linux";
+  xdg.portal.wlr.settings.screencast = {
+    output_name = "eDP-1";
+    max_fps = 60;
+    chooser_type = "none";
+  };
+
   system.stateVersion = "22.05";
 }

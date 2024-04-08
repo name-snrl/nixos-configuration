@@ -25,20 +25,20 @@
   # GPU acceleration
   hardware.opengl.extraPackages = with pkgs; [ intel-media-driver ];
 
-  host-specs = {
-    device-type = "laptop";
-    output-name = "eDP-1";
-    cores = 8;
-    ram = 16;
-    wifi = true;
-    bluetooth = true;
-    battery = true;
-    webcam = true;
-    als = false;
-    tlp-settings = {
-      START_CHARGE_THRESH_BAT0 = 40;
-      STOP_CHARGE_THRESH_BAT0 = 50;
-    };
+  # RAM-specific
+  boot.tmp.useTmpfs = true;
+  zramSwap.memoryPercent = 50;
+
+  # other host-specific settings
+  services.tlp.settings = {
+    START_CHARGE_THRESH_BAT0 = 40;
+    STOP_CHARGE_THRESH_BAT0 = 50;
+  };
+
+  xdg.portal.wlr.settings.screencast = {
+    output_name = "eDP-1";
+    max_fps = 60;
+    chooser_type = "none";
   };
 
   system.stateVersion = "24.05";

@@ -1,5 +1,4 @@
-{ config, lib, ... }:
-lib.mkIf config.host-specs.bluetooth {
+{
   hardware.bluetooth = {
     enable = true;
     settings.General = {
