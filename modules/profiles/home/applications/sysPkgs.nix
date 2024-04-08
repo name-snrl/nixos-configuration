@@ -37,7 +37,6 @@
       anki
 
       # DE
-      firefox-wayland
       mpv
       swayimg
       sioyek

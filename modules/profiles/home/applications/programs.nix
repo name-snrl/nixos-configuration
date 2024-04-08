@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   programs = {
+    firefox.enable = true;
     direnv.enable = true;
     nix-index = {
       enable = true;
