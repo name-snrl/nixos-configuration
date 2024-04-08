@@ -13,6 +13,7 @@
       importByDefault = true;
       modules = inputs.self.nixosModules;
       imports = {
+        profiles.system.desktop.kde = false;
         profiles.system.servers.openssh = false;
       };
     };

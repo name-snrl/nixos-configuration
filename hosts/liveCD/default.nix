@@ -17,6 +17,7 @@
       modules = inputs.self.nixosModules;
       imports = {
         profiles.system = {
+          desktop.kde = false;
           networking.tor = false;
           logging = false;
           desktop.work = false;
