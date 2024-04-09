@@ -1,7 +1,5 @@
 { config, inputs, ... }:
 {
-  imports = [ inputs.shlyupa.nixosModules.cache ];
-  nur.ilya-fedin.cache.enable = true;
   nix = {
     channel.enable = false;
     settings = {
@@ -20,8 +18,14 @@
         "@wheel"
         config.users.users.default.name
       ];
-      substituters = [ "https://nix-community.cachix.org" ];
-      trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
+      substituters = [
+        "https://nix-community.cachix.org"
+        "https://ilya-fedin.cachix.org"
+      ];
+      trusted-public-keys = [
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "ilya-fedin.cachix.org-1:QveU24a5ePPMh82mAFSxLk1P+w97pRxqe9rh+MJqlag="
+      ];
     };
     registry =
       let
