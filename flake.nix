@@ -29,10 +29,6 @@
       url = "github:vinceliuice/graphite-kde-theme";
     };
 
-    flake-registry = {
-      url = "github:nixos/flake-registry";
-      flake = false;
-    };
     nix-index-db = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
