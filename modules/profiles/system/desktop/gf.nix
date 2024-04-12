@@ -14,7 +14,6 @@
       skypeforlinux
       zoom-us
       whatsapp-for-linux
-      vk-messenger
 
       # have to choose one
       wpsoffice
