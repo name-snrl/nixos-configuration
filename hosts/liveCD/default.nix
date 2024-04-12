@@ -15,16 +15,15 @@
     ++ importsFromAttrs {
       importByDefault = true;
       modules = inputs.self.nixosModules;
-      imports = {
-        profiles.system = {
-          desktop.kde = false;
-          networking.tor = false;
-          logging = false;
-          desktop.work = false;
-          hardware = {
-            battery = false;
-            self = false;
-          };
+      imports.profiles.system = {
+        desktop.kde = false;
+        desktop.gf = false;
+        desktop.work = false;
+        networking.tor = false;
+        logging = false;
+        hardware = {
+          battery = false;
+          self = false;
         };
       };
     };
