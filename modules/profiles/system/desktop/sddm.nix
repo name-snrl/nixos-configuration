@@ -1,14 +1,10 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 {
-  services.xserver = {
+  services.displayManager.sddm = {
     enable = true;
-    displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
-      wayland.compositor = "kwin";
-      package = lib.mkForce pkgs.kdePackages.sddm;
-      theme = "where_is_my_sddm_theme";
-    };
+    wayland.enable = true;
+    wayland.compositor = "kwin";
+    theme = "where_is_my_sddm_theme_qt5";
   };
   environment.systemPackages =
     let
@@ -17,6 +13,7 @@
     [
       # TODO take color from config
       (pkgs.where-is-my-sddm-theme.override {
+        variants = [ "qt5" ];
         themeConfig.General = {
           background = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           backgroundFill = bg;
@@ -24,8 +21,5 @@
           blurRadius = 0;
         };
       })
-      # will be fixed in <https://github.com/NixOS/nixpkgs/pull/302724>
-      pkgs.qt6.qt5compat
-      pkgs.qt6.qtsvg
     ];
 }
