@@ -14,10 +14,6 @@
       skypeforlinux
       zoom-us
       whatsapp-for-linux
-
-      # have to choose one
-      wpsoffice
-      libreoffice-qt
       onlyoffice-bin_latest
     ];
   };
