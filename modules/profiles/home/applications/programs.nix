@@ -25,6 +25,7 @@
         show_program_path = 0;
         highlight_base_name = 1;
         show_cpu_frequency = 1;
+        show_cpu_temperature = 1;
         cpu_count_from_one = 1;
         color_scheme = 6;
 
