@@ -39,7 +39,10 @@
       {
         self.flake = inputs.self;
         master.to = nixpkgs "master";
-        unstable.to = nixpkgs "nixpkgs-unstable";
+        np = {
+          exact = false;
+          to = nixpkgs "nixpkgs-unstable";
+        };
       };
   };
 }
