@@ -27,7 +27,7 @@
         bond = [ "wireCat" ];
         matchConfig = {
           Type = "ether";
-          Kind = "!veth"; # fix docker
+          Kind = "!*"; # fix docker
         };
       };
       "90-wlans" = {
