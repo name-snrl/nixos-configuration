@@ -12,8 +12,8 @@ nc='\033[0m'
 script_name="$(basename "$0")"
 [[ ! $* && -t 0 ]] && {
     cat <<-EOF
-	Usage: $script_name path/to/file.txt
-	       echo hello | $script_name
+	Usage:	$script_name path/to/file.txt
+		echo hello | $script_name
 	EOF
     exit
 }
