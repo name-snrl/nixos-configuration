@@ -15,7 +15,7 @@
           argparse a/all -- $argv || return
           set cmd '${fd}/bin/fd --max-depth 1 --glob'
           if set -ql _flag_a
-              set cmd "$cmd -H"
+              set cmd "$cmd --hidden --no-ignore"
           end
           for path in $argv
               set cmd "$cmd --exclude '$path'"
