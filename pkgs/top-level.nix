@@ -7,8 +7,6 @@ in
 {
   scripts = import ./scripts final;
 
-  osc = final.callPackage ./osc { };
-
   nvim-full = final.callPackage ./nvim-full { };
 
   writeSymlinkBin =
