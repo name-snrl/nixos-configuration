@@ -1,16 +1,15 @@
 { lib, inputs, ... }:
-with inputs;
 {
   flake = {
-    nixosConfigurations = nixos-ez-flake.mkHosts {
+    nixosConfigurations = inputs.nixos-ez-flake.mkHosts {
       inherit inputs;
       entryPoint = ./.;
     };
     packages =
-      with lib;
       let
         cfgs = inputs.self.nixosConfigurations;
       in
+      with lib;
       foldAttrs (x: y: x // y) { } (
         concatLists (
           forEach (attrNames cfgs) (
