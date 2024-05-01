@@ -57,9 +57,9 @@
         bd = "branch -D";
         lg = "log --graph";
         l = "log --graph --pretty='%C(bold yellow)%h%Creset * %C(bold magenta)%an%Creset * %C(blue)%cr%Creset: %s %C(auto)%d%Creset'";
-        # no blobs and no checkout, because checkout has been taught to bulk
+        # no blobs, trees and no checkout, because checkout has been taught to bulk
         # pre-fetch all required missing blobs in a single batch
-        clone-big = "clone --filter=blob:none --no-checkout";
+        clone-big = "clone --filter=tree:0 --no-checkout";
       };
     };
   };
