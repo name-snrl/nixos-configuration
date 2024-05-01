@@ -8,6 +8,7 @@
       builders-use-substitutes = true;
       # Prevent Nix from fetching the registry every time
       flake-registry = null;
+      nix-path = config.nix.nixPath;
       experimental-features = [
         "nix-command"
         "flakes"
