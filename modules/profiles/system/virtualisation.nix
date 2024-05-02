@@ -4,14 +4,7 @@
     enable = true;
     onBoot = "ignore";
   };
-  virtualisation.docker = {
-    enable = true;
-    enableOnBoot = false;
-  };
-  users.users.default.extraGroups = [
-    "libvirtd"
-    "docker"
-  ];
+  users.users.default.extraGroups = [ "libvirtd" ];
   # nixos-containers networking
   networking.nat = {
     enable = true;
