@@ -10,9 +10,11 @@
     ++ importsFromAttrs {
       importByDefault = true;
       modules = inputs.self.nixosModules;
-      imports.profiles.system = {
-        servers.openssh = false;
-        desktop.work = false;
+      imports = {
+        profiles.system = {
+          servers.openssh = false;
+          desktop.work = false;
+        };
       };
     };
 

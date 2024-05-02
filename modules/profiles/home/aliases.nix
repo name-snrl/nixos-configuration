@@ -25,6 +25,7 @@ in
     jnp = "cd ${config.nixpkgs.flake.source}";
     nboot = "nixos-rebuild boot --use-remote-sudo --fast --flake ${cfgPath}";
     nswitch = "nixos-rebuild switch --use-remote-sudo --fast --flake ${cfgPath}";
+    nvmrun = "nix run ${cfgPath}#nixosConfigurations.${config.networking.hostName}.config.system.build.vm";
     nbuild = "nix build --no-link ${cfgPath}#${config.networking.hostName}";
     nupdate = "nix flake update --commit-lock-file ${cfgPath}";
     # TODO with nix 2.19, nlock is no longer needed to update inputs

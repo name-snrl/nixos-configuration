@@ -12,10 +12,12 @@
     ++ importsFromAttrs {
       importByDefault = true;
       modules = inputs.self.nixosModules;
-      imports.profiles.system = {
-        desktop.kde = false;
-        desktop.gf = false;
-        servers.openssh = false;
+      imports = {
+        profiles.system = {
+          desktop.kde = false;
+          desktop.gf = false;
+          servers.openssh = false;
+        };
       };
     };
 
