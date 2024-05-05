@@ -8,6 +8,18 @@
       "45.90.30.0#242bc4.dns.nextdns.io"
       "2a07:a8c1::#242bc4.dns.nextdns.io"
     ];
+    timeServers = [
+      "time.cloudflare.com"
+      "time.google.com"
+      "0.nl.pool.ntp.org"
+      "1.nl.pool.ntp.org"
+      "2.nl.pool.ntp.org"
+      "3.nl.pool.ntp.org"
+      "0.jp.pool.ntp.org"
+      "1.jp.pool.ntp.org"
+      "2.jp.pool.ntp.org"
+      "3.jp.pool.ntp.org"
+    ];
   };
   systemd.network = {
     wait-online.anyInterface = true;
