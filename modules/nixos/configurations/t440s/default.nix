@@ -7,19 +7,18 @@
   ...
 }:
 {
-  imports =
-    [ ./hw-config.nix ]
-    ++ importsFromAttrs {
-      importByDefault = true;
-      modules = inputs.self.moduleTree.nixos;
-      imports = {
-        profiles.system = {
-          desktop.kde = false;
-          desktop.gf = false;
-          servers.openssh = false;
-        };
+  imports = importsFromAttrs {
+    importByDefault = true;
+    modules = inputs.self.moduleTree.nixos;
+    imports = {
+      configurations = false;
+      profiles.system = {
+        desktop.kde = false;
+        desktop.gf = false;
+        servers.openssh = false;
       };
     };
+  };
 
   boot.initrd.kernelModules = [ "i915" ]; # Enable early KMS
 

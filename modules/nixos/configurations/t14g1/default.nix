@@ -5,18 +5,17 @@
   ...
 }:
 {
-  imports =
-    [ ./hw-config.nix ]
-    ++ importsFromAttrs {
-      importByDefault = true;
-      modules = inputs.self.moduleTree.nixos;
-      imports = {
-        profiles.system = {
-          servers.openssh = false;
-          desktop.work = false;
-        };
+  imports = importsFromAttrs {
+    importByDefault = true;
+    modules = inputs.self.moduleTree.nixos;
+    imports = {
+      configurations = false;
+      profiles.system = {
+        servers.openssh = false;
+        desktop.work = false;
       };
     };
+  };
 
   # Firmware
   services.fwupd.enable = true; # https://fwupd.org/lvfs/devices/

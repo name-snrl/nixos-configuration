@@ -1,15 +1,9 @@
-{
-  lib,
-  inputs,
-  # deadnix: skip
-  __findFile,
-  ...
-}:
+{ lib, inputs, ... }:
 {
   flake = rec {
-    nixosConfigurations = inputs.nixos-ez-flake.mkHosts {
+    nixosConfigurations = inputs.nixos-ez-flake.mkConfigurations {
       inherit inputs;
-      entryPoint = <hosts>;
+      inherit (inputs.self.moduleTree.nixos) configurations;
     };
     packages =
       with lib;

@@ -16,6 +16,7 @@
       importByDefault = true;
       modules = inputs.self.moduleTree.nixos;
       imports = {
+        configurations = false;
         profiles.system = {
           desktop.kde = false;
           desktop.gf = false;
