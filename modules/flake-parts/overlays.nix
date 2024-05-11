@@ -1,4 +1,10 @@
-{ lib, inputs, ... }:
+{
+  lib,
+  inputs,
+  # deadnix: skip
+  __findFile,
+  ...
+}:
 {
   flake.overlays = {
     default =
@@ -9,7 +15,8 @@
         self.overlays.pkgs
         nvim.overlays.default
       ];
-    overrides = import ./overrides.nix inputs;
-    gateway = import ./gateway.nix inputs;
+    overrides = import <overlays/overrides.nix> inputs;
+    gateway = import <overlays/gateway.nix> inputs;
+    pkgs = import <pkgs>;
   };
 }

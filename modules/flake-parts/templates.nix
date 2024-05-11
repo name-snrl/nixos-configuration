@@ -1,6 +1,8 @@
+# deadnix: skip
+{ __findFile, ... }:
 {
   flake.templates.default = {
-    path = ./shell;
+    path = <templates/shell>;
     description = "A minimal flake with a devShell.";
   };
 }

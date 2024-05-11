@@ -1,17 +1,18 @@
-{ lib, inputs, ... }:
+final: _prev:
+
+let
+  inherit (final) lib;
+in
+
 {
-  systems = lib.systems.flakeExposed;
+  scripts = import ./scripts final;
 
-  flake.overlays.pkgs = import ./top-level.nix;
+  nvim-full = final.callPackage ./nvim-full { };
 
-  perSystem =
-    { pkgs, system, ... }:
-    {
-      _module.args.pkgs = import inputs.nixpkgs {
-        inherit system;
-        overlays = lib.singleton inputs.self.overlays.default;
-        config.allowUnfree = true;
-      };
-      legacyPackages = pkgs;
-    };
+  writeSymlinkBin =
+    pkg: name:
+    final.runCommand "${pkg.pname}-as-${name}" { } ''
+      mkdir -p "$out/bin"
+      ln -sfn "${lib.getExe pkg}" "$out/bin/${name}"
+    '';
 }

@@ -14,7 +14,7 @@
     ]
     ++ importsFromAttrs {
       importByDefault = true;
-      modules = inputs.self.nixosModules;
+      modules = inputs.self.moduleTree.nixos;
       imports = {
         profiles.system = {
           desktop.kde = false;

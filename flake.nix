@@ -1,6 +1,18 @@
 {
   description = "My NixOS configurations";
 
+  outputs =
+    inputs@{ nixos-ez-flake, flake-parts, ... }:
+    flake-parts.lib.mkFlake
+      {
+        inherit inputs;
+        specialArgs.__findFile = _: s: ./${s};
+      }
+      rec {
+        flake.moduleTree = nixos-ez-flake.mkModuleTree ./modules;
+        imports = nixos-ez-flake.importsFromAttrs { modules = flake.moduleTree.flake-parts; };
+      };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     shlyupa.url = "github:ilya-fedin/nur-repository";
@@ -52,20 +64,4 @@
       inputs.nixpkgs-stable.follows = "nixpkgs";
     };
   };
-
-  outputs =
-    inputs@{ nixos-ez-flake, flake-parts, ... }:
-    (flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [
-        ./hosts
-        ./overlays
-        ./pkgs
-        ./shell.nix
-        ./templates
-      ];
-    })
-    // {
-      # Filesystem-based attribute set of module paths
-      nixosModules = nixos-ez-flake.mkModuleTree ./modules;
-    };
 }

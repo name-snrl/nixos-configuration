@@ -1,20 +1,23 @@
-{ lib, inputs, ... }:
 {
-  flake = {
+  lib,
+  inputs,
+  # deadnix: skip
+  __findFile,
+  ...
+}:
+{
+  flake = rec {
     nixosConfigurations = inputs.nixos-ez-flake.mkHosts {
       inherit inputs;
-      entryPoint = ./.;
+      entryPoint = <hosts>;
     };
     packages =
-      let
-        cfgs = inputs.self.nixosConfigurations;
-      in
       with lib;
       foldAttrs (x: y: x // y) { } (
         concatLists (
-          forEach (attrNames cfgs) (
+          forEach (attrNames nixosConfigurations) (
             name:
-            with cfgs.${name};
+            with nixosConfigurations.${name};
             if name == "liveCD" then
               [ { ${pkgs.system}.${name} = config.system.build.isoImage; } ]
             else
