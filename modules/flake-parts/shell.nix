@@ -6,6 +6,18 @@
   ];
   perSystem =
     { pkgs, config, ... }:
+    let
+      cfg = (pkgs.formats.toml { }).generate "statix.toml" { disabled = disabled-lints; };
+      disabled-lints = [ "repeated_keys" ];
+      statix-check = pkgs.writeShellApplication {
+        name = "statix";
+        runtimeInputs = [ pkgs.statix ];
+        text = ''
+          shift
+          exec statix check --config ${cfg} "$@"
+        '';
+      };
+    in
     {
       devShells.default = pkgs.mkShellNoCC { shellHook = config.pre-commit.installationScript; };
 
@@ -16,6 +28,7 @@
         };
         statix = {
           enable = true; # check. not everything can be fixed, but we need to know what
+          package = statix-check;
           settings.format = "stderr";
         };
       };
@@ -25,17 +38,22 @@
         programs = {
           nixfmt-rfc-style.enable = true;
           deadnix.enable = true;
-          statix.enable = true; # fix, if possible
+          statix = {
+            enable = true; # fix, if possible
+            inherit disabled-lints;
+          };
           shellcheck.enable = true;
           shfmt.enable = true;
-          mdformat.enable = true;
-          mdformat.package = pkgs.mdformat.withPlugins (
-            p: with p; [
-              mdformat-gfm
-              mdformat-frontmatter
-              mdformat-footnote
-            ]
-          );
+          mdformat = {
+            enable = true;
+            package = pkgs.mdformat.withPlugins (
+              p: with p; [
+                mdformat-gfm
+                mdformat-frontmatter
+                mdformat-footnote
+              ]
+            );
+          };
         };
         settings.formatter = {
           shfmt.options = [
