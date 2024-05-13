@@ -16,13 +16,16 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     shlyupa.url = "github:ilya-fedin/nur-repository";
-    home-manager.url = "github:nix-community/home-manager/master";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    home-manager = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     dots = {
       url = "github:name-snrl/home";
       flake = false;
     };
+
     nvim = {
       url = "github:name-snrl/nvim";
       inputs.nixpkgs.follows = "nixpkgs";

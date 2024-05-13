@@ -1,20 +1,24 @@
-{ pkgs, ... }:
+{ inputs, importsFromAttrs, ... }:
 {
-  i18n.supportedLocales = [
-    "ja_JP.UTF-8/UTF-8"
-    "ru_RU.UTF-8/UTF-8"
-  ];
+  imports = [ inputs.home-manager.nixosModules.home-manager ];
+
   users.users.Elizabeth = {
     hashedPassword = "$6$6US0iMDXE1K7wj9g$2/JKHfX4VfNETELdt4dTlTUzlmZAmvP4XfRNB5ORVPYNmi6.A4EWpSXkpx/5PrPx1J/LaA41n2NDss/R0Utqh/";
     isNormalUser = true;
     extraGroups = [ "netdev" ];
-    packages = with pkgs; [
-      telegram-desktop
-      discord
-      skypeforlinux
-      zoom-us
-      whatsapp-for-linux
-      onlyoffice-bin_latest
-    ];
+  };
+
+  # TODO do we really need this?
+  i18n.supportedLocales = [
+    "ja_JP.UTF-8/UTF-8"
+    "ru_RU.UTF-8/UTF-8"
+  ];
+
+  home-manager.users.Elizabeth.imports = importsFromAttrs {
+    importByDefault = false;
+    modules = inputs.self.moduleTree.home-manager;
+    imports = {
+      profiles.gf = true;
+    };
   };
 }
