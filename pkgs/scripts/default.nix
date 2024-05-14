@@ -1,7 +1,13 @@
-pkgs: with pkgs; {
+{
+  writeShellApplication,
+  pkgs,
+  fzf,
+  lib,
+}:
+{
   dg = writeShellApplication {
     name = "dg";
-    runtimeInputs = [
+    runtimeInputs = with pkgs; [
       xdragon
       util-linux
     ];
@@ -10,7 +16,7 @@ pkgs: with pkgs; {
 
   fzf-dragon = writeShellApplication {
     name = "fzf-dragon";
-    runtimeInputs = [
+    runtimeInputs = with pkgs; [
       fzf
       xdragon
       util-linux
@@ -30,7 +36,7 @@ pkgs: with pkgs; {
 
   sf = writeShellApplication {
     name = "sf";
-    runtimeInputs = [
+    runtimeInputs = with pkgs; [
       curl
       wl-clipboard
     ];
