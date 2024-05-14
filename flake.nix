@@ -3,15 +3,16 @@
 
   outputs =
     inputs@{ nixos-ez-flake, flake-parts, ... }:
-    flake-parts.lib.mkFlake
-      {
+    let
+      args = {
         inherit inputs;
         specialArgs.__findFile = _: s: ./${s};
-      }
-      rec {
-        flake.moduleTree = nixos-ez-flake.mkModuleTree ./modules;
-        imports = nixos-ez-flake.importsFromAttrs { modules = flake.moduleTree.flake-parts; };
+        specialArgs.flake-url = "github:name-snrl/nixos-configuration";
       };
+      flake.moduleTree = nixos-ez-flake.mkModuleTree ./modules;
+      imports = nixos-ez-flake.importsFromAttrs { modules = flake.moduleTree.flake-parts; };
+    in
+    flake-parts.lib.mkFlake args { inherit imports flake; };
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";

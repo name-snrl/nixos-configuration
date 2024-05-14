@@ -1,4 +1,9 @@
-{ lib, inputs, ... }:
+{
+  lib,
+  inputs,
+  flake-url,
+  ...
+}:
 {
   flake = rec {
 
@@ -32,6 +37,7 @@
               home.username = "yusup";
               home.homeDirectory = "/home/yusup";
               home.stateVersion = "23.11";
+              home.shellAliases.hmupgrade = "nix run ${flake-url}#home-manager -- switch --flake ${flake-url}";
             }
           ]
           ++ nixos-ez-flake.importsFromAttrs {
