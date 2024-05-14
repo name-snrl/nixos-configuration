@@ -4,6 +4,7 @@ set -e
 
 service="https://0x0.st"
 
+red='\033[0;31m'
 green='\033[0;32m'
 yellow='\033[0;33m'
 blue='\033[0;34m'
@@ -37,6 +38,8 @@ load() {
 
 result=$(load "$*")
 printf "\n${blue}%s${nc} %s\n" "Response:" "$result"
-if [[ $result =~ ^"$service"/[[:alnum:]_+-]{4} ]] && wl-copy "$result"; then
+if [[ $result =~ ^"$service"/[[:alnum:]_+-]{4} ]] && wl-copy "$result" &>/dev/null; then
     printf "\n${green}%s${nc}\n" "Copied to clipboard!"
+else
+    printf "\n${red}%s${nc}\n" "Failed to copy to clipboard ;("
 fi
