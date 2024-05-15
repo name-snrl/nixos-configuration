@@ -4,6 +4,7 @@ set -e
 
 service="https://0x0.st"
 
+bold='\033[0;1m'
 red='\033[0;31m'
 green='\033[0;32m'
 yellow='\033[0;33m'
@@ -12,10 +13,9 @@ nc='\033[0m'
 
 script_name="$(basename "$0")"
 [[ ! $* && -t 0 ]] && {
-    cat <<-EOF
-	Usage:	$script_name path/to/file.txt
-		echo hello | $script_name
-	EOF
+    echo -e "${bold}Usage:${nc}"
+    echo -e "  $script_name path/to/file.txt"
+    echo -e "  echo hello | $script_name"
     exit
 }
 
