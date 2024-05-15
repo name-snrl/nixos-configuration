@@ -56,11 +56,19 @@
           };
         };
         settings.formatter = {
-          shfmt.options = [
-            "--case-indent"
-            "--indent"
-            "4"
-          ];
+          shellcheck = {
+            includes = [ "pkgs/scripts/*" ];
+            excludes = [ "*.nix" ];
+          };
+          shfmt = {
+            includes = [ "pkgs/scripts/*" ];
+            excludes = [ "*.nix" ];
+            options = [
+              "--case-indent"
+              "--indent"
+              "4"
+            ];
+          };
           mdformat.options = [
             "--wrap"
             "80"
