@@ -380,11 +380,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1715456778,
-        "narHash": "sha256-bkr9jGyxcwxQp7zOy6bNkXtJ3OBgnrdnx1X3fe3WGW4=",
+        "lastModified": 1715796726,
+        "narHash": "sha256-h9fKm+y4xRtb1SudFTbjB+ewxyQiXI2Gh3ZgNj6QUZs=",
         "owner": "name-snrl",
         "repo": "nixos-ez-flake",
-        "rev": "aa40b8bf42a70187825feb334e543e9212d8df30",
+        "rev": "088dc4ebb941be569022225d89c721ae3a925978",
         "type": "github"
       },
       "original": {
