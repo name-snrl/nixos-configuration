@@ -5,10 +5,10 @@ set -e
 service="https://0x0.st"
 
 bold='\033[0;1m'
+bold_red='\033[1;31m'
 red='\033[0;31m'
 green='\033[0;32m'
 yellow='\033[0;33m'
-blue='\033[0;34m'
 nc='\033[0m'
 
 script_name="$(basename "$0")"
@@ -22,24 +22,24 @@ script_name="$(basename "$0")"
 load() {
     if [[ ! -t 0 ]]; then
         if [[ $* ]]; then
-            printf "${yellow}%s${nc}\n\n" "Stdin data will be loaded:" >&2
+            echo -e "${yellow}Stdin data will be loaded:${nc}" >&2
         fi
         curl -#F file=@- "$service"
     elif [[ -f $* ]]; then
         curl -#F file=@"$*" "$service"
     elif [[ ! -f $* ]]; then
-        printf "${yellow}%s${nc}\n" "$script_name: The argument must be a single regular file" >&2
+        echo -e "${bold_red}$script_name:${red} The argument must be a single regular file${nc}" >&2
         exit 1
     else
-        printf "${yellow}%s${nc}\n" "$script_name: Unexpected error" >&2
+        echo -e "${bold_red}$script_name:${red} Unexpected error${nc}" >&2
         exit 1
     fi
 }
 
 result=$(load "$*")
-printf "\n${blue}%s${nc} %s\n" "Response:" "$result"
+echo -e "${bold}Response:${nc} $result"
 if [[ $result =~ ^"$service"/[[:alnum:]_+-]{4} ]] && wl-copy "$result" &>/dev/null; then
-    printf "\n${green}%s${nc}\n" "Copied to clipboard!"
+    echo -e "${green}Copied to clipboard!${nc}"
 else
-    printf "\n${red}%s${nc}\n" "Failed to copy to clipboard ;("
+    echo -e "${red}Failed to copy to clipboard ;(${nc}"
 fi
