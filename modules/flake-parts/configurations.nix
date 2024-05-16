@@ -27,7 +27,7 @@
         )
       );
 
-    homeConfigurations."yusup@yusup" =
+    homeConfigurations.yusup =
       with inputs;
       home-manager.lib.homeManagerConfiguration {
         pkgs = self.legacyPackages.x86_64-linux;
