@@ -1,9 +1,4 @@
-{
-  lib,
-  inputs,
-  flake-url,
-  ...
-}:
+{ lib, inputs, ... }:
 {
   flake = rec {
 
@@ -26,27 +21,5 @@
           )
         )
       );
-
-    homeConfigurations.yusup =
-      with inputs;
-      home-manager.lib.homeManagerConfiguration {
-        pkgs = self.legacyPackages.x86_64-linux;
-        modules =
-          [
-            {
-              home.username = "yusup";
-              home.homeDirectory = "/home/yusup";
-              home.stateVersion = "23.11";
-              home.shellAliases.hmupgrade = "nix run ${flake-url}#home-manager -- switch --flake ${flake-url}";
-            }
-          ]
-          ++ nixos-ez-flake.importsFromAttrs {
-            importByDefault = true;
-            modules = inputs.self.moduleTree.home-manager;
-            imports = {
-              profiles.gf = false;
-            };
-          };
-      };
   };
 }
