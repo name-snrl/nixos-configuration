@@ -11,7 +11,7 @@ in
 
   writeSymlinkBin =
     pkg: name:
-    final.runCommand "${pkg.pname}-as-${name}" { } ''
+    final.runCommandLocal "${pkg.pname}-as-${name}" { } ''
       mkdir -p "$out/bin"
       ln -sfn "${lib.getExe pkg}" "$out/bin/${name}"
     '';
