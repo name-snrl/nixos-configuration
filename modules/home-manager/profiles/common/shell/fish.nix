@@ -7,9 +7,7 @@
       with pkgs; # fish
       ''
         stty -ixon # disable flow control
-        set -U fish_greeting # disable greeting
-        # TODO use programs.dircolors.enable instead
-        ${coreutils}/bin/dircolors -c | source
+        set -g fish_greeting # disable greeting
 
         # Globbing exclusion functional
         function exclude
