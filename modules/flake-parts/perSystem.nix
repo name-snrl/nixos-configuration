@@ -26,7 +26,7 @@
                   home.homeDirectory = "/home/yusup";
                   home.stateVersion = "23.11";
 
-                  home.shellAliases.hmupgrade = "nix run ${flake-url}#home-manager -- switch --flake ${flake-url}";
+                  home.shellAliases.hmupgrade = "nix run --refresh ${flake-url}#home-manager -- switch --flake ${flake-url}";
 
                   programs.htop.settings = lib.mkAfter {
                     left_meters = "LeftCPUs4 Blank DateTime Uptime LoadAverage Tasks Blank Swap Memory";
