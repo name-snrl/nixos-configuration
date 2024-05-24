@@ -8,7 +8,13 @@
         "ignorespace"
         "erasedups"
       ];
-      sessionVariables.PROMPT_COMMAND = "history -a";
+      initExtra = ''
+        if [[ "$(declare -p PROMPT_COMMAND 2>&1)" == "declare -a"* ]]; then
+          PROMPT_COMMAND=('history -a' "''${PROMPT_COMMAND[@]}")
+        else
+          PROMPT_COMMAND="history -a''${PROMPT_COMMAND:+;''$PROMPT_COMMAND}"
+        fi
+      '';
     };
     readline = {
       enable = true;
