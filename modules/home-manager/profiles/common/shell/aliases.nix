@@ -27,10 +27,6 @@ in
     sudo = "sudo "; # this will make sudo work with shell aliases/man alias
     reboot = "echo 'Are you sure?'; read && systemctl reboot";
 
-    # use extended regex instead of BRE
-    grep = "grep -E";
-    sed = "sed -E";
-
     # TODO remove me
     usrcfg = "git --git-dir=$HOME/.git_home/ --work-tree=$HOME";
 
