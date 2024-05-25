@@ -19,7 +19,9 @@
       };
     in
     {
-      devShells.default = pkgs.mkShellNoCC { shellHook = config.pre-commit.installationScript; };
+      devShells.default = config.pre-commit.devShell.overrideAttrs (_: {
+        packages = with pkgs; [ bashInteractive ];
+      });
 
       pre-commit.settings.hooks = {
         treefmt = {
