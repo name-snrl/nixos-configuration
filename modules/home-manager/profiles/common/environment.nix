@@ -3,6 +3,7 @@
   xdg.enable = true;
   home = {
     packages = [ pkgs.nvim-full ];
+    shellAliases.g = "vi -c 'G | on'";
     sessionVariables = {
       EDITOR = "nvim";
       MANPAGER = "nvim +Man!";
