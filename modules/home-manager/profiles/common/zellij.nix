@@ -11,7 +11,7 @@
     #enableFishIntegration = true;
   };
   xdg.configFile."zellij/config.kdl".text = ''
-    keybinds {
+    keybinds clear-defaults=true {
         scroll {
             bind "Ctrl s" { SwitchToMode "Normal"; }
             bind "e" { EditScrollback; SwitchToMode "Normal"; }
