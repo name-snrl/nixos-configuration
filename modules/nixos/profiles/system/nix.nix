@@ -28,22 +28,17 @@
         "ilya-fedin.cachix.org-1:QveU24a5ePPMh82mAFSxLk1P+w97pRxqe9rh+MJqlag="
       ];
     };
-    registry =
-      let
-        nixpkgs = ref: {
+    registry = {
+      self.flake = inputs.self;
+      np = {
+        exact = false;
+        to = {
           type = "github";
           owner = "NixOS";
           repo = "nixpkgs";
-          inherit ref;
-        };
-      in
-      {
-        self.flake = inputs.self;
-        master.to = nixpkgs "master";
-        np = {
-          exact = false;
-          to = nixpkgs "nixpkgs-unstable";
+          ref = "nixpkgs-unstable";
         };
       };
+    };
   };
 }
