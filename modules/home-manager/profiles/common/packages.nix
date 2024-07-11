@@ -12,6 +12,7 @@
       wget
       scripts.sf
       cloc
+      just
     ];
     sessionVariables = {
       DFT_DISPLAY = "inline"; # difftastic mode
