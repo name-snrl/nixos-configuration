@@ -2,10 +2,22 @@
 {
   flake = rec {
 
-    nixosConfigurations = inputs.nixos-ez-flake.mkConfigurations {
-      inherit inputs;
-      inherit (inputs.self.moduleTree.nixos) configurations;
-    };
+    nixosConfigurations = lib.mapAttrs (
+      hostName: modules:
+      inputs.nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs;
+          inherit (inputs.nixos-ez-flake) importsFromAttrs;
+        };
+        modules = [
+          {
+            networking = {
+              inherit hostName;
+            };
+          }
+        ] ++ inputs.nixos-ez-flake.importsFromAttrs { inherit modules; };
+      }
+    ) inputs.self.moduleTree.nixos.configurations;
 
     packages =
       with lib;
