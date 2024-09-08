@@ -3,7 +3,7 @@
 */
 inputs: final: prev: {
 
-  neovim-unwrapped = inputs.nvim-nightly.packages.${final.system}.neovim.override {
+  neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${final.system}.neovim.override {
     lua = final.luajit_openresty;
   };
 
