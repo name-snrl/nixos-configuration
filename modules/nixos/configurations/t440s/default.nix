@@ -28,9 +28,9 @@
   # GPU acceleration
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "i965";
-    VDPAU_DRIVER = lib.mkIf config.hardware.opengl.enable (lib.mkDefault "va_gl");
+    VDPAU_DRIVER = lib.mkIf config.hardware.graphics.enable (lib.mkDefault "va_gl");
   };
-  hardware.opengl.extraPackages = with pkgs; [
+  hardware.graphics.extraPackages = with pkgs; [
     intel-vaapi-driver
     libvdpau-va-gl
   ];

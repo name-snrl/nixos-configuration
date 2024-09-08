@@ -24,7 +24,7 @@
   powerManagement.cpuFreqGovernor = "schedutil";
 
   # GPU acceleration
-  hardware.opengl.extraPackages = with pkgs; [ intel-media-driver ];
+  hardware.graphics.extraPackages = with pkgs; [ intel-media-driver ];
 
   # RAM-specific
   boot.tmp.useTmpfs = true;
