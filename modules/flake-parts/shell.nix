@@ -38,7 +38,7 @@
       treefmt = {
         projectRootFile = "flake.nix";
         programs = {
-          nixfmt-rfc-style.enable = true;
+          nixfmt.enable = true;
           deadnix.enable = true;
           statix = {
             enable = true; # fix, if possible
