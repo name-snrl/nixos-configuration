@@ -3,9 +3,7 @@
 */
 inputs: final: prev: {
 
-  neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${final.system}.neovim.override {
-    lua = final.luajit_openresty;
-  };
+  neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${final.system}.neovim;
 
   # TODO https://discourse.nixos.org/t/what-is-the-right-way-to-add-optional-pkgs-to-nixos-binary-cache/37547
   swayfx-unwrapped = prev.swayfx-unwrapped.overrideAttrs (_: {
