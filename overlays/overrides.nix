@@ -51,17 +51,6 @@ inputs: final: prev: {
     '';
   });
 
-  foot = prev.foot.overrideAttrs (oa: {
-    __contentAddressed = true;
-    patches = [
-      (final.fetchpatch {
-        url = "https://codeberg.org/dnkl/foot/pulls/1099.patch";
-        hash = "sha256-4B+PanJqBC3hANgSYXwXeGO19EBdVMyyIgGawpaIMxE=";
-      })
-    ];
-    mesonFlags = oa.mesonFlags ++ [ "-Dext-underline=enabled" ];
-  });
-
   gojq =
     with final;
     symlinkJoin {
