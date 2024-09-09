@@ -1,6 +1,5 @@
 {
   nvim,
-  vimPlugins,
   gnumake, # for required telescope-fzf-native.nvim
   gcc, # for required telescope-fzf-native.nvim
   curl, # for required translate.nvim
@@ -35,21 +34,6 @@ nvim.override {
   extraName = "-full";
   viAlias = true;
   withPython3 = true;
-  rebuildWithTSParsers = true;
-  extraTSParsers = with vimPlugins.nvim-treesitter-parsers; [
-    luap
-    luadoc
-    nix
-    fish
-    scala
-    java
-    starlark
-    go
-    rust
-    css
-    yaml
-    dockerfile
-  ];
   extraBinPath = [
     gnumake
     gcc
