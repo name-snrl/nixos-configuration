@@ -11,8 +11,6 @@ let
   optionalNixosString = lib.optionalString isNixos;
 in
 {
-  # https://github.com/nix-community/home-manager/pull/5406
-  _module.args.nixosConfig = lib.mkDefault null;
   home.shellAliases = {
     ip = "ip --color=auto";
     pg = "$PAGER";
