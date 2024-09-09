@@ -1,4 +1,9 @@
-{ lib, inputs, ... }:
+{
+  lib,
+  inputs,
+  flake-url,
+  ...
+}:
 {
   flake = rec {
 
@@ -34,4 +39,26 @@
         )
       );
   };
+
+  perSystem =
+    { pkgs, ... }:
+    {
+      legacyPackages.homeConfigurations = lib.mapAttrs (
+        username: modules:
+        inputs.home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {
+            inherit inputs flake-url;
+            inherit (inputs.nixos-ez-flake) importsFromAttrs;
+          };
+          modules = [
+            {
+              home = {
+                inherit username;
+              };
+            }
+          ] ++ inputs.nixos-ez-flake.importsFromAttrs { inherit modules; };
+        }
+      ) inputs.self.moduleTree.home-manager.configurations;
+    };
 }

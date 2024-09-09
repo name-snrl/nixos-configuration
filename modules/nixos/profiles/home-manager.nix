@@ -11,6 +11,7 @@
         importByDefault = true;
         modules = inputs.self.moduleTree.home-manager;
         imports = {
+          configurations = false;
           profiles.gf = false;
         };
       };
