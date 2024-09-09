@@ -45,7 +45,10 @@
             inherit disabled-lints;
           };
           shellcheck.enable = true;
-          shfmt.enable = true;
+          shfmt = {
+            enable = true;
+            indent_size = 4;
+          };
           mdformat = {
             enable = true;
             package = pkgs.mdformat.withPlugins (
@@ -60,16 +63,15 @@
         settings.formatter = {
           shellcheck = {
             includes = [ "pkgs/scripts/*" ];
-            excludes = [ "*.nix" ];
+            excludes = [
+              "*.nix"
+              "*.envrc"
+            ];
           };
           shfmt = {
             includes = [ "pkgs/scripts/*" ];
             excludes = [ "*.nix" ];
-            options = [
-              "--case-indent"
-              "--indent"
-              "4"
-            ];
+            options = [ "--case-indent" ];
           };
           mdformat.options = [
             "--wrap"
