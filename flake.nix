@@ -15,6 +15,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     shlyupa.url = "github:ilya-fedin/nur-repository";
+    nixos-ez-flake.url = "github:name-snrl/nixos-ez-flake";
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -51,10 +52,6 @@
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
-    };
-    nixos-ez-flake = {
-      url = "github:name-snrl/nixos-ez-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
