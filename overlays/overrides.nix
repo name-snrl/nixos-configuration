@@ -70,8 +70,8 @@ inputs: final: prev: {
           exec ${prev.swayimg}/bin/swayimg \
               --fullscreen \
               --config=list.all=no \
-              --config=general.antialiasing=yes \
-              --config=keys.e='exec sed -i "s@output.*fill@output \* bg % fill@g" ~/.config/sway/config' \
+              --config=viewer.antialiasing=yes \
+              --config=keys.viewer.e='exec sed -i "s@output.*fill@output \* bg % fill@g" ~/.config/sway/config' \
               ${wallpapers}
         '';
       };
