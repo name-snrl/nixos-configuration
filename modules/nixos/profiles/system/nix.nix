@@ -1,6 +1,12 @@
-{ config, inputs, ... }:
+{
+  pkgs,
+  config,
+  inputs,
+  ...
+}:
 {
   nix = {
+    package = pkgs.lix;
     channel.enable = false;
     settings = {
       auto-optimise-store = true;
