@@ -1,10 +1,17 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   services.logind.extraConfig = ''
     IdleAction=suspend
     IdleActionSec=10min
   '';
-  security.sudo-rs.enable = true;
+  security.sudo.enable = false;
+  environment.systemPackages = [
+    (pkgs.writeShellApplication {
+      name = "sudo";
+      runtimeInputs = [ config.systemd.package.out ];
+      text = ''exec run0 --setenv=PATH "$@"'';
+    })
+  ];
   programs.fish.enable = true;
   users = {
     defaultUserShell = pkgs.fish;
