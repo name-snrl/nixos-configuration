@@ -1,8 +1,10 @@
 { pkgs, ... }:
 {
+  programs.mtr.enable = true;
+  programs.traceroute.enable = true;
   environment.systemPackages = with pkgs; [
-    inetutils
     tcpdump # tcpdump -i wireCat port 67 or port 68 -n -vv
+    nmap
   ];
   networking = {
     useNetworkd = true;
