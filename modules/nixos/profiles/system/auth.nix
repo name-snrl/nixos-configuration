@@ -4,7 +4,16 @@
     IdleAction=suspend
     IdleActionSec=10min
   '';
-  security.sudo.enable = false;
+  security = {
+    sudo.enable = false;
+    polkit.extraConfig = ''
+      polkit.addRule(function(action, subject) {
+        if (subject.isInGroup("wheel") && subject.local) {
+          return polkit.Result.YES;
+        }
+      });
+    '';
+  };
   environment.systemPackages = [
     (pkgs.writeShellApplication {
       name = "sudo";
