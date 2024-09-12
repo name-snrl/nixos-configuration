@@ -1,4 +1,9 @@
+{ pkgs, ... }:
 {
+  environment.systemPackages = with pkgs; [
+    inetutils
+    tcpdump # tcpdump -i wireCat port 67 or port 68 -n -vv
+  ];
   networking = {
     useNetworkd = true;
     useDHCP = false;
