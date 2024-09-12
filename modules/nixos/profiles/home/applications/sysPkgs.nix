@@ -2,16 +2,13 @@
 {
   environment = with pkgs; {
     defaultPackages = [
-      rsync
-      perl
-    ];
-    systemPackages = [
-      # system shit
       pciutils
       usbutils
-
+    ];
+    systemPackages = [
       # cli
       ffmpeg
+      rsync
 
       # GUI
       kotatogram-desktop-with-webkit
