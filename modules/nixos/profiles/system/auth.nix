@@ -8,7 +8,8 @@
     sudo.enable = false;
     polkit.extraConfig = ''
       polkit.addRule(function(action, subject) {
-        if (subject.isInGroup("wheel") && subject.local) {
+        if (subject.local &&
+          subject.user == "${config.users.users.default.name}") {
           return polkit.Result.YES;
         }
       });
