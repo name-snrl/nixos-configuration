@@ -8,7 +8,6 @@
       eza
       file
       tree
-      scripts.sf
       cloc
       just
       curl

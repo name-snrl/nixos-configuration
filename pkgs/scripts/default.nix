@@ -2,7 +2,6 @@
   writeShellApplication,
   pkgs,
   fzf,
-  lib,
 }:
 {
   dg = writeShellApplication {
@@ -32,14 +31,5 @@
           exec setsid dragon --on-top --all "''${paths[@]}"
       fi
     '';
-  };
-
-  sf = writeShellApplication {
-    name = "sf";
-    runtimeInputs = with pkgs; [
-      curl
-      wl-clipboard
-    ];
-    text = lib.readFile ./sf;
   };
 }
