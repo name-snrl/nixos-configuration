@@ -3,17 +3,17 @@
   home = {
     packages = with pkgs; [
       difftastic
-      gojq
       ripgrep
       fd
       eza
       file
       tree
-      wget
-      rsync
       scripts.sf
       cloc
       just
+      curl
+      wget
+      rsync
 
       # networking
       tcpdump # tcpdump -i wireCat port 67 or port 68 -n -vv
