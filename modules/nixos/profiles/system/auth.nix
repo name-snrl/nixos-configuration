@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   services.logind.extraConfig = ''
     IdleAction=suspend
@@ -19,7 +24,21 @@
     (pkgs.writeShellApplication {
       name = "sudo";
       runtimeInputs = [ config.systemd.package.out ];
-      text = ''exec run0 --setenv=PATH "$@"'';
+      text =
+        let
+          env =
+            with lib;
+            concatMapStringsSep " " (var: "--setenv=${var}") (
+              unique (
+                attrNames config.environment.variables
+                ++ attrNames config.environment.sessionVariables
+                ++ optionals (
+                  config ? home-manager && config.home-manager.users ? default
+                ) attrNames config.home-manager.users.default.home.sessionVariables
+              )
+            );
+        in
+        ''exec run0 --setenv=PATH --setenv=SHELL ${env} "$@"'';
     })
   ];
   programs.fish.enable = true;
