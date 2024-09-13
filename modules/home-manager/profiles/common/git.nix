@@ -25,8 +25,8 @@
 
     # some hacks for large repos
     # https://www.git-scm.com/docs/partial-clone
-    aliases.au-promisor = "!git remote add upstream \"$@\" && shift \"$#\" && git fetch --filter=tree:0 upstream";
-    aliases.clone-promisor = "clone --filter=tree:0 --no-checkout";
+    aliases.au-promisor = "!git remote add upstream \"$@\" && shift \"$#\" && git fetch --filter=blob:none upstream";
+    aliases.clone-promisor = "clone --filter=blob:none --no-checkout";
     extraConfig.clone.filterSubmodules = true;
 
     extraConfig = {
