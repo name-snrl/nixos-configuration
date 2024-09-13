@@ -43,6 +43,10 @@
       flake = false;
       url = "github:vinceliuice/graphite-kde-theme";
     };
+    zellij = {
+      flake = false;
+      url = "github:zellij-org/zellij";
+    };
 
     nix-index-db = {
       url = "github:nix-community/nix-index-database";
