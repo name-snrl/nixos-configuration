@@ -17,7 +17,7 @@
       modules = inputs.self.moduleTree.nixos;
       imports = {
         configurations = false;
-        profiles.system = {
+        profiles = {
           desktop.kde = false;
           desktop.gf = false;
           desktop.work = false;

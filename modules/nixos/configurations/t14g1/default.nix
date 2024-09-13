@@ -10,7 +10,7 @@
     modules = inputs.self.moduleTree.nixos;
     imports = {
       configurations = false;
-      profiles.system = {
+      profiles = {
         servers.openssh = false;
         desktop.work = false;
       };
