@@ -12,12 +12,17 @@
         modules = inputs.self.moduleTree.home-manager;
         imports = {
           configurations = false;
-          profiles.gf = false;
+          profiles = {
+            gf = false;
+            snrl = false;
+          };
         };
       };
     users = {
       root = { };
-      default = { };
+      default.imports = importsFromAttrs {
+        modules = inputs.self.moduleTree.home-manager.profiles.snrl;
+      };
     };
   };
 }

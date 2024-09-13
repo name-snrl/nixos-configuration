@@ -10,6 +10,7 @@
       file
       tree
       wget
+      rsync
       scripts.sf
       cloc
       just
