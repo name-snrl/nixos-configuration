@@ -21,7 +21,6 @@
           desktop.kde = false;
           desktop.gf = false;
           desktop.work = false;
-          networking.tor = false;
           logging = false;
           hardware = {
             battery = false;
