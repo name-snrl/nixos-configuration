@@ -21,7 +21,6 @@
       ];
       trusted-users = [
         "root"
-        "@wheel"
         config.users.users.default.name
       ];
       substituters = [
