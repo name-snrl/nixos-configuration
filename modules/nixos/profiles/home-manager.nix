@@ -5,6 +5,9 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
+    extraSpecialArgs = {
+      inherit inputs;
+    };
     sharedModules =
       [ { home.stateVersion = "23.11"; } ]
       ++ importsFromAttrs {
