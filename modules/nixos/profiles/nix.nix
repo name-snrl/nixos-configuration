@@ -19,15 +19,12 @@
         "flakes"
         "ca-derivations"
       ];
-      trusted-users = [
-        "root"
-        config.users.users.default.name
-      ];
-      substituters = [
+      extra-trusted-users = [ config.users.users.default.name ];
+      extra-substituters = [
         "https://nix-community.cachix.org"
         "https://ilya-fedin.cachix.org"
       ];
-      trusted-public-keys = [
+      extra-trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "ilya-fedin.cachix.org-1:QveU24a5ePPMh82mAFSxLk1P+w97pRxqe9rh+MJqlag="
       ];
