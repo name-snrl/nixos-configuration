@@ -7,8 +7,6 @@
 let
   cfgPath = "${config.home.homeDirectory}/nixos-configuration";
   isModule = osConfig != null;
-  mkIfModule = lib.mkIf isModule;
-  optionalModuleString = lib.optionalString isModule;
 in
 {
   home.shellAliases = {
@@ -29,23 +27,24 @@ in
     usrcfg = "git --git-dir=$HOME/.git_home/ --work-tree=$HOME";
 
     # cfg management
-    jnp = mkIfModule "cd ${osConfig.nixpkgs.flake.source}";
-    nboot = mkIfModule "nixos-rebuild boot --use-remote-sudo --fast --flake ${cfgPath}";
+    jnp = lib.mkIf isModule "cd ${osConfig.nixpkgs.flake.source}";
+    nboot = lib.mkIf isModule "nixos-rebuild boot --use-remote-sudo --fast --flake ${cfgPath}";
     nswitch =
       if isModule then
         "nixos-rebuild switch --use-remote-sudo --fast --flake ${cfgPath}"
       else
         "home-manager switch --flake ${cfgPath}";
-    nvmrun = mkIfModule "nix run ${cfgPath}#nixosConfigurations.${osConfig.networking.hostName}.config.system.build.vm";
     nbuild =
       if isModule then
         "nix build --no-link ${cfgPath}#${osConfig.networking.hostName}"
       else
         "home-manager build --no-out-link ${cfgPath}";
+    nrepl = lib.mkIf isModule "nixos-rebuild repl --flake ${cfgPath}";
+    nvmrun = lib.mkIf isModule "nix run ${cfgPath}#nixosConfigurations.${osConfig.networking.hostName}.config.system.build.vm";
     nupdate = "nix flake update --commit-lock-file ${cfgPath}";
     # https://github.com/NixOS/nix/issues/8508
     nclear =
-      optionalModuleString "sudo nix-collect-garbage --delete-old && "
+      lib.optionalString isModule "sudo nix-collect-garbage --delete-old && "
       + "nix-collect-garbage --delete-old";
   };
 }
