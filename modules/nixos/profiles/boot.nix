@@ -7,7 +7,8 @@
     };
     loader = {
       efi.canTouchEfiVariables = false;
-      timeout = lib.mkForce 3;
+      # still accessible by holding random keys during early boot.
+      timeout = lib.mkForce 0;
       systemd-boot = {
         enable = true;
         memtest86.enable = true;
