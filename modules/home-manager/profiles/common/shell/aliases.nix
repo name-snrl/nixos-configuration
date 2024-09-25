@@ -44,7 +44,7 @@ in
     nupdate = "nix flake update --commit-lock-file ${cfgPath}";
     # https://github.com/NixOS/nix/issues/8508
     nclear =
-      lib.optionalString isModule "sudo nix-collect-garbage --delete-old && "
-      + "nix-collect-garbage --delete-old";
+      lib.optionalString isModule "sudo nix-collect-garbage --delete-old --quiet && "
+      + "nix-collect-garbage --delete-old --quiet";
   };
 }
