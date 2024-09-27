@@ -8,7 +8,6 @@
     experimental-features = [
       "nix-command"
       "flakes"
-      "ca-derivations"
     ];
     extra-substituters = [
       "https://nix-community.cachix.org"

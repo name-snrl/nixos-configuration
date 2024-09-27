@@ -11,7 +11,10 @@
     {
       package = pkgs.lix;
       channel.enable = false;
-      settings.extra-trusted-users = [ config.users.users.default.name ];
+      settings = {
+        extra-trusted-users = [ config.users.users.default.name ];
+        experimental-features = [ "ca-derivations" ];
+      };
       registry.self.flake = inputs.self;
     }
   ];
