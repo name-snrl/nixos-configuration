@@ -31,7 +31,6 @@
       bondConfig = {
         Mode = "active-backup";
         MIIMonitorSec = "1s";
-        PrimaryReselectPolicy = "better";
       };
     };
     networks = {
@@ -41,6 +40,7 @@
           Type = "ether";
           Kind = "!*"; # fix docker
         };
+        networkConfig.PrimarySlave = true;
       };
       "90-wlans" = {
         bond = [ "wireCat" ];
