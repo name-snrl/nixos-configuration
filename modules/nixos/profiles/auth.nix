@@ -24,21 +24,22 @@
     (pkgs.writeShellApplication {
       name = "sudo";
       runtimeInputs = [ config.systemd.package.out ];
-      text =
-        let
-          env =
-            with lib;
-            concatMapStringsSep " " (var: "--setenv=${var}") (
-              unique (
-                attrNames config.environment.variables
-                ++ attrNames config.environment.sessionVariables
-                ++ optionals (
-                  config ? home-manager && config.home-manager.users ? default
-                ) attrNames config.home-manager.users.default.home.sessionVariables
-              )
-            );
-        in
-        ''exec run0 --setenv=PATH --setenv=SHELL ${env} "$@"'';
+      text = ''exec run0 ${
+        lib.concatMapStringsSep " " (var: "--setenv=${var}") [
+          "PATH"
+          "SHELL"
+          "LOCALE_ARCHIVE"
+          "TZDIR"
+          "NIX_PATH"
+          "EDITOR"
+          "PAGER"
+          "MANPAGER"
+          "LESS"
+          "LESSKEYIN_SYSTEM"
+          "LESSOPEN"
+          "SYSTEMD_LESS"
+        ]
+      } "$@"'';
     })
   ];
   programs.fish.enable = true;
