@@ -23,9 +23,7 @@
       };
     users = {
       root = { };
-      default.imports = importsFromAttrs {
-        modules = inputs.self.moduleTree.home-manager.profiles.snrl;
-      };
+      default = { };
     };
   };
 }

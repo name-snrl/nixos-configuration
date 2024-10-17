@@ -1,7 +1,13 @@
+{ lib, ... }:
 {
-  services = {
-    dbus.implementation = "broker";
-    udisks2.enable = true;
+  services.dbus.implementation = "broker";
+
+  documentation = {
+    man.generateCaches = true; # necessary for programs that search for man pages
+    nixos.enable = false; # I never read, but it takes too long to compile
   };
-  documentation.man.generateCaches = true;
+
+  # clear out the junk
+  programs.nano.enable = false;
+  environment.defaultPackages = lib.mkDefault [ ];
 }
