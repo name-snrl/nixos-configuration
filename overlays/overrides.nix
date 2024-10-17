@@ -5,6 +5,26 @@ inputs: final: prev: {
 
   neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${final.system}.neovim;
 
+  firefox = prev.firefox.override {
+    extraPolicies = {
+      DisableTelemetry = true;
+      EnableTrackingProtection = true;
+      HttpsOnlyMode = true;
+      NetworkPrediction = true;
+      NoDefaultBookmarks = true;
+      OfferToSaveLogins = false;
+      UserMessaging = {
+        ExtensionRecommendations = false;
+        FeatureRecommendations = false;
+        UrlbarInterventions = false;
+        SkipOnboarding = false;
+        MoreFromMozilla = false;
+        FirefoxLabs = false;
+        Locked = true;
+      };
+    };
+  };
+
   zellij = prev.zellij.overrideAttrs (oa: rec {
     version = "${oa.version}-dev-${inputs.zellij.shortRev}";
     src = inputs.zellij.outPath;
