@@ -46,6 +46,7 @@
       #eww-wayland # TODO
       gojq # needs for move script
       glib # needs for theme script
+      perl # needs for action script
       (tesseract.override { enableLanguages = [ "eng" ]; }) # get text from screenshot
     ];
   };
