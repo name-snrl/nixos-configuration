@@ -1,9 +1,6 @@
 { lib, config, ... }:
 {
-  home.activation.removeHtop = lib.hm.dag.entryBefore [ "checkLinkTargets" ] ''
-    run rm -f ${config.xdg.configHome}/htop/htoprc
-  '';
-
+  xdg.configFile."htop/htoprc".force = true;
   programs.htop = {
     enable = true;
     settings =
