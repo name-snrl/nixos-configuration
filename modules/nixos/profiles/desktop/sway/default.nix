@@ -38,7 +38,6 @@
       grim
       satty
       swaynotificationcenter
-      foot
       (writeSymlinkBin foot "xterm") # https://gitlab.gnome.org/GNOME/glib/-/issues/338
       fuzzel
       playerctl

@@ -3,7 +3,6 @@
   systemd = {
     packages = with pkgs; [
       polkit-kde-agent
-      foot
     ];
     user = {
       targets.sway-session = {
@@ -19,12 +18,6 @@
         environment.PATH = lib.mkForce null; # TODO probably won't be needed in HM
         wantedBy = [ "sway-session.target" ];
       };
-
-      services.foot-server = {
-        environment.PATH = lib.mkForce null; # TODO probably won't be needed in HM
-        wantedBy = [ "sway-session.target" ];
-      };
-      sockets.foot-server.wantedBy = [ "sway-session.target" ];
 
       # services written by me
       services.waybar = {
