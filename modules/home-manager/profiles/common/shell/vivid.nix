@@ -13,5 +13,8 @@
     fish.interactiveShellInit = ''
       set -gx LS_COLORS (${vivid}/bin/vivid generate one-dark)
     '';
+    nushell.extraEnv = ''
+      $env.LS_COLORS = (${vivid}/bin/vivid generate one-dark | str trim)
+    '';
   };
 }
