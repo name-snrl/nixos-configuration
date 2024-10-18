@@ -62,6 +62,10 @@ in
           "browser.uiCustomization.state" = {
             currentVersion = 20;
             placements = {
+              TabsToolbar = [
+                "tabbrowser-tabs"
+                "alltabs-button"
+              ];
               nav-bar = [
                 "customizableui-special-spring11"
                 "customizableui-special-spring19"
@@ -78,14 +82,6 @@ in
                 "downloads-button"
                 "unified-extensions-button"
                 "reset-pbm-toolbar-button"
-              ];
-              unified-extensions-area = [
-                "_d7742d87-e61d-4b78-b8a1-b469842139fa_-browser-action"
-                "jid1-qofqdk4qzufgwq_jetpack-browser-action"
-                "jid1-tsgsxbhncspbwq_jetpack-browser-action"
-                "simple-translate_sienori-browser-action"
-                "ublock0_raymondhill_net-browser-action"
-                "toggle-proxy-webext_defkev-browser-action"
               ];
             };
           };
@@ -110,6 +106,30 @@ in
     };
     policies = {
       DisableForgetButton = true; # I fucked up once, don't want again
+      ExtensionSettings = {
+        "uBlock0@raymondhill.net" = {
+          default_area = "menupanel";
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+        };
+        "simple-translate@sienori" = {
+          default_area = "menupanel";
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/simple-translate/latest.xpi";
+        };
+        # vimium
+        "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = {
+          default_area = "menupanel";
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/vimium-ff/latest.xpi";
+        };
+        # dark bg and light text
+        "jid1-QoFqdK4qzUfGWQ@jetpack" = {
+          default_area = "menupanel";
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/dark-background-light-text/latest.xpi";
+        };
+      };
       Preferences = mergeValues {
         main = {
           # urlbar settings
