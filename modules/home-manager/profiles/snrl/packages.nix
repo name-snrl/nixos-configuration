@@ -5,7 +5,6 @@
     qbittorrent
     anki
     ffmpeg
-    mpv
 
     swayimg # remove after migraion to KDE?
     sioyek # remove after migraion to KDE?
