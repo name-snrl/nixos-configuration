@@ -7,7 +7,6 @@
     ffmpeg
 
     swayimg # remove after migraion to KDE?
-    sioyek # remove after migraion to KDE?
     pcmanfm-qt # remove after migraion to KDE
     lxqt.pavucontrol-qt # remove after migraion to KDE?
 
