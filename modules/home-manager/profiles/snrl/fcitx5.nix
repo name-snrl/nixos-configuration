@@ -40,29 +40,32 @@
         AutoSavePeriod = 30;
       };
     };
-    "fcitx5/profile".source = (pkgs.formats.ini { }).generate "fcitx5-profile" {
-      "Groups/0" = {
-        Name = "Default";
-        "Default Layout" = "us";
-        DefaultIM = "keyboard-ru-srp";
-      };
+    "fcitx5/profile" = {
+      force = true;
+      source = (pkgs.formats.ini { }).generate "fcitx5-profile" {
+        "Groups/0" = {
+          Name = "Default";
+          "Default Layout" = "us";
+          DefaultIM = "keyboard-ru-srp";
+        };
 
-      "Groups/0/Items/0" = {
-        Name = "keyboard-us";
-        Layout = "";
-      };
+        "Groups/0/Items/0" = {
+          Name = "keyboard-us";
+          Layout = "";
+        };
 
-      "Groups/0/Items/1" = {
-        Name = "keyboard-ru-srp";
-        Layout = "";
-      };
+        "Groups/0/Items/1" = {
+          Name = "keyboard-ru-srp";
+          Layout = "";
+        };
 
-      "Groups/0/Items/2" = {
-        Name = "mozc";
-        Layout = "";
-      };
+        "Groups/0/Items/2" = {
+          Name = "mozc";
+          Layout = "";
+        };
 
-      GroupOrder."0" = "Default";
+        GroupOrder."0" = "Default";
+      };
     };
     "fcitx5/conf/classicui.conf".source = (pkgs.formats.keyValue { }).generate "fcitx5-classicui.conf" {
       "Vertical Candidate List" = "False";
