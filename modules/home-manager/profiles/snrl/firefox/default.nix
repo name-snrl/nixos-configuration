@@ -130,6 +130,12 @@ in
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/dark-background-light-text/latest.xpi";
         };
       };
+      FirefoxHome = {
+        Search = false;
+        TopSites = false;
+        Highlights = false;
+        Locked = true;
+      };
       Preferences = mergeValues {
         main = {
           # urlbar settings
