@@ -13,6 +13,7 @@
     imports = {
       configurations = false;
       profiles = {
+        zfs = false;
         desktop.kde = false;
         desktop.gf = false;
         servers.openssh = false;
