@@ -11,6 +11,12 @@
 - [cab404](https://github.com/cab404/home)
 - [kanashimia](https://github.com/kanashimia/nixos-config)
 
+### Install
+
+```sh
+sh <(curl -L https://github.com/name-snrl/nixos-configuration/raw/refs/heads/master/install) <configuration-name>
+```
+
 ### Structure
 
 TODO

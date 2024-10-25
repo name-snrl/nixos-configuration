@@ -1,0 +1,13 @@
+ref="github:name-snrl/nixos-configuration#$1"
+
+nix run \
+  --extra-experimental-features 'nix-command flakes' \
+  github:nix-community/disko/latest#disko -- \
+  --mode disko \
+  --flake "$ref"
+
+nixos-install \
+  --option extra-experimental-features ca-derivations \
+  --no-channel-copy \
+  --no-root-password \
+  --flake "$ref"
