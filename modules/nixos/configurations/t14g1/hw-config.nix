@@ -17,18 +17,8 @@
     "rtsx_pci_sdmmc"
   ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/b49cf2f2-8dbc-45e3-867c-13f2cd0616c1";
-    fsType = "ext4";
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/44E4-D66D";
-    fsType = "vfat";
-  };
 
   swapDevices = [ ];
 

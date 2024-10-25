@@ -1,10 +1,7 @@
 { lib, ... }:
 {
   boot = {
-    initrd = {
-      systemd.enable = true;
-      includeDefaultModules = false;
-    };
+    initrd.systemd.enable = true;
     loader = {
       efi.canTouchEfiVariables = false;
       # still accessible by holding random keys during early boot.

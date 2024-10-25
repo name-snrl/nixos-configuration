@@ -17,6 +17,8 @@
     };
   };
 
+  disko.devices.disk.disk0.device = "/dev/disk/by-id/nvme-SAMSUNG_MZVLQ256HBJD-00BH1_S672NX0W316765";
+
   # Firmware
   services.fwupd.enable = true; # https://fwupd.org/lvfs/devices/
 
