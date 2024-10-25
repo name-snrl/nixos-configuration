@@ -75,7 +75,7 @@ in
                 "history-panelmenu"
                 "urlbar-container"
                 "fxa-toolbar-menu-button"
-                "firefox-view-button"
+                "sync-button"
                 "customizableui-special-spring20"
                 "customizableui-special-spring12"
                 "save-to-pocket-button"
