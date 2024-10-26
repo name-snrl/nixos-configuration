@@ -15,4 +15,5 @@ systemctl restart nix-daemon.service
 
 nix run github:nix-community/disko/latest#disko -- --mode disko --flake "$ref"
 
-nixos-install --no-channel-copy --no-root-password --flake "$ref"
+# https://github.com/NixOS/nixpkgs/pull/351323
+nixos-install --option extra-experimental-features ca-derivations --no-channel-copy --no-root-password --flake "$ref"
