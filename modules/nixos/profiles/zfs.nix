@@ -4,6 +4,11 @@
   config,
   ...
 }:
+let
+  ifImpermanence = lib.mkIf (
+    config.environment ? persistence && config.environment.persistence != { }
+  );
+in
 {
   disko.devices = {
     disk.disk0 = {
@@ -70,9 +75,15 @@
           options.mountpoint = "legacy";
           options.compression = "zstd";
         };
+        persistent = ifImpermanence {
+          mountpoint = "/persistent";
+          type = "zfs_fs";
+          options.mountpoint = "legacy";
+        };
       };
     };
   };
+  fileSystems = ifImpermanence { "/persistent".neededForBoot = true; };
 
   boot = {
     initrd.supportedFilesystems.zfs = true;
@@ -85,6 +96,11 @@
       enable = true;
       interval = "weekly";
     };
+  };
+  chaotic.zfs-impermanence-on-shutdown = ifImpermanence {
+    enable = true;
+    volume = "zroot/rootfs";
+    snapshot = "blank";
   };
   networking.hostId = with builtins; substring 0 8 (hashString "md5" config.networking.hostName);
 }

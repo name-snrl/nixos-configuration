@@ -17,6 +17,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     shlyupa.url = "github:ilya-fedin/nur-repository";
+    impermanence.url = "github:nix-community/impermanence";
     nixos-ez-flake.url = "github:name-snrl/nixos-ez-flake";
 
     dots = {
