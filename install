@@ -17,3 +17,7 @@ nix run github:nix-community/disko/latest#disko -- --mode disko --flake "$ref"
 
 # https://github.com/NixOS/nixpkgs/pull/351323
 nixos-install --option extra-experimental-features ca-derivations --no-channel-copy --no-root-password --flake "$ref"
+
+unmnt='umount --recursive /mnt && zpool export -a'
+echo unmount: "$unmnt"
+eval "$unmnt"
