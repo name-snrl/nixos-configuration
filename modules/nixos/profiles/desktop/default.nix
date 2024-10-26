@@ -1,4 +1,9 @@
-{ pkgs, options, ... }:
+{
+  pkgs,
+  options,
+  defaultUserName,
+  ...
+}:
 {
   boot = {
     kernelPackages = pkgs.linuxPackages_cachyos;
@@ -20,7 +25,7 @@
   systemd.coredump.extraConfig = "MaxUse=200M";
 
   programs.adb.enable = true;
-  users.users.default.extraGroups = [ "adbusers" ];
+  users.users.${defaultUserName}.extraGroups = [ "adbusers" ];
 
   services.udisks2.enable = true;
   environment.defaultPackages = with pkgs; [

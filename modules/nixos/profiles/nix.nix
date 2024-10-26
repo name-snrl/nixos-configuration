@@ -1,8 +1,8 @@
 {
   lib,
-  pkgs,
-  config,
   inputs,
+  pkgs,
+  defaultUserName,
   ...
 }:
 {
@@ -12,7 +12,7 @@
       package = pkgs.lix;
       channel.enable = false;
       settings = {
-        extra-trusted-users = [ config.users.users.default.name ];
+        extra-trusted-users = [ defaultUserName ];
         experimental-features = [ "ca-derivations" ];
       };
       registry.self.flake = inputs.self;

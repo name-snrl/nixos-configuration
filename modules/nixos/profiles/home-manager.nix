@@ -1,4 +1,9 @@
-{ inputs, importsFromAttrs, ... }:
+{
+  inputs,
+  importsFromAttrs,
+  defaultUserName,
+  ...
+}:
 {
   imports = [ inputs.home-manager.nixosModules.home-manager ];
 
@@ -23,7 +28,7 @@
       };
     users = {
       root = { };
-      default = { };
+      ${defaultUserName} = { };
     };
   };
 }
