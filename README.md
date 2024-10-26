@@ -14,7 +14,7 @@
 ### Install
 
 ```sh
-sh <(curl -L https://github.com/name-snrl/nixos-configuration/raw/refs/heads/master/install) <configuration-name>
+sh <(curl -L https://github.com/name-snrl/nixos-configuration/raw/master/install) <configuration-name>
 ```
 
 ### Structure
