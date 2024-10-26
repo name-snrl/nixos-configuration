@@ -62,14 +62,20 @@
         };
         settings.formatter = {
           shellcheck = {
-            includes = [ "pkgs/scripts/*" ];
+            includes = [
+              "pkgs/scripts/*"
+              "install"
+            ];
             excludes = [
               "*.nix"
               "*.envrc"
             ];
           };
           shfmt = {
-            includes = [ "pkgs/scripts/*" ];
+            includes = [
+              "pkgs/scripts/*"
+              "install"
+            ];
             excludes = [ "*.nix" ];
             options = [ "--case-indent" ];
           };
