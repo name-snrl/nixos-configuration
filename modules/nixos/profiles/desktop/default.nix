@@ -1,7 +1,7 @@
 { pkgs, options, ... }:
 {
   boot = {
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_cachyos;
     supportedFilesystems = [ "ntfs" ];
   };
 

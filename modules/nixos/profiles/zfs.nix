@@ -1,4 +1,9 @@
-{ config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 {
   disko.devices = {
     disk.disk0 = {
@@ -72,6 +77,7 @@
   boot = {
     initrd.supportedFilesystems.zfs = true;
     zfs.forceImportRoot = false;
+    zfs.package = lib.mkIf (lib.hasInfix "cachyos" config.boot.kernelPackages.kernel.modDirVersion) pkgs.zfs_cachyos;
   };
   services.zfs = {
     trim.enable = false; # we don't need this since autotrim is enabled for zroot
