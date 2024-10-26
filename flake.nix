@@ -15,6 +15,7 @@
   inputs = {
     # single lines
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     shlyupa.url = "github:ilya-fedin/nur-repository";
     nixos-ez-flake.url = "github:name-snrl/nixos-ez-flake";
 

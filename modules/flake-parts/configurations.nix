@@ -21,6 +21,7 @@
             };
           }
           inputs.disko.nixosModules.default
+          inputs.chaotic.nixosModules.default
         ] ++ inputs.nixos-ez-flake.importsFromAttrs { inherit modules; };
       }
     ) inputs.self.moduleTree.nixos.configurations;
