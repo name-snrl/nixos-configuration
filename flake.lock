@@ -332,8 +332,8 @@
     },
     "git-hooks": {
       "inputs": {
-        "flake-compat": "flake-compat_2",
-        "gitignore": "gitignore",
+        "flake-compat": "flake-compat_3",
+        "gitignore": "gitignore_2",
         "nixpkgs": [
           "neovim-nightly-overlay",
           "nixpkgs"
@@ -357,10 +357,35 @@
         "type": "github"
       }
     },
+    "git-hooks-nix": {
+      "inputs": {
+        "flake-compat": "flake-compat",
+        "gitignore": "gitignore",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nixpkgs-stable": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1729104314,
+        "narHash": "sha256-pZRZsq5oCdJt3upZIU4aslS9XwFJ+/nVtALHIciX/BI=",
+        "owner": "cachix",
+        "repo": "git-hooks.nix",
+        "rev": "3c3e88f0f544d6bb54329832616af7eb971b6be6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cachix",
+        "repo": "git-hooks.nix",
+        "type": "github"
+      }
+    },
     "git-hooks_2": {
       "inputs": {
-        "flake-compat": "flake-compat_4",
-        "gitignore": "gitignore_2",
+        "flake-compat": "flake-compat_5",
+        "gitignore": "gitignore_3",
         "nixpkgs": [
           "nvim",
           "neovim-nightly-overlay",
@@ -389,8 +414,7 @@
     "gitignore": {
       "inputs": {
         "nixpkgs": [
-          "neovim-nightly-overlay",
-          "git-hooks",
+          "git-hooks-nix",
           "nixpkgs"
         ]
       },
@@ -411,7 +435,6 @@
     "gitignore_2": {
       "inputs": {
         "nixpkgs": [
-          "nvim",
           "neovim-nightly-overlay",
           "git-hooks",
           "nixpkgs"
@@ -435,7 +458,8 @@
       "inputs": {
         "nixpkgs": [
           "nvim",
-          "pre-commit-hooks-nix",
+          "neovim-nightly-overlay",
+          "git-hooks",
           "nixpkgs"
         ]
       },
@@ -456,6 +480,7 @@
     "gitignore_4": {
       "inputs": {
         "nixpkgs": [
+          "nvim",
           "pre-commit-hooks-nix",
           "nixpkgs"
         ]
@@ -632,7 +657,7 @@
     },
     "neovim-nightly-overlay": {
       "inputs": {
-        "flake-compat": "flake-compat",
+        "flake-compat": "flake-compat_2",
         "flake-parts": "flake-parts_2",
         "git-hooks": "git-hooks",
         "hercules-ci-effects": "hercules-ci-effects",
@@ -657,7 +682,7 @@
     },
     "neovim-nightly-overlay_2": {
       "inputs": {
-        "flake-compat": "flake-compat_3",
+        "flake-compat": "flake-compat_4",
         "flake-parts": "flake-parts_6",
         "git-hooks": "git-hooks_2",
         "hercules-ci-effects": "hercules-ci-effects_2",
@@ -860,8 +885,8 @@
     },
     "pre-commit-hooks-nix": {
       "inputs": {
-        "flake-compat": "flake-compat_5",
-        "gitignore": "gitignore_3",
+        "flake-compat": "flake-compat_6",
+        "gitignore": "gitignore_4",
         "nixpkgs": [
           "nvim",
           "nixpkgs"
@@ -885,37 +910,13 @@
         "type": "github"
       }
     },
-    "pre-commit-hooks-nix_2": {
-      "inputs": {
-        "flake-compat": "flake-compat_6",
-        "gitignore": "gitignore_4",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "nixpkgs-stable": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1729104314,
-        "narHash": "sha256-pZRZsq5oCdJt3upZIU4aslS9XwFJ+/nVtALHIciX/BI=",
-        "owner": "cachix",
-        "repo": "pre-commit-hooks.nix",
-        "rev": "3c3e88f0f544d6bb54329832616af7eb971b6be6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "cachix",
-        "repo": "pre-commit-hooks.nix",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "chaotic": "chaotic",
         "disko": "disko",
         "dots": "dots",
         "flake-parts": "flake-parts",
+        "git-hooks-nix": "git-hooks-nix",
         "graphite-gtk": "graphite-gtk",
         "graphite-kde": "graphite-kde",
         "home-manager": "home-manager_2",
@@ -925,7 +926,6 @@
         "nixos-ez-flake": "nixos-ez-flake",
         "nixpkgs": "nixpkgs_2",
         "nvim": "nvim",
-        "pre-commit-hooks-nix": "pre-commit-hooks-nix_2",
         "shlyupa": "shlyupa",
         "treefmt-nix": "treefmt-nix_2",
         "zellij": "zellij"

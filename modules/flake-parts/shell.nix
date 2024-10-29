@@ -1,23 +1,11 @@
 { inputs, ... }:
 {
   imports = with inputs; [
-    pre-commit-hooks-nix.flakeModule
+    git-hooks-nix.flakeModule
     treefmt-nix.flakeModule
   ];
   perSystem =
     { pkgs, config, ... }:
-    let
-      cfg = (pkgs.formats.toml { }).generate "statix.toml" { disabled = disabled-lints; };
-      disabled-lints = [ "repeated_keys" ];
-      statix-check = pkgs.writeShellApplication {
-        name = "statix";
-        runtimeInputs = [ pkgs.statix ];
-        text = ''
-          shift
-          exec statix check --config ${cfg} "$@"
-        '';
-      };
-    in
     {
       devShells.default = config.pre-commit.devShell.overrideAttrs (_: {
         packages = with pkgs; [ bashInteractive ];
@@ -30,8 +18,11 @@
         };
         statix = {
           enable = true; # check. not everything can be fixed, but we need to know what
-          package = statix-check;
           settings.format = "stderr";
+          settings.config =
+            ((pkgs.formats.toml { }).generate "statix.toml" {
+              disabled = config.treefmt.programs.statix.disabled-lints;
+            }).outPath;
         };
       };
 
@@ -42,7 +33,7 @@
           deadnix.enable = true;
           statix = {
             enable = true; # fix, if possible
-            inherit disabled-lints;
+            disabled-lints = [ "repeated_keys" ];
           };
           shellcheck.enable = true;
           shfmt = {
