@@ -109,24 +109,24 @@ in
       ExtensionSettings = {
         "uBlock0@raymondhill.net" = {
           default_area = "menupanel";
-          installation_mode = "force_installed";
+          installation_mode = "normal_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
         };
         "simple-translate@sienori" = {
           default_area = "menupanel";
-          installation_mode = "force_installed";
+          installation_mode = "normal_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/simple-translate/latest.xpi";
         };
         # vimium
         "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = {
           default_area = "menupanel";
-          installation_mode = "force_installed";
+          installation_mode = "normal_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/vimium-ff/latest.xpi";
         };
         # dark bg and light text
         "jid1-QoFqdK4qzUfGWQ@jetpack" = {
           default_area = "menupanel";
-          installation_mode = "force_installed";
+          installation_mode = "normal_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/dark-background-light-text/latest.xpi";
         };
       };
