@@ -25,8 +25,8 @@ inputs: final: prev: {
     };
   };
 
-  zellij = prev.zellij.overrideAttrs (oa: rec {
-    version = "${oa.version}-dev-${inputs.zellij.shortRev}";
+  zellij = prev.zellij.overrideAttrs (_: {
+    version = "dev-${inputs.zellij.shortRev}";
     src = inputs.zellij.outPath;
     cargoDeps = final.rustPlatform.importCargoLock {
       lockFile = inputs.zellij.outPath + "/Cargo.lock";
