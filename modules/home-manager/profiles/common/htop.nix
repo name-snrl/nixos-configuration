@@ -1,10 +1,18 @@
 { lib, config, ... }:
+let
+  formatMeters = side: meters: {
+    "${side}_meters" = lib.mkDefault (lib.concatMap (lib.mapAttrsToList (x: _: x)) meters);
+    "${side}_meter_modes" = lib.mkDefault (lib.concatMap (lib.mapAttrsToList (_: y: y)) meters);
+  };
+  leftMeters = formatMeters "left";
+  rightMeters = formatMeters "right";
+  inherit (config.lib.htop) fields bar text;
+in
 {
   xdg.configFile."htop/htoprc".force = true;
   programs.htop = {
     enable = true;
     settings =
-      with config.lib.htop;
       leftMeters [
         (bar "LeftCPUs")
         (text "Blank")

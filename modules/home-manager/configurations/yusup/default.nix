@@ -3,7 +3,6 @@
   inputs,
   config,
   flake-url,
-  lib,
   ...
 }:
 {
@@ -23,8 +22,20 @@
 
   home.shellAliases.hmupgrade = "nix run --refresh ${flake-url}#home-manager -- switch --flake ${flake-url}";
 
-  programs.htop.settings = lib.mkAfter {
-    left_meters = "LeftCPUs4 Blank DateTime Uptime LoadAverage Tasks Blank Swap Memory";
-    right_meters = "RightCPUs4 Blank DiskIO NetworkIO";
-  };
+  programs.htop.settings = (with config.lib.htop; leftMeters [
+    (bar "LeftCPUs4")
+    (text "Blank")
+    (text "DateTime")
+    (text "Uptime")
+    (text "LoadAverage")
+    (text "Tasks")
+    (text "Blank")
+    (text "Swap")
+    (text "Memory")
+  ]) // (with config.lib.htop; rightMeters [
+    (bar "RightCPUs4")
+    (text "Blank")
+    (bar "DiskIO")
+    (bar "NetworkIO")
+  ]);
 }
