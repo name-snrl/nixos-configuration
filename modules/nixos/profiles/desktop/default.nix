@@ -17,8 +17,9 @@
   time.hardwareClockInLocalTime = true;
   # TODO geoclue doesn't work
   # https://github.com/NixOS/nixpkgs/issues/321121
-  location.provider = "geoclue2";
-  services.automatic-timezoned.enable = true;
+  #location.provider = "geoclue2";
+  #services.automatic-timezoned.enable = true;
+  time.timeZone = "Asia/Tokyo";
 
   # don't need so many logs on desktops
   services.journald.extraConfig = "SystemMaxUse=200M";
