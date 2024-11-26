@@ -55,6 +55,7 @@
         };
         dhcpV4Config.UseDNS = false;
         dhcpV6Config.UseDNS = false;
+        ipv6AcceptRAConfig.UseDNS = false;
       };
     };
   };
