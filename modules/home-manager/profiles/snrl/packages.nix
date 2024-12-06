@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    kotatogram-desktop-with-webkit
+    kotatogram-desktop
     qbittorrent
     anki
     ffmpeg
