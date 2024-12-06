@@ -25,14 +25,6 @@ inputs: final: prev: {
     };
   };
 
-  zellij = prev.zellij.overrideAttrs (_: {
-    version = "dev-${inputs.zellij.shortRev}";
-    src = inputs.zellij.outPath;
-    cargoDeps = final.rustPlatform.importCargoLock {
-      lockFile = inputs.zellij.outPath + "/Cargo.lock";
-    };
-  });
-
   # TODO https://discourse.nixos.org/t/what-is-the-right-way-to-add-optional-pkgs-to-nixos-binary-cache/37547
   swayfx-unwrapped = prev.swayfx-unwrapped.overrideAttrs (_: {
     __contentAddressed = true;

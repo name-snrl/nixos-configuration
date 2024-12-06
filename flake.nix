@@ -34,10 +34,6 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zellij = {
-      flake = false;
-      url = "github:zellij-org/zellij";
-    };
     graphite-gtk = {
       url = "github:vinceliuice/graphite-gtk-theme";
       flake = false;

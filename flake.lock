@@ -943,8 +943,7 @@
         "nixpkgs": "nixpkgs_2",
         "nvim": "nvim",
         "shlyupa": "shlyupa",
-        "treefmt-nix": "treefmt-nix_2",
-        "zellij": "zellij"
+        "treefmt-nix": "treefmt-nix_2"
       }
     },
     "shlyupa": {
@@ -1005,22 +1004,6 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "type": "github"
-      }
-    },
-    "zellij": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1724945791,
-        "narHash": "sha256-uvlUSaQQpc8DIPBFf3h/NtwqJAUp6B4uQ4eWYt25xpM=",
-        "owner": "zellij-org",
-        "repo": "zellij",
-        "rev": "489c4da5ffaf38526b76bad4ce09da63ae99331e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "zellij-org",
-        "repo": "zellij",
         "type": "github"
       }
     }
