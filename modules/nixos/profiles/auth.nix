@@ -8,7 +8,7 @@
 {
   # This solution gives easy access to the primary user name, while leaving the
   # ability to define it in one place. Example:
-  # 
+  #
   # { users.users.foo = { isNormalUser = true; }; }
   #
   # You can then reference the username in another module/profile:
@@ -33,6 +33,9 @@
         }
       });
     '';
+    # TODO seems this should be in upstream
+    # https://github.com/NixOS/nixpkgs/issues/361592
+    pam.services.systemd-run0 = { };
   };
   environment.systemPackages = [
     (pkgs.writeShellApplication {

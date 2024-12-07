@@ -8,7 +8,7 @@
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
       twitter-color-emoji
-      (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+      nerd-fonts.symbols-only
 
       # unicode coverage
       unifont
