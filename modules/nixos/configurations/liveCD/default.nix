@@ -18,13 +18,13 @@
       imports = {
         configurations = false;
         profiles = {
-          desktop.kde = false;
-          desktop.gf = false;
-          desktop.work = false;
-          hardware = {
-            battery = false;
-            self = false;
+          desktop = {
+            kde = false;
+            gf = false;
+            work = false;
+            hardware.battery = false;
           };
+          hardware = false;
           vm-config = false;
         };
       };
