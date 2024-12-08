@@ -6,9 +6,9 @@
     anki
     ffmpeg
 
-    swayimg # remove after migraion to KDE?
-    pcmanfm-qt # remove after migraion to KDE
-    lxqt.pavucontrol-qt # remove after migraion to KDE?
+    swayimg # TODO remove after migraion to KDE?
+    pcmanfm-qt # TODO remove after migraion to KDE
+    lxqt.pavucontrol-qt # TODO remove after migraion to KDE?
 
     # themes
     graphite-kde-theme

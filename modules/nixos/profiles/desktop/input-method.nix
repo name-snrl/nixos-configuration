@@ -1,4 +1,8 @@
 /*
+  TODO this module was created as an alternative that would be compatible with
+  both kde and sway. So, should we revert to the nixpkgs module after removing
+  sway?
+
   I don't like the input-method modules from nixpkgs, so I wrote my own,
   following the official documentation:
 
