@@ -15,7 +15,7 @@
       profiles = {
         zfs = false;
         desktop.kde = false;
-        desktop.gf = false;
+        desktop.users.gf = false;
         servers.openssh = false;
       };
     };

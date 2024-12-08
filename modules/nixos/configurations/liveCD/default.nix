@@ -20,8 +20,8 @@
         profiles = {
           desktop = {
             kde = false;
-            gf = false;
             work = false;
+            users.gf = false;
             hardware.battery = false;
           };
           hardware = false;
