@@ -36,9 +36,6 @@
     # TODO seems this should be in upstream
     # https://github.com/NixOS/nixpkgs/issues/361592
     pam.services.systemd-run0 = { };
-    # TODO I want to isolate apps like tg, firefox, etc from FS.
-    # So this could be a solution
-    #apparmor.enable = true;
   };
   environment.systemPackages = [
     (pkgs.writeShellApplication {
