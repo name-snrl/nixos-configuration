@@ -24,7 +24,7 @@
       #
       # https://github.com/carapace-sh/carapace-bin/issues/2374
       #
-      # So, enable for nushell only 
+      # So, enable for nushell only
       enableFishIntegration = false;
       enableBashIntegration = false;
       enableZshIntegration = false;
