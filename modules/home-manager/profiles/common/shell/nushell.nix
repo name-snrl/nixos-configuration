@@ -5,15 +5,12 @@
     # configuration.
     nushell = {
       enable = true;
-      configFile.text = ''
-        $env.config = {
-          show_banner: false,
-        }
-      '';
-      extraEnv = ''
-        $env.CARAPACE_BRIDGES = 'fish,bash,zsh'
-        $env.CARAPACE_EXCLUDES = 'nix'
-      '';
+      # TODO https://github.com/nix-community/home-manager/pull/6184
+      extraConfig = "$env.config.show_banner = false";
+      environmentVariables = {
+        CARAPACE_BRIDGES = "fish,bash,zsh";
+        CARAPACE_EXCLUDES = "nix";
+      };
     };
     carapace = {
       enable = true;
