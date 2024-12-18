@@ -5,7 +5,6 @@
     qbittorrent
     anki
     ffmpeg
-    taskwarrior3
 
     swayimg # TODO remove after migraion to KDE?
     pcmanfm-qt # TODO remove after migraion to KDE
