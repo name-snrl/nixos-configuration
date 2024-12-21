@@ -13,6 +13,7 @@
         "$nix_shell"
 
         "$line_break"
+        "$time"
         "$shell"
         "$jobs"
         "$cmd_duration"
@@ -50,8 +51,13 @@
         unknown_msg = "nix shell";
       };
 
+      time = {
+        format = "[$time](bold yellow) ";
+        disabled = false;
+      };
+
       shell = {
-        style = "white italic bold";
+        style = "bold white italic";
         bash_indicator = "bash";
         fish_indicator = "fish";
         nu_indicator = "nushell";
