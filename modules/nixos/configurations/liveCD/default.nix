@@ -3,7 +3,6 @@
   pkgs,
   inputs,
   modulesPath,
-  importsFromAttrs,
   ...
 }:
 {
@@ -12,21 +11,17 @@
       "${modulesPath}/profiles/all-hardware.nix"
       "${modulesPath}/installer/cd-dvd/iso-image.nix"
     ]
-    ++ importsFromAttrs {
-      importByDefault = true;
-      modules = inputs.self.moduleTree.nixos;
-      imports = {
-        configurations = false;
-        profiles = {
-          desktop = {
-            kde = false;
-            work = false;
-            users.gf = false;
-            hardware.battery = false;
-          };
-          hardware = false;
-          vm-config = false;
+    ++ inputs.self.moduleTree.nixos {
+      configurations = false;
+      profiles = {
+        desktop = {
+          kde = false;
+          work = false;
+          users.gf = false;
+          hardware.battery = false;
         };
+        hardware = false;
+        vm-config = false;
       };
     };
   boot = {

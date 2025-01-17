@@ -1,9 +1,4 @@
-{
-  inputs,
-  importsFromAttrs,
-  defaultUserName,
-  ...
-}:
+{ inputs, defaultUserName, ... }:
 {
   imports = [ inputs.home-manager.nixosModules.home-manager ];
 
@@ -15,15 +10,11 @@
     };
     sharedModules =
       [ { home.stateVersion = "23.11"; } ]
-      ++ importsFromAttrs {
-        importByDefault = true;
-        modules = inputs.self.moduleTree.home-manager;
-        imports = {
-          configurations = false;
-          profiles = {
-            gf = false;
-            snrl = false;
-          };
+      ++ inputs.self.moduleTree.home-manager {
+        configurations = false;
+        profiles = {
+          gf = false;
+          snrl = false;
         };
       };
     users = {

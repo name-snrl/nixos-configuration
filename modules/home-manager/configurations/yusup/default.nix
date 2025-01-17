@@ -1,5 +1,4 @@
 {
-  importsFromAttrs,
   inputs,
   config,
   flake-url,
@@ -7,14 +6,11 @@
   ...
 }:
 {
-  imports = importsFromAttrs {
-    modules = inputs.self.moduleTree.home-manager;
-    imports = {
-      configurations = false;
-      profiles = {
-        gf = false;
-        snrl = false;
-      };
+  imports = inputs.self.moduleTree.home-manager {
+    configurations = false;
+    profiles = {
+      gf = false;
+      snrl = false;
     };
   };
 

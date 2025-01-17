@@ -2,10 +2,10 @@
   description = "My NixOS configurations";
 
   outputs =
-    inputs@{ nixos-ez-flake, flake-parts, ... }:
+    inputs@{ nfh, flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } rec {
-      flake.moduleTree = nixos-ez-flake.mkModuleTree ./modules;
-      imports = nixos-ez-flake.importsFromAttrs { modules = flake.moduleTree.flake-parts; };
+      flake.moduleTree = nfh ./modules;
+      imports = flake.moduleTree.flake-parts { };
       _module.args = {
         __findFile = _: s: ./${s};
         flake-url = "github:name-snrl/nixos-configuration";
@@ -17,7 +17,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     impermanence.url = "github:nix-community/impermanence";
-    nixos-ez-flake.url = "github:name-snrl/nixos-ez-flake";
+    nfh.url = "github:name-snrl/nfh";
 
     dots = {
       url = "github:name-snrl/home";

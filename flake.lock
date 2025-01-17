@@ -219,24 +219,6 @@
     },
     "flake-parts_4": {
       "inputs": {
-        "nixpkgs-lib": "nixpkgs-lib"
-      },
-      "locked": {
-        "lastModified": 1725234343,
-        "narHash": "sha256-+ebgonl3NbiKD2UD0x4BszCZQ6sTfL4xioaM49o5B3Y=",
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "rev": "567b938d64d4b4112ee253b9274472dc3a346eb6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "type": "github"
-      }
-    },
-    "flake-parts_5": {
-      "inputs": {
         "nixpkgs-lib": [
           "nvim",
           "nixpkgs"
@@ -256,7 +238,7 @@
         "type": "github"
       }
     },
-    "flake-parts_6": {
+    "flake-parts_5": {
       "inputs": {
         "nixpkgs-lib": [
           "nvim",
@@ -278,7 +260,7 @@
         "type": "github"
       }
     },
-    "flake-parts_7": {
+    "flake-parts_6": {
       "inputs": {
         "nixpkgs-lib": [
           "nvim",
@@ -539,7 +521,7 @@
     },
     "hercules-ci-effects_2": {
       "inputs": {
-        "flake-parts": "flake-parts_7",
+        "flake-parts": "flake-parts_6",
         "nixpkgs": [
           "nvim",
           "neovim-nightly-overlay",
@@ -667,7 +649,7 @@
     "neovim-nightly-overlay_2": {
       "inputs": {
         "flake-compat": "flake-compat_4",
-        "flake-parts": "flake-parts_6",
+        "flake-parts": "flake-parts_5",
         "git-hooks": "git-hooks_2",
         "hercules-ci-effects": "hercules-ci-effects_2",
         "neovim-src": "neovim-src_2",
@@ -722,6 +704,24 @@
         "type": "github"
       }
     },
+    "nfh": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1737131577,
+        "narHash": "sha256-bNss9F2aIlGIb+DYoEDOJ3JMshZS12v63RPH7HO8SYM=",
+        "owner": "name-snrl",
+        "repo": "nfh",
+        "rev": "93c8ed0b925fb39ed990d75a944e775b212a0ce7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "name-snrl",
+        "repo": "nfh",
+        "type": "github"
+      }
+    },
     "nix-github-actions": {
       "inputs": {
         "nixpkgs": [
@@ -765,24 +765,6 @@
         "type": "github"
       }
     },
-    "nixos-ez-flake": {
-      "inputs": {
-        "flake-parts": "flake-parts_4"
-      },
-      "locked": {
-        "lastModified": 1730488670,
-        "narHash": "sha256-n0oBfYJoE1PSr2ldQoy1gyLCjN8UPBQPFxbrjgp3fCI=",
-        "owner": "name-snrl",
-        "repo": "nixos-ez-flake",
-        "rev": "fb7fa79ecd4cd345d2a8c7a85e566f672b34e219",
-        "type": "github"
-      },
-      "original": {
-        "owner": "name-snrl",
-        "repo": "nixos-ez-flake",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1733212471,
@@ -799,19 +781,22 @@
         "type": "github"
       }
     },
-    "nixpkgs-lib": {
+    "nixpkgs_2": {
       "locked": {
-        "lastModified": 1725233747,
-        "narHash": "sha256-Ss8QWLXdr2JCBPcYChJhz4xJm+h/xjl4G0c0XlP6a74=",
-        "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/356624c12086a18f2ea2825fed34523d60ccc4e3.tar.gz"
+        "lastModified": 1736643958,
+        "narHash": "sha256-tmpqTSWVRJVhpvfSN9KXBvKEXplrwKnSZNAoNPf/S/s=",
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "rev": "1418bc28a52126761c02dd3d89b2d8ca0f521181",
+        "type": "github"
       },
       "original": {
-        "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/356624c12086a18f2ea2825fed34523d60ccc4e3.tar.gz"
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "type": "github"
       }
     },
-    "nixpkgs_2": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1733392399,
         "narHash": "sha256-kEsTJTUQfQFIJOcLYFt/RvNxIK653ZkTBIs4DG+cBns=",
@@ -829,7 +814,7 @@
     },
     "nvim": {
       "inputs": {
-        "flake-parts": "flake-parts_5",
+        "flake-parts": "flake-parts_4",
         "neovim-nightly-overlay": "neovim-nightly-overlay_2",
         "nixpkgs": [
           "nixpkgs"
@@ -890,9 +875,9 @@
         "home-manager": "home-manager_2",
         "impermanence": "impermanence",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
+        "nfh": "nfh",
         "nix-index-db": "nix-index-db",
-        "nixos-ez-flake": "nixos-ez-flake",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "nvim": "nvim",
         "treefmt-nix": "treefmt-nix_2"
       }

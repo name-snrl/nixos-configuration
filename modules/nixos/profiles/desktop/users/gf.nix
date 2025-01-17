@@ -1,4 +1,4 @@
-{ inputs, importsFromAttrs, ... }:
+{ inputs, ... }:
 {
   imports = [ inputs.home-manager.nixosModules.home-manager ];
 
@@ -15,7 +15,5 @@
     "ru_RU.UTF-8/UTF-8"
   ];
 
-  home-manager.users.Elizabeth.imports = importsFromAttrs {
-    modules = inputs.self.moduleTree.home-manager.profiles.gf;
-  };
+  home-manager.users.Elizabeth.imports = inputs.self.moduleTree.home-manager.profiles.gf { };
 }

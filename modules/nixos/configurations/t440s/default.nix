@@ -3,21 +3,16 @@
   pkgs,
   inputs,
   config,
-  importsFromAttrs,
   ...
 }:
 {
-  imports = importsFromAttrs {
-    importByDefault = true;
-    modules = inputs.self.moduleTree.nixos;
-    imports = {
-      configurations = false;
-      profiles = {
-        zfs = false;
-        desktop.kde = false;
-        desktop.users.gf = false;
-        servers.openssh = false;
-      };
+  imports = inputs.self.moduleTree.nixos {
+    configurations = false;
+    profiles = {
+      zfs = false;
+      desktop.kde = false;
+      desktop.users.gf = false;
+      servers.openssh = false;
     };
   };
 

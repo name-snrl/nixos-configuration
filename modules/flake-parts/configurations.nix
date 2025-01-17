@@ -8,11 +8,10 @@
   flake = rec {
 
     nixosConfigurations = lib.mapAttrs (
-      hostName: modules:
+      hostName: cfgModules:
       inputs.nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs;
-          inherit (inputs.nixos-ez-flake) importsFromAttrs;
         };
         modules = [
           {
@@ -23,9 +22,9 @@
           inputs.disko.nixosModules.default
           inputs.chaotic.nixosModules.default
           inputs.impermanence.nixosModules.default
-        ] ++ inputs.nixos-ez-flake.importsFromAttrs { inherit modules; };
+        ] ++ cfgModules { };
       }
-    ) inputs.self.moduleTree.nixos.configurations;
+    ) (lib.removeAttrs inputs.self.moduleTree.nixos.configurations [ "__functor" ]);
 
     packages =
       with lib;
@@ -47,12 +46,11 @@
     { pkgs, ... }:
     {
       legacyPackages.homeConfigurations = lib.mapAttrs (
-        username: modules:
+        username: cfgModules:
         inputs.home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
             inherit inputs flake-url;
-            inherit (inputs.nixos-ez-flake) importsFromAttrs;
           };
           modules = [
             {
@@ -60,8 +58,8 @@
                 inherit username;
               };
             }
-          ] ++ inputs.nixos-ez-flake.importsFromAttrs { inherit modules; };
+          ] ++ cfgModules { };
         }
-      ) inputs.self.moduleTree.home-manager.configurations;
+      ) (lib.removeAttrs inputs.self.moduleTree.home-manager.configurations [ "__functor" ]);
     };
 }
