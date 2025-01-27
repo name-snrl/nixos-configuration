@@ -1,12 +1,18 @@
 {
   writeShellApplication,
-  pkgs,
+  xdragon,
+  util-linux,
+  chafa,
+  coreutils,
+  gawk,
+  file,
+  bat,
   fzf,
 }:
 {
   dg = writeShellApplication {
     name = "dg";
-    runtimeInputs = with pkgs; [
+    runtimeInputs = [
       xdragon
       util-linux
     ];
@@ -15,8 +21,7 @@
 
   fzf-dragon = writeShellApplication {
     name = "fzf-dragon";
-    runtimeInputs = with pkgs; [
-      fzf
+    runtimeInputs = [
       xdragon
       util-linux
       chafa
