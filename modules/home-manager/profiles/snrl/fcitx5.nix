@@ -23,6 +23,7 @@
 
       Behavior = {
         ActiveByDefault = "False";
+        resetStateWhenFocusIn = "No";
         ShareInputState = "No";
         PreeditEnabledByDefault = "True";
         ShowInputMethodInformation = "False";
