@@ -25,14 +25,6 @@
   '';
   security = {
     sudo.enable = false;
-    polkit.extraConfig = ''
-      polkit.addRule(function(action, subject) {
-        if (subject.local &&
-          subject.user == "${defaultUserName}") {
-          return polkit.Result.YES;
-        }
-      });
-    '';
     # TODO seems this should be in upstream
     # https://github.com/NixOS/nixpkgs/issues/361592
     pam.services.systemd-run0 = { };
@@ -40,7 +32,7 @@
   environment.systemPackages = [
     (pkgs.writeShellApplication {
       name = "sudo";
-      runtimeInputs = [ config.systemd.package.out ];
+      runtimeInputs = [ config.systemd.package ];
       text = ''exec run0 ${
         lib.concatMapStringsSep " " (var: "--setenv=${var}") [
           "PATH"
