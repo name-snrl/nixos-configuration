@@ -11,7 +11,7 @@
     lib.mkMerge [
       (import inputs.self.moduleTree.common.profiles.nix)
       {
-        package = pkgs.lix;
+        package = pkgs.nixVersions.latest;
         settings.extra-trusted-users = [ config.home.username ];
         registry.self.flake = inputs.self;
       }
