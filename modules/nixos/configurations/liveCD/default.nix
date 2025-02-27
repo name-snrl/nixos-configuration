@@ -18,8 +18,8 @@
           kde = false;
           work = false;
           users.gf = false;
-          hardware.battery = false;
         };
+        legacy.battery = false;
         hardware = false;
         vm-config = false;
       };
