@@ -34,7 +34,6 @@ in
       ];
 
       force-window = true;
-      script-opts = "osc-scaleforcedwindow=1.0";
 
       hwdec = "auto-safe";
       vo = "gpu";
