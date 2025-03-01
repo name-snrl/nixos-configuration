@@ -25,14 +25,6 @@ inputs: final: prev: {
     };
   };
 
-  # TODO https://discourse.nixos.org/t/what-is-the-right-way-to-add-optional-pkgs-to-nixos-binary-cache/37547
-  swayfx-unwrapped = prev.swayfx-unwrapped.overrideAttrs (_: {
-    __contentAddressed = true;
-  });
-  openvpn3 = prev.openvpn3.overrideAttrs (_: {
-    __contentAddressed = true;
-  });
-
   # TODO push to upstream
   wluma = prev.wluma.overrideAttrs (oa: {
     nativeBuildInputs = oa.nativeBuildInputs ++ [ prev.pandoc ];
