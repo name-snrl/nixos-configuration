@@ -3,6 +3,7 @@
   imports = inputs.self.moduleTree.nixos {
     configurations = false;
     profiles = {
+      desktop.work = false;
       legacy = false;
       servers = false;
     };
