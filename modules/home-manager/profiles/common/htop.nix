@@ -1,6 +1,5 @@
 { lib, config, ... }:
 {
-  xdg.configFile."htop/htoprc".force = true;
   programs.htop = {
     enable = true;
     settings =

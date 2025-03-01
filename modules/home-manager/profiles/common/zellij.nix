@@ -8,7 +8,9 @@
       theme = "one-half-dark";
       default_layout = "disable-status-bar";
     };
-    #enableFishIntegration = true;
+    enableFishIntegration = false;
+    enableBashIntegration = false;
+    enableZshIntegration = false;
   };
   xdg.configFile."zellij/config.kdl".text = ''
     keybinds clear-defaults=true {

@@ -2,7 +2,7 @@
 {
   systemd = {
     packages = with pkgs; [
-      polkit-kde-agent
+      libsForQt5.polkit-kde-agent
     ];
     user = {
       targets.sway-session = {
