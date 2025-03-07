@@ -14,7 +14,6 @@
     defaultLocale = "en_GB.UTF-8";
     supportedLocales = options.i18n.supportedLocales.default; # TODO remove when migrate to DE/home-manager?
   };
-  time.hardwareClockInLocalTime = true;
   # TODO geoclue doesn't work
   # https://github.com/NixOS/nixpkgs/issues/321121
   #location.provider = "geoclue2";
