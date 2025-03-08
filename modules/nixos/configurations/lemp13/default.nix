@@ -33,7 +33,6 @@
 
   # other
   programs.steam.enable = true;
-  boot.kernelPackages = with pkgs; lib.mkForce linuxPackages;
 
   system.stateVersion = "25.05";
 }
