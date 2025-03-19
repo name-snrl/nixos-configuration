@@ -76,7 +76,6 @@ lib.mkMerge [
     };
 
     boot = {
-      initrd.supportedFilesystems.zfs = true;
       zfs.forceImportRoot = false;
       zfs.package = lib.mkIf (lib.hasInfix "cachyos" config.boot.kernelPackages.kernel.modDirVersion) pkgs.zfs_cachyos;
     };
