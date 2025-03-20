@@ -56,7 +56,6 @@
     defaultUserShell = pkgs.fish;
     mutableUsers = false;
     users.${defaultUserName} = {
-      uid = 1000;
       hashedPassword = "$6$6US0iMDXE1K7wj9g$2/JKHfX4VfNETELdt4dTlTUzlmZAmvP4XfRNB5ORVPYNmi6.A4EWpSXkpx/5PrPx1J/LaA41n2NDss/R0Utqh/";
       isNormalUser = true;
       extraGroups = [
