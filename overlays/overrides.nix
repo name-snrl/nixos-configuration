@@ -54,12 +54,12 @@ inputs: final: prev: {
   });
 
   # https://github.com/flatpak/xdg-desktop-portal-gtk/issues/465
-  xdg-desktop-portal-gtk = prev.xdg-desktop-portal-gtk.overrideAttrs (_: {
+  xdg-desktop-portal-gtk = prev.xdg-desktop-portal-gtk.overrideAttrs {
     postInstall = ''
       substituteInPlace $out/share/xdg-desktop-portal/portals/gtk.portal \
         --replace-fail 'org.freedesktop.impl.portal.Inhibit;' ""
     '';
-  });
+  };
 
   gojq =
     with final;
@@ -111,7 +111,7 @@ inputs: final: prev: {
       postBuild = "ln -s $out/bin/swayimg $out/bin/swim";
     };
 
-  graphite-gtk-theme = prev.graphite-gtk-theme.overrideAttrs (_: {
+  graphite-gtk-theme = prev.graphite-gtk-theme.overrideAttrs {
     __contentAddressed = true;
 
     version = "flake";
@@ -130,9 +130,9 @@ inputs: final: prev: {
 
       runHook postInstall
     '';
-  });
+  };
 
-  graphite-kde-theme = prev.graphite-kde-theme.overrideAttrs (_: {
+  graphite-kde-theme = prev.graphite-kde-theme.overrideAttrs {
     __contentAddressed = true;
 
     version = "flake";
@@ -152,5 +152,5 @@ inputs: final: prev: {
 
       runHook postInstall
     '';
-  });
+  };
 }
