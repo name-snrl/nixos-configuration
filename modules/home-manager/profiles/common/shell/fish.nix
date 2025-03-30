@@ -9,6 +9,8 @@
         stty -ixon # disable flow control
         set -g fish_greeting # disable greeting
 
+        bind ctrl-c cancel-commandline
+
         # Globbing exclusion functional
         function exclude
             argparse a/all -- $argv || return
