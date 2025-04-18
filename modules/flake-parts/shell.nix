@@ -7,8 +7,8 @@
   perSystem =
     { pkgs, config, ... }:
     {
-      devShells.default = config.pre-commit.devShell.overrideAttrs (_: {
-        packages = with pkgs; [ bashInteractive ];
+      devShells.default = config.pre-commit.devShell.overrideAttrs (oa: {
+        nativeBuildInputs = oa.nativeBuildInputs or [ ] ++ (with pkgs; [ bashInteractive ]);
       });
 
       pre-commit.settings.hooks = {
