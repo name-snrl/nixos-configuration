@@ -49,6 +49,15 @@
       commit.verbose = true;
 
       # triangular workflow
+      #
+      # 1. clone your fork
+      # 2. configure upstream using git au/au-promisor aliases, see above
+      # 3. on branch createion branch off from upstream:
+      #    `git cb <new_name> upstream/master`
+      #
+      # now you will push to origin and pull from upstream by default. this
+      # makes it easier to stay in sync with upstream, while still pushing your
+      # changes to origin
       push = {
         followtags = true;
         autoSetupRemote = true;
