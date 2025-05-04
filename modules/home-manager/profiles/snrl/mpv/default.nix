@@ -41,7 +41,7 @@ in
 
       gamma = lib.mkIf oldHW 10;
 
-      ytdl-format = lib.mkIf oldHW "bestvideo[height<=?1080][vcodec~='^((he|a)vc|h26[45])']+bestaudio/best";
+      ytdl-format = "bestvideo[height<=?1080]${lib.optionalString oldHW "[vcodec~='^((he|a)vc|h26[45])']"}+bestaudio/best";
     };
     bindings = {
       "a" = "cycle audio";
