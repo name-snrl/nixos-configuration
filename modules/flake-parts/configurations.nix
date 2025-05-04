@@ -10,19 +10,17 @@
     nixosConfigurations = lib.mapAttrs (
       hostName: cfgModules:
       inputs.nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs;
-        };
-        modules = [
-          {
-            networking = {
-              inherit hostName;
-            };
-          }
-          inputs.disko.nixosModules.default
-          inputs.chaotic.nixosModules.default
-          inputs.impermanence.nixosModules.default
-        ] ++ cfgModules { };
+        specialArgs = { inherit inputs; };
+        modules =
+          [
+            { networking = { inherit hostName; }; }
+
+            inputs.disko.nixosModules.default
+            inputs.chaotic.nixosModules.default
+            inputs.impermanence.nixosModules.default
+          ]
+          ++ inputs.self.moduleTree.common-profiles { }
+          ++ cfgModules { };
       }
     ) (lib.removeAttrs inputs.self.moduleTree.nixos.configurations [ "__functor" ]);
 
@@ -44,16 +42,11 @@
         username: cfgModules:
         inputs.home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = {
-            inherit inputs flake-url;
-          };
-          modules = [
-            {
-              home = {
-                inherit username;
-              };
-            }
-          ] ++ cfgModules { };
+          extraSpecialArgs = { inherit inputs flake-url; };
+          modules =
+            [ { home = { inherit username; }; } ]
+            ++ inputs.self.moduleTree.common-profiles { }
+            ++ cfgModules { };
         }
       ) (lib.removeAttrs inputs.self.moduleTree.home-manager.configurations [ "__functor" ]);
     };
