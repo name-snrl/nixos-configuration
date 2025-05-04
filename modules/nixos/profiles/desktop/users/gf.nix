@@ -1,7 +1,5 @@
 { inputs, ... }:
 {
-  imports = [ inputs.home-manager.nixosModules.home-manager ];
-
   users.users.Elizabeth = {
     uid = 1001;
     hashedPassword = "$6$6US0iMDXE1K7wj9g$2/JKHfX4VfNETELdt4dTlTUzlmZAmvP4XfRNB5ORVPYNmi6.A4EWpSXkpx/5PrPx1J/LaA41n2NDss/R0Utqh/";
