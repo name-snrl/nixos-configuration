@@ -1,12 +1,12 @@
 {
   lib,
   inputs,
+  config,
   flake-url,
   ...
 }:
 {
-  flake = rec {
-
+  flake = {
     nixosConfigurations = lib.mapAttrs (
       hostName: cfgModules:
       inputs.nixpkgs.lib.nixosSystem {
@@ -26,20 +26,15 @@
       }
     ) (lib.removeAttrs inputs.self.moduleTree.nixos.configurations [ "__functor" ]);
 
-    packages =
-      with lib;
-      foldAttrs (x: y: x // y) { } (
-        concatLists (
-          forEach (attrNames nixosConfigurations) (
-            name:
-            with nixosConfigurations.${name};
-            if name == "liveCD" then
-              [ { ${pkgs.system}.${name} = config.system.build.isoImage; } ]
-            else
-              [ { ${pkgs.system}.${name} = config.system.build.toplevel; } ]
-          )
-        )
-      );
+    packages = lib.foldl (
+      acc: nixos:
+      let
+        inherit (nixos.config.nixpkgs.hostPlatform) system;
+        inherit (nixos.config.networking) hostName;
+        inherit (nixos.config.system.build) toplevel;
+      in
+      acc // { ${system} = lib.mergeAttrs acc.${system} or { } { ${hostName} = toplevel; }; }
+    ) { } (lib.attrValues config.flake.nixosConfigurations);
   };
 
   perSystem =
