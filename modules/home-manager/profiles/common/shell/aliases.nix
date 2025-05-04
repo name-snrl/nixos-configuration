@@ -20,7 +20,6 @@ in
     cat = "bat --pager=never --style=changes,rule,numbers,snip";
     tree = "tree -C";
     sctl = "systemctl";
-    sudo = "sudo "; # this will make sudo work with shell aliases/man alias
     reboot = "echo 'Are you sure?'; read && systemctl reboot";
 
     # TODO remove me
