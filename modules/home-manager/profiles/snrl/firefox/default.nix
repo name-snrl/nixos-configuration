@@ -5,6 +5,10 @@ let
     inherit Value;
     Status = "locked";
   };
+  default = Value: {
+    inherit Value;
+    Status = "default";
+  };
 in
 {
   programs.firefox = {
@@ -151,6 +155,7 @@ in
           "extensions.htmlaboutaddons.recommendations.enabled" = lock false;
           "extensions.htmlaboutaddons.discover.enabled" = lock false;
           # misc
+          "browser.startup.page" = default 3; # resume the previous browser session
           "browser.translations.enable" = lock false;
           "browser.fullscreen.autohide" = lock false; # hide toolbar when browser window fullscreened
           "browser.toolbars.bookmarks.visibility" = lock "never";
