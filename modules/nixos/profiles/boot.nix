@@ -4,8 +4,7 @@
     initrd.systemd.enable = true;
     loader = {
       efi.canTouchEfiVariables = false;
-      # still accessible by holding random keys during early boot.
-      timeout = lib.mkForce 0;
+      timeout = lib.mkForce 0; # press any key during boot to get in
       systemd-boot = {
         enable = true;
         memtest86.enable = true;
