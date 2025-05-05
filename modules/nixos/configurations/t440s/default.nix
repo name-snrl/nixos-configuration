@@ -10,6 +10,7 @@
     configurations = false;
     profiles = {
       zfs = false;
+      impermanence = false;
       desktop.kde = false;
       desktop.users.gf = false;
       servers.openssh = false;
