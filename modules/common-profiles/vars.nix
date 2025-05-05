@@ -12,6 +12,7 @@
     users = {
       master = {
         name = "name_snrl";
+        uid = 1000;
         dirs =
           with lib;
           genAttrs [
@@ -23,7 +24,10 @@
           ] id;
       };
 
-      gf.name = "Elizabeth";
+      gf = {
+        name = "Elizabeth";
+        uid = 1001;
+      };
     };
 
     fs = {
