@@ -2,7 +2,6 @@
   lib,
   inputs,
   config,
-  flake-url,
   ...
 }:
 {
@@ -43,7 +42,7 @@
         username: cfgModules:
         inputs.home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit inputs flake-url; };
+          extraSpecialArgs = { inherit inputs; };
           modules =
             [ { home = { inherit username; }; } ]
             ++ inputs.self.moduleTree.common-profiles { }

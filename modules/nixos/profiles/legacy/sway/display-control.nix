@@ -5,7 +5,7 @@
 # environment.systemPackages = [ pkgs.wl-gammarelay-rs ];
 #
 # and then can be completely moved to `sway`.
-{ defaultUserName, ... }:
+{ vars, ... }:
 {
   hardware.brillo.enable = true;
   # TODO move module in upstream
@@ -18,7 +18,7 @@
   #  # TODO remove after version with https://github.com/maximbaz/wluma/pull/93
   #  user.services.wluma.serviceConfig.PrivateMounts = false;
   #};
-  users.users.${defaultUserName}.extraGroups = [ "video" ];
+  users.users.${vars.users.master.name}.extraGroups = [ "video" ];
   # TODO replace with `wl-gammarelay-rs`
   # clight
   #systemd.user.services."app-clight@autostart".enable = false; # TODO https://github.com/NixOS/nixpkgs/pull/262624

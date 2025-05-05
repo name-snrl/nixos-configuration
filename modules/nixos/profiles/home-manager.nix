@@ -1,10 +1,10 @@
-{ inputs, defaultUserName, ... }:
+{ inputs, vars, ... }:
 {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = {
-      inherit inputs;
+      inherit inputs vars;
     };
     sharedModules =
       [ { home.stateVersion = "23.11"; } ]
@@ -17,7 +17,7 @@
       };
     users = {
       root = { };
-      ${defaultUserName} = { };
+      ${vars.users.master.name} = { };
     };
   };
 }

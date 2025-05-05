@@ -1,7 +1,7 @@
 {
   pkgs,
   options,
-  defaultUserName,
+  vars,
   ...
 }:
 {
@@ -25,7 +25,7 @@
   systemd.coredump.extraConfig = "MaxUse=200M";
 
   programs.adb.enable = true;
-  users.users.${defaultUserName}.extraGroups = [ "adbusers" ];
+  users.users.${vars.users.master.name}.extraGroups = [ "adbusers" ];
 
   services.udisks2.enable = true;
   environment.defaultPackages = with pkgs; [

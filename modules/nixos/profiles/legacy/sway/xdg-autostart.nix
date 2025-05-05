@@ -1,4 +1,4 @@
-{ defaultUserName, pkgs, ... }:
+{ vars, pkgs, ... }:
 {
   systemd.user = {
     targets.sway-session = {
@@ -6,7 +6,7 @@
       before = [ "xdg-desktop-autostart.target" ];
     };
 
-    tmpfiles.users.${defaultUserName}.rules = with pkgs; [
+    tmpfiles.users.${vars.users.master.name}.rules = with pkgs; [
       "L+ %h/.config/autostart/firefox.desktop - - - - ${firefox-wayland}/share/applications/firefox.desktop"
     ];
   };

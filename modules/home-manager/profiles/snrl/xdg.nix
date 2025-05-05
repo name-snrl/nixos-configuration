@@ -1,16 +1,16 @@
-{ config, ... }:
+{ config, vars, ... }:
 {
   xdg = {
     userDirs = {
       enable = true;
-      desktop = "${config.home.homeDirectory}/desktop";
-      publicShare = "${config.home.homeDirectory}/forks";
-      templates = "${config.home.homeDirectory}/experiments";
-      download = "${config.home.homeDirectory}/downloads";
-      documents = "${config.home.homeDirectory}/downloads";
-      music = "${config.home.homeDirectory}/downloads";
-      pictures = "${config.home.homeDirectory}/downloads";
-      videos = "${config.home.homeDirectory}/downloads";
+      desktop = "${config.home.homeDirectory}/${vars.users.master.dirs.desktop}";
+      publicShare = "${config.home.homeDirectory}/${vars.users.master.dirs.forks}";
+      templates = "${config.home.homeDirectory}/${vars.users.master.dirs.experiments}";
+      download = "${config.home.homeDirectory}/${vars.users.master.dirs.downloads}";
+      documents = "${config.home.homeDirectory}/${vars.users.master.dirs.downloads}";
+      music = "${config.home.homeDirectory}/${vars.users.master.dirs.downloads}";
+      pictures = "${config.home.homeDirectory}/${vars.users.master.dirs.downloads}";
+      videos = "${config.home.homeDirectory}/${vars.users.master.dirs.downloads}";
     };
     mimeApps = {
       enable = true;

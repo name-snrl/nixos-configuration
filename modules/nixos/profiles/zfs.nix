@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  vars,
   ...
 }:
 lib.mkMerge [
@@ -92,19 +93,19 @@ lib.mkMerge [
   (lib.mkIf (config.environment ? persistence && config.environment.persistence != { }) {
     disko.devices.zpool.zroot.datasets = {
       persistent = {
-        mountpoint = "/persistent";
+        mountpoint = vars.fs.impermanence.persistent;
         type = "zfs_fs";
         options.mountpoint = "legacy";
       };
       shared = {
-        mountpoint = "/shared";
+        mountpoint = vars.fs.impermanence.shared;
         type = "zfs_fs";
         options.mountpoint = "legacy";
       };
     };
     fileSystems = {
-      "/persistent".neededForBoot = true;
-      "/shared".neededForBoot = true;
+      ${vars.fs.impermanence.persisten}.neededForBoot = true;
+      ${vars.fs.impermanence.shared}.neededForBoot = true;
     };
     chaotic.zfs-impermanence-on-shutdown = {
       enable = true;

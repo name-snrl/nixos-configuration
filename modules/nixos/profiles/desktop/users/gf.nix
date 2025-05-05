@@ -1,6 +1,6 @@
-{ inputs, ... }:
+{ vars, inputs, ... }:
 {
-  users.users.Elizabeth = {
+  users.users.${vars.users.gf.name} = {
     uid = 1001;
     hashedPassword = "$6$6US0iMDXE1K7wj9g$2/JKHfX4VfNETELdt4dTlTUzlmZAmvP4XfRNB5ORVPYNmi6.A4EWpSXkpx/5PrPx1J/LaA41n2NDss/R0Utqh/";
     isNormalUser = true;
@@ -13,5 +13,7 @@
     "ru_RU.UTF-8/UTF-8"
   ];
 
-  home-manager.users.Elizabeth.imports = inputs.self.moduleTree.home-manager.profiles.gf { };
+  home-manager.users.${vars.users.gf.name}.imports =
+    inputs.self.moduleTree.home-manager.profiles.gf
+      { };
 }

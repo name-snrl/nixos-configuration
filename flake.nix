@@ -6,10 +6,7 @@
     flake-parts.lib.mkFlake { inherit inputs; } rec {
       flake.moduleTree = nfh ./modules;
       imports = flake.moduleTree.flake-parts { };
-      _module.args = {
-        __findFile = _: s: ./${s};
-        flake-url = "github:name-snrl/nixos-configuration";
-      };
+      _module.args.__findFile = _: s: ./${s};
     };
 
   inputs = {

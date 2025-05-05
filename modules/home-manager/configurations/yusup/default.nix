@@ -1,7 +1,7 @@
 {
   inputs,
   config,
-  flake-url,
+  vars,
   lib,
   ...
 }:
@@ -17,7 +17,7 @@
   home.homeDirectory = "/home/${config.home.username}";
   home.stateVersion = "23.11";
 
-  home.shellAliases.hmupgrade = "nix run --refresh ${flake-url}#home-manager -- switch --flake ${flake-url}";
+  home.shellAliases.hmupgrade = "nix run --refresh ${vars.flake-ref}#home-manager -- switch --flake ${vars.flake-ref}";
 
   programs.htop.settings = lib.mapAttrs (_: lib.mkForce) (
     with config.lib.htop;

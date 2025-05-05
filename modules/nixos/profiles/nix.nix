@@ -1,9 +1,9 @@
-{ defaultUserName, ... }:
+{ vars, ... }:
 {
   nix = {
     channel.enable = false;
     settings = {
-      extra-trusted-users = [ defaultUserName ];
+      extra-trusted-users = [ vars.users.master.name ];
       experimental-features = [ "ca-derivations" ];
     };
   };
