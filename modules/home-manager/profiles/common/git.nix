@@ -1,10 +1,6 @@
-{ config, ... }:
 {
   programs.git = {
     enable = true;
-
-    userName = "${config.home.username}";
-    userEmail = "Demogorgon-74@ya.ru";
 
     aliases = {
       st = "status";
