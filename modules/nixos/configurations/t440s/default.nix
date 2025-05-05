@@ -50,5 +50,15 @@
     chooser_type = "none";
   };
 
+  home-manager.sharedModules =
+    inputs.self.moduleTree.home-manager {
+      configurations = false;
+      profiles = {
+        gf = false;
+        snrl = false;
+      };
+    }
+    ++ [ { home.stateVersion = "23.11"; } ];
+
   system.stateVersion = "22.05";
 }

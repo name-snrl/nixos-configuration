@@ -34,5 +34,15 @@
   # other
   programs.steam.enable = true;
 
+  home-manager.sharedModules =
+    inputs.self.moduleTree.home-manager {
+      configurations = false;
+      profiles = {
+        gf = false;
+        snrl = false;
+      };
+    }
+    ++ [ { home.stateVersion = "25.05"; } ];
+
   system.stateVersion = "25.05";
 }
