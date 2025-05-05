@@ -1,5 +1,6 @@
+{ lib, config, ... }:
 {
-  programs.atuin = {
+  programs.atuin = lib.mkIf (config.home.username != "root") {
     enable = true;
     daemon.enable = true;
     flags = [ "--disable-up-arrow" ];
