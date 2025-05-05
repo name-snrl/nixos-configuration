@@ -7,12 +7,6 @@
     extraGroups = [ "netdev" ];
   };
 
-  # TODO do we really need this?
-  i18n.supportedLocales = [
-    "ja_JP.UTF-8/UTF-8"
-    "ru_RU.UTF-8/UTF-8"
-  ];
-
   home-manager.users.${vars.users.gf.name}.imports =
     inputs.self.moduleTree.home-manager.profiles.gf
       { };

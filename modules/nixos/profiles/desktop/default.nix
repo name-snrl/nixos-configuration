@@ -1,6 +1,5 @@
 {
   pkgs,
-  options,
   vars,
   ...
 }:
@@ -10,10 +9,8 @@
     supportedFilesystems = [ "ntfs" ];
   };
 
-  i18n = {
-    defaultLocale = "en_GB.UTF-8";
-    supportedLocales = options.i18n.supportedLocales.default; # TODO remove when migrate to DE/home-manager?
-  };
+  i18n.defaultLocale = "en_GB.UTF-8";
+
   # TODO geoclue doesn't work
   # https://github.com/NixOS/nixpkgs/issues/321121
   #location.provider = "geoclue2";
