@@ -9,6 +9,8 @@
   fileSystems.${vars.fs.impermanence.persistent}.neededForBoot = true;
 
   chaotic.zfs-impermanence-on-shutdown = {
+    # since this option enables the wiping of the root FS, I use it as
+    # condition for `environment.persistence` in other modules
     enable = true;
     volume = "zroot/rootfs";
     snapshot = "blank";

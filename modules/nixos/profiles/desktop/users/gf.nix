@@ -1,4 +1,10 @@
-{ vars, inputs, ... }:
+{
+  vars,
+  inputs,
+  lib,
+  config,
+  ...
+}:
 {
   users.users.${vars.users.gf.name} = {
     inherit (vars.users.gf) uid;
@@ -10,4 +16,8 @@
   home-manager.users.${vars.users.gf.name}.imports =
     inputs.self.moduleTree.home-manager.profiles.gf
       { };
+
+  environment.persistence = lib.mkIf config.chaotic.zfs-impermanence-on-shutdown.enable {
+    ${vars.fs.impermanence.persistent}.users.${vars.users.gf.name}.directories = [ "" ];
+  };
 }
