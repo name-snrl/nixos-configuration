@@ -80,6 +80,12 @@ lib.mkMerge [
       };
     };
 
+    environment.systemPackages = with config.system.build; [
+      formatMount
+      format
+      mount
+    ];
+
     boot = {
       zfs.forceImportRoot = false;
       zfs.package = lib.mkIf (lib.hasInfix "cachyos" config.boot.kernelPackages.kernel.modDirVersion) pkgs.zfs_cachyos;
