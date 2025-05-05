@@ -1,5 +1,6 @@
 { lib, pkgs, ... }:
 {
+  home.shellAliases.tw = "task";
   programs.taskwarrior = {
     enable = true;
     package = pkgs.taskwarrior3;
