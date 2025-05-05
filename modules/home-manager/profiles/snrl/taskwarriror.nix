@@ -30,7 +30,7 @@
             "scheduled"
             "due"
             "until"
-            "description.count"
+            "description"
             "entry.epoch"
           ];
           labels = null;
