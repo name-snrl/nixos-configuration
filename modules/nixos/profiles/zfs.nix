@@ -54,7 +54,11 @@ lib.mkMerge [
           "com.sun:auto-snapshot" = "false";
         };
 
-        postCreateHook = "zfs snapshot zroot/rootfs@blank";
+        postCreateHook = ''
+          if ! zfs list -t snap zroot/rootfs@blank; then
+              zfs snapshot zroot/rootfs@blank
+          fi
+        '';
 
         # to prevent mounting after multi-user.target, which can lead to mishaps
         # (creating files before mounting), all datasets are mounted declaratively
