@@ -18,6 +18,7 @@
       directories = lib.attrValues vars.users.master.dirs ++ [
         ".local/share/systemd"
         ".local/share/iwctl"
+        ".local/state/wireplumber"
 
         ".config/nvim"
         ".local/state/nvim"
