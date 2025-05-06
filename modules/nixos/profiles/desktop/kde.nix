@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   lib,
   ...
 }:
@@ -10,5 +9,4 @@
     displayManager.sddm.theme = lib.mkForce "breeze";
     power-profiles-daemon.enable = !config.services.tlp.enable;
   };
-  environment.systemPackages = with pkgs; [ iwgtk ];
 }
