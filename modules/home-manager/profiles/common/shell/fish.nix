@@ -31,7 +31,11 @@
         complete -c nwhich  -fa "(__fish_complete_command)"
 
         # colors
-        set fish_pager_color_prefix cyan --bold
+        set -U fish_pager_color_prefix cyan --bold
+        # make blue great again
+        # https://github.com/fish-shell/fish-shell/pull/10758
+        set -U fish_color_command blue
+        set -U fish_color_keyword blue
       '';
   };
 }
