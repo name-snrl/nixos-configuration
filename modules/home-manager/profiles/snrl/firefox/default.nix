@@ -176,7 +176,6 @@ in
         };
 
         performance = {
-          "media.ffmpeg.vaapi.enabled" = lock true;
           "browser.preferences.defaultPerformanceSettings.enabled" = lock false;
           "dom.ipc.processCount" = lock 4;
           "browser.tabs.unloadOnLowMemory" = lock true;
