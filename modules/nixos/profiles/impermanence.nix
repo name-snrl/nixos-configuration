@@ -24,9 +24,8 @@
     ];
     directories = [
       "/var/log"
-      "/var/lib/systemd/coredump"
-      "/var/lib/systemd/pstore"
       "/var/lib/nixos"
+      "/var/lib/systemd"
 
       "/root/.config/nvim"
       "/root/.local/state/nvim"
