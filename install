@@ -3,7 +3,7 @@
 set -e
 
 host="$1"
-repo="github:name-snrl/nixos-configuration"
+repo="github:name-snrl/nixos-configuration/lemp13-experiments"
 ref="$repo#$host"
 
 rm -f /etc/nix/nix.conf
