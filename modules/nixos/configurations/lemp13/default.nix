@@ -33,6 +33,13 @@
   boot.tmp.useTmpfs = true;
   zramSwap.memoryPercent = 30;
 
+  # workaround for Wi-Fi 7 on lemp13, sometimes it disappears after suspend
+  networking.wireless.iwd.settings.DriverQuirks.PowerSaveDisable = "iwlwifi";
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x7e39", ATTR{d3cold_allowed}="0"
+    ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0x272b", ATTR{d3cold_allowed}="0"
+  '';
+
   # other
   programs.steam.enable = true;
 
