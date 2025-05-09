@@ -38,12 +38,22 @@
 
   environment.persistence = lib.mkIf config.chaotic.zfs-impermanence-on-shutdown.enable {
     ${vars.fs.impermanence.persistent} = {
-      files = [
-        "/var/lib/sddm/state.conf"
-      ];
       directories = [
-        "/var/lib/iwd"
-        "/var/lib/bluetooth"
+        {
+          directory = "/var/lib/sddm";
+          user = "sddm";
+          group = "sddm";
+          mode = "750";
+        }
+
+        {
+          directory = "/var/lib/iwd";
+          mode = "700";
+        }
+        {
+          directory = "/var/lib/bluetooth";
+          mode = "700";
+        }
         "/var/lib/upower"
         "/var/lib/power-profiles-daemon"
       ];
