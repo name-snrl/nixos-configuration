@@ -23,11 +23,6 @@
     power-daemon.enable = false;
   };
 
-  # Firmware
-  # system76 support said that they have made some fixes to the microcode
-  # so disable microcode updates
-  hardware.cpu.intel.updateMicrocode = false;
-
   # CPU
   nix.settings.cores = 6;
 
