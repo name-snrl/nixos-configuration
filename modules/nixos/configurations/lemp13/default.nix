@@ -44,7 +44,6 @@
       directories = [
         "/var/lib/iwd"
         "/var/lib/bluetooth"
-        "/var/lib/systemd/backlight"
         "/var/lib/upower"
         "/var/lib/power-profiles-daemon"
       ];
