@@ -2,6 +2,7 @@
   console = {
     keyMap = "us";
     font = "Lat2-Terminus16";
+    earlySetup = true;
     colors = [
       # TODO add colors from module
       "2e3440"
