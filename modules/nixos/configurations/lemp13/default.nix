@@ -11,6 +11,7 @@
     configurations = false;
     profiles = {
       desktop.work = false;
+      desktop.hardware.bluetooth = false;
       legacy = false;
       servers = false;
     };
