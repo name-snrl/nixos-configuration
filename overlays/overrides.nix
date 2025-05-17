@@ -1,6 +1,4 @@
-/**
-  Overlay that overrides existing packages.
-*/
+# Overlay that overrides existing packages.
 inputs: final: prev: {
 
   neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${final.system}.neovim;

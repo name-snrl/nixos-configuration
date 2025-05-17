@@ -1,9 +1,7 @@
-/**
-  I don't care about ls, but not tree
-
-  TODO
-  - create module for home-manager
-*/
+# I don't care about ls, but not tree
+#
+# TODO
+# - create module for home-manager
 { pkgs, ... }:
 {
   programs = with pkgs; {

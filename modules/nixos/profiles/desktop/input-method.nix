@@ -1,20 +1,18 @@
-/*
-  TODO this module was created as an alternative that would be compatible with
-  both kde and sway. So, should we revert to the nixpkgs module after removing
-  sway?
-
-  I don't like the input-method modules from nixpkgs, so I wrote my own,
-  following the official documentation:
-
-  https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland
-
-  - fcitx5 only
-  - first-class wayland support
-  - sway support
-  - environment.sessionVariables instead environment.variables
-  - this module assumes that your DE supports XDG Autostart, so there are no
-  additional services like those created by home-manager
-*/
+# TODO this module was created as an alternative that would be compatible with
+# both kde and sway. So, should we revert to the nixpkgs module after removing
+# sway?
+#
+# I don't like the input-method modules from nixpkgs, so I wrote my own,
+# following the official documentation:
+#
+# https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland
+#
+# - fcitx5 only
+# - first-class wayland support
+# - sway support
+# - environment.sessionVariables instead environment.variables
+# - this module assumes that your DE supports XDG Autostart, so there are no
+# additional services like those created by home-manager
 { pkgs, ... }:
 let
   fcitx5-package = with pkgs; qt6Packages.fcitx5-with-addons.override { addons = [ fcitx5-mozc ]; };
