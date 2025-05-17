@@ -44,22 +44,6 @@
         "type": "github"
       }
     },
-    "dots": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1729300954,
-        "narHash": "sha256-imHYZbGXW+LFhbJQsZ2wuMmNFuQSCvotJytk74fSA84=",
-        "owner": "name-snrl",
-        "repo": "home",
-        "rev": "55566defb6ebba7530b274e4d28c5b9180375cdd",
-        "type": "github"
-      },
-      "original": {
-        "owner": "name-snrl",
-        "repo": "home",
-        "type": "github"
-      }
-    },
     "fenix": {
       "inputs": {
         "nixpkgs": [
@@ -884,7 +868,6 @@
       "inputs": {
         "chaotic": "chaotic",
         "disko": "disko",
-        "dots": "dots",
         "flake-parts": "flake-parts",
         "git-hooks-nix": "git-hooks-nix",
         "graphite-gtk": "graphite-gtk",

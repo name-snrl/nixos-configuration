@@ -16,11 +16,6 @@
     impermanence.url = "github:nix-community/impermanence";
     nfh.url = "github:name-snrl/nfh";
 
-    dots = {
-      url = "github:name-snrl/home";
-      flake = false;
-    };
-
     # packages
     nvim = {
       url = "github:name-snrl/nvim";
