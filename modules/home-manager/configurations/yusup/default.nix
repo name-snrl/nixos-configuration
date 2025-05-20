@@ -9,8 +9,9 @@
   imports = inputs.self.moduleTree.home-manager {
     configurations = false;
     profiles = {
-      gf = false;
-      snrl = false;
+      _defaultsRecursive = false;
+      common = true;
+      snrl.git = true;
     };
   };
 

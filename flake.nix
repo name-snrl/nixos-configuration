@@ -7,7 +7,7 @@
       flake.moduleTree = nfh ./modules;
       imports = flake.moduleTree {
         _defaultsRecursive = false;
-        flake-parts._defaultsRecursive = true;
+        flake-parts = true;
         common-profiles.args = true;
       };
     };
