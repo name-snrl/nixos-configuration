@@ -32,6 +32,7 @@
   # RAM-specific
   boot.tmp.useTmpfs = true;
   zramSwap.memoryPercent = 30;
+  boot.kernelParams = [ "zfs.zfs_arc_max=${toString (1024 * 1024 * 1024 * 4)}" ];
 
   # other
   programs.steam.enable = true;
