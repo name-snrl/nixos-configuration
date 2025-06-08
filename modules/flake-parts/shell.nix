@@ -7,10 +7,6 @@
   perSystem =
     { pkgs, config, ... }:
     {
-      devShells.default = config.pre-commit.devShell.overrideAttrs (oa: {
-        nativeBuildInputs = oa.nativeBuildInputs or [ ] ++ (with pkgs; [ bashInteractive ]);
-      });
-
       pre-commit.settings.hooks = {
         treefmt = {
           enable = true;
@@ -76,5 +72,55 @@
           ];
         };
       };
+
+      devShells = {
+        default = config.pre-commit.devShell.overrideAttrs (oa: {
+          nativeBuildInputs = oa.nativeBuildInputs or [ ] ++ (with pkgs; [ bashInteractive ]);
+        });
+
+        fw-build =
+          with pkgs;
+          mkShellNoCC {
+            packages = [
+              git-lfs
+              rustup
+              # coreboot
+              bison
+              ccache
+              curl
+              flex
+              gnat
+              libuuid
+              ncurses
+              python3
+              zlib
+              # ec deps
+              sdcc
+              xxd
+              # flash script deps
+              systemd
+              gawk
+              rsync
+              efibootmgr
+            ];
+            shellHook = ''
+              git lfs install --local
+              git lfs pull
+              git submodule update --init --recursive --checkout --progress
+
+              echo -e "
+              Dependencies have been \033[0;32minstalled\033[0m.
+
+              Follow the build instructions in \033[0;36mfirmware-open/docs/building.md\033[0m, but skip
+              the dependency installation steps.
+
+              p.s. don't forget to install \033[1;33mcoreboot-toolchain\033[0m.
+              "
+            '';
+          }
+
+        ;
+      };
+
     };
 }
