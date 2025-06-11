@@ -34,6 +34,13 @@
   zramSwap.memoryPercent = 30;
   boot.kernelParams = [ "zfs.zfs_arc_max=${toString (1024 * 1024 * 1024 * 4)}" ];
 
+  boot.extraModprobeConfig = ''
+    # fix for random disappearance of the wifi device. Usually occurs after
+    # moderate, prolonged (over an hour) usage followed by a suspend
+    # https://wireless.docs.kernel.org/en/latest/en/users/drivers/iwlwifi.html#wi-fi-bluetooth-coexistence
+    options iwlwifi bt_coex_active=0
+  '';
+
   # other
   programs.steam.enable = true;
 
