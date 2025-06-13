@@ -2,6 +2,8 @@
 {
   home = {
     packages = with pkgs; [
+      ki-editor
+
       difftastic
       ripgrep
       fd

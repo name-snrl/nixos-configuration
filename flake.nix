@@ -20,6 +20,10 @@
     nfh.url = "github:name-snrl/nfh";
 
     # packages
+    ki-editor = {
+      url = "github:ki-editor/ki-editor";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nvim = {
       url = "github:name-snrl/nvim";
       inputs.nixpkgs.follows = "nixpkgs";

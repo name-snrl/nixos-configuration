@@ -3,6 +3,24 @@ inputs: final: prev: {
 
   neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${final.system}.neovim;
 
+  ki-editor =
+    with final;
+    symlinkJoin {
+      name = "ki-editor";
+      paths = [ inputs.ki-editor.packages.${system}.ki-editor-wayland ];
+      nativeBuildInputs = [ makeWrapper ];
+      postBuild = ''
+        wrapProgram "$out/bin/ki" \
+            --set-default KI_EDITOR_THEME 'One Dark' \
+            --suffix PATH : ${
+              lib.makeBinPath [
+                nixfmt-rfc-style
+                nil
+              ]
+            }
+      '';
+    };
+
   firefox = prev.firefox.override {
     extraPolicies = {
       DisableTelemetry = true;
