@@ -1,0 +1,208 @@
+From 8dc12c72b2c1da1d9bf20415e9ef8fc14f047164 Mon Sep 17 00:00:00 2001
+From: name_snrl <Demogorgon-74@ya.ru>
+Date: Sun, 15 Jun 2025 03:52:21 +0900
+Subject: [PATCH] make keymaps more native
+
+- change mod, alt -> ctrl
+- remap jkil -> hjkl in normal mode
+- remap some "other movements", like Scroll, Select, Nav, Marked
+- add a separate KEYMAP_META_INSERT layout to make it possible to bind
+  the same button in different modes
+---
+ src/components/editor_keymap.rs        | 116 ++++++++++++++-----------
+ src/components/editor_keymap_legend.rs |  18 ++--
+ 2 files changed, 76 insertions(+), 58 deletions(-)
+
+diff --git a/src/components/editor_keymap.rs b/src/components/editor_keymap.rs
+index bb05f06b..53462172 100644
+--- a/src/components/editor_keymap.rs
++++ b/src/components/editor_keymap.rs
+@@ -15,10 +15,10 @@ pub(crate) const KEYMAP_SCORE: [[char; 10]; 3] = [
+ 
+ pub(crate) const KEYMAP_NORMAL: [[Meaning; 10]; 3] = [
+     [
+-        SrchN, WordF, SrchC, MultC, Swap_, /****/ FindP, InstP, Up___, InstN, FindN,
++        SrchN, WordF, SrchC, MultC, Swap_, /****/ FindP, InstP, DeltN, InstN, FindN,
+     ],
+     [
+-        Line_, Token, Sytx_, Extnd, OpenN, /****/ DeltN, Left_, Down_, Right, Jump_,
++        Line_, Token, Sytx_, Extnd, OpenN, /****/ Left_, Down_, Up___, Right, Jump_,
+     ],
+     [
+         Undo_, Rplc_, Copy_, PsteN, Mark_, /****/ Globl, Chng_, Alpha, Beta_, XAchr,
+@@ -42,13 +42,25 @@ pub(crate) const KEYMAP_NORMAL_SHIFTED: [[Meaning; 10]; 3] = [
+ /// Meta also means Alt (Windows) or Option (Mac).
+ pub(crate) const KEYMAP_META: [[Meaning; 10]; 3] = [
+     [
+-        KilLP, CSrch, LineU, _____, KilLN, /****/ NBack, GBack, ScrlU, GForw, NForw,
++        _____, CSrch, _____, _____, _____, /****/ GBack, ScrlU, _____, GForw, NForw,
+     ],
+     [
+-        _____, LineP, LineD, LineN, OpenM, /****/ DTknP, MrkFP, ScrlD, MrkFN, SView,
++        _____, _____, ScrlD, _____, OpenM, /****/ SHelp, _____, _____, _____, SView,
+     ],
+     [
+-        Undo_, _____, WClse, UPstE, _____, /****/ _____, SHelp, _____, _____, WSwth,
++        Undo_, _____, WClse, UPstE, _____, /****/ NBack, _____, MrkFP, MrkFN, WSwth,
++    ],
++];
++
++pub(crate) const KEYMAP_META_INSERT: [[Meaning; 10]; 3] = [
++    [
++        _____, DTknP, LineN, _____, _____, /****/ _____, KilLP, _____, _____, ScrlU,
++    ],
++    [
++        LineP, _____, _____, _____, _____, /****/ SHelp, _____, KilLN, MrkFN, _____,
++    ],
++    [
++        _____, _____, _____, _____, _____, /****/ ScrlD, _____, _____, _____, _____,
+     ],
+ ];
+ 
+@@ -261,7 +273,7 @@ impl KeySet {
+                     .zip(layout.into_iter().flatten().map(alted)),
+             ),
+             insert_control: HashMap::from_iter(
+-                KEYMAP_META
++                KEYMAP_META_INSERT
+                     .into_iter()
+                     .flatten()
+                     .zip(layout.into_iter().flatten().map(alted)),
+@@ -933,52 +945,52 @@ pub(crate) fn shifted_char(c: char) -> char {
+ 
+ pub(crate) fn alted(c: &'static str) -> &'static str {
+     match c {
+-        "." => "alt+.",
+-        "," => "alt+,",
+-        "/" => "alt+/",
+-        ";" => "alt+;",
+-        "\"" => "alt+\"",
+-        "'" => "alt+'",
+-        "[" => "alt+[",
+-        "]" => "alt+]",
+-        "1" => "alt+1",
+-        "2" => "alt+2",
+-        "3" => "alt+3",
+-        "4" => "alt+4",
+-        "5" => "alt+5",
+-        "6" => "alt+6",
+-        "7" => "alt+7",
+-        "8" => "alt+8",
+-        "9" => "alt+9",
+-        "0" => "alt+0",
+-        "-" => "alt+-",
+-        "=" => "alt+=",
+-        "a" => "alt+a",
+-        "b" => "alt+b",
+-        "c" => "alt+c",
+-        "d" => "alt+d",
+-        "e" => "alt+e",
+-        "f" => "alt+f",
+-        "g" => "alt+g",
+-        "h" => "alt+h",
+-        "i" => "alt+i",
+-        "j" => "alt+j",
+-        "k" => "alt+k",
+-        "l" => "alt+l",
+-        "m" => "alt+m",
+-        "n" => "alt+n",
+-        "o" => "alt+o",
+-        "p" => "alt+p",
+-        "q" => "alt+q",
+-        "r" => "alt+r",
+-        "s" => "alt+s",
+-        "t" => "alt+t",
+-        "u" => "alt+u",
+-        "v" => "alt+v",
+-        "w" => "alt+w",
+-        "x" => "alt+x",
+-        "y" => "alt+y",
+-        "z" => "alt+z",
++        "." => "ctrl+.",
++        "," => "ctrl+,",
++        "/" => "ctrl+/",
++        ";" => "ctrl+;",
++        "\"" => "ctrl+\"",
++        "'" => "ctrl+'",
++        "[" => "ctrl+[",
++        "]" => "ctrl+]",
++        "1" => "ctrl+1",
++        "2" => "ctrl+2",
++        "3" => "ctrl+3",
++        "4" => "ctrl+4",
++        "5" => "ctrl+5",
++        "6" => "ctrl+6",
++        "7" => "ctrl+7",
++        "8" => "ctrl+8",
++        "9" => "ctrl+9",
++        "0" => "ctrl+0",
++        "-" => "ctrl+-",
++        "=" => "ctrl+=",
++        "a" => "ctrl+a",
++        "b" => "ctrl+b",
++        "c" => "ctrl+c",
++        "d" => "ctrl+d",
++        "e" => "ctrl+e",
++        "f" => "ctrl+f",
++        "g" => "ctrl+g",
++        "h" => "ctrl+h",
++        "i" => "ctrl+i",
++        "j" => "ctrl+j",
++        "k" => "ctrl+k",
++        "l" => "ctrl+l",
++        "m" => "ctrl+m",
++        "n" => "ctrl+n",
++        "o" => "ctrl+o",
++        "p" => "ctrl+p",
++        "q" => "ctrl+q",
++        "r" => "ctrl+r",
++        "s" => "ctrl+s",
++        "t" => "ctrl+t",
++        "u" => "ctrl+u",
++        "v" => "ctrl+v",
++        "w" => "ctrl+w",
++        "x" => "ctrl+x",
++        "y" => "ctrl+y",
++        "z" => "ctrl+z",
+         c => c, // return unchanged if no shift mapping exists
+     }
+ }
+diff --git a/src/components/editor_keymap_legend.rs b/src/components/editor_keymap_legend.rs
+index 5fe0e926..65dc3f10 100644
+--- a/src/components/editor_keymap_legend.rs
++++ b/src/components/editor_keymap_legend.rs
+@@ -689,12 +689,6 @@ impl Editor {
+                         context
+                             .keyboard_layout_kind()
+                             .get_insert_key(&Meaning::DTknP),
+-                        "Delete Token ←".to_string(),
+-                        "Delete token backward".to_string(),
+-                        Dispatch::ToEditor(DeleteWordBackward { short: false }),
+-                    ),
+-                    Keymap::new_extended(
+-                        "alt+backspace",
+                         "Delete Word ←".to_string(),
+                         "Delete word backward".to_string(),
+                         Dispatch::ToEditor(DeleteWordBackward { short: true }),
+@@ -739,6 +733,18 @@ impl Editor {
+                         "Move to line end".to_string(),
+                         Dispatch::ToEditor(MoveToLineEnd),
+                     ),
++                    Keymap::new_extended(
++                        "ctrl+j",
++                        "Undo".to_string(),
++                        "Undo".to_string(),
++                        Dispatch::ToEditor(Undo),
++                    ),
++                    Keymap::new_extended(
++                        "ctrl+k",
++                        "Redo".to_string(),
++                        "Redo".to_string(),
++                        Dispatch::ToEditor(Redo),
++                    ),
+                 ]
+                 .into_iter()
+                 .chain(if include_universal_keymaps {
+-- 
+2.49.0
+
