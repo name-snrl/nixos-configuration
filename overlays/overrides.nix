@@ -7,7 +7,13 @@ inputs: final: prev: {
     with final;
     symlinkJoin {
       name = "ki-editor";
-      paths = [ inputs.ki-editor.packages.${system}.ki-editor-wayland ];
+      paths = lib.singleton (
+        inputs.ki-editor.packages.${system}.ki-editor-wayland.overrideAttrs (oa: {
+          patches = oa.patches or [ ] ++ [
+            ./0001-make-keymaps-more-native.patch
+          ];
+        })
+      );
       nativeBuildInputs = [ makeWrapper ];
       postBuild = ''
         wrapProgram "$out/bin/ki" \
