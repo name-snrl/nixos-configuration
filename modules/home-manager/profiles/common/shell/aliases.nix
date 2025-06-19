@@ -27,10 +27,10 @@ in
 
     # cfg management
     jnp = lib.mkIf isModule "cd ${osConfig.nixpkgs.flake.source}";
-    nboot = lib.mkIf isModule "nixos-rebuild boot --use-remote-sudo --fast --flake ${cfgPath}";
+    nboot = lib.mkIf isModule "nixos-rebuild boot --sudo --no-reexec --flake ${cfgPath}";
     nswitch =
       if isModule then
-        "nixos-rebuild switch --use-remote-sudo --fast --flake ${cfgPath}"
+        "nixos-rebuild switch --sudo --no-reexec --flake ${cfgPath}"
       else
         "home-manager switch --flake ${cfgPath}";
     nbuild =
