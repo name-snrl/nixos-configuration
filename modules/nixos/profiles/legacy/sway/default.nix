@@ -29,7 +29,7 @@
       swaylock-effects
       wl-clipboard
       cliphist
-      xdragon
+      dragon-drop
       scripts.dg
       scripts.fzf-dragon
       xdg-utils # wl-clipboard needs xdg-mime
