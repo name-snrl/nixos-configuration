@@ -1,6 +1,7 @@
 {
+  lib,
   writeShellApplication,
-  xdragon,
+  dragon-drop,
   util-linux,
   chafa,
   coreutils,
@@ -13,16 +14,14 @@
   dg = writeShellApplication {
     name = "dg";
     runtimeInputs = [
-      xdragon
       util-linux
     ];
-    text = ''exec setsid dragon --on-top "$@"'';
+    text = ''exec setsid ${lib.getExe dragon-drop} --on-top "$@"'';
   };
 
   fzf-dragon = writeShellApplication {
     name = "fzf-dragon";
     runtimeInputs = [
-      xdragon
       util-linux
       chafa
       coreutils
@@ -33,7 +32,7 @@
     text = ''
       readarray -t paths < <(fzf --multi --preview='${fzf.src}/bin/fzf-preview.sh {}')
       if [[ ''${#paths[@]} -gt 0 ]]; then
-          exec setsid dragon --on-top --all "''${paths[@]}"
+          exec setsid ${lib.getExe dragon-drop} --on-top --all "''${paths[@]}"
       fi
     '';
   };
