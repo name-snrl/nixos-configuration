@@ -5,5 +5,5 @@
     enable = true;
     internalInterfaces = [ "ve-+" ];
   };
-  environment.systemPackages = [ pkgs.virt-viewer ];
+  environment.systemPackages = [ pkgs.remmina ];
 }
