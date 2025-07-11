@@ -34,10 +34,10 @@
       };
 
       diff.algorithm = "patience";
-      diff.tool = "difftastic";
-      difftool."difftastic".cmd = ''difft "$LOCAL" "$REMOTE"'';
-      difftool.prompt = false;
-      pager.difftool = true;
+      # don't forget to use `--ext-diff` with commands like log, show, stash,
+      # and other to get syntax diffs, and `--no-ext-diff` with diff if you want
+      # standard diff
+      diff.external = "difft";
 
       merge.conflictStyle = "zdiff3";
       merge.autoStash = true;
