@@ -63,8 +63,9 @@ in
         misc = {
           "full-screen-api.warning.timeout" = 0;
           "findbar.highlightAll" = true; # highlight all matches when searching the page
+          "sidebar.revamp" = false; # hide sidebar
           "browser.uiCustomization.state" = {
-            currentVersion = 20;
+            currentVersion = 22;
             placements = {
               TabsToolbar = [
                 "tabbrowser-tabs"
