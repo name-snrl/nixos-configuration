@@ -111,6 +111,7 @@ in
     };
     policies = {
       DisableForgetButton = true; # I fucked up once, don't want again
+      # TODO https://nix-community.github.io/home-manager/options.xhtml#opt-programs.firefox.profiles._name_.extensions
       ExtensionSettings = {
         "uBlock0@raymondhill.net" = {
           default_area = "menupanel";
