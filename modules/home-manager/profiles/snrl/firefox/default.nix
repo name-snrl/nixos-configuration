@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
   mergeValues = xs: lib.mergeAttrsList (lib.attrValues xs);
   lock = Value: {
@@ -9,6 +14,17 @@ let
     inherit Value;
     Status = "default";
   };
+  csshacks = pkgs.fetchFromGitHub {
+    owner = "MrOtherGuy";
+    repo = "firefox-csshacks";
+    rev = "b169686cc34df107929101fa345e5b7e3c2040f1";
+    hash = "sha256-ljqZVivYIQVG2hGSlAbFsFAIi4sI9FZpA8ZOe4S02mc=";
+    # TODO upstream
+    nativeBuildInputs = [ pkgs.gnused ];
+    postFetch = ''
+      sed -i 's/82ms/0ms/' $out/chrome/autohide_toolbox.css
+    '';
+  };
 in
 {
   programs.firefox = {
@@ -16,8 +32,30 @@ in
     profiles.${config.home.username} = {
       isDefault = true;
       userChrome =
-        # turn off that stupid flash when the page starts loading
+        # autohide toolbar
         ''
+          @import url(${csshacks}/chrome/autohide_toolbox.css);
+        ''
+        # online toolbar
+        + ''
+          @import url(${csshacks}/chrome/oneline_toolbar.css);
+
+          /* TODO upstream */
+          :root { --uc-oneline-toolbar-split: 55fr 45fr }
+
+          /* slightly modified firefox-csshacks/chrome/urlbar_popup_full_width.css */
+          .urlbarView{
+            position: fixed !important;
+            top: inherit;
+            left: 0 !important;
+            margin: var(--urlbar-container-height) 0 0 0 !important;
+            width: 70vw !important;
+            border-width: 1px 0;
+            background-color: var(--toolbar-field-focus-background-color, inherit);
+          }
+        ''
+        # turn off that stupid flash when the page starts loading
+        + ''
           #browser vbox#appcontent tabbrowser,
           #content,
           #tabbrowser-tabpanels,
@@ -35,8 +73,8 @@ in
         # normal colors for the toolbar when switching to a dark theme
         # https://bugzilla.mozilla.org/show_bug.cgi?id=1711275
         + ''
-          #nav-bar.browser-toolbar {
-            background-color:  transparent !important;
+          #nav-bar {
+            --toolbar-bgcolor: -moz-Dialog;
           }
         '';
       # wp sources:
@@ -69,24 +107,19 @@ in
             placements = {
               TabsToolbar = [
                 "tabbrowser-tabs"
-                "alltabs-button"
               ];
               nav-bar = [
-                "customizableui-special-spring11"
-                "customizableui-special-spring19"
+                "alltabs-button"
+                "history-panelmenu"
+                "sync-button"
                 "back-button"
                 "forward-button"
-                "stop-reload-button"
-                "history-panelmenu"
-                "urlbar-container"
-                "fxa-toolbar-menu-button"
-                "sync-button"
-                "customizableui-special-spring20"
-                "customizableui-special-spring12"
                 "save-to-pocket-button"
+                "urlbar-container"
                 "downloads-button"
                 "unified-extensions-button"
                 "reset-pbm-toolbar-button"
+                "vertical-spacer"
               ];
             };
           };
@@ -106,6 +139,9 @@ in
           "toolkit.telemetry.server" = "";
           "toolkit.telemetry.server_owner" = "";
           "toolkit.telemetry.unified" = false;
+        };
+        userChrome = {
+          "userchrome.navbar-tabs-oneliner.tabs-on-right.enabled" = true; # part of online toolbar csshack
         };
       };
     };
@@ -169,6 +205,7 @@ in
           "layout.css.prefers-color-scheme.content-override" = lock 2; # use system theme (light/dark)
           "toolkit.legacyUserProfileCustomizations.stylesheets" = lock true; # enable chrome/userC{hrome,ontent}.css
           "browser.tabs.inTitlebar" = lock 0; # on sway we can disable titelbar. this setting helps to hide minimize/close buttons as well
+          "browser.ctrlTab.sortByRecentlyUsed" = lock true; # list all tabs on ctrl+shift+tab
         };
 
         extensions = {
