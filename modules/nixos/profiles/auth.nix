@@ -40,7 +40,7 @@
   ];
   programs.fish.enable = true;
   users = {
-    defaultUserShell = pkgs.fish;
+    defaultUserShell = config.programs.fish.package;
     mutableUsers = false;
     users.${vars.users.master.name} = {
       inherit (vars.users.master) uid;
