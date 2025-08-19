@@ -6,7 +6,7 @@
       st = "status";
       cm = "commit";
       sw = "switch";
-      dt = "difftool";
+      df = "diff";
       fx = "commit --fixup";
       au = "remote add -f upstream";
       rb = "rebase --autosquash --interactive";
