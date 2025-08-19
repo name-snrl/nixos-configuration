@@ -68,11 +68,9 @@ inputs: final: prev: {
       gzip "$pname.7"
     '';
 
-    postInstall =
-      oa.postInstall
-      + ''
-        make PREFIX=$out install
-      '';
+    postInstall = oa.postInstall + ''
+      make PREFIX=$out install
+    '';
   });
 
   # https://github.com/flatpak/xdg-desktop-portal-gtk/issues/465

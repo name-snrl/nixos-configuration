@@ -11,7 +11,7 @@
   };
   programs.less = {
     enable = true;
-    keys = ''
+    config = ''
       #command
       ^l undo-hilite
       m set-mark-bottom
