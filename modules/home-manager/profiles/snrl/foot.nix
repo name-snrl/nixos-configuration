@@ -46,13 +46,13 @@
         osc8-underline = "always";
       };
 
-      cursor.color = toString [
-        "2b323b" # #2b323b
-        "9f515a" # #9f515a
-      ];
       mouse.hide-when-typing = true;
 
       colors = {
+        cursor = toString [
+          "2b323b" # #2b323b
+          "9f515a" # #9f515a
+        ];
         alpha = "0.9";
         background = "2b323b"; # #2b323b
         foreground = "eceff4"; # #eceff4

@@ -10,17 +10,16 @@
       hostName: cfgModules:
       inputs.nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
-        modules =
-          [
-            { networking = { inherit hostName; }; }
+        modules = [
+          { networking = { inherit hostName; }; }
 
-            inputs.home-manager.nixosModules.home-manager
-            inputs.disko.nixosModules.default
-            inputs.chaotic.nixosModules.default
-            inputs.impermanence.nixosModules.default
-          ]
-          ++ inputs.self.moduleTree.common-profiles { }
-          ++ cfgModules { };
+          inputs.home-manager.nixosModules.home-manager
+          inputs.disko.nixosModules.default
+          inputs.chaotic.nixosModules.default
+          inputs.impermanence.nixosModules.default
+        ]
+        ++ inputs.self.moduleTree.common-profiles { }
+        ++ cfgModules { };
       }
     ) (lib.removeAttrs inputs.self.moduleTree.nixos.configurations [ "__functor" ]);
 
@@ -43,10 +42,11 @@
         inputs.home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit inputs; };
-          modules =
-            [ { home = { inherit username; }; } ]
-            ++ inputs.self.moduleTree.common-profiles { }
-            ++ cfgModules { };
+          modules = [
+            { home = { inherit username; }; }
+          ]
+          ++ inputs.self.moduleTree.common-profiles { }
+          ++ cfgModules { };
         }
       ) (lib.removeAttrs inputs.self.moduleTree.home-manager.configurations [ "__functor" ]);
     };
