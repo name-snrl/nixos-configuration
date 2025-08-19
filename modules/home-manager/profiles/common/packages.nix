@@ -2,7 +2,7 @@
 {
   home = {
     packages = with pkgs; [
-      ki-editor
+      #ki-editor
 
       difftastic
       ripgrep
