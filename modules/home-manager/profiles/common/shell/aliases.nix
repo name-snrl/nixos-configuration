@@ -40,7 +40,7 @@ in
         "home-manager build --no-out-link ${cfgPath}";
     nrepl = lib.mkIf isModule "nixos-rebuild repl --flake ${cfgPath}";
     nvmrun = lib.mkIf isModule "nix run ${cfgPath}#nixosConfigurations.${osConfig.networking.hostName}.config.system.build.vm";
-    nupdate = "nix flake update --commit-lock-file --flake ${cfgPath}";
+    nupdate = "nix flake update --commit-lock-file --flake ${cfgPath} && nix flake check ${cfgPath}";
     # https://github.com/NixOS/nix/issues/8508
     nclear =
       lib.optionalString isModule "sudo nix-collect-garbage --delete-old --quiet && "
