@@ -20,4 +20,9 @@
     partOf = [ "graphical-session.target" ];
     script = "${lib.getExe' pkgs.cloak-pt "ck-client"} -u -c ~/.openvpn/ckclient.json";
   };
+  nix.settings = {
+    netrc-file = "/etc/nix/netrc";
+    extra-substituters = lib.singleton "https://tws-nix-store.cachix.org";
+    extra-trusted-public-keys = lib.singleton "tws-nix-store.cachix.org-1:YnG1QOR0dlKEgd1wyuB3mjy5kXMjIPss85B3aYkUJfk=";
+  };
 }
