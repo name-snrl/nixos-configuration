@@ -31,7 +31,6 @@
       cliphist
       dragon-drop
       scripts.dg
-      scripts.fzf-dragon
       xdg-utils # wl-clipboard needs xdg-mime
       wl-screenrec # screencast
       slurp
