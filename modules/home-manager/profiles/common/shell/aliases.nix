@@ -10,7 +10,7 @@ let
 in
 {
   home.shellAliases = {
-    ip = "ip --color=auto";
+    ip = "ip";
     pg = "$PAGER";
     ls = "eza --group-directories-first --group --git";
     rg = "rg --follow --hidden --glob=!.git --smart-case --no-messages";
