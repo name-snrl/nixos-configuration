@@ -3,6 +3,7 @@
   xdg = {
     userDirs = {
       enable = true;
+      setSessionVariables = true;
       desktop = "${config.home.homeDirectory}/${vars.users.master.dirs.desktop}";
       publicShare = "${config.home.homeDirectory}/${vars.users.master.dirs.forks}";
       templates = "${config.home.homeDirectory}/${vars.users.master.dirs.experiments}";
