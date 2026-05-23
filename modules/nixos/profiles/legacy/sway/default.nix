@@ -30,7 +30,7 @@
       wl-clipboard
       cliphist
       dragon-drop
-      scripts.dg
+      snrl-scripts.dg
       xdg-utils # wl-clipboard needs xdg-mime
       wl-screenrec # screencast
       slurp

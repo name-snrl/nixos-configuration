@@ -5,7 +5,7 @@ let
 in
 
 {
-  scripts = final.callPackages ./scripts { };
+  snrl-scripts = final.callPackages ./scripts { };
 
   nvim-full = final.callPackage ./nvim-full { };
 
