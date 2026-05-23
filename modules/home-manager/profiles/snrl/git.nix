@@ -1,7 +1,7 @@
 { config, ... }:
 {
-  programs.git = {
-    userName = "${config.home.username}";
-    userEmail = "Demogorgon-74@ya.ru";
+  programs.git.settings = {
+    user.name = "${config.home.username}";
+    user.email = "Demogorgon-74@ya.ru";
   };
 }

@@ -6,10 +6,10 @@
   ...
 }:
 {
-  services.logind.extraConfig = ''
-    IdleAction=suspend
-    IdleActionSec=10min
-  '';
+  services.logind.settings.Login = {
+    IdleAction = "suspend";
+    IdleActionSec = "10min";
+  };
   security = {
     sudo.enable = false;
     # TODO seems this should be in upstream

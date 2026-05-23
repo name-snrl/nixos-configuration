@@ -16,7 +16,7 @@
 
   # don't need so many logs on desktops
   services.journald.extraConfig = "SystemMaxUse=200M";
-  systemd.coredump.extraConfig = "MaxUse=200M";
+  systemd.coredump.settings.Coredump.MaxUse = "200M";
 
   programs.adb.enable = true;
   users.users.${vars.users.master.name}.extraGroups = [ "adbusers" ];
