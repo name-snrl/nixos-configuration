@@ -1,6 +1,4 @@
 {
-  pkgs,
-  lib,
   config,
   ...
 }:
@@ -84,10 +82,7 @@
     mount
   ];
 
-  boot = {
-    zfs.forceImportRoot = false;
-    zfs.package = lib.mkIf (lib.hasInfix "cachyos" config.boot.kernelPackages.kernel.modDirVersion) pkgs.zfs_cachyos;
-  };
+  boot.zfs.forceImportRoot = false;
 
   services.zfs = {
     trim.enable = false; # we don't need this since autotrim is enabled for zroot

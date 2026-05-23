@@ -15,7 +15,6 @@
 
           inputs.home-manager.nixosModules.home-manager
           inputs.disko.nixosModules.default
-          inputs.chaotic.nixosModules.default
           inputs.impermanence.nixosModules.default
         ]
         ++ inputs.self.moduleTree.common-profiles { }

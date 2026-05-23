@@ -15,7 +15,6 @@
   inputs = {
     # single lines
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     impermanence.url = "github:nix-community/impermanence";
     nfh.url = "github:name-snrl/nfh";
 

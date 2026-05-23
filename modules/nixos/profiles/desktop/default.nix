@@ -4,10 +4,7 @@
   ...
 }:
 {
-  boot = {
-    kernelPackages = pkgs.linuxPackages_cachyos;
-    supportedFilesystems = [ "ntfs" ];
-  };
+  boot.supportedFilesystems = [ "ntfs" ];
 
   i18n.defaultLocale = "en_GB.UTF-8";
 

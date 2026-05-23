@@ -1,8 +1,6 @@
 {
   vars,
   inputs,
-  lib,
-  config,
   ...
 }:
 {
@@ -17,7 +15,7 @@
     inputs.self.moduleTree.home-manager.profiles.gf
       { };
 
-  environment.persistence = lib.mkIf config.chaotic.zfs-impermanence-on-shutdown.enable {
+  environment.persistence = {
     ${vars.fs.impermanence.persistent}.users.${vars.users.gf.name}.directories = [ "" ];
   };
 }

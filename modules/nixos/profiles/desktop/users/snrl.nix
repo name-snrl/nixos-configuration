@@ -2,7 +2,6 @@
   inputs,
   vars,
   lib,
-  config,
   ...
 }:
 {
@@ -10,7 +9,7 @@
     inputs.self.moduleTree.home-manager.profiles.snrl
       { };
 
-  environment.persistence = lib.mkIf config.chaotic.zfs-impermanence-on-shutdown.enable {
+  environment.persistence = {
     ${vars.fs.impermanence.persistent}.users.${vars.users.master.name} = {
       files = [
         ".bash_history"

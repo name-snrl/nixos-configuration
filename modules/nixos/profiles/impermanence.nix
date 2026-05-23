@@ -1,4 +1,10 @@
-{ vars, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  vars,
+  ...
+}:
 {
   disko.devices.zpool.zroot.datasets.persistent = {
     mountpoint = vars.fs.impermanence.persistent;
@@ -8,12 +14,14 @@
 
   fileSystems.${vars.fs.impermanence.persistent}.neededForBoot = true;
 
-  chaotic.zfs-impermanence-on-shutdown = {
-    # since this option enables the wiping of the root FS, I use it as
-    # condition for `environment.persistence` in other modules
-    enable = true;
-    volume = "zroot/rootfs";
-    snapshot = "blank";
+  systemd.shutdownRamfs = {
+    contents."/etc/systemd/system-shutdown/zpool".source = lib.mkForce (
+      pkgs.writeShellScript "zpool-sync-shutdown" ''
+        ${config.boot.zfs.package}/bin/zfs rollback -r zroot/rootfs@blank
+        exec ${config.boot.zfs.package}/bin/zpool sync
+      ''
+    );
+    storePaths = [ "${config.boot.zfs.package}/bin/zfs" ];
   };
 
   environment.persistence.${vars.fs.impermanence.persistent} = {

@@ -1,8 +1,6 @@
 {
   inputs,
   pkgs,
-  lib,
-  config,
   vars,
   ...
 }:
@@ -41,7 +39,7 @@
   # other
   programs.steam.enable = true;
 
-  environment.persistence = lib.mkIf config.chaotic.zfs-impermanence-on-shutdown.enable {
+  environment.persistence = {
     ${vars.fs.impermanence.persistent} = {
       files = [
         "/var/lib/sddm/state.conf"
