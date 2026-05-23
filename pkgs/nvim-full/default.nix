@@ -14,11 +14,11 @@
 
   nixd,
   nil,
-  nixfmt-rfc-style,
+  nixfmt,
   deadnix,
   statix,
 
-  nodePackages,
+  bash-language-server,
   shfmt,
   shellcheck,
 
@@ -48,11 +48,11 @@ nvim.override {
 
     nixd
     nil
-    nixfmt-rfc-style
+    nixfmt
     deadnix
     statix
 
-    nodePackages.bash-language-server
+    bash-language-server
     shfmt
     shellcheck
 

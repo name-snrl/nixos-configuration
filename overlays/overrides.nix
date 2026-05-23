@@ -1,14 +1,15 @@
 # Overlay that overrides existing packages.
 inputs: final: prev: {
 
-  neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${final.system}.neovim;
+  neovim-unwrapped =
+    inputs.neovim-nightly-overlay.packages.${final.stdenv.hostPlatform.system}.neovim;
 
   ki-editor =
     with final;
     symlinkJoin {
       name = "ki-editor";
       paths = lib.singleton (
-        inputs.ki-editor.packages.${system}.ki-editor-wayland.overrideAttrs (oa: {
+        inputs.ki-editor.packages.${stdenv.hostPlatform.system}.ki-editor-wayland.overrideAttrs (oa: {
           patches = oa.patches or [ ] ++ [
             ./0001-make-keymaps-more-native.patch
           ];
@@ -20,7 +21,7 @@ inputs: final: prev: {
             --set-default KI_EDITOR_THEME 'One Dark' \
             --suffix PATH : ${
               lib.makeBinPath [
-                nixfmt-rfc-style
+                nixfmt
                 nil
               ]
             }

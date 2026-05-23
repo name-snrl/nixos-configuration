@@ -7,7 +7,7 @@
     };
 
     tmpfiles.users.${vars.users.master.name}.rules = with pkgs; [
-      "L+ %h/.config/autostart/firefox.desktop - - - - ${firefox-wayland}/share/applications/firefox.desktop"
+      "L+ %h/.config/autostart/firefox.desktop - - - - ${firefox}/share/applications/firefox.desktop"
     ];
   };
 }

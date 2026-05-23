@@ -4,6 +4,5 @@
     telegram-desktop
     #discord
     zoom-us
-    whatsapp-for-linux
   ];
 }
