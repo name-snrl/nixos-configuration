@@ -1,6 +1,5 @@
 {
   pkgs,
-  vars,
   ...
 }:
 {
@@ -17,9 +16,6 @@
   # don't need so many logs on desktops
   services.journald.extraConfig = "SystemMaxUse=200M";
   systemd.coredump.settings.Coredump.MaxUse = "200M";
-
-  programs.adb.enable = true;
-  users.users.${vars.users.master.name}.extraGroups = [ "adbusers" ];
 
   services.udisks2.enable = true;
   environment.defaultPackages = with pkgs; [
