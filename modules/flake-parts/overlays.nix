@@ -7,16 +7,16 @@
 }:
 {
   flake.overlays = {
-    default =
+    composite =
       with inputs;
       lib.composeManyExtensions [
         self.overlays.overrides
         self.overlays.gateway
-        self.overlays.pkgs
+        self.overlays.default
         nvim.overlays.default
       ];
     overrides = import <overlays/overrides.nix> inputs;
     gateway = import <overlays/gateway.nix> inputs;
-    pkgs = import <pkgs>;
+    default = import <pkgs>;
   };
 }

@@ -6,7 +6,7 @@
     {
       _module.args.pkgs = import inputs.nixpkgs {
         inherit system;
-        overlays = lib.singleton inputs.self.overlays.default;
+        overlays = lib.singleton inputs.self.overlays.composite;
         config.allowUnfree = true;
       };
 
