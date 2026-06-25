@@ -50,14 +50,10 @@
   };
 
   home-manager.sharedModules =
-    inputs.self.moduleTree.home-manager {
-      configurations = false;
-      profiles = {
-        gf = false;
-        snrl = false;
-      };
-    }
-    ++ [ { home.stateVersion = "23.11"; } ];
+    lib.fileset.toList (lib.fileset.fileFilter (f: f.hasExt "nix") ../../../../home-manager/common)
+    ++ [
+      { home.stateVersion = "23.11"; }
+    ];
 
   system.stateVersion = "22.05";
 }

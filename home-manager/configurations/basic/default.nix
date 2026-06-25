@@ -1,20 +1,10 @@
 {
-  inputs,
   config,
   vars,
   lib,
   ...
 }:
 {
-  imports = inputs.self.moduleTree.home-manager {
-    configurations = false;
-    profiles = {
-      _defaultsRecursive = false;
-      common = true;
-      snrl.git = true;
-    };
-  };
-
   home.homeDirectory = "/home/${config.home.username}";
   home.stateVersion = "23.11";
 

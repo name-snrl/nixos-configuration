@@ -32,21 +32,4 @@
       acc // { ${system} = lib.mergeAttrs acc.${system} or { } { ${hostName} = toplevel; }; }
     ) { } (lib.attrValues config.flake.nixosConfigurations);
   };
-
-  perSystem =
-    { pkgs, ... }:
-    {
-      legacyPackages.homeConfigurations = lib.mapAttrs (
-        username: cfgModules:
-        inputs.home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = { inherit inputs; };
-          modules = [
-            { home = { inherit username; }; }
-          ]
-          ++ inputs.self.moduleTree.common-profiles { }
-          ++ cfgModules { };
-        }
-      ) (lib.removeAttrs inputs.self.moduleTree.home-manager.configurations [ "__functor" ]);
-    };
 }

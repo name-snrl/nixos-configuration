@@ -5,11 +5,15 @@
     inputs@{ nfh, flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } rec {
       flake.moduleTree = nfh ./modules;
-      imports = flake.moduleTree {
-        _defaultsRecursive = false;
-        flake-parts = true;
-        common-profiles.args = true;
-      };
+      imports =
+        (flake.moduleTree {
+          _defaultsRecursive = false;
+          flake-parts = true;
+          common-profiles.args = true;
+        })
+        ++ [
+          ./configurations.nix
+        ];
     };
 
   inputs = {

@@ -1,13 +1,12 @@
 {
-  inputs,
   vars,
   lib,
   ...
 }:
 {
   home-manager.users.${vars.users.master.name}.imports =
-    inputs.self.moduleTree.home-manager.profiles.snrl
-      { };
+    with lib.fileset;
+    toList (fileFilter (f: f.hasExt "nix") ../../../../../home-manager/snrl);
 
   environment.persistence = {
     ${vars.fs.impermanence.persistent}.users.${vars.users.master.name} = {

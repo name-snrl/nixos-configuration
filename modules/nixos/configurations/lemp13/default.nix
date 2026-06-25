@@ -2,6 +2,7 @@
   inputs,
   pkgs,
   vars,
+  lib,
   ...
 }:
 {
@@ -53,14 +54,10 @@
   };
 
   home-manager.sharedModules =
-    inputs.self.moduleTree.home-manager {
-      configurations = false;
-      profiles = {
-        gf = false;
-        snrl = false;
-      };
-    }
-    ++ [ { home.stateVersion = "25.05"; } ];
+    lib.fileset.toList (lib.fileset.fileFilter (f: f.hasExt "nix") ../../../../home-manager/common)
+    ++ [
+      { home.stateVersion = "25.05"; }
+    ];
 
   system.stateVersion = "25.05";
 }
