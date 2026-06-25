@@ -18,8 +18,6 @@
       enable = true;
       defaultApplications = {
         "text/plain" = "nvim.desktop";
-        "image/jpeg" = "swayimg.desktop";
-        "image/png" = "swayimg.desktop";
       };
     };
   };

@@ -9,7 +9,6 @@
     configurations = false;
     profiles = {
       desktop.work = false;
-      legacy = false;
       servers = false;
     };
   };

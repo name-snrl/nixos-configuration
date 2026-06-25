@@ -404,38 +404,6 @@
         "type": "github"
       }
     },
-    "graphite-gtk": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1769862084,
-        "narHash": "sha256-62SOQb3sQCYN1XU6a48RM18EcTUBEh2x0u+S6z8xEfo=",
-        "owner": "vinceliuice",
-        "repo": "graphite-gtk-theme",
-        "rev": "57028b0bfcc0cfee1ba42273c545e4e269973433",
-        "type": "github"
-      },
-      "original": {
-        "owner": "vinceliuice",
-        "repo": "graphite-gtk-theme",
-        "type": "github"
-      }
-    },
-    "graphite-kde": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1739698932,
-        "narHash": "sha256-4Uw6MgfiAzcbhuEPX7XEuj/8m7sL/kU0h2k7gu2OD+o=",
-        "owner": "vinceliuice",
-        "repo": "graphite-kde-theme",
-        "rev": "09665ba967475da01ad9ec2a5a5822f15ba14e84",
-        "type": "github"
-      },
-      "original": {
-        "owner": "vinceliuice",
-        "repo": "graphite-kde-theme",
-        "type": "github"
-      }
-    },
     "hercules-ci-effects": {
       "inputs": {
         "flake-parts": "flake-parts_5",
@@ -765,8 +733,6 @@
         "disko": "disko",
         "flake-parts": "flake-parts",
         "git-hooks-nix": "git-hooks-nix",
-        "graphite-gtk": "graphite-gtk",
-        "graphite-kde": "graphite-kde",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "ki-editor": "ki-editor",

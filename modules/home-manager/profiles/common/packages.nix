@@ -8,6 +8,7 @@
       ripgrep
       fd
       eza
+      gojq
       file
       tree
       cloc

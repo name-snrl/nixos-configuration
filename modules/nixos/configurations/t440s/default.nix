@@ -11,9 +11,7 @@
     profiles = {
       zfs = false;
       impermanence = false;
-      desktop.kde = false;
-      desktop.users.gf = false;
-      servers.openssh = false;
+      desktop = false;
     };
   };
 
@@ -37,18 +35,18 @@
   zramSwap.memoryPercent = 100;
 
   # other host-specific settings
-  services.tlp.settings = {
-    START_CHARGE_THRESH_BAT0 = 40;
-    STOP_CHARGE_THRESH_BAT0 = 60;
+  services = {
+    upower.enable = true;
+    tlp = {
+      enable = true;
+      settings = {
+        START_CHARGE_THRESH_BAT0 = 40;
+        STOP_CHARGE_THRESH_BAT0 = 60;
 
-    START_CHARGE_THRESH_BAT1 = 40;
-    STOP_CHARGE_THRESH_BAT1 = 55;
-  };
-
-  xdg.portal.wlr.settings.screencast = {
-    output_name = "eDP-1";
-    max_fps = 60;
-    chooser_type = "none";
+        START_CHARGE_THRESH_BAT1 = 40;
+        STOP_CHARGE_THRESH_BAT1 = 55;
+      };
+    };
   };
 
   home-manager.sharedModules =

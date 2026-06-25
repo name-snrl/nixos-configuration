@@ -31,14 +31,6 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    graphite-gtk = {
-      url = "github:vinceliuice/graphite-gtk-theme";
-      flake = false;
-    };
-    graphite-kde = {
-      flake = false;
-      url = "github:vinceliuice/graphite-kde-theme";
-    };
     nix-index-db = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
