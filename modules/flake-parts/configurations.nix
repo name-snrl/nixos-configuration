@@ -1,7 +1,6 @@
 {
   lib,
   inputs,
-  config,
   ...
 }:
 {
@@ -21,15 +20,5 @@
         ++ cfgModules { };
       }
     ) (lib.removeAttrs inputs.self.moduleTree.nixos.configurations [ "__functor" ]);
-
-    packages = lib.foldl (
-      acc: nixos:
-      let
-        inherit (nixos.config.nixpkgs.hostPlatform) system;
-        inherit (nixos.config.networking) hostName;
-        inherit (nixos.config.system.build) toplevel;
-      in
-      acc // { ${system} = lib.mergeAttrs acc.${system} or { } { ${hostName} = toplevel; }; }
-    ) { } (lib.attrValues config.flake.nixosConfigurations);
   };
 }
