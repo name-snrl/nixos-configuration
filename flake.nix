@@ -6,7 +6,7 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         ./configurations.nix
-        ./packages.nix
+        ./pkgs
         ./shell.nix
         ./templates
 
