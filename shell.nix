@@ -35,20 +35,17 @@
             enable = true; # fix, if possible
             disabled-lints = [ "repeated_keys" ];
           };
+
           shellcheck.enable = true;
           shfmt = {
             enable = true;
             indent_size = 4;
           };
-          mdformat = {
+
+          prettier = {
             enable = true;
-            package = pkgs.mdformat.withPlugins (
-              p: with p; [
-                mdformat-gfm
-                mdformat-frontmatter
-                mdformat-footnote
-              ]
-            );
+            settings.proseWrap = "always";
+            settings.printWidth = 80;
           };
         };
         settings.formatter = {
@@ -70,10 +67,6 @@
             excludes = [ "*.nix" ];
             options = [ "--case-indent" ];
           };
-          mdformat.options = [
-            "--wrap"
-            "80"
-          ];
         };
       };
     };
