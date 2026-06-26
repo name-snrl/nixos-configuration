@@ -15,8 +15,9 @@
       ];
     };
 
+  # Note: use npins with nixpkgs fetchers if you only need the sources.
+  # Otherwise, downloads will happen sequentially during evaluation.
   inputs = {
-    # single lines
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     impermanence.url = "github:nix-community/impermanence";
 
