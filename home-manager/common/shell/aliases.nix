@@ -5,6 +5,7 @@
   ...
 }:
 let
+  # TODO remove me, just store configuration in proper place  (/etc/nixos, ~/.config/home-manager)
   cfgPath = "${config.home.homeDirectory}/nixos-configuration";
   isModule = osConfig != null;
 in
