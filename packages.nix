@@ -15,8 +15,6 @@
         self.overlays.default
         nvim.overlays.default
       ];
-    overrides = import overlays/overrides.nix inputs;
-    gateway = import overlays/gateway.nix inputs;
     default = import ./pkgs;
   };
 

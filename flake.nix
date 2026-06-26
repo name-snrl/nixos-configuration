@@ -9,6 +9,9 @@
         ./packages.nix
         ./shell.nix
         ./templates
+
+        overlays/gateway.nix
+        overlays/overrides.nix
       ];
     };
 
