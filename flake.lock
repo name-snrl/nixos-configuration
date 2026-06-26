@@ -592,24 +592,6 @@
         "type": "github"
       }
     },
-    "nfh": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_2"
-      },
-      "locked": {
-        "lastModified": 1751018200,
-        "narHash": "sha256-i1sQvHqrNNZbxO8Zv4laBe4MpHwUXluxwk59a41uLVw=",
-        "owner": "name-snrl",
-        "repo": "nfh",
-        "rev": "d5f830fdcd574cebb8bdea7e451da7a5f655e816",
-        "type": "github"
-      },
-      "original": {
-        "owner": "name-snrl",
-        "repo": "nfh",
-        "type": "github"
-      }
-    },
     "nix-index-db": {
       "inputs": {
         "nixpkgs": [
@@ -647,21 +629,6 @@
       }
     },
     "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1746925973,
-        "narHash": "sha256-03BE0+8MEQ5hSU5+8OI24X7Rhn5GruYZr18KWAZ5Rzk=",
-        "owner": "nix-community",
-        "repo": "nixpkgs.lib",
-        "rev": "f9077b977f4c06f04afdfcac722fa942dd25818c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "nixpkgs.lib",
-        "type": "github"
-      }
-    },
-    "nixpkgs_3": {
       "locked": {
         "lastModified": 1779357205,
         "narHash": "sha256-cCO8aTqss5x9Ky8GWkpY0Hy5fyTZEbtifSUV8QjSzic=",
@@ -737,9 +704,8 @@
         "impermanence": "impermanence",
         "ki-editor": "ki-editor",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
-        "nfh": "nfh",
         "nix-index-db": "nix-index-db",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_2",
         "nvim": "nvim",
         "treefmt-nix": "treefmt-nix_2"
       }
