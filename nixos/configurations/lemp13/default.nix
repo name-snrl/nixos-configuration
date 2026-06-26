@@ -1,18 +1,11 @@
 {
-  inputs,
   pkgs,
   vars,
   lib,
   ...
 }:
 {
-  imports = inputs.self.moduleTree.nixos {
-    configurations = false;
-    profiles = {
-      desktop.work = false;
-      servers = false;
-    };
-  };
+  networking.hostName = lib.baseNameOf ./.;
 
   disko.devices.disk.disk0.device = "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_2TB_S7KHNU0X911162F";
 
@@ -53,11 +46,9 @@
     };
   };
 
-  home-manager.sharedModules =
-    lib.fileset.toList (lib.fileset.fileFilter (f: f.hasExt "nix") ../../../../home-manager/common)
-    ++ [
-      { home.stateVersion = "25.05"; }
-    ];
+  home-manager.sharedModules = [
+    { home.stateVersion = "25.05"; }
+  ];
 
   system.stateVersion = "25.05";
 }

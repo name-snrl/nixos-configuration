@@ -1,19 +1,11 @@
 {
   lib,
   pkgs,
-  inputs,
   config,
   ...
 }:
 {
-  imports = inputs.self.moduleTree.nixos {
-    configurations = false;
-    profiles = {
-      zfs = false;
-      impermanence = false;
-      desktop = false;
-    };
-  };
+  networking.hostName = lib.baseNameOf ./.;
 
   boot.initrd.kernelModules = [ "i915" ]; # Enable early KMS
 
@@ -49,11 +41,9 @@
     };
   };
 
-  home-manager.sharedModules =
-    lib.fileset.toList (lib.fileset.fileFilter (f: f.hasExt "nix") ../../../../home-manager/common)
-    ++ [
-      { home.stateVersion = "23.11"; }
-    ];
+  home-manager.sharedModules = [
+    { home.stateVersion = "23.11"; }
+  ];
 
   system.stateVersion = "22.05";
 }

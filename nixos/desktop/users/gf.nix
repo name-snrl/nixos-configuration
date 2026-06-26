@@ -13,7 +13,7 @@
 
   home-manager.users.${vars.users.gf.name}.imports =
     with lib.fileset;
-    toList (fileFilter (f: f.hasExt "nix") ../../../../../home-manager/gf);
+    toList (fileFilter (f: f.hasExt "nix") ../../../home-manager/gf);
 
   environment.persistence = {
     ${vars.fs.impermanence.persistent}.users.${vars.users.gf.name}.directories = [ "" ];
