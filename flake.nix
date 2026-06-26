@@ -18,7 +18,6 @@
     # single lines
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     impermanence.url = "github:nix-community/impermanence";
-    nfh.url = "github:name-snrl/nfh";
 
     # packages
     ki-editor = {
