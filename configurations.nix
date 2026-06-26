@@ -14,7 +14,11 @@ let
     ;
   drop = lib.flip lib.fileset.difference;
   listNixFiles = u: toList (intersection (fileFilter (f: f.hasExt "nix") ./.) u);
+  passInputsArg = {
+    _module.args = { inherit inputs; };
+  };
   nixosCommon = [
+    passInputsArg
     inputs.home-manager.nixosModules.home-manager
     inputs.disko.nixosModules.default
     inputs.impermanence.nixosModules.default
@@ -24,9 +28,10 @@ in
   flake = {
     nixosConfigurations = {
       lemp13 = inputs.nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
         modules = [
-          { home-manager.sharedModules = listNixFiles home-manager/common; }
+          {
+            home-manager.sharedModules = [ passInputsArg ] ++ listNixFiles home-manager/common;
+          }
         ]
         ++ nixosCommon
         ++ lib.pipe ./nixos [
@@ -40,9 +45,10 @@ in
       };
 
       t440s = inputs.nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
         modules = [
-          { home-manager.sharedModules = listNixFiles home-manager/common; }
+          {
+            home-manager.sharedModules = [ passInputsArg ] ++ listNixFiles home-manager/common;
+          }
         ]
         ++ nixosCommon
         ++ lib.pipe ./nixos [
@@ -60,8 +66,8 @@ in
     homeConfigurations = {
       "yusup@yusupDev" = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = (getSystem "x86_64-linux").legacyPackages;
-        extraSpecialArgs = { inherit inputs; };
         modules = [
+          passInputsArg
           { home.username = "yusup"; }
         ]
         ++ listNixFiles (unions [
