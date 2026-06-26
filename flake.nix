@@ -9,9 +9,10 @@
         (flake.moduleTree {
           _defaultsRecursive = false;
           flake-parts = true;
-          common-profiles.args = true;
         })
         ++ [
+          common/args.nix
+
           ./configurations.nix
         ];
     };

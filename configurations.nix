@@ -34,9 +34,9 @@ in
           (drop nixos/desktop/work.nix)
           (drop nixos/servers)
           (union nixos/configurations/lemp13)
+          (union ./common)
           listNixFiles
-        ]
-        ++ inputs.self.moduleTree.common-profiles { };
+        ];
       };
 
       t440s = inputs.nixpkgs.lib.nixosSystem {
@@ -51,9 +51,9 @@ in
           (drop nixos/impermanence.nix)
           (drop nixos/desktop)
           (union nixos/configurations/t440s)
+          (union ./common)
           listNixFiles
-        ]
-        ++ inputs.self.moduleTree.common-profiles { };
+        ];
       };
     };
 
@@ -68,8 +68,8 @@ in
           home-manager/configurations/basic
           home-manager/common
           home-manager/snrl/git.nix
-        ])
-        ++ inputs.self.moduleTree.common-profiles { };
+          ./common
+        ]);
       };
     };
   };
