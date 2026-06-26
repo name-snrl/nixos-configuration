@@ -2,19 +2,16 @@
   description = "My NixOS configurations";
 
   outputs =
-    inputs@{ nfh, flake-parts, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } rec {
-      flake.moduleTree = nfh ./modules;
-      imports =
-        (flake.moduleTree {
-          _defaultsRecursive = false;
-          flake-parts = true;
-        })
-        ++ [
-          common/args.nix
+    inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        common/args.nix
 
-          ./configurations.nix
-        ];
+        ./configurations.nix
+        ./packages.nix
+        ./shell.nix
+        ./templates.nix
+      ];
     };
 
   inputs = {
