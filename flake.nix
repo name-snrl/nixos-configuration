@@ -19,7 +19,6 @@
   # Otherwise, downloads will happen sequentially during evaluation.
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    impermanence.url = "github:nix-community/impermanence";
 
     # packages
     ki-editor = {

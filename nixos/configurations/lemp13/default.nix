@@ -1,6 +1,5 @@
 {
   pkgs,
-  vars,
   lib,
   ...
 }:
@@ -31,20 +30,6 @@
 
   # other
   programs.steam.enable = true;
-
-  environment.persistence = {
-    ${vars.fs.impermanence.persistent} = {
-      files = [
-        "/var/lib/sddm/state.conf"
-      ];
-      directories = [
-        "/var/lib/iwd"
-        "/var/lib/bluetooth"
-        "/var/lib/systemd/backlight"
-        "/var/lib/upower"
-      ];
-    };
-  };
 
   home-manager.sharedModules = [
     { home.stateVersion = "25.05"; }

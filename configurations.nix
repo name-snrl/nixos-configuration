@@ -21,7 +21,6 @@ let
     passInputsArg
     inputs.home-manager.nixosModules.home-manager
     inputs.disko.nixosModules.default
-    inputs.impermanence.nixosModules.default
   ];
 in
 {
@@ -54,7 +53,6 @@ in
         ++ lib.pipe ./nixos [
           (drop nixos/configurations)
           (drop nixos/zfs.nix)
-          (drop nixos/impermanence.nix)
           (drop nixos/desktop)
           (union nixos/configurations/t440s)
           (union ./common)
