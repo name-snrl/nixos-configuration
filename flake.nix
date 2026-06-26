@@ -5,12 +5,10 @@
     inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
-        common/args.nix
-
         ./configurations.nix
         ./packages.nix
         ./shell.nix
-        ./templates.nix
+        ./templates
       ];
     };
 

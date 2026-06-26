@@ -1,7 +1,6 @@
 { lib, ... }:
 {
   _module.args = {
-    __findFile = _: s: ../${s};
     # There are 2 reasons for using `vars`:
     #
     # - This helps avoid typos that could cause serious issues, e.g. creating

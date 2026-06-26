@@ -1,8 +1,6 @@
 {
   lib,
   inputs,
-  # deadnix: skip
-  __findFile,
   ...
 }:
 {
@@ -17,9 +15,9 @@
         self.overlays.default
         nvim.overlays.default
       ];
-    overrides = import <overlays/overrides.nix> inputs;
-    gateway = import <overlays/gateway.nix> inputs;
-    default = import <pkgs>;
+    overrides = import overlays/overrides.nix inputs;
+    gateway = import overlays/gateway.nix inputs;
+    default = import ./pkgs;
   };
 
   perSystem =
