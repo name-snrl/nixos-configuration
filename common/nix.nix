@@ -1,7 +1,7 @@
 { pkgs, inputs, ... }:
 {
   nix = {
-    package = pkgs.nixVersions.latest;
+    package = pkgs.lix;
     settings = {
       auto-optimise-store = true;
       use-xdg-base-directories = true;
