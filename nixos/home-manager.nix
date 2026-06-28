@@ -1,14 +1,14 @@
-{ inputs, vars, ... }:
+{ inputs, ... }:
 {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = {
-      inherit inputs vars;
+      inherit inputs;
     };
     users = {
       root = { };
-      ${vars.users.master.name} = { };
+      name_snrl = { };
     };
   };
 }
