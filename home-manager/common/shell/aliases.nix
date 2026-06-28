@@ -18,7 +18,6 @@ in
     fd = "fd --follow --hidden";
     dt = "difft";
     cl = "cloc";
-    cat = "bat --pager=never --style=changes,rule,snip";
     tree = "tree -C";
     sctl = "systemctl";
     reboot = "echo 'Are you sure?'; read && systemctl reboot";
