@@ -3,8 +3,8 @@
     { pkgs, ... }:
     {
       virtualisation = {
-        cores = 2;
-        memorySize = 3 * 1024;
+        cores = 6;
+        memorySize = 12 * 1024;
         diskImage = null;
         # https://wiki.qemu.org/Documentation/9psetup#Performance_Considerations_(msize)
         # I set it to 1MB, but in tests there was no difference compared to the default value (16KB)
