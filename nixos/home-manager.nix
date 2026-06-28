@@ -3,8 +3,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users = {
-      root = { };
-    };
+    # configure root with home-manager shared modules
+    users.root = { };
   };
 }
