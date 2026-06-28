@@ -17,9 +17,17 @@
   services.journald.extraConfig = "SystemMaxUse=200M";
   systemd.coredump.settings.Coredump.MaxUse = "200M";
 
-  services.udisks2.enable = true;
-  environment.defaultPackages = with pkgs; [
-    pciutils
-    usbutils
-  ];
+  services = {
+    udisks2.enable = true;
+  };
+
+  environment = {
+    defaultPackages = with pkgs; [
+      pciutils
+      usbutils
+    ];
+    systemPackages = with pkgs; [
+      remmina
+    ];
+  };
 }
