@@ -9,6 +9,8 @@ in
 
   nvim-full = final.callPackage ./nvim-full { };
 
+  inter-tuned = final.callPackage ./inter-tuned { };
+
   writeSymlinkBin =
     pkg: name:
     final.runCommandLocal "${pkg.pname}-as-${name}" { } ''
