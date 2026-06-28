@@ -1,10 +1,11 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
-  fonts = {
-    enableDefaultPackages = false;
+  # force configuration, to prevent additional settings, by DEs
+  fonts = lib.mkForce {
     packages = with pkgs; [
       jetbrains-mono
-      noto-fonts-lgc-plus
+      paratype-pt-sans
+      paratype-pt-serif
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
       twitter-color-emoji
@@ -19,26 +20,29 @@
       caladea
       carlito
     ];
-    fontconfig.defaultFonts = {
-      monospace = [
-        "JetBrains Mono NL Light"
-        "Noto Sans Mono CJK JP"
-        "Symbols Nerd Font Mono"
-        "Twitter Color Emoji"
-      ];
-      sansSerif = [
-        "Noto Sans"
-        "Noto Sans CJK JP"
-        "Symbols Nerd Font"
-        "Twitter Color Emoji"
-      ];
-      serif = [
-        "Noto Serif"
-        "Noto Serif CJK JP"
-        "Symbols Nerd Font"
-        "Twitter Color Emoji"
-      ];
-      emoji = [ "Twitter Color Emoji" ];
+    fontconfig = {
+      includeUserConf = false;
+      defaultFonts = {
+        monospace = [
+          "JetBrains Mono NL Light"
+          "Noto Sans Mono CJK JP"
+          "Symbols Nerd Font Mono"
+          "Twitter Color Emoji"
+        ];
+        sansSerif = [
+          "PT Sans"
+          "Noto Sans CJK JP"
+          "Symbols Nerd Font"
+          "Twitter Color Emoji"
+        ];
+        serif = [
+          "PT Serif"
+          "Noto Serif CJK JP"
+          "Symbols Nerd Font"
+          "Twitter Color Emoji"
+        ];
+        emoji = [ "Twitter Color Emoji" ];
+      };
     };
   };
 }
