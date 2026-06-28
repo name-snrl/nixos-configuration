@@ -5,7 +5,6 @@
     useUserPackages = true;
     users = {
       root = { };
-      name_snrl = { };
     };
   };
 }
