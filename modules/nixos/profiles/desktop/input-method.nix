@@ -50,4 +50,10 @@ in
   programs.sway.extraSessionCommands = ''
     export QT_IM_MODULE=fcitx
   '';
+
+  services.xserver.xkb.extraLayouts.vigram = {
+    description = "Alternative, hjkl friendly engram v2.0 layout";
+    languages = [ "eng" ];
+    symbolsFile = ./vigram;
+  };
 }
