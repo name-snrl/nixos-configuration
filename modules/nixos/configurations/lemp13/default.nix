@@ -18,13 +18,35 @@
 
   disko.devices.disk.disk0.device = "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_2TB_S7KHNU0X911162F";
 
-  hardware.system76 = {
-    enableAll = true;
-    power-daemon.enable = false;
-  };
-
   # CPU
-  nix.settings.cores = 6;
+  nix.settings.cores = 10;
+  hardware.cpu.intel.npu.enable = true;
+  # services.thermald.enable = true; # add to lemp13?
+  services.thinkfan = {
+    enable = true;
+    levels = [
+      [
+        1
+        0
+        66
+      ]
+      [
+        3
+        56
+        72
+      ]
+      [
+        5
+        64
+        80
+      ]
+      [
+        7
+        76
+        32767
+      ]
+    ];
+  };
 
   # GPU acceleration
   hardware.graphics.extraPackages = [ pkgs.intel-media-driver ];
