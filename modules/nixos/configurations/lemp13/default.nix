@@ -18,6 +18,10 @@
 
   disko.devices.disk.disk0.device = "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_2TB_S7KHNU0X911162F";
 
+  # TODO for debug
+  services.nixseparatedebuginfod2.enable = true;
+  environment.systemPackages = [ config.boot.kernelPackages.turbostat ];
+
   # CPU
   nix.settings.cores = 10;
   hardware.cpu.intel.npu.enable = true;
