@@ -20,12 +20,6 @@
     overlays = [ inputs.self.overlays.composite ];
   };
 
-  # nixos-containers networking
-  networking.nat = {
-    enable = true;
-    internalInterfaces = [ "ve-+" ];
-  };
-
   # necessary for programs that search for man pages
   documentation.man.cache.enable = true;
 
