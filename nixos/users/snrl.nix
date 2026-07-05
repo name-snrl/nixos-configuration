@@ -1,5 +1,6 @@
 {
   lib,
+  pkgs,
   ...
 }:
 {
@@ -12,9 +13,9 @@
     ];
     hashedPassword = "$6$6US0iMDXE1K7wj9g$2/JKHfX4VfNETELdt4dTlTUzlmZAmvP4XfRNB5ORVPYNmi6.A4EWpSXkpx/5PrPx1J/LaA41n2NDss/R0Utqh/";
     openssh.authorizedKeys.keyFiles = [
-      (__fetchurl {
+      (pkgs.fetchurl {
         url = "https://github.com/name-snrl.keys";
-        sha256 = "sha256-Aqe3SJF5Y6WBw5hdgTgerDJ7Re5jnNcxqnFyZLcuMJ0=";
+        hash = "sha256-6HDroPthJirnLGCDdxnLWnYYyIA/Kf8zQBad05aKYfY=";
       })
     ];
   };
