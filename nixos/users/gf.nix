@@ -12,5 +12,10 @@
 
   home-manager.users.Elizabeth.imports =
     with lib.fileset;
-    toList (fileFilter (f: f.hasExt "nix") ../../home-manager/gf);
+    toList (
+      intersection (fileFilter (f: f.hasExt "nix") ../..) (unions [
+        ../../home-manager/gf
+        ../../home-manager/firefox-kde-integraion.nix
+      ])
+    );
 }
