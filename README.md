@@ -16,7 +16,9 @@ sh <(curl -L https://github.com/name-snrl/nixos-configuration/raw/master/install
 This repository is built around a few simple principles and ideas from Nixpkgs:
 
 - [KISS](https://en.wikipedia.org/wiki/KISS_principle), which means:
-  - no frameworks with their own complex abstractions
+  - no frameworks with complex abstractions, like
+    [std](https://github.com/divnix/std), [den](https://github.com/denful/den),
+    etc
   - no custom library
   - no complex nix code
   - no unnecessary glue code (e.g. modules for roles, types, etc. whose only
