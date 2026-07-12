@@ -25,6 +25,7 @@
     wait-online.anyInterface = true;
     netdevs.wireCat = {
       netdevConfig = {
+        # Schrödinger's interface: it's both wireD and wireLess at the same time
         Name = "wireCat";
         Kind = "bond";
       };
