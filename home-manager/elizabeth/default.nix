@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+  xdg.enable = true;
   programs = {
     firefox = {
       enable = true;
