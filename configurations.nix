@@ -54,6 +54,7 @@ in
           (drop nixos/configurations)
           (drop nixos/zfs.nix)
           (drop nixos/desktop)
+          (drop nixos/users/elizabeth.nix)
           (union nixos/configurations/t440s)
           (union ./common)
           listNixFiles
