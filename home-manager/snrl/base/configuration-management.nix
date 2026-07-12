@@ -1,0 +1,37 @@
+{
+  lib,
+  config,
+  osConfig,
+  ...
+}:
+let
+  # TODO remove me, just store configuration in proper place  (/etc/nixos, ~/.config/home-manager)
+  cfgPath = "${config.home.homeDirectory}/nixos-configuration";
+  isModule = osConfig != null;
+in
+{
+  home.shellAliases = {
+    # TODO remove me
+    usrcfg = "git --git-dir=$HOME/.git_home/ --work-tree=$HOME";
+
+    # cfg management
+    nboot = lib.mkIf isModule "nixos-rebuild boot --sudo --no-reexec --flake ${cfgPath}";
+    nswitch =
+      if isModule then
+        "nixos-rebuild switch --sudo --no-reexec --flake ${cfgPath}"
+      else
+        "home-manager switch --flake ${cfgPath}";
+    nbuild =
+      if isModule then
+        "nix build --no-link ${cfgPath}#${osConfig.networking.hostName}"
+      else
+        "home-manager build --no-out-link ${cfgPath}";
+    nrepl = lib.mkIf isModule "nixos-rebuild repl --flake ${cfgPath}";
+    nvmrun = lib.mkIf isModule "nix run ${cfgPath}#nixosConfigurations.${osConfig.networking.hostName}.config.system.build.vm";
+    nupdate = "nix flake update --commit-lock-file --flake ${cfgPath} && nix flake check ${cfgPath}";
+    # https://github.com/NixOS/nix/issues/8508
+    nclear =
+      lib.optionalString isModule "sudo nix-collect-garbage --delete-old --quiet && "
+      + "nix-collect-garbage --delete-old --quiet";
+  };
+}

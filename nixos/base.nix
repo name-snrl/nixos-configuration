@@ -21,6 +21,7 @@
         (drop ../home-manager/snrl/base/home-manager.nix)
         (drop ../home-manager/snrl/base/stylua.nix)
         (drop ../home-manager/snrl/base/taskwarriror.nix)
+        (drop ../home-manager/snrl/base/configuration-management.nix)
 
         listNixFiles
       ];
