@@ -9,8 +9,21 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    # configure root with home-manager shared modules
-    users.root = { };
+    users.root.imports =
+      with lib.fileset;
+      let
+        drop = lib.flip difference;
+        listNixFiles = u: toList (intersection (fileFilter (f: f.hasExt "nix") ../.) u);
+      in
+      lib.pipe ../home-manager/snrl/base [
+        (drop ../home-manager/snrl/base/shell/direnv.nix)
+        (drop ../home-manager/snrl/base/git.nix)
+        (drop ../home-manager/snrl/base/home-manager.nix)
+        (drop ../home-manager/snrl/base/stylua.nix)
+        (drop ../home-manager/snrl/base/taskwarriror.nix)
+
+        listNixFiles
+      ];
   };
 
   nix.channel.enable = false;

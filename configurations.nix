@@ -28,9 +28,7 @@ in
     nixosConfigurations = {
       lemp13 = inputs.nixpkgs.lib.nixosSystem {
         modules = [
-          {
-            home-manager.sharedModules = [ passInputsArg ] ++ listNixFiles home-manager/common;
-          }
+          { home-manager.sharedModules = [ passInputsArg ]; }
         ]
         ++ nixosCommon
         ++ lib.pipe ./nixos [
@@ -45,9 +43,7 @@ in
 
       t440s = inputs.nixpkgs.lib.nixosSystem {
         modules = [
-          {
-            home-manager.sharedModules = [ passInputsArg ] ++ listNixFiles home-manager/common;
-          }
+          { home-manager.sharedModules = [ passInputsArg ]; }
         ]
         ++ nixosCommon
         ++ lib.pipe ./nixos [
@@ -71,8 +67,7 @@ in
         ]
         ++ listNixFiles (unions [
           home-manager/configurations/basic
-          home-manager/common
-          home-manager/snrl/git.nix
+          home-manager/snrl/base
           ./common
         ]);
       };
