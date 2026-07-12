@@ -34,6 +34,8 @@
     overlays = [ inputs.self.overlays.composite ];
   };
 
+  documentation.man.cache.enable = true;
+
   # clear out the junk
   programs.nano.enable = false;
   environment.variables.EDITOR = lib.mkOverride 900 null;

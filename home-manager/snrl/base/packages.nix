@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+  programs.man.generateCaches = true;
   home = {
     packages = with pkgs; [
       #ki-editor
