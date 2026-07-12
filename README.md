@@ -11,6 +11,12 @@
 sh <(curl -L https://github.com/name-snrl/nixos-configuration/raw/master/install) <configuration-name>
 ```
 
+**Note:** When installing a system from a rolling-release branch (e.g.,
+`nixos-unstable`), set `system.stateVersion` to the current stable release, not
+a future release. This helps prevent unexpected behavior during future updates.
+Otherwise, future changes in rolling may start using the upcoming release
+version to select new default values, resulting in silent behavior changes.
+
 ### Design Principles
 
 This repository is built around a few simple principles and ideas from Nixpkgs:
