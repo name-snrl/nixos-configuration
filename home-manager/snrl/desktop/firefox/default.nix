@@ -36,7 +36,7 @@ in
         ''
           @import url(${csshacks}/chrome/autohide_toolbox.css);
         ''
-        # online toolbar
+        # oneline toolbar
         + ''
           @import url(${csshacks}/chrome/oneline_toolbar.css);
 
