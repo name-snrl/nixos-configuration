@@ -14,7 +14,7 @@
     with lib.fileset;
     toList (
       intersection (fileFilter (f: f.hasExt "nix") ../..) (unions [
-        ../../home-manager/gf
+        ../../home-manager/elizabeth
         ../../home-manager/firefox-kde-integraion.nix
       ])
     );
