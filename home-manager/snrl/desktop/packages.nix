@@ -1,9 +1,11 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
+    anki
     kotatogram-desktop
     qbittorrent
-    anki
+    remmina
+
     ffmpeg
   ];
 }

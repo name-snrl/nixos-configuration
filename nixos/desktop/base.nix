@@ -26,8 +26,5 @@
       pciutils
       usbutils
     ];
-    systemPackages = with pkgs; [
-      remmina
-    ];
   };
 }
