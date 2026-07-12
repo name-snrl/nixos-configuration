@@ -39,6 +39,7 @@
 
   # clear out the junk
   programs.nano.enable = false;
+  environment.variables.EDITOR = lib.mkOverride 900 null;
   environment.defaultPackages = lib.mkDefault [ ];
 
   programs.fish.enable = true;
