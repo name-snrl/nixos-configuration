@@ -16,6 +16,7 @@
       intersection (fileFilter (f: f.hasExt "nix") ../../..) (unions [
         ../../../home-manager/elizabeth
         ../../../home-manager/firefox-kde-integraion.nix
+        ../../../home-manager/plasma
       ])
     );
 }

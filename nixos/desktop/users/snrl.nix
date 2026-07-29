@@ -9,6 +9,7 @@
       intersection (fileFilter (f: f.hasExt "nix") ../../..) (unions [
         ../../../home-manager/snrl
         ../../../home-manager/firefox-kde-integraion.nix
+        ../../../home-manager/plasma
       ])
     );
 }
