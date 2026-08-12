@@ -33,7 +33,6 @@ in
         ++ nixosCommon
         ++ lib.pipe ./nixos [
           (drop nixos/configurations)
-          (drop nixos/desktop/work.nix)
           (drop nixos/servers)
           (union nixos/configurations/lemp13)
           (union ./common)
