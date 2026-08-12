@@ -29,8 +29,6 @@
   zramSwap.memoryPercent = 30;
 
   # other
-  programs.steam.enable = true;
-
   home-manager.sharedModules = [
     { home.stateVersion = "25.05"; }
   ];
